@@ -46,8 +46,8 @@ class Tx_XmFormcycle_Controller_FormcycleController extends Tx_Extbase_MVC_Contr
 	 
 	public function listAction() {
 		$GLOBALS['icss'] = $this->settings['xf']['icss']; 
-		$selErrorPage = $this->settings['xf']['siteerror'];
-		$selOkPage = $this->settings['xf']['siteok'];
+		$selErrorPage = $this->getRedirectURL($this->settings['xf']['siteerror']);
+		$selOkPage = $this->getRedirectURL($this->settings['xf']['siteok']);
 		$usejq = $this->settings['xf']['useFcjQuery'];
 		$useui = $this->settings['xf']['useFcjQueryUi'];
 		$usebs = $this->settings['xf']['useFcBootStrap'];
@@ -60,6 +60,15 @@ class Tx_XmFormcycle_Controller_FormcycleController extends Tx_Extbase_MVC_Contr
 		$this->view->assign('form', $fc_Content);
 	}
 
+
+	function getRedirectURL($uid) {
+	    return $this->uriBuilder
+	                ->reset()
+	                ->setArguments(array('L' => $GLOBALS['TSFE']->sys_language_uid))
+	                ->setTargetPageUid($uid)
+                        ->setUseCacheHash(false)
+                        ->buildFrontendUri();
+	}
 	
 	function url_origin($s, $use_forwarded_host=false)
 	{

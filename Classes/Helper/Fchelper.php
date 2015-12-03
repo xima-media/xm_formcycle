@@ -47,8 +47,8 @@ class FcHelper {
 	
 	function getFormContent($projektId, $returnurl, $siteok, $siteerror, $usejq, $useui, $usebs, $frontendLang){
 		
-		$okUrl = $returnurl.'?id='.$siteok;
-		$errorUrl = $returnurl.'?id='.$siteerror;
+		$okUrl = $returnurl.$siteok;
+		$errorUrl = $returnurl.$siteerror;
 		
 		return $GLOBALS['gFcUrl'] . '/form/provide/' . $projektId . '?xfc-pp-form-only=true'.
 		'&usejq='.$usejq.
