@@ -3,7 +3,7 @@
 /***************************************************************
  * Extension Manager/Repository config file for ext "xm_formcycle".
  *
- * Auto generated 03-12-2015 14:31
+ * Auto generated 03-12-2015 14:34
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
@@ -21,7 +21,7 @@ $EM_CONF[$_EXTKEY] = array (
 	'uploadfolder' => false,
 	'createDirs' => '',
 	'clearCacheOnLoad' => 0,
-	'version' => '1.0.2',
+	'version' => '1.0.3',
 	'constraints' => 
 	array (
 		'depends' => 

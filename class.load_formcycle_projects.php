@@ -1,4 +1,4 @@
- <?php
+<?php
  
  include(t3lib_extMgm::extPath('xm_formcycle','Classes/Helper/Fchelper.php'));
  
@@ -39,4 +39,4 @@
     return $config;
   }
  }
- ?>
+?>
