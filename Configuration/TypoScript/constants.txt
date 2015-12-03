@@ -1,0 +1,14 @@
+plugin.tx_xmformcycle {
+	view {
+		# cat=plugin.tx_xmformcycle/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:xm_formcycle/Resources/Private/Templates/
+		# cat=plugin.tx_xmformcycle/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:xm_formcycle/Resources/Private/Partials/
+		# cat=plugin.tx_xmformcycle/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:xm_formcycle/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_xmformcycle//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

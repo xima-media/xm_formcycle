@@ -1,0 +1,39 @@
+plugin.tx_xmformcycle {
+	view {
+		templateRootPath = {$plugin.tx_xmformcycle.view.templateRootPath}
+		partialRootPath = {$plugin.tx_xmformcycle.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_xmformcycle.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_xmformcycle.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+}
+
+plugin.tx_xmformcycle._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-xm-formcycle table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-xm-formcycle table th {
+		font-weight:bold;
+	}
+
+	.tx-xm-formcycle table td {
+		vertical-align:top;
+	}
+)
