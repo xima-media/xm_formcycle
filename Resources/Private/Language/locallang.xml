@@ -11,6 +11,8 @@
 			<label index="tx_xmformcycle_tab1_select_projekt">select form (required)</label>
 			<label index="tx_xmformcycle_tab1_edit_projekt">edit selected form</label>
 			<label index="tx_xmformcycle_tab5_name">script / css</label>
+			<label index="tx_xmformcycle_tab6_name">parameters</label>
+			<label index="tx_xmformcycle_tab6_param_values">parameter (example: &amp;param1=value1&amp;param2=value2&amp;param3=value3)</label>
 			<label index="tx_xmformcycle_tab5_icss">Use available css</label>
 			<label index="tx_xmformcycle_tab5_useJS_jQuery">Use the jQuery framework provided by FormCycle. If you uncheck this (you use your own framework), make shure your jQuery framework is initialised before this plug in.</label>
 			<label index="tx_xmformcycle_tab5_useJS_jQueryUi">Use the jQuery UI framework provided by FormCycle (only necessary if you use jQuery UI Components).</label>
@@ -23,6 +25,8 @@
 			<label index="tx_xmformcycle_tab4_name">xima FormCycle administration</label>
 		</languageKey>
 		<languageKey index="de" type="array">
+			<label index="tx_xmformcycle_tab6_name">Parameter</label>
+			<label index="tx_xmformcycle_tab6_param_values">Parameter (Beispiel: &amp;param1=wert1&amp;param2=wert2&amp;param3=wert3)</label>
 			<label index="tx_xmformcycle_domain_model_formcycle">FormCycle</label>
 			<label index="tx_xmformcycle_tab1_name">Formular</label>
 			<label index="tx_xmformcycle_tab1_select_projekt">Formular auswählen (Pflichtfeld)</label>

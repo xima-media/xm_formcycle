@@ -152,7 +152,25 @@
 			</el>
 		</ROOT>
 	</sheetShapeAreaOptions88>
-
+        <sheetShapeAreaOptions99>
+                <ROOT>
+                        <TCEforms>
+                                <sheetTitle>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab6_name</sheetTitle>
+                        </TCEforms>
+                        <type>array</type>
+                        <el>
+				<settings.xf.useFcUrlParams>
+                                    <TCEforms>
+                                                <label>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab6_param_values</label>
+                                                <config>
+                                                        <type>input</type>
+							<size>30</size>
+                                                </config>
+                                </TCEforms>
+                                </settings.xf.useFcUrlParams>
+                        </el>
+                </ROOT>
+        </sheetShapeAreaOptions99>
 	<sheetShapeAreaOptions4>
 		<ROOT>
 			<TCEforms>

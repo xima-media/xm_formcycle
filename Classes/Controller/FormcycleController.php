@@ -53,10 +53,11 @@ class Tx_XmFormcycle_Controller_FormcycleController extends Tx_Extbase_MVC_Contr
 		$usebs = $this->settings['xf']['useFcBootStrap'];
 		$selProjectId = $this->settings['xf']['xfc_p_id'];
 		$frontendLang = $GLOBALS['TSFE']->config['config']['language'];
+		$fcParams = $this->settings['xf']['useFcUrlParams'];
 		
 		$fch = new FcHelper();
-		$fc_ContentUrl = $fch->getFormContent($selProjectId,t3lib_div::getIndpEnv('TYPO3_SITE_URL'), $selOkPage, $selErrorPage, $usejq, $useui, $usebs,$frontendLang);
-		$fc_Content = file_get_contents($fc_ContentUrl);
+		$fc_ContentUrl = $fch->getFormContent($selProjectId,t3lib_div::getIndpEnv('TYPO3_SITE_URL'), $selOkPage, $selErrorPage, $usejq, $useui, $usebs, $frontendLang, $fcParams);
+		$fc_Content = $fch->getFileContent($fc_ContentUrl, '', '', '');		
 		$this->view->assign('form', $fc_Content);
 	}
 

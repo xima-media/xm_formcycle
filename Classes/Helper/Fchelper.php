@@ -3,7 +3,7 @@
  * 
  */
  
-  $gFcAdminUrl = "";
+ $gFcAdminUrl = "";
  $gFcProvideUrl = "";
  $gFcUser = "";
  $gFcPass = "";
@@ -23,56 +23,104 @@ class FcHelper {
 		return $GLOBALS['icss'];
 	}
 
-	function getSessionId() {
-	
-		$result = file_get_contents($GLOBALS['gFcUrl'] . "/ext-4.0.2/servlet/aktuellerBenutzer?action=login&user=".$GLOBALS['gFcUser']."&pass=".$GLOBALS['gFcPass']);
-		$json_data = json_decode($result, true);
-		$sessId = $json_data['sessionId'];	
+
+	function getFileContent($myURL, $myAction, $myUser, $myPasswd) {
+			
+		$result = '';
+		$httpParams = array();
+		$curlPostfields = '';
 		
-		return $sessId;
-	}
+		if (function_exists('curl_init')){
+			$ch = curl_init();
+					
+			// Disable SSL verification
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			// Will return the response, if false it print the response
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			// Set the url
+			curl_setopt($ch, CURLOPT_URL,$myURL);
+			curl_setopt($ch,CURLOPT_POST, true);
+			curl_setopt($ch,CURLOPT_HTTPGET, false);
+
+			if($myAction == 'version') {
+			    curl_setopt($ch,CURLOPT_POST, false);
+			    curl_setopt($ch,CURLOPT_HTTPGET, true);
+			}
+
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPostfields);
+			
+			
+			if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyServer']) {
+        		    curl_setopt($ch, CURLOPT_PROXY, $GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyServer']);
+ 
+        		    if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyTunnel']) {
+            			curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, $GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyTunnel']);
+        		    }
+        		    if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyUserPass']) {
+            			curl_setopt($ch, CURLOPT_PROXYUSERPWD, $GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyUserPass']);
+        		    }
+    			}
+			
+			// Execute
+			$result=curl_exec($ch);
+			// Closing
+			curl_close($ch); 
+			
+		} else {
+			$httpArray = array();
+			
+			array_push($httpArray, 'method');
+			$httpArray['method'] = 'POST';
+			
+			array_push($httpArray, 'request_fulluri');
+			$httpArray['request_fulluri'] = true;
 	
-	function getFcUrlWithSession(){
-		list($protokoll, $nix, $domain,$appname) = explode("/", $GLOBALS['gFcUrl']);
-		return $protokoll.'//'.$domain.'/;jsessionid='.$this->getSessionId().'/'.$appname;
+			$opts = array( 
+				'http' => $httpArray, 
+				'https' => $httpArray 
+			); 
+			$context = stream_context_create($opts); 
+			$result =  file_get_contents($myURL, false, $context);
+			
+		}
+		return $result;
 	}
-	
+
 	function getTypoSiteURL(){
 		return t3lib_div::getIndpEnv('TYPO3_SITE_URL');
 	}
 	
-	function getFcDesignerEditUrl(){
-		return $this->getFcUrlWithSession();
-	}
-	
-	function getFormContent($projektId, $returnurl, $siteok, $siteerror, $usejq, $useui, $usebs, $frontendLang){
+	function getFormContent($projektId, $returnurl, $siteok, $siteerror, $usejq, $useui, $usebs, $frontendLang, $fcParams){
 		
 		$okUrl = $returnurl.$siteok;
 		$errorUrl = $returnurl.$siteerror;
-		
+		$sessionID = $GLOBALS['TSFE']->fe_user->id;
+
 		return $GLOBALS['gFcUrl'] . '/form/provide/' . $projektId . '?xfc-pp-form-only=true'.
-		'&usejq='.$usejq.
-		'&useui='.$useui.
-		'&usebs='.$usebs.
+		'&xfc-rp-usejq='.$usejq.
+		'&xfc-rp-useui='.$useui.
+		'&xfc-rp-usebs='.$usebs.
+		'&xfc-rp-inline=true'.
 		'&lang='.$frontendLang.
+		'&xfc-pp-external=true'.
 		'&xfc-pp-base-url='.$GLOBALS['gFcUrl'].
 		'&xfc-pp-success-url='.$okUrl.
-		'&xfc-pp-error-url='.$errorUrl;
-	}
-	
-	function getProjectListUrl(){
-		return $this->getFcUrlWithSession() . '/ext-4.0.2/servlet/projekt';
+		'&xfc-pp-error-url='.$errorUrl.
+		$fcParams;
 	}
 	
 	function getFcIframeUrl(){
-		return $this->getFcUrlWithSession() . '/external';
+		$res = $GLOBALS['gFcUrl'] . '/external';
+		return $res;
 	}	
 	
 	function getFcAdministrationUrl(){
+		
 		return $GLOBALS['gFcUrl'];
 	}
 }	
 
 }
+
 
 ?>
