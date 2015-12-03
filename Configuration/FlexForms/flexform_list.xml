@@ -14,31 +14,22 @@
    				<TCEforms>
     				<label>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab1_select_projekt</label>
     				<config>
-     					<type>select</type>
-      					<itemsProcFunc>tx_sampleflex_addFieldsToFlexForm->addFields</itemsProcFunc>
-      					<minitems>1</minitems>
-						<maxitems>1</maxitems>
+     					<type>input</type>
+						<size>10</size>
+						<eval>required</eval>
     				</config>
     			</TCEforms>
 			</settings.xf.xfc_p_id>
-			<userfunc_field0> 
-				<TCEforms> 
-					<label></label> 
-					<config> 
-  						<type>user</type> 
-						<userFunc>typo3conf/ext/xm_formcycle/class.fc_refreshbutton.php:&amp;tx_refreshbutton->startrefresh</userFunc> 
-					</config> 
-				</TCEforms> 
-			</userfunc_field0>			
-			<userfunc_field3> 
-				<TCEforms> 
-					<label>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab1_edit_projekt</label> 
-					<config> 
-  						<type>user</type> 
-						<userFunc>typo3conf/ext/xm_formcycle/class.fc_actionbuttons.php:&amp;tx_editbutton->startedit</userFunc> 
-					</config> 
-				</TCEforms> 
-			</userfunc_field3> 
+			<userfunc_field113> 
+  					<TCEforms> 
+						<label></label> 
+    					<config> 
+      						<type>user</type> 
+							<userFunc>typo3conf/ext/xm_formcycle/class.fc_actionnewbutton.php:&amp;tx_newbutton->startnew</userFunc> 
+    					</config> 
+  					</TCEforms> 
+			</userfunc_field113> 			
+			
 			<userfunc_field_help_1> 
 				<TCEforms> 
 					<label></label> 
@@ -161,34 +152,7 @@
 			</el>
 		</ROOT>
 	</sheetShapeAreaOptions88>
-	<sheetShapeAreaOptions2>
-		<ROOT>
-			<TCEforms>
-  				<sheetTitle>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab3_name</sheetTitle>
-			</TCEforms>
-			<type>array</type>
-			<el>
-				<userfunc_field3> 
-  					<TCEforms> 
-						<label></label> 
-    					<config> 
-      						<type>user</type> 
-							<userFunc>typo3conf/ext/xm_formcycle/class.fc_actionnewbutton.php:&amp;tx_newbutton->startnew</userFunc> 
-    					</config> 
-  					</TCEforms> 
-			</userfunc_field3> 
-			<userfunc_field_help_3> 
-				<TCEforms> 
-					<label></label> 
-					<config> 
-  						<type>user</type> 
-						<userFunc>typo3conf/ext/xm_formcycle/class.fc_openhelp.php:&amp;tx_openhelp->startopen</userFunc> 
-					</config> 
-				</TCEforms> 
-			</userfunc_field_help_3> 				
-			</el>
-		</ROOT>
-	</sheetShapeAreaOptions2>
+
 	<sheetShapeAreaOptions4>
 		<ROOT>
 			<TCEforms>
