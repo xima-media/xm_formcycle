@@ -27,10 +27,12 @@
 	$zahl = count($projekteArray);
 	for($count = 0; $count < $zahl; $count++)
 	{
-		$formVersion =$projekteArray[$count]['activeVersion']['versionsNummer'];
-		$projektId = $projekteArray[$count]['id'];
-		$projektName = $projekteArray[$count]['name'];
-  		$optionList[$count] = array(0 => $projektName, 1 => '/fd2/xfd2.jsp?vn='.$formVersion.'&lang='.$lang.'&pid='. $projektId);
+		if($projekteArray[$count]['aktiv'] == 'true') {
+			$formVersion =$projekteArray[$count]['activeVersion']['versionsNummer'];
+			$projektId = $projekteArray[$count]['id'];
+			$projektName = $projekteArray[$count]['name'];
+  			$optionList[$count] = array(0 => $projektName, 1 => '/fd2/xfd2.jsp?vn='.$formVersion.'&lang='.$lang.'&pid='. $projektId);
+		}
 	}
 	
     $config['items'] = array_merge($config['items'],$optionList);

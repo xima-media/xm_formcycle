@@ -3,7 +3,7 @@
 /***************************************************************
  * Extension Manager/Repository config file for ext "xm_formcycle".
  *
- * Auto generated 03-12-2015 14:26
+ * Auto generated 03-12-2015 14:29
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
@@ -14,14 +14,14 @@ $EM_CONF[$_EXTKEY] = array (
 	'title' => 'FormCycle',
 	'description' => 'form management with professional form designer, process management, inbox and more features.',
 	'category' => 'plugin',
-	'author' => 'Mr. Weber',
+	'author' => 'xima media GmbH',
 	'author_email' => 'kontakt@xima.de',
 	'author_company' => 'xima media GmbH',
 	'state' => 'stable',
 	'uploadfolder' => false,
 	'createDirs' => '',
 	'clearCacheOnLoad' => 0,
-	'version' => '1.0.0',
+	'version' => '1.0.1',
 	'constraints' => 
 	array (
 		'depends' => 
