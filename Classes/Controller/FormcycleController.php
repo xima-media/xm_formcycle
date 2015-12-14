@@ -1,9 +1,13 @@
 <?php
+namespace Xima\XmFormcycle\Controller;
+
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Xima\XmFormcycle\Helper\FcHelper;
 
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2014 
+ *  (c) 2014
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -24,68 +28,78 @@
  ***************************************************************/
 
 /**
- *
+ * Class FormcycleController
  *
  * @package xm_formcycle
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
+class FormcycleController extends ActionController
+{
 
- 		/*error_reporting(E_ALL);
-		ini_set('display_errors',1);
-		*/
-include(t3lib_extMgm::extPath('xm_formcycle','Classes/Helper/Fchelper.php'));
+    /**
+     * action list
+     *
+     * @return void
+     */
+    public function listAction()
+    {
+        $GLOBALS['icss'] = $this->settings['xf']['icss'];
+        $selErrorPage = $this->getRedirectURL($this->settings['xf']['siteerror']);
+        $selOkPage = $this->getRedirectURL($this->settings['xf']['siteok']);
+        $usejq = $this->settings['xf']['useFcjQuery'];
+        $useui = $this->settings['xf']['useFcjQueryUi'];
+        $usebs = $this->settings['xf']['useFcBootStrap'];
+        $selProjectId = $this->settings['xf']['xfc_p_id'];
+        $frontendLang = $GLOBALS['TSFE']->config['config']['language'];
+        $fcParams = $this->settings['xf']['useFcUrlParams'];
 
-class Tx_XmFormcycle_Controller_FormcycleController extends Tx_Extbase_MVC_Controller_ActionController {
+        $fch = new FcHelper();
+        $fc_ContentUrl = $fch->getFormContent($selProjectId, $selOkPage,
+            $selErrorPage, $usejq, $useui, $usebs, $frontendLang, $fcParams);
+        $fc_Content = $fch->getFileContent($fc_ContentUrl, '', '', '');
+        $this->view->assign('form', $fc_Content);
+    }
 
-	/**
-	 * action list
-	 *
-	 * @return void
-	 */
-	 
-	public function listAction() {
-		$GLOBALS['icss'] = $this->settings['xf']['icss']; 
-		$selErrorPage = $this->getRedirectURL($this->settings['xf']['siteerror']);
-		$selOkPage = $this->getRedirectURL($this->settings['xf']['siteok']);
-		$usejq = $this->settings['xf']['useFcjQuery'];
-		$useui = $this->settings['xf']['useFcjQueryUi'];
-		$usebs = $this->settings['xf']['useFcBootStrap'];
-		$selProjectId = $this->settings['xf']['xfc_p_id'];
-		$frontendLang = $GLOBALS['TSFE']->config['config']['language'];
-		$fcParams = $this->settings['xf']['useFcUrlParams'];
-		
-		$fch = new FcHelper();
-		$fc_ContentUrl = $fch->getFormContent($selProjectId,t3lib_div::getIndpEnv('TYPO3_SITE_URL'), $selOkPage, $selErrorPage, $usejq, $useui, $usebs, $frontendLang, $fcParams);
-		$fc_Content = $fch->getFileContent($fc_ContentUrl, '', '', '');		
-		$this->view->assign('form', $fc_Content);
-	}
+    /**
+     * @param $uid
+     * @return string
+     */
+    function getRedirectURL($uid)
+    {
+        return $this->uriBuilder
+            ->reset()
+            ->setArguments(array('L' => $GLOBALS['TSFE']->sys_language_uid))
+            ->setTargetPageUid($uid)
+            ->setUseCacheHash(false)
+            ->buildFrontendUri();
+    }
 
+    /**
+     * @param $s
+     * @param bool|false $use_forwarded_host
+     * @return string
+     */
+    function url_origin($s, $use_forwarded_host = false)
+    {
+        $ssl = (!empty($s['HTTPS']) && $s['HTTPS'] == 'on') ? true : false;
+        $sp = strtolower($s['SERVER_PROTOCOL']);
+        $protocol = substr($sp, 0, strpos($sp, '/')) . (($ssl) ? 's' : '');
+        $port = $s['SERVER_PORT'];
+        $port = ((!$ssl && $port == '80') || ($ssl && $port == '443')) ? '' : ':' . $port;
+        $host = ($use_forwarded_host && isset($s['HTTP_X_FORWARDED_HOST'])) ? $s['HTTP_X_FORWARDED_HOST'] : (isset($s['HTTP_HOST']) ? $s['HTTP_HOST'] : null);
+        $host = isset($host) ? $host : $s['SERVER_NAME'] . $port;
+        return $protocol . '://' . $host;
+    }
 
-	function getRedirectURL($uid) {
-	    return $this->uriBuilder
-	                ->reset()
-	                ->setArguments(array('L' => $GLOBALS['TSFE']->sys_language_uid))
-	                ->setTargetPageUid($uid)
-                        ->setUseCacheHash(false)
-                        ->buildFrontendUri();
-	}
-	
-	function url_origin($s, $use_forwarded_host=false)
-	{
-	    $ssl = (!empty($s['HTTPS']) && $s['HTTPS'] == 'on') ? true:false;
-	    $sp = strtolower($s['SERVER_PROTOCOL']);
-	    $protocol = substr($sp, 0, strpos($sp, '/')) . (($ssl) ? 's' : '');
-	    $port = $s['SERVER_PORT'];
-	    $port = ((!$ssl && $port=='80') || ($ssl && $port=='443')) ? '' : ':'.$port;
-	    $host = ($use_forwarded_host && isset($s['HTTP_X_FORWARDED_HOST'])) ? $s['HTTP_X_FORWARDED_HOST'] : (isset($s['HTTP_HOST']) ? $s['HTTP_HOST'] : null);
-	    $host = isset($host) ? $host : $s['SERVER_NAME'] . $port;
-	    return $protocol . '://' . $host;
-	}
+    /**
+     * @param $s
+     * @param bool|false $use_forwarded_host
+     * @return string
+     */
+    function full_url($s, $use_forwarded_host = false)
+    {
+        return $this->url_origin($s, $use_forwarded_host) . strtok($s['REQUEST_URI'], '?');
+    }
 
-	function full_url($s, $use_forwarded_host=false)
-	{
-	    return $this->url_origin($s, $use_forwarded_host) . strtok($s['REQUEST_URI'],'?');
-	}
 }
-?>
