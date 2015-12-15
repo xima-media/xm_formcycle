@@ -40,93 +40,63 @@ class Newbutton extends ActionController
 
 
         $retTemp = '
-<a href="javascript:refreshMe()">refresh</a><script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <a href="javascript:refreshMe()">refresh</a><script>
+
+        var $j = jQuery.noConflict();
+
 		function refreshMe(){var ii = document.getElementById("fcIframe"); ii.src=ii.src;}
-		roEelem = getInputElem();
-		roEelem.readOnly=true;
-		roEelem.style.display = "none";
-		if (window.addEventListener)
-		{
-		     window.addEventListener("message", function(a){
-                elem = getInputElem();
-                elem.readOnly=false;
-                elem.value = a["data"];
-                elem.readOnly=true;
-		     }, false);
-		} else {
-		    window.attachEvent("onmessage", function(a){
-                elem = getInputElem();
-                elem.readOnly=false;
-                elem.value = a["data"];
-                elem.readOnly=true;
-		    });
-		}
 
-
-		function createNewProjektOption(myId, myName) {
-		    var opt = document.createElement("option");
-		    opt.value = myId;
-		    opt.text = myName;
-		    opt.setAttribute("selected", "selected");
-		    addMyOption(opt);
-		}
-
-		function getInputElem(myId)
-		{
-		    var selElem = getTypo6LtsInput(myId);
-
-		    if (false == selElem) {
-                selElem = getTypo7LtsInput(myId);
+        $j("document").ready(function($){
+            roEelem = getInputElem();
+            roEelem.readOnly=true;
+            if (window.addEventListener)
+            {
+                 window.addEventListener("message", function(a){
+                    elem = getInputElem();
+                    elem.readOnly=false;
+                    elem.value = a["data"];
+                    elem.readOnly=true;
+                 }, false);
+            } else {
+                window.attachEvent("onmessage", function(a){
+                    elem = getInputElem();
+                    elem.readOnly=false;
+                    elem.value = a["data"];
+                    elem.readOnly=true;
+                });
             }
 
-		    return selElem;
-		}
 
-		function getTypo6LtsInput(myId) {
-		    var selElem = document.getElementsByClassName("formField");
+            function createNewProjektOption(myId, myName) {
+                var opt = document.createElement("option");
+                opt.value = myId;
+                opt.text = myName;
+                opt.setAttribute("selected", "selected");
+                addMyOption(opt);
+            }
 
-		    for ( var i = 0; i < selElem.length; i++ ) {
-		        var fcProjectElem = selElem[i].name;
-		        if(null != fcProjectElem){
-                    if (fcProjectElem.match(/(^|[\W_])xfc_p_id([\W_]|$)/)) {
-                        return selElem[i];
+            function getInputElem()
+            {
+                var fcEl = false;
+                var xfcFields = $j("[data-formengine-input-name*=\'xfc_p_id\'], input[name*=\'xfc_p_id\']");
+
+                for ( var i = 0; i < xfcFields.length; i++ ) {
+                    var tmpFcEl = xfcFields[i];
+                    if ("hidden" == tmpFcEl.getAttribute("type")) {
+                        fcEl = tmpFcEl;
+                    } else {
+                        if (tmpFcEl.getAttribute("id")) {
+                            $j("#" + tmpFcEl.getAttribute("id")).parent().hide();
+                        }
+                        tmpFcEl.hide();
                     }
                 }
-		    }
 
-		    return false;
-		}
-
-		function getTypo7LtsInput(myId) {
-
-		    var result = false;
-		    var fieldNameToHide = false;
-            var fc = document.getElementsByTagName("input");
-            for (var i = 0; i < fc.length; i++){
-
-                var fcEl = fc[i];
-                var attr = fcEl.getAttribute("name");
-                if (attr && attr.length >= 0 && attr.contains("xfc_p_id")) {
-                    result = fcEl;
-                    fieldNameToHide = attr;
-                    continue;
-                }
+                return fcEl;
             }
+        });
 
-            if (fieldNameToHide) {
-                var fc2 = document.getElementsByClassName("form-control");
-                for (var i = 0; i < fc2.length; i++){
-                    var fc2El = fc2[i];
-                    var attr = fc2El.getAttribute("data-formengine-input-name");
-                    if (attr && attr.length >= 0 && fieldNameToHide == attr) {
-                        fc2El.style.display = "none";
-                        continue;
-                    }
-                }
-            }
-
-            return result;
-        }
 		</script>
 	<iframe id="fcIframe" style="height:170px;border:none;" src="' . $fc_iFrameUrl . '/cp.html?lang=' . $user_lang . '&pid=' . $pid . '&dc=' . time() . rand(1,
                 10000) . '&user=' . $user_name . '&pass=' . $user_pass . '"></iframe>';
