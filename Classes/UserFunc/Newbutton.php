@@ -41,7 +41,8 @@ class Newbutton extends ActionController
 
         $retTemp = '
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <a href="javascript:refreshMe()">refresh</a><script>
+        <button class="btn btn-sm btn-default" onclick="javascript:refreshMe()">refresh</button>
+        <script>
 
         var $j = jQuery.noConflict();
 
@@ -67,7 +68,6 @@ class Newbutton extends ActionController
                 });
             }
 
-
             function createNewProjektOption(myId, myName) {
                 var opt = document.createElement("option");
                 opt.value = myId;
@@ -82,23 +82,25 @@ class Newbutton extends ActionController
                 var xfcFields = $j("[data-formengine-input-name*=\'xfc_p_id\'], input[name*=\'xfc_p_id\']");
 
                 for ( var i = 0; i < xfcFields.length; i++ ) {
+
                     var tmpFcEl = xfcFields[i];
+                console.log(tmpFcEl);
                     if ("hidden" == tmpFcEl.getAttribute("type")) {
                         fcEl = tmpFcEl;
                     } else {
                         if (tmpFcEl.getAttribute("id")) {
                             $j("#" + tmpFcEl.getAttribute("id")).parent().hide();
+                        } else {
+                            tmpFcEl.hide();
                         }
-                        tmpFcEl.hide();
                     }
                 }
 
                 return fcEl;
             }
         });
-
 		</script>
-	<iframe id="fcIframe" style="height:170px;border:none;" src="' . $fc_iFrameUrl . '/cp.html?lang=' . $user_lang . '&pid=' . $pid . '&dc=' . time() . rand(1,
+	    <iframe id="fcIframe" style="height:170px;border:none;" src="' . $fc_iFrameUrl . '/cp.html?lang=' . $user_lang . '&pid=' . $pid . '&dc=' . time() . rand(1,
                 10000) . '&user=' . $user_name . '&pass=' . $user_pass . '"></iframe>';
 
         return $retTemp;

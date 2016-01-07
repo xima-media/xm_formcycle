@@ -16,7 +16,7 @@
                             <config>
                                 <type>input</type>
                                 <size>10</size>
-                                <eval>trim,required</eval>
+                                <eval>trim</eval>
                             </config>
                         </TCEforms>
                     </settings.xf.xfc_p_id>
