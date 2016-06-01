@@ -11,4 +11,6 @@ plugin.tx_xmformcycle {
 		# cat=plugin.tx_xmformcycle//a; type=string; label=Default storage PID
 		storagePid =
 	}
+	settings {
+	}
 }

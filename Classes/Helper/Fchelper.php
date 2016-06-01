@@ -18,7 +18,7 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
      */
     class FcHelper
     {
-        
+
         /**
          * FcHelper constructor.
          */
