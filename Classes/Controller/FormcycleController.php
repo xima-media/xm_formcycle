@@ -1,6 +1,7 @@
 <?php
 namespace Xima\XmFormcycle\Controller;
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Xima\XmFormcycle\Helper\FcHelper;
 use Xima\XmFormcycle\Helper\WorkaroundHelper;
@@ -37,6 +38,10 @@ use Xima\XmFormcycle\Helper\WorkaroundHelper;
  */
 class FormcycleController extends ActionController
 {
+    /**
+     * @var string
+     */
+    protected $extKey = 'xm_formcycle';
 
     /**
      * action list
@@ -45,6 +50,10 @@ class FormcycleController extends ActionController
      */
     public function listAction()
     {
+        if ($this->settings['enableJs'] == true){
+            $this->includeJavaScript($this->settings['jsFiles']);
+        }
+
         $cObj = $this->configurationManager->getContentObject();
 
         $this->view->assignMultiple(array(
@@ -140,4 +149,30 @@ class FormcycleController extends ActionController
         return $this->url_origin($s, $use_forwarded_host) . strtok($s['REQUEST_URI'], '?');
     }
 
+    /**
+     * Binds JavaScript files in the HTML head of the page (TYPO3).
+     *
+     * @param array $files file names, starting with http or relative
+     * @param bool $footer includes the scripts at the footer if set to true
+     */
+    public function includeJavaScript(array $files, $footer = true)
+    {
+        foreach ($files as $file) {
+
+            // support typo3 notation (Ext:Resources/Public/js/xyz.js) and short notation (Ext:xyz.js)
+            if (strstr($file, 'EXT:')) {
+                $file = explode(':', $file);
+                $relPath = ExtensionManagementUtility::siteRelPath($this->extKey);
+                $file = $relPath.$file[1];
+            }
+
+            if ($GLOBALS['TSFE']->getPageRenderer()) {
+                if ($footer == true){
+                    $GLOBALS['TSFE']->getPageRenderer()->addJsFooterFile($file);
+                } else {
+                    $GLOBALS['TSFE']->getPageRenderer()->addJsFile($file);
+                }
+            }
+        }
+    }
 }

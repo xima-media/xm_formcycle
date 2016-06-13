@@ -12,5 +12,8 @@ plugin.tx_xmformcycle {
 		storagePid =
 	}
 	settings {
+		# customsubcategory=assets=Assets
+		# cat=plugin.tx_xmformcycle/assets/10; type=boolean; label=Include JavaScript (disable it for your own asset management)
+		enableJs = 1
 	}
 }

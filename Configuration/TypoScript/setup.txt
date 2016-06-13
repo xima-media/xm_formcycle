@@ -12,6 +12,10 @@ plugin.tx_xmformcycle {
 		# rewrittenPropertyMapper = 1
 	}
 	settings {
+		enableJs = {$plugin.tx_xmformcycle.settings.enableJs}
+		jsFiles {
+			10 = EXT:Resources/Public/Js/xm_formcycle.js
+		}
 	}
 }
 
