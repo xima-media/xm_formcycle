@@ -15,11 +15,11 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
   <span id="settings" data-content-canvas="form-canvas" data-content-url="{f:uri.action(pageType: '1464705954', action: 'formContent', arguments: '{ uid: uid }')}"></span>
   <div id="form-canvas">
-    <img src="typo3conf/ext/xm_formcycle/ext_icon.png" alt="Loading..." width="15" height="15" />
+    <img src="typo3conf/ext/xm_formcycle/ext_icon.png" id="icon-loader" alt="Loading..." width="15" height="15" />
   </div>
 
   <style>
-    #form-canvas img {
+    #form-canvas #icon-loader {
       width: 15px;
       height: 15px;
       -webkit-animation: spin 0.5s ease-in-out infinite;
