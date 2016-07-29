@@ -7,12 +7,11 @@ if (!defined('TYPO3_MODE')) {
     'Xima.' . $_EXTKEY,
     'Xmformcycle',
     array(
-        'Formcycle' => 'list',
+        'Formcycle' => 'list, formContent',
 
     ),
     // non-cacheable actions
     array(
-        'Formcycle' => 'list',
 
     )
 );

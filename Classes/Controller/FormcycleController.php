@@ -1,8 +1,10 @@
 <?php
 namespace Xima\XmFormcycle\Controller;
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Xima\XmFormcycle\Helper\FcHelper;
+use Xima\XmFormcycle\Helper\WorkaroundHelper;
 
 /***************************************************************
  *  Copyright notice
@@ -36,6 +38,10 @@ use Xima\XmFormcycle\Helper\FcHelper;
  */
 class FormcycleController extends ActionController
 {
+    /**
+     * @var string
+     */
+    protected $extKey = 'xm_formcycle';
 
     /**
      * action list
@@ -44,21 +50,62 @@ class FormcycleController extends ActionController
      */
     public function listAction()
     {
-        $GLOBALS['icss'] = $this->settings['xf']['icss'];
-        $selErrorPage = $this->getRedirectURL($this->settings['xf']['siteerror']);
-        $selOkPage = $this->getRedirectURL($this->settings['xf']['siteok']);
-        $usejq = $this->settings['xf']['useFcjQuery'];
-        $useui = $this->settings['xf']['useFcjQueryUi'];
-        $usebs = $this->settings['xf']['useFcBootStrap'];
-        $selProjectId = $this->settings['xf']['xfc_p_id'];
+        if ($this->settings['enableJs'] == true){
+            $this->includeJavaScript($this->settings['jsFiles']);
+        }
+
+        $cObj = $this->configurationManager->getContentObject();
+
+        $this->view->assignMultiple(array(
+            'uid' => $cObj->data['uid'],
+        ));
+    }
+
+    /**
+     * Initialize filter action
+     */
+    public function initializeFormContentAction()
+    {
+        /** @var WorkaroundHelper $workarounds */
+        $workarounds = $this->objectManager->get('Xima\\XmFormcycle\\Helper\\WorkaroundHelper');
+        $args = $this->request->getArguments();
+
+        $this->settings = array_merge(
+            $this->settings,
+            $workarounds->findFlexformDataByUid($args['uid'])
+        );
+    }
+
+    /**
+     *
+     */
+    public function formContentAction()
+    {
+        $GLOBALS['icss'] = $this->settings['icss'];
+        $selErrorPage = $this->getRedirectURL($this->settings['siteerror']);
+        $selOkPage = $this->getRedirectURL($this->settings['siteok']);
+        $usejq = $this->settings['useFcjQuery'];
+        $useui = $this->settings['useFcjQueryUi'];
+        $usebs = $this->settings['useFcBootStrap'];
+        $selProjectId = $this->settings['xfc_p_id'];
         $frontendLang = $GLOBALS['TSFE']->config['config']['language'];
-        $fcParams = $this->settings['xf']['useFcUrlParams'];
+        $fcParams = $this->settings['useFcUrlParams'];
 
         $fch = new FcHelper();
-        $fc_ContentUrl = $fch->getFormContent($selProjectId, $selOkPage,
-            $selErrorPage, $usejq, $useui, $usebs, $frontendLang, $fcParams);
-        $fc_Content = $fch->getFileContent($fc_ContentUrl, '', '', '');
-        $this->view->assign('form', $fc_Content);
+        $fc_ContentUrl = $fch->getFormContent(
+            $selProjectId,
+            $selOkPage,
+            $selErrorPage,
+            $usejq,
+            $useui,
+            $usebs,
+            $frontendLang,
+            $fcParams
+        );
+
+        $this->view->assignMultiple(array(
+            'form' => $fch->getFileContent($fc_ContentUrl, '', '', '')
+        ));
     }
 
     /**
@@ -72,6 +119,7 @@ class FormcycleController extends ActionController
             ->setArguments(array('L' => $GLOBALS['TSFE']->sys_language_uid))
             ->setTargetPageUid($uid)
             ->setUseCacheHash(false)
+            ->setCreateAbsoluteUri(true)
             ->buildFrontendUri();
     }
 
@@ -102,4 +150,30 @@ class FormcycleController extends ActionController
         return $this->url_origin($s, $use_forwarded_host) . strtok($s['REQUEST_URI'], '?');
     }
 
+    /**
+     * Binds JavaScript files in the HTML head of the page (TYPO3).
+     *
+     * @param array $files file names, starting with http or relative
+     * @param bool $footer includes the scripts at the footer if set to true
+     */
+    public function includeJavaScript(array $files, $footer = true)
+    {
+        foreach ($files as $file) {
+
+            // support typo3 notation (Ext:Resources/Public/js/xyz.js) and short notation (Ext:xyz.js)
+            if (strstr($file, 'EXT:')) {
+                $file = explode(':', $file);
+                $relPath = ExtensionManagementUtility::siteRelPath($this->extKey);
+                $file = $relPath.$file[1];
+            }
+
+            if ($GLOBALS['TSFE']->getPageRenderer()) {
+                if ($footer == true){
+                    $GLOBALS['TSFE']->getPageRenderer()->addJsFooterFile($file);
+                } else {
+                    $GLOBALS['TSFE']->getPageRenderer()->addJsFile($file);
+                }
+            }
+        }
+    }
 }

@@ -11,6 +11,12 @@ plugin.tx_xmformcycle {
 		# uncomment the following line to enable the new Property Mapper.
 		# rewrittenPropertyMapper = 1
 	}
+	settings {
+		enableJs = {$plugin.tx_xmformcycle.settings.enableJs}
+		jsFiles {
+			10 = EXT:Resources/Public/Js/xm_formcycle.js
+		}
+	}
 }
 
 plugin.tx_xmformcycle._CSS_DEFAULT_STYLE (
@@ -37,3 +43,26 @@ plugin.tx_xmformcycle._CSS_DEFAULT_STYLE (
 		vertical-align:top;
 	}
 )
+
+tx_xmformcycle_ajax = PAGE
+tx_xmformcycle_ajax {
+	typeNum = 1464705954
+	config {
+		disableAllHeaderCode = 1
+		additionalHeaders = Content-type:text/html
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+		no_cache = 1
+	}
+
+	10 = USER
+	10 {
+		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+		extensionName = XmFormcycle
+		pluginName = Xmformcycle
+		vendorName = Xima
+		controller = Formcycle
+		settings =< plugin.tx_xmformcycle.settings
+	}
+}
