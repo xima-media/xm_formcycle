@@ -119,6 +119,7 @@ class FormcycleController extends ActionController
             ->setArguments(array('L' => $GLOBALS['TSFE']->sys_language_uid))
             ->setTargetPageUid($uid)
             ->setUseCacheHash(false)
+            ->setCreateAbsoluteUri(true)
             ->buildFrontendUri();
     }
 
