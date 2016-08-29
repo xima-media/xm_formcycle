@@ -111,15 +111,15 @@ class FormcycleController extends ActionController
      */
     protected function getDirectly()
     {
-        $GLOBALS['icss'] = $this->settings['icss'];
-        $selErrorPage = $this->getRedirectURL($this->settings['siteerror']);
-        $selOkPage = $this->getRedirectURL($this->settings['siteok']);
-        $usejq = $this->settings['useFcjQuery'];
-        $useui = $this->settings['useFcjQueryUi'];
-        $usebs = $this->settings['useFcBootStrap'];
-        $selProjectId = $this->settings['xfc_p_id'];
+        $GLOBALS['icss'] = $this->settings['xf']['icss'];
+        $selErrorPage = $this->getRedirectURL($this->settings['xf']['siteerror']);
+        $selOkPage = $this->getRedirectURL($this->settings['xf']['siteok']);
+        $usejq = $this->settings['xf']['useFcjQuery'];
+        $useui = $this->settings['xf']['useFcjQueryUi'];
+        $usebs = $this->settings['xf']['useFcBootStrap'];
+        $selProjectId = $this->settings['xf']['xfc_p_id'];
         $frontendLang = $GLOBALS['TSFE']->config['config']['language'];
-        $fcParams = $this->settings['useFcUrlParams'];
+        $fcParams = $this->settings['xf']['useFcUrlParams'];
 
         $fch = new FcHelper();
         $fc_ContentUrl = $fch->getFormContent(
