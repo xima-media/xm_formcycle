@@ -33,7 +33,7 @@ class WorkaroundHelper extends Repository
 
         foreach ($xml->data->sheet as $sheet) {
             foreach ($sheet->language->field as $field) {
-                $flexformData[str_replace(
+                $flexformData['xf'][str_replace(
                     'settings.xf.',
                     '',
                     (string) $field->attributes()
