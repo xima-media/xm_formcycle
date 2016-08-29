@@ -44,21 +44,43 @@ class FormcycleController extends ActionController
     protected $extKey = 'xm_formcycle';
 
     /**
+     * @var array
+     */
+    protected $extConf = array();
+
+    /**
+     *
+     */
+    public function initializeListAction()
+    {
+        if ($this->settings['enableJs'] == true){
+            $this->includeJavaScript($this->settings['jsFiles']);
+        }
+
+        $this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]);
+    }
+
+    /**
      * action list
      *
      * @return void
      */
     public function listAction()
     {
-        if ($this->settings['enableJs'] == true){
-            $this->includeJavaScript($this->settings['jsFiles']);
+        $viewVars = array();
+
+        switch ($this->extConf['integrationMode']){
+            case 'AJAX':
+                $viewVars = $this->getByAjax();
+                break;
+            case 'default':
+            default:
+                $viewVars = $this->getDirectly();
         }
 
-        $cObj = $this->configurationManager->getContentObject();
+        $viewVars['integrationModeKey'] = $this->extConf['integrationMode'];
 
-        $this->view->assignMultiple(array(
-            'uid' => $cObj->data['uid'],
-        ));
+        $this->view->assignMultiple($viewVars);
     }
 
     /**
@@ -80,6 +102,14 @@ class FormcycleController extends ActionController
      *
      */
     public function formContentAction()
+    {
+        $this->view->assignMultiple($this->getDirectly());
+    }
+
+    /**
+     *
+     */
+    protected function getDirectly()
     {
         $GLOBALS['icss'] = $this->settings['icss'];
         $selErrorPage = $this->getRedirectURL($this->settings['siteerror']);
@@ -103,9 +133,23 @@ class FormcycleController extends ActionController
             $fcParams
         );
 
-        $this->view->assignMultiple(array(
+        return array(
             'form' => $fch->getFileContent($fc_ContentUrl, '', '', '')
-        ));
+        );
+    }
+
+    /**
+     * Process to load form by AJAX
+     *
+     * @return array
+     */
+    protected function getByAjax()
+    {
+        $cObj = $this->configurationManager->getContentObject();
+
+        return array(
+            'uid' => $cObj->data['uid'],
+        );
     }
 
     /**

@@ -1,0 +1,17 @@
+<span id="settings" data-content-canvas="form-canvas" data-content-url="{f:uri.action(pageType: '1464705954', action: 'formContent', arguments: '{ uid: uid }')}"></span>
+<div id="form-canvas">
+    <img src="typo3conf/ext/xm_formcycle/ext_icon.png" id="icon-loader" alt="Loading..." width="15" height="15" />
+</div>
+
+<style>
+    #form-canvas #icon-loader {
+        width: 15px;
+        height: 15px;
+        -webkit-animation: spin 0.5s ease-in-out infinite;
+        -moz-animation: spin 0.5s ease-in-out infinite;
+        animation: spin 0.5s ease-in-out infinite;
+    }
+    @-moz-keyframes spin { 100% { -moz-transform: rotateY(360deg); } }
+    @-webkit-keyframes spin { 100% { -webkit-transform: rotateY(360deg); } }
+    @keyframes spin { 100% { -webkit-transform: rotateY(360deg); transform:rotateY(360deg); } }
+</style>
