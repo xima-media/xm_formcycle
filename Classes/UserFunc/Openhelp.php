@@ -23,7 +23,7 @@ class Openhelp
 
             $message_link = $mssage_link_style . 'Hilfe für FormCycle TYPO3 Erweiterung öffnen</span>';
         }
-        $fc_HelpUrl = 'http://help.formcycle.de/display/FH/Typo3+Extension';
+        $fc_HelpUrl = 'http://help4.formcycle.de/xwiki/bin/view/CMS+Extension/Typo3+Extension';
         return '&nbsp;&nbsp;<a href="' . $fc_HelpUrl . '" target="_blank">' . $message_link . '</a><br/>';
     }
 }
