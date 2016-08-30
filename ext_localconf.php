@@ -13,5 +13,5 @@ $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['xm_formcyc
 
     ),
     // non-cacheable actions
-    $extConf['integrationMode'] != 'default' ? array('Formcycle' => 'list') : array()
+    $extConf['integrationMode'] != 'integrated' ? array('Formcycle' => 'list') : array()
 );

@@ -73,7 +73,7 @@ class FormcycleController extends ActionController
             case 'AJAX':
                 $viewVars = $this->getByAjax();
                 break;
-            case 'default':
+            case 'integrated':
             default:
                 $viewVars = $this->getDirectly();
         }
