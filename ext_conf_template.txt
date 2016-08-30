@@ -11,5 +11,5 @@ formCycleUser =
 # cat=basic//103; type=string; label=XIMA FORMCYCLE password :
 formCyclePass =
 
-# cat=basic//104; type=options[default, AJAX, iFrame]; label= Integrationmode
-integrationMode = default
+# cat=basic//104; type=options[integrated, AJAX]; label= Integrationmode
+integrationMode = integrated
