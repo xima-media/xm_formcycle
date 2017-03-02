@@ -71,8 +71,13 @@ class FormcycleController extends ActionController
 
         $typo3link = false;
         $formcycleServerUrl = '';
+        $integrationMode = $this->extConf['integrationMode'];
 
-        switch ($this->extConf['integrationMode']){
+        if (array_key_exists('integrationMode', $this->settings['xf']) && $this->settings['xf']['integrationMode'] != 'default'){
+            $integrationMode = $this->settings['xf']['integrationMode'];
+        }
+
+        switch ($integrationMode){
             case 'AJAX (TYPO3)':
                 $viewVars = $this->getByAjax();
                 $partialsTemplate = 'AJAX';

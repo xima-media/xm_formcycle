@@ -10,6 +10,8 @@
 			<label index="tx_xmformcycle_tab1_name">form</label>
 			<label index="tx_xmformcycle_tab1_select_projekt">select form (required)</label>
 			<label index="tx_xmformcycle_tab1_edit_projekt">edit selected form</label>
+			<label index="tx_xmformcycle_tab1_select_integrationMode">Integration mode</label>
+			<label index="tx_xmformcycle_tab1_select_integrationMode_default">Default</label>
 			<label index="tx_xmformcycle_tab5_name">script / css</label>
 			<label index="tx_xmformcycle_tab6_name">parameters</label>
 			<label index="tx_xmformcycle_tab6_param_values">parameter (example: &amp;param1=value1&amp;param2=value2&amp;param3=value3)</label>
@@ -31,6 +33,8 @@
 			<label index="tx_xmformcycle_tab1_name">Formular</label>
 			<label index="tx_xmformcycle_tab1_select_projekt">Formular auswählen (Pflichtfeld)</label>
 			<label index="tx_xmformcycle_tab1_edit_projekt">Ausgewähltes Formular bearbeiten</label>
+			<label index="tx_xmformcycle_tab1_select_integrationMode">Integrationsmodus</label>
+			<label index="tx_xmformcycle_tab1_select_integrationMode_default">Standard</label>
 			<label index="tx_xmformcycle_tab5_name">Script / CSS</label>
 			<label index="tx_xmformcycle_tab5_icss">Vorhandenes CSS verwenden</label>
 			<label index="tx_xmformcycle_tab5_useJS_jQuery">Von FormCycle bereitgestelltes jQuery Framework verwenden. Wird diese Option abgewählt (es wird ein vorhandenes Framework verwednet), muss das vorhandene jQuery Framework vor diesem Plug In geladen werden.</label>
