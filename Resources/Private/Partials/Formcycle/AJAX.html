@@ -1,4 +1,12 @@
-<span id="settings" data-content-canvas="form-canvas" data-content-url="{f:uri.action(pageType: '1464705954', action: 'formContent', arguments: '{ uid: uid }')}"></span>
+<f:if condition="{typo3link}">
+    <f:then>
+        <span id="settings" data-content-canvas="form-canvas" data-content-url="{f:uri.action(pageType: '1464705954', action: 'formContent', arguments: '{ uid: uid }')}"></span>
+    </f:then>
+    <f:else>
+        <span id="settings" data-content-canvas="form-canvas" data-content-url="{formcycleServerUrl}"></span>
+    </f:else>
+</f:if>
+
 <div id="form-canvas">
     <img src="typo3conf/ext/xm_formcycle/ext_icon.png" id="icon-loader" alt="Loading..." width="15" height="15" />
 </div>

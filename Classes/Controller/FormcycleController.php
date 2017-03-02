@@ -69,16 +69,31 @@ class FormcycleController extends ActionController
     {
         $viewVars = array();
 
+        $typo3link = false;
+        $formcycleServerUrl = '';
+
         switch ($this->extConf['integrationMode']){
-            case 'AJAX':
+            case 'AJAX (TYPO3)':
                 $viewVars = $this->getByAjax();
+                $partialsTemplate = 'AJAX';
+                $typo3link = true;
+                break;
+            case 'AJAX (FORMCYCLE)':
+                $partialsTemplate = 'AJAX';
+                $formcycleServerUrl = $this->getFcUrl(new FcHelper());
                 break;
             case 'integrated':
             default:
                 $viewVars = $this->getDirectly();
+                $partialsTemplate = 'integrated';
         }
 
-        $viewVars['integrationModeKey'] = $this->extConf['integrationMode'];
+        $viewVars = array_merge($viewVars, [
+            'typo3link' => $typo3link,
+            'formcycleServerUrl' => $formcycleServerUrl,
+            'partialsTemplate' => $partialsTemplate,
+            'integrationModeKey' => $this->extConf['integrationMode'],
+        ]);
 
         $this->view->assignMultiple($viewVars);
     }
@@ -111,6 +126,20 @@ class FormcycleController extends ActionController
      */
     protected function getDirectly()
     {
+        $fch = new FcHelper();
+        $fc_ContentUrl = $this->getFcUrl($fch);
+
+        return array(
+            'form' => $fch->getFileContent($fc_ContentUrl, '', '', '')
+        );
+    }
+
+    /**
+     * @param \Xima\XmFormcycle\Helper\FcHelper $fch
+     * @return string
+     */
+    protected function getFcUrl(FcHelper $fch)
+    {
         $GLOBALS['icss'] = $this->settings['xf']['icss'];
         $selErrorPage = $this->getRedirectURL($this->settings['xf']['siteerror']);
         $selOkPage = $this->getRedirectURL($this->settings['xf']['siteok']);
@@ -121,7 +150,6 @@ class FormcycleController extends ActionController
         $frontendLang = $GLOBALS['TSFE']->config['config']['language'];
         $fcParams = $this->settings['xf']['useFcUrlParams'];
 
-        $fch = new FcHelper();
         $fc_ContentUrl = $fch->getFormContent(
             $selProjectId,
             $selOkPage,
@@ -133,9 +161,7 @@ class FormcycleController extends ActionController
             $fcParams
         );
 
-        return array(
-            'form' => $fch->getFileContent($fc_ContentUrl, '', '', '')
-        );
+        return $fc_ContentUrl;
     }
 
     /**
