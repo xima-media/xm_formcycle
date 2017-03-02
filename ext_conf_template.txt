@@ -1,15 +1,15 @@
 TSConstantEditor.basic {
-    description = <script>var selElem = document.getElementsByTagName('input');for ( var i = 0; i < selElem.length; i++ ) {  var fcPwdElem = selElem[i].name; if(null != fcPwdElem){ if (fcPwdElem.match(/(^|[\W_])formCyclePass([\W_]|$)/)) selElem[i].type = 'password';}} </script><br/><span style="background:red; padding:1px 2px; color:#fff; font-weight:bold;">All fields are required!</span><br/><br/><hr><br><span style="padding:1px 2px; color:red; font-weight:bold;">No FormCycle Cloud account? Get here:</span>&nbsp;<a href="http://www.formcloud.de/" target="_blank">http://www.formcloud.de/</a><br/><br/><span style="padding:1px 2px; color:red; font-weight:bold;">Show video:&nbsp;</span><a href="http://help4.formcycle.de/xwiki/bin/view/CMS+Extension/Typo3+Extension" target="_blank">http://help4.formcycle.de/xwiki/bin/view/CMS+Extension/Typo3+Extension</a><br/><br/><span style="padding:1px 2px; color:red; font-weight:bold;">Get help:&nbsp;</span><a href="http://help4.formcycle.de/xwiki/bin/view/CMS+Extension/Typo3+Extension" target="_blank">http://help4.formcycle.de/xwiki/bin/view/CMS+Extension/Typo3+Extension</a>
+    description = <script>var selElem = document.getElementsByTagName('input');for ( var i = 0; i < selElem.length; i++ ) {  var fcPwdElem = selElem[i].name; if(null != fcPwdElem){ if (fcPwdElem.match(/(^|[\W_])formCyclePass([\W_]|$)/)) selElem[i].type = 'password';}} </script><br><span style="padding:1px 2px; color:red; font-weight:bold;">No FormCycle Cloud account? Get here:</span>&nbsp;<a href="http://www.formcloud.de/" target="_blank">http://www.formcloud.de/</a><br/><br/><span style="padding:1px 2px; color:red; font-weight:bold;">Show video:&nbsp;</span><a href="http://help4.formcycle.de/xwiki/bin/view/CMS+Extension/Typo3+Extension" target="_blank">http://help4.formcycle.de/xwiki/bin/view/CMS+Extension/Typo3+Extension</a><br/><br/><span style="padding:1px 2px; color:red; font-weight:bold;">Get help:&nbsp;</span><a href="http://help4.formcycle.de/xwiki/bin/view/CMS+Extension/Typo3+Extension" target="_blank">http://help4.formcycle.de/xwiki/bin/view/CMS+Extension/Typo3+Extension</a>
 }
 
-# cat=basic//100; type=string; label=XIMA FORMCYCLE Server URL (!!! Required !!!) :e.g. https://cloud.formcycle.de/formcycle
+# cat=basic//100; type=string; label=XIMA FORMCYCLE Server URL (required) :e.g. https://pro.formcloud.de/formcycle
 formCycleUrl =
 
-# cat=basic//102; type=string; label=XIMA FORMCYCLE login name :e.g. max@mandant.net
+# cat=basic//102; type=string; label=XIMA FORMCYCLE login name (optional) :Used for prefilling the login screen within the backend, e.g. max@mandant.net
 formCycleUser =
 
-# cat=basic//103; type=string; label=XIMA FORMCYCLE password :
+# cat=basic//103; type=string; label=XIMA FORMCYCLE password (optional) :Used for prefilling the login screen within the backend.
 formCyclePass =
 
-# cat=basic//104; type=options[integrated, AJAX]; label= Integrationmode
+# cat=basic//104; type=options[integrated, AJAX]; label= Integration mode
 integrationMode = integrated
