@@ -82,6 +82,10 @@ class FormcycleController extends ActionController
                 $partialsTemplate = 'AJAX';
                 $formcycleServerUrl = $this->getFcUrl(new FcHelper());
                 break;
+            case 'iFrame':
+                $partialsTemplate = 'iFrame';
+                $formcycleServerUrl = $this->getFcUrl(new FcHelper());
+                break;
             case 'integrated':
             default:
                 $viewVars = $this->getDirectly();

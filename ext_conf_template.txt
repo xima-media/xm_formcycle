@@ -11,5 +11,5 @@ formCycleUser =
 # cat=basic//103; type=string; label=XIMA FORMCYCLE password (optional) :Used for prefilling the login screen within the backend.
 formCyclePass =
 
-# cat=basic//104; type=options[integrated, AJAX (TYPO3), AJAX (FORMCYCLE)]; label= Integration mode
+# cat=basic//104; type=options[integrated, AJAX (TYPO3), AJAX (FORMCYCLE), iFrame]; label= Integration mode
 integrationMode = integrated
