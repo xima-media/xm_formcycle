@@ -29,15 +29,7 @@ class Newbutton extends ActionController
 
         $selProjectId = $this->settings['xf']['xfc_p_id'];
 
-        $xx = $PA['row']["pi_flexform"];
-
-        if (!empty($xx) && is_string($xx)) {
-
-            $xml = new \SimpleXMLElement($xx);
-            $pid = $xml->data->sheet[0]->language->field->value->__toString();
-
-        }
-
+        $pid = $PA['row']['pi_flexform']['data']['sheetGeneralOptions']['lDEF']['settings.xf.xfc_p_id']['vDEF'];
 
         $retTemp = '
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -46,7 +38,7 @@ class Newbutton extends ActionController
 
         var $j = jQuery.noConflict();
 
-		function refreshMe(){var ii = document.getElementById("fcIframe"); ii.src=ii.src;}
+        function refreshMe(){var ii = document.getElementById("fcIframe"); ii.src=ii.src;}
 
         $j("document").ready(function($){
             roEelem = getInputElem();
@@ -99,8 +91,8 @@ class Newbutton extends ActionController
                 return fcEl;
             }
         });
-		</script>
-	    <iframe id="fcIframe" style="height:420px;border:none;" src="' . $fc_iFrameUrl . '/cp.html?lang=' . $user_lang . '&pid=' . $pid . '&dc=' . time() . rand(1,
+        </script>
+        <iframe id="fcIframe" style="height:420px;border:none;" src="' . $fc_iFrameUrl . '/cp.html?lang=' . $user_lang . '&pid=' . $pid . '&dc=' . time() . rand(1,
                 10000) . '&user=' . $user_name . '&pass=' . $user_pass . '"></iframe>';
 
         return $retTemp;
