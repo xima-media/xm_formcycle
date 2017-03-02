@@ -100,7 +100,7 @@ class Newbutton extends ActionController
             }
         });
 		</script>
-	    <iframe id="fcIframe" style="height:170px;border:none;" src="' . $fc_iFrameUrl . '/cp.html?lang=' . $user_lang . '&pid=' . $pid . '&dc=' . time() . rand(1,
+	    <iframe id="fcIframe" style="height:420px;border:none;" src="' . $fc_iFrameUrl . '/cp.html?lang=' . $user_lang . '&pid=' . $pid . '&dc=' . time() . rand(1,
                 10000) . '&user=' . $user_name . '&pass=' . $user_pass . '"></iframe>';
 
         return $retTemp;
