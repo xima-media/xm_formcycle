@@ -144,7 +144,7 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
             $errorUrl = $siteerror;
             $sessionID = $GLOBALS['TSFE']->fe_user->id;
 
-            return $GLOBALS['gFcUrl'] . '/form/provide/' . $projektId . '?xfc-pp-form-only=true' .
+            return $GLOBALS['gFcUrl'] . '/form/provide/' . $projektId . '?xfc-rp-form-only=true' .
             '&xfc-rp-usejq=' . $usejq .
             '&xfc-rp-useui=' . $useui .
             '&xfc-rp-usebs=' . $usebs .
@@ -154,6 +154,7 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
             '&xfc-pp-base-url=' . $GLOBALS['gFcUrl'] .
             '&xfc-pp-success-url=' . $okUrl .
             '&xfc-pp-error-url=' . $errorUrl .
+            '&xfc-rp-keepalive=false'.
             $fcParams;
         }
 
