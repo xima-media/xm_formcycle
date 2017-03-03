@@ -89,7 +89,7 @@ class FormcycleController extends ActionController
                 break;
             case 'iFrame':
                 $partialsTemplate = 'iFrame';
-                $formcycleServerUrl = $this->getFcUrl(new FcHelper());
+                $formcycleServerUrl = $this->getFcUrl(new FcHelper()) .'&xfc-height-changed-evt=true';
                 break;
             case 'integrated':
             default:
