@@ -20,8 +20,8 @@
 			<label index="tx_xmformcycle_tab5_useJS_jQueryUi">Use the jQuery UI framework provided by FormCycle (only necessary if you use jQuery UI Components).</label>
 			<label index="tx_xmformcycle_tab5_useJS_bootstrap">Use the responsejs framework provided by FormCycle (only necessary if you use responsive design).</label>
 			<label index="tx_xmformcycle_tab2_name">response pages</label>
-			<label index="tx_xmformcycle_tab2_response_success">response page by successfully submited form (required)</label>
-			<label index="tx_xmformcycle_tab2_response_error">response page when an error occurs during execution (required)</label>
+			<label index="tx_xmformcycle_tab2_response_success">response page by successfully submited form</label>
+			<label index="tx_xmformcycle_tab2_response_error">response page when an error occurs during execution</label>
 			<label index="tx_xmformcycle_tab2_name">response pages</label>
 			<label index="tx_xmformcycle_tab3_name">new form</label>
 			<label index="tx_xmformcycle_tab4_name">xima FormCycle administration</label>
@@ -41,8 +41,8 @@
 			<label index="tx_xmformcycle_tab5_useJS_jQueryUi">Von FormCycle bereitgestelltes jQuery UI Framework verwenden (nur bei Verwendung von jQuery UI Komponenten erforderlich).</label>
 			<label index="tx_xmformcycle_tab5_useJS_bootstrap">Von FormCycle bereitgestelltes responsejs Framework verwenden (nur bei Verwendung von 'responsive Design' erforderlich).</label>
 			<label index="tx_xmformcycle_tab2_name">Antwortseiten</label>
-			<label index="tx_xmformcycle_tab2_response_success">Antwortseite bei erfolgreichem Absenden des Formulars (Pflichtfeld)</label>
-			<label index="tx_xmformcycle_tab2_response_error">Antwortseite bei fehlerhafter Verarbeitung der Formulardaten (Pflichtfeld)</label>
+			<label index="tx_xmformcycle_tab2_response_success">Antwortseite bei erfolgreichem Absenden des Formulars</label>
+			<label index="tx_xmformcycle_tab2_response_error">Antwortseite bei fehlerhafter Verarbeitung der Formulardaten</label>
 			<label index="tx_xmformcycle_tab3_name">Neues Formular</label>
 			<label index="tx_xmformcycle_tab4_name">xima FormCycle Verwaltung</label>
 		</languageKey>

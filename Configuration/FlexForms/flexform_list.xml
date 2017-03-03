@@ -87,11 +87,9 @@
                                 <internal_type>db</internal_type>
                                 <allowed>pages</allowed>
                                 <size>1</size>
-                                <minitems>1</minitems>
                                 <maxitems>1</maxitems>
                                 <default>none</default>
                                 <show_thumbs>0</show_thumbs>
-                                <eval>required</eval>
                             </config>
                         </TCEforms>
                     </settings.xf.siteok>
@@ -104,10 +102,8 @@
                                 <internal_type>db</internal_type>
                                 <allowed>pages</allowed>
                                 <size>1</size>
-                                <minitems>1</minitems>
                                 <maxitems>1</maxitems>
                                 <show_thumbs>0</show_thumbs>
-                                <eval>required</eval>
                             </config>
                         </TCEforms>
                     </settings.xf.siteerror>
