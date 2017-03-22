@@ -144,8 +144,11 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
             $errorUrl = $siteerror;
             $sessionID = $GLOBALS['TSFE']->fe_user->id;
 
-            return $GLOBALS['gFcUrl'] . '/form/provide/' . $projektId . '?xfc-rp-form-only=true' .
-            '&xfc-rp-usejq=' . $usejq .
+            $GLOBALS['gFcUrl'] = trim($GLOBALS['gFcUrl'], ' /\t\n\r\0\x0B');
+            $GLOBALS['gFcUrl'] .= '/';
+
+            return $GLOBALS['gFcUrl'] . 'form/provide/' . $projektId .
+            '?xfc-rp-usejq=' . $usejq .
             '&xfc-rp-useui=' . $useui .
             '&xfc-rp-usebs=' . $usebs .
             '&xfc-rp-inline=true' .

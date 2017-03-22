@@ -85,7 +85,7 @@ class FormcycleController extends ActionController
                 break;
             case 'AJAX (FORMCYCLE)':
                 $partialsTemplate = 'AJAX';
-                $formcycleServerUrl = $this->getFcUrl(new FcHelper());
+                $formcycleServerUrl = $this->getFcUrl(new FcHelper(), '&xfc-rp-form-only=true');
                 break;
             case 'iFrame':
                 $partialsTemplate = 'iFrame';
@@ -136,7 +136,7 @@ class FormcycleController extends ActionController
     protected function getDirectly()
     {
         $fch = new FcHelper();
-        $fc_ContentUrl = $this->getFcUrl($fch);
+        $fc_ContentUrl = $this->getFcUrl($fch, '&xfc-rp-form-only=true');
 
         return array(
             'form' => $fch->getFileContent($fc_ContentUrl, '', '', '')
@@ -145,9 +145,10 @@ class FormcycleController extends ActionController
 
     /**
      * @param \Xima\XmFormcycle\Helper\FcHelper $fch
+     * @param string $fcParams
      * @return string
      */
-    protected function getFcUrl(FcHelper $fch)
+    protected function getFcUrl(FcHelper $fch, $fcParams = '')
     {
         $GLOBALS['icss'] = $this->settings['xf']['icss'];
         $selErrorPage = $this->getRedirectURL($this->settings['xf']['siteerror']);
@@ -157,7 +158,7 @@ class FormcycleController extends ActionController
         $usebs = $this->settings['xf']['useFcBootStrap'];
         $selProjectId = $this->settings['xf']['xfc_p_id'];
         $frontendLang = $GLOBALS['TSFE']->config['config']['language'];
-        $fcParams = $this->settings['xf']['useFcUrlParams'];
+        $fcParams .= $this->settings['xf']['useFcUrlParams'];
 
         $fc_ContentUrl = $fch->getFormContent(
             $selProjectId,
