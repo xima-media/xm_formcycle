@@ -2,6 +2,7 @@
 
 namespace Xima\XmFormcycle\UserFunc;
 
+use SimpleXMLElement;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Xima\XmFormcycle\Helper\FcHelper;
 
@@ -29,7 +30,13 @@ class Newbutton extends ActionController
 
         $selProjectId = $this->settings['xf']['xfc_p_id'];
 
-        $pid = $PA['row']['pi_flexform']['data']['sheetGeneralOptions']['lDEF']['settings.xf.xfc_p_id']['vDEF'];
+        if (is_array($PA['row']['pi_flexform']) && array_key_exists('data', $PA['row']['pi_flexform'])){
+            $pid = $PA['row']['pi_flexform']['data']['sheetGeneralOptions']['lDEF']['settings.xf.xfc_p_id']['vDEF'];
+        }
+        else {
+            $xml = new SimpleXMLElement($PA['row']['pi_flexform']);
+            $pid = $xml->data->sheet[0]->language->field->value->__toString();
+        }
 
         $retTemp = '
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
