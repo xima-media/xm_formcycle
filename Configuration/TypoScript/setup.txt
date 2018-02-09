@@ -1,8 +1,8 @@
 plugin.tx_xmformcycle {
 	view {
-		templateRootPath = {$plugin.tx_xmformcycle.view.templateRootPath}
-		partialRootPath = {$plugin.tx_xmformcycle.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_xmformcycle.view.layoutRootPath}
+		templateRootPaths.10 = {$plugin.tx_xmformcycle.view.templateRootPath}
+		partialRootPaths.10 = {$plugin.tx_xmformcycle.view.partialRootPath}
+		layoutRootPaths.10 = {$plugin.tx_xmformcycle.view.layoutRootPath}
 	}
 	persistence {
 		storagePid = {$plugin.tx_xmformcycle.persistence.storagePid}
@@ -43,6 +43,8 @@ plugin.tx_xmformcycle._CSS_DEFAULT_STYLE (
 		vertical-align:top;
 	}
 )
+
+page.includeJSFooter.tx_xmformcycle = EXT:xm_formcycle/Resources/Public/Js/xm_formcycle.js
 
 tx_xmformcycle_ajax = PAGE
 tx_xmformcycle_ajax {

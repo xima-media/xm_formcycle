@@ -21,12 +21,13 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
 
         /**
          * FcHelper constructor.
+         * @param bool $frontendServerUrl
          */
-        function __construct()
+        function __construct($frontendServerUrl = false)
         {
             $ek = 'xm_formcycle';
             $this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$ek]);
-            $GLOBALS['gFcUrl'] = $this->extConf['formCycleUrl'];
+            $GLOBALS['gFcUrl'] = ($frontendServerUrl && $this->extConf['formCycleFrontendUrl'] != '') ? $this->extConf['formCycleFrontendUrl'] : $this->extConf['formCycleUrl'];
             $GLOBALS['gFcUser'] = $this->extConf['formCycleUser'];
             $GLOBALS['gFcPass'] = $this->extConf['formCyclePass'];
         }

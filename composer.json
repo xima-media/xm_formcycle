@@ -1,0 +1,24 @@
+{
+  "name": "xima-media/xm_formcycle",
+  "type": "typo3-cms-extension",
+  "description": "Integrator für FormCycle",
+  "homepage": "https://www.xima.de",
+  "license": ["GPL-2.0+"],
+  "keywords": [
+    "TYPO3 CMS",
+    "XIMA",
+    "FormCycle"
+  ],
+  "require": {
+    "typo3/cms-core": "^8.7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Xima\\XmFormcycle\\": "Classes/"
+    }
+  },
+  "replace": {
+    "xm_formcycle": "self.version",
+    "xima/xm_formcycle": "self.version"
+  }
+}
