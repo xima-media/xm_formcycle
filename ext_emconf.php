@@ -11,16 +11,16 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
-    'title'            => 'FormCycle',
+    'title'            => 'FORMCYCLE',
     'description'      => 'form management with professional form designer, process management, inbox and more features.',
     'category'         => 'plugin',
-    'version'          => '5.0.0',
+    'version'          => '5.0.1',
     'state'            => 'stable',
     'uploadfolder'     => '',
     'createDirs'       => '',
     'clearcacheonload' => '',
     'author'           => 'XIMA MEDIA GmbH',
-    'author_email'     => 'kontakt@xima.de',
+    'author_email'     => 'support@formcycle.de',
     'author_company'   => 'XIMA MEDIA GmbH',
     'constraints'      =>
         array(
