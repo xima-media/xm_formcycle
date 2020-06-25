@@ -7,10 +7,10 @@
   "keywords": [
     "TYPO3 CMS",
     "XIMA",
-    "FormCycle"
+    "FORMCYCLE"
   ],
   "require": {
-    "typo3/cms-core": "^8.7.0 || ^9.5.0"
+    "typo3/cms-core": "^8.7.0 || ^9.5.0 || ^10.4.0"
   },
   "autoload": {
     "psr-4": {
