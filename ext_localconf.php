@@ -15,3 +15,9 @@ $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['xm_formcyc
     // non-cacheable actions
     $extConf['integrationMode'] == 'integrated' ? array('Formcycle' => 'list') : array()
 );
+
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1593170596] = [
+    'nodeName' => 'startNewElement',
+    'priority' => 40,
+    'class' => \Xima\XmFormcycle\Extension\Form\Element\StartNewElement::class,
+];
