@@ -1,23 +1,18 @@
 <?php
-namespace Xima\XmFormcycle\UserFunc;
+declare(strict_types = 1);
 
+namespace Xima\XmFormcycle\Form\Element;
+
+use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use Xima\XmFormcycle\Helper\FcHelper;
 
-/**
- * Class Openfc
- *
- * @package Xima\XmFormcycle\UserFunc
- */
-class Openfc
+class FcElement extends AbstractFormElement
 {
-    
-    /**
-     * @param $PA
-     * @param $fobj
-     * @return string
-     */
-    function startnew($PA, $fobj)
+    public function render()
     {
+        // Custom TCA properties and other data can be found in $this->data, for example the above
+        // parameters are available in $this->data['parameterArray']['fieldConf']['config']['parameters']
+
         $fch = new FcHelper();
         $fc_AdminUrl = $fch->getFcAdministrationUrl();
         $user_lang = $GLOBALS['BE_USER']->uc['lang'];
@@ -31,7 +26,8 @@ class Openfc
             $message = $mssage_style . 'Der Link öffnet ein neues Fenster mit eigenen Login-Dialog.</span>';
         }
 
-        return '&nbsp;&nbsp;<a href="' . $fc_AdminUrl . '" target="_blank">' . $message_link . '</a><br/>&nbsp;&nbsp;' . $message . '<br/><br/>';
-
+        $result = $this->initializeResultArray();
+        $result['html'] = '&nbsp;&nbsp;<a href="' . $fc_AdminUrl . '" target="_blank">' . $message_link . '</a><br/>&nbsp;&nbsp;' . $message . '<br/><br/>';
+        return $result;
     }
 }

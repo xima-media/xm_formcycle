@@ -19,5 +19,17 @@ $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['xm_formcyc
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1593170596] = [
     'nodeName' => 'startNewElement',
     'priority' => 40,
-    'class' => \Xima\XmFormcycle\Extension\Form\Element\StartNewElement::class,
+    'class' => \Xima\XmFormcycle\Form\Element\StartNewElement::class,
+];
+
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1593173971] = [
+    'nodeName' => 'startOpenElement',
+    'priority' => 40,
+    'class' => \Xima\XmFormcycle\Form\Element\StartOpenElement::class,
+];
+
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1593174782] = [
+    'nodeName' => 'fcElement',
+    'priority' => 40,
+    'class' => \Xima\XmFormcycle\Form\Element\FcElement::class,
 ];

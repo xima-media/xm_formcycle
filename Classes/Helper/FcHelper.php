@@ -3,7 +3,7 @@
 namespace Xima\XmFormcycle\Helper;
 
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
 $gFcAdminUrl = "";
 $gFcProvideUrl = "";
@@ -26,7 +26,7 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
         function __construct($frontendServerUrl = false)
         {
             $ek = 'xm_formcycle';
-            $this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$ek]);
+            $this->extConf = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(ExtensionConfiguration::class)->get($ek);
             $GLOBALS['gFcUrl'] = ($frontendServerUrl && $this->extConf['formCycleFrontendUrl'] != '') ? $this->extConf['formCycleFrontendUrl'] : $this->extConf['formCycleUrl'];
             $GLOBALS['gFcUser'] = $this->extConf['formCycleUser'];
             $GLOBALS['gFcPass'] = $this->extConf['formCyclePass'];

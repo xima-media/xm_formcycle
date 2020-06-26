@@ -66,7 +66,7 @@
                             <label></label>
                             <config>
                                 <type>user</type>
-                                <userFunc>Xima\XmFormcycle\UserFunc\Openhelp->startopen</userFunc>
+                                <renderType>startOpenElement</renderType>
                             </config>
                         </TCEforms>
                     </userfunc_field_help_1>
@@ -75,7 +75,7 @@
         </sheetGeneralOptions>
         <sheetShapeAreaOptions>
             <ROOT>
-                <TCEforms>^^
+                <TCEforms>
                     <sheetTitle>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab2_name</sheetTitle>
                 </TCEforms>
                 <type>array</type>
@@ -113,7 +113,7 @@
                             <label></label>
                             <config>
                                 <type>user</type>
-                                <userFunc>Xima\XmFormcycle\UserFunc\Openhelp->startopen</userFunc>
+                                <renderType>startOpenElement</renderType>
                             </config>
                         </TCEforms>
                     </userfunc_field_help_2>
@@ -171,7 +171,7 @@
                             <label></label>
                             <config>
                                 <type>user</type>
-                                <userFunc>Xima\XmFormcycle\UserFunc\Openhelp->startopen</userFunc>
+                                <renderType>startOpenElement</renderType>
                             </config>
                         </TCEforms>
                     </userfunc_field_help_1s>
@@ -210,7 +210,7 @@
                             <config>
                                 <type>user</type>
                                 <dim>212x108</dim>
-                                <userFunc>Xima\XmFormcycle\UserFunc\Openfc->startnew</userFunc>
+                                <renderType>fcElement</renderType>
                             </config>
                         </TCEforms>
                     </userfunc_field4>
@@ -219,7 +219,7 @@
                             <label></label>
                             <config>
                                 <type>user</type>
-                                <userFunc>Xima\XmFormcycle\UserFunc\Openhelp->startopen</userFunc>
+                                <renderType>startOpenElement</renderType>
                             </config>
                         </TCEforms>
                     </userfunc_field_help_4>
