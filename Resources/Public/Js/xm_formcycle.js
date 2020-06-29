@@ -13,7 +13,14 @@
         && $objects.settings.data('contentUrl') != ''
         && $canvas.length > 0) {
 
-        $.get($objects.settings.data('contentUrl'), function(data){
+        $.ajax({
+            url: $objects.settings.data('contentUrl'),
+            type: "GET",
+            dataType: "html",
+            xhrFields: {
+                withCredentials: true
+            },
+        }).done(function (data) {
             $canvas.html(data);
         });
     }
