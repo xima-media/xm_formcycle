@@ -6,14 +6,13 @@ if (!defined('TYPO3_MODE')) {
 $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['xm_formcycle']);
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'Xima.' . $_EXTKEY,
+    'Xima.xm_formcycle',
     'Xmformcycle',
-    array(
+    [
         'Formcycle' => 'list, formContent',
-
-    ),
+    ],
     // non-cacheable actions
-    $extConf['integrationMode'] == 'integrated' ? array('Formcycle' => 'list') : array()
+    $extConf['integrationMode'] == 'integrated' ? ['Formcycle' => 'list'] : []
 );
 
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1593170596] = [

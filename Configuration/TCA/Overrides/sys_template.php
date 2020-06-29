@@ -1,6 +1,9 @@
 <?php
 defined('TYPO3_MODE') || die('Access denied.');
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('xm_formcycle', 'Configuration/TypoScript',
-    'FORMCYCLE');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+    'xm_formcycle',
+    'Configuration/TypoScript',
+    'FORMCYCLE'
+);
 
