@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2020-06-29UTC07:42:060">
+        <header>
+            <authorName>Konrad Michalik</authorName>
+            <authorEmail>konrad.michalik@xima.de</authorEmail>
+        </header>
+        <body>
+            <trans-unit id="tx_xmformcycle_domain_model_formcycle">
+                <source>Formcycle</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab1_name">
+                <source>form</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab1_select_projekt">
+                <source>select form (required)</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab1_edit_projekt">
+                <source>edit selected form</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab1_select_integrationMode">
+                <source>Integration mode</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab1_select_integrationMode_default">
+                <source>Default</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab5_name">
+                <source>script / css</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab6_name">
+                <source>parameters</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab6_param_values">
+                <source>parameter (example: &amp;param1=value1&amp;param2=value2&amp;param3=value3)</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab5_icss">
+                <source>Use available css</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab5_useJS_jQuery">
+                <source>Use the jQuery framework provided by FormCycle. If you uncheck this (you use your own framework), make shure your jQuery framework is initialised before this plug in.</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab5_useJS_jQueryUi">
+                <source>Use the jQuery UI framework provided by FormCycle (only necessary if you use jQuery UI Components).</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab5_useJS_bootstrap">
+                <source>Use the responsejs framework provided by FormCycle (only necessary if you use responsive design).</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab2_name">
+                <source>response pages</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab2_response_success">
+                <source>response page by successfully submited form</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab2_response_error">
+                <source>response page when an error occurs during execution</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab2_name">
+                <source>response pages</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab3_name">
+                <source>new form</source>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_tab4_name">
+                <source>xima FormCycle administration</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
