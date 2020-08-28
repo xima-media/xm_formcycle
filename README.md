@@ -1,8 +1,8 @@
 Formcycle
 =========
 
-Inhalt
-------
+Content
+-------
 - [What does it do?](#What-does-it-do)
 - [Author](#Author)
 - [Dependencies](#Dependencies)
@@ -10,6 +10,7 @@ Inhalt
 -- [TypoScript Setup](#TypoScript-Setup)
 -- [TypoScript Constants](#TypoScript-Constants)
 - [Plug-Ins](#Plug-ins)
+- [Help](#Help)
 
 ## <a name="What-does-it-do"></a>What does it do?
 Connects to your form created with XIMA® FormCycle (form management with professional form designer, process management, inbox and more features).
@@ -36,3 +37,6 @@ XIMA MEDIA GmbH ([Website](https://www.xima.de/))
 ## <a name="Plug-ins"></a>Plug-Ins
 - FormCycle Integrator: Default Plug-In to show your form 
  
+## <a name="Help"></a>Help
+Do you found an error, need help or have any suggestions for us?  
+Please send us an e-mail to: support@formcycle.de
