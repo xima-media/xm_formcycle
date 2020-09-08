@@ -52,7 +52,7 @@ class FormcycleController extends ActionController
      */
     public function initializeListAction()
     {
-                $this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]);
+                $this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][$this->extKey]);
     }
 
     /**
@@ -177,7 +177,7 @@ class FormcycleController extends ActionController
      */
     protected function getByAjax()
     {
-        $cObj = $this->configurationManager->getContentObject();
+        $cObj = $this->configurationManager->getContentObjectRenderer();
 
         return array(
             'uid' => $cObj->data['uid'],
@@ -192,9 +192,8 @@ class FormcycleController extends ActionController
     {
         return $this->uriBuilder
             ->reset()
-            ->setArguments(array('L' => $GLOBALS['TSFE']->sys_language_uid))
+            ->setArguments(array('L' => GeneralUtility::makeInstance(Context::class)->getAspect('language')))
             ->setTargetPageUid(intval($uid))
-            ->setUseCacheHash(false)
             ->setCreateAbsoluteUri(true)
             ->build();
     }
