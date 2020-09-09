@@ -56,7 +56,7 @@ class FormcycleController extends ActionController
      */
     public function initializeListAction()
     {
-        $this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][$this->extKey]);
+        $this->extConf = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][$this->extKey];
     }
 
     /**
