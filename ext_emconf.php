@@ -10,6 +10,7 @@
  * writing. "version" and "dependencies" must not be touched!
  ***************************************************************/
 
+/** @var TYPE_NAME $_EXTKEY */
 $EM_CONF[$_EXTKEY] = [
     'title'            => 'FORMCYCLE',
     'description'      => 'form management with professional form designer, process management, inbox and more features.',
@@ -23,13 +24,13 @@ $EM_CONF[$_EXTKEY] = [
     'author_email'     => 'support@formcycle.de',
     'author_company'   => 'XIMA MEDIA GmbH',
     'constraints'      => [
-        'depends' => [
+        'depends'   => [
             'extbase' => '1.3-',
             'fluid'   => '1.3-',
             'typo3'   => '9.5.0-10.4.99',
         ],
         'conflicts' => [],
-        'suggets' => [],
+        'suggets'   => [],
     ],
 ];
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Xima\XmFormcycle\Helper;
 
 use TYPO3\CMS\Extbase\Persistence\Repository;
@@ -10,6 +11,7 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  */
 class WorkaroundHelper extends Repository
 {
+
     /**
      * Find Flexform settings by UID.
      *
@@ -19,28 +21,29 @@ class WorkaroundHelper extends Repository
      */
     public function findFlexformDataByUid($uid)
     {
-        if (empty($uid)){
-            return array();
+        if (empty($uid)) {
+            return [];
         }
 
-        $uid = (int) $uid;
+        $uid = (int)$uid;
 
         $query = $this->createQuery();
         $query->statement('SELECT pi_flexform from tt_content where list_type="xmformcycle_xmformcycle" and uid = ' . $uid);
         $pages = $query->execute(true);
         $xml = simplexml_load_string($pages[0]['pi_flexform']);
-        $flexformData = array();
+        $flexformData = [];
 
         foreach ($xml->data->sheet as $sheet) {
             foreach ($sheet->language->field as $field) {
                 $flexformData['xf'][str_replace(
                     'settings.xf.',
                     '',
-                    (string) $field->attributes()
-                )] = (string) $field->value;
+                    (string)$field->attributes()
+                )] = (string)$field->value;
             }
         }
 
         return $flexformData;
     }
+
 }

@@ -51,7 +51,7 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
         {
 
             $result = '';
-            $httpParams = array();
+            $httpParams = [];
             $curlPostfields = '';
 
             if (function_exists('curl_init')) {
@@ -92,7 +92,7 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
                 curl_close($ch);
 
             } else {
-                $httpArray = array();
+                $httpArray = [];
 
                 array_push($httpArray, 'method');
                 $httpArray['method'] = 'POST';
@@ -100,10 +100,10 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
                 array_push($httpArray, 'request_fulluri');
                 $httpArray['request_fulluri'] = true;
 
-                $opts = array(
-                    'http' => $httpArray,
-                    'https' => $httpArray
-                );
+                $opts = [
+                    'http'  => $httpArray,
+                    'https' => $httpArray,
+                ];
                 $context = stream_context_create($opts);
                 $result = file_get_contents($myURL, false, $context);
 
@@ -149,17 +149,17 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
             $GLOBALS['gFcUrl'] .= '/';
 
             return $GLOBALS['gFcUrl'] . 'form/provide/' . $projektId .
-            '?xfc-rp-usejq=' . $usejq .
-            '&xfc-rp-useui=' . $useui .
-            '&xfc-rp-usebs=' . $usebs .
-            '&xfc-rp-inline=true' .
-            '&lang=' . $frontendLang .
-            '&xfc-pp-external=true' .
-            '&xfc-pp-base-url=' . $GLOBALS['gFcUrl'] .
-            '&xfc-pp-success-url=' . $okUrl .
-            '&xfc-pp-error-url=' . $errorUrl .
-            '&xfc-rp-keepalive=false'.
-            $fcParams;
+                '?xfc-rp-usejq=' . $usejq .
+                '&xfc-rp-useui=' . $useui .
+                '&xfc-rp-usebs=' . $usebs .
+                '&xfc-rp-inline=true' .
+                '&lang=' . $frontendLang .
+                '&xfc-pp-external=true' .
+                '&xfc-pp-base-url=' . $GLOBALS['gFcUrl'] .
+                '&xfc-pp-success-url=' . $okUrl .
+                '&xfc-pp-error-url=' . $errorUrl .
+                '&xfc-rp-keepalive=false' .
+                $fcParams;
         }
 
         /**

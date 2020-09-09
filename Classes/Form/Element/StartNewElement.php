@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Xima\XmFormcycle\Form\Element;
 
@@ -9,6 +9,7 @@ use SimpleXMLElement;
 
 class StartNewElement extends AbstractFormElement
 {
+
     public function render()
     {
         // Custom TCA properties and other data can be found in $this->data, for example the above
@@ -26,10 +27,10 @@ class StartNewElement extends AbstractFormElement
 
         $selProjectId = $this->settings['xf']['xfc_p_id'];
 
-        if (is_array($PA['databaseRow']['pi_flexform']) && array_key_exists('data', $PA['databaseRow']['pi_flexform'])){
+        if (is_array($PA['databaseRow']['pi_flexform']) && array_key_exists('data',
+                $PA['databaseRow']['pi_flexform'])) {
             $pid = $PA['databaseRow']['pi_flexform']['data']['sheetGeneralOptions']['lDEF']['settings.xf.xfc_p_id']['vDEF'];
-        }
-        else {
+        } else {
             $xml = new SimpleXMLElement($PA['databaseRow']['pi_flexform']);
             $pid = $xml->data->sheet[0]->language->field->value->__toString();
         }
@@ -103,4 +104,5 @@ class StartNewElement extends AbstractFormElement
         $result['html'] = $retTemp;
         return $result;
     }
+
 }

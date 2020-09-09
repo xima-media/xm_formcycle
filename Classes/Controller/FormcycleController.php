@@ -1,4 +1,5 @@
 <?php
+
 namespace Xima\XmFormcycle\Controller;
 
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -37,6 +38,7 @@ use Xima\XmFormcycle\Helper\WorkaroundHelper;
  */
 class FormcycleController extends ActionController
 {
+
     /**
      * @var string
      */
@@ -45,14 +47,14 @@ class FormcycleController extends ActionController
     /**
      * @var array
      */
-    protected $extConf = array();
+    protected $extConf = [];
 
     /**
      *
      */
     public function initializeListAction()
     {
-                $this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][$this->extKey]);
+        $this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][$this->extKey]);
     }
 
     /**
@@ -62,17 +64,18 @@ class FormcycleController extends ActionController
      */
     public function listAction()
     {
-        $viewVars = array();
+        $viewVars = [];
 
         $typo3link = false;
         $formcycleServerUrl = '';
         $integrationMode = $this->extConf['integrationMode'];
 
-        if (array_key_exists('integrationMode', $this->settings['xf']) && $this->settings['xf']['integrationMode'] != 'default'){
+        if (array_key_exists('integrationMode',
+                $this->settings['xf']) && $this->settings['xf']['integrationMode'] != 'default') {
             $integrationMode = $this->settings['xf']['integrationMode'];
         }
 
-        switch ($integrationMode){
+        switch ($integrationMode) {
             case 'AJAX (TYPO3)':
                 $viewVars = $this->getByAjax();
                 $partialsTemplate = 'AJAX';
@@ -84,7 +87,7 @@ class FormcycleController extends ActionController
                 break;
             case 'iFrame':
                 $partialsTemplate = 'iFrame';
-                $formcycleServerUrl = $this->getFcUrl(new FcHelper(true)) .'&xfc-height-changed-evt=true';
+                $formcycleServerUrl = $this->getFcUrl(new FcHelper(true)) . '&xfc-height-changed-evt=true';
                 break;
             case 'integrated':
             default:
@@ -93,9 +96,9 @@ class FormcycleController extends ActionController
         }
 
         $viewVars = array_merge($viewVars, [
-            'typo3link' => $typo3link,
+            'typo3link'          => $typo3link,
             'formcycleServerUrl' => $formcycleServerUrl,
-            'partialsTemplate' => $partialsTemplate,
+            'partialsTemplate'   => $partialsTemplate,
             'integrationModeKey' => $this->extConf['integrationMode'],
         ]);
 
@@ -134,9 +137,9 @@ class FormcycleController extends ActionController
         $fch = new FcHelper($frontendServerUrl);
         $fc_ContentUrl = $this->getFcUrl($fch, '&xfc-rp-form-only=true');
 
-        return array(
-            'form' => $fch->getFileContent($fc_ContentUrl, '', '', '')
-        );
+        return [
+            'form' => $fch->getFileContent($fc_ContentUrl, '', '', ''),
+        ];
     }
 
     /**
@@ -179,9 +182,9 @@ class FormcycleController extends ActionController
     {
         $cObj = $this->configurationManager->getContentObjectRenderer();
 
-        return array(
+        return [
             'uid' => $cObj->data['uid'],
-        );
+        ];
     }
 
     /**
@@ -192,7 +195,7 @@ class FormcycleController extends ActionController
     {
         return $this->uriBuilder
             ->reset()
-            ->setArguments(array('L' => GeneralUtility::makeInstance(Context::class)->getAspect('language')))
+            ->setArguments(['L' => GeneralUtility::makeInstance(Context::class)->getAspect('language')])
             ->setTargetPageUid(intval($uid))
             ->setCreateAbsoluteUri(true)
             ->build();
@@ -224,4 +227,5 @@ class FormcycleController extends ActionController
     {
         return $this->url_origin($s, $use_forwarded_host) . strtok($s['REQUEST_URI'], '?');
     }
+
 }

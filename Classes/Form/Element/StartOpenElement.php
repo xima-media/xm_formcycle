@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Xima\XmFormcycle\Form\Element;
 
@@ -7,6 +7,7 @@ use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 
 class StartOpenElement extends AbstractFormElement
 {
+
     public function render()
     {
         // Custom TCA properties and other data can be found in $this->data, for example the above
@@ -28,4 +29,5 @@ class StartOpenElement extends AbstractFormElement
         $result['html'] = '&nbsp;&nbsp;<a href="' . $fc_HelpUrl . '" target="_blank">' . $message_link . '</a><br/>';
         return $result;
     }
+
 }
