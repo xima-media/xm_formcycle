@@ -182,7 +182,7 @@ class FormcycleController extends ActionController
      */
     protected function getByAjax()
     {
-        $cObj = $this->configurationManager->getContentObjectRenderer();
+        $cObj = $this->configurationManager->getContentObject();
 
         return [
             'uid' => $cObj->data['uid'],
