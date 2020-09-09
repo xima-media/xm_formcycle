@@ -3,7 +3,7 @@ if (!defined('TYPO3_MODE')) {
     die ('Access denied.');
 }
 
-$extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['xm_formcycle']);
+$extConf = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['xm_formcycle'];
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'Xima.xm_formcycle',
