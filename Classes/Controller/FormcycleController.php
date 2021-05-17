@@ -161,6 +161,8 @@ class FormcycleController extends ActionController
         $frontendLang = $GLOBALS['TSFE']->config['config']['language'];
         $fcParams .= $this->settings['xf']['useFcUrlParams'];
 
+        $fcParams = $this->resolveCustomParameters($fcParams);
+
         $fc_ContentUrl = $fch->getFormContent(
             $selProjectId,
             $selOkPage,
@@ -230,4 +232,27 @@ class FormcycleController extends ActionController
         return $this->url_origin($s, $use_forwarded_host) . strtok($s['REQUEST_URI'], '?');
     }
 
+    /**
+     * @param string $fcParams
+     * @return string
+     */
+    private function resolveCustomParameters(string $fcParams)
+    {
+        $result = $fcParams;
+
+        if (preg_match_all('~(?:{|%7B)(?<params>[\d\w]+)(?:}|%7D)~', $fcParams, $matches) !== false) {
+
+            foreach ($matches['params'] as $idx => $param) {
+                if (array_key_exists($param, $_GET)) {
+                    $result = str_replace(
+                        $matches[0][$idx],
+                        $_GET[$param],
+                        $result
+                    );
+                }
+            }
+        }
+
+        return $result;
+    }
 }
