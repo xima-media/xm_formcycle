@@ -250,6 +250,13 @@ class FormcycleController extends ActionController
                         $result
                     );
                 }
+                else {
+                    $result = str_replace(
+                        $matches[0][$idx],
+                        '',
+                        $result
+                    );
+                }
             }
         }
 
