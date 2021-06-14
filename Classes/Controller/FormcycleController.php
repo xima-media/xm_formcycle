@@ -246,7 +246,7 @@ class FormcycleController extends ActionController
                 if (array_key_exists($param, $_GET)) {
                     $result = str_replace(
                         $matches[0][$idx],
-                        $_GET[$param],
+                        strip_tags(strval($_GET[$param])),
                         $result
                     );
                 }
