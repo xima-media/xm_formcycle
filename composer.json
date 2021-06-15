@@ -12,6 +12,9 @@
   "require": {
     "typo3/cms-core": "^9.5.0 || ^10.4.0"
   },
+  "require-dev": {
+    "thibautselingue/local-php-security-checker-installer": "^1.0"
+  },
   "autoload": {
     "psr-4": {
       "Xima\\XmFormcycle\\": "Classes/"
@@ -19,6 +22,11 @@
   },
   "replace": {
     "xima-media/xm_formcycle": "self.version"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "local-php-security-checker-installer && local-php-security-checker"
+    ]
   },
   "extra": {
     "typo3/cms": {
