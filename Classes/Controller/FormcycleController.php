@@ -158,7 +158,7 @@ class FormcycleController extends ActionController
         $useui = $this->settings['xf']['useFcjQueryUi'];
         $usebs = $this->settings['xf']['useFcBootStrap'];
         $selProjectId = $this->settings['xf']['xfc_p_id'];
-        $frontendLang = $GLOBALS['TSFE']->config['config']['language'];
+        $frontendLang = $GLOBALS['TSFE']->sys_language_isocode ?: 'de';
         $fcParams .= $this->settings['xf']['useFcUrlParams'];
 
         $fcParams = $this->resolveCustomParameters($fcParams);

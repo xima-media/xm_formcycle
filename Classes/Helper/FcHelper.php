@@ -148,6 +148,12 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
             $GLOBALS['gFcUrl'] = trim($GLOBALS['gFcUrl'], " /\t\n\r\0\x0B");
             $GLOBALS['gFcUrl'] .= '/';
 
+            if (preg_match('~&lang=([^&]+)~', $fcParams, $matches) === 1) {
+
+                $frontendLang = $matches[1];
+                $fcParams = str_replace($matches[0], '', $fcParams);
+            }
+
             return $GLOBALS['gFcUrl'] . 'form/provide/' . $projektId .
                 '?xfc-rp-usejq=' . $usejq .
                 '&xfc-rp-useui=' . $useui .
