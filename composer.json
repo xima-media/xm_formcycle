@@ -20,9 +20,6 @@
       "Xima\\XmFormcycle\\": "Classes/"
     }
   },
-  "replace": {
-    "xima-media/xm_formcycle": "self.version"
-  },
   "scripts": {
     "post-install-cmd": [
       "local-php-security-checker-installer && local-php-security-checker"
