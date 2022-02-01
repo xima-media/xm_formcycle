@@ -27,6 +27,10 @@ XIMA MEDIA GmbH ([Website](https://www.xima.de/))
 2. Include static templates
 3. Configure (Constants-Editor, Template-Settings, Plug-In-Settings)
 
+>
+> For further information see our [wiki page](https://help.formcycle.eu/xwiki/bin/view/Formcycle/CMSExtension/Typo3Extension/).
+>
+
 ### <a name="TypoScript-Setup"></a>TypoScript Setup
 - **tx_xmformcycle_ajax**
     AJAX configuration with typeNum 1464705954.
