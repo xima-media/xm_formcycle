@@ -10,7 +10,7 @@
     "FORMCYCLE"
   ],
   "require": {
-    "typo3/cms-core": "^9.5.0 || ^10.4.0"
+    "typo3/cms-core": "^9.5.0 || ^10.4.0 || ^11.5.0"
   },
   "require-dev": {
     "thibautselingue/local-php-security-checker-installer": "^1.0"
