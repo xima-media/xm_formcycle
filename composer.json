@@ -10,6 +10,7 @@
     "FORMCYCLE"
   ],
   "require": {
+    "ext-curl": "*",
     "typo3/cms-core": "^9.5.0 || ^10.4.0 || ^11.5.0"
   },
   "require-dev": {
