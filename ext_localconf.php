@@ -9,11 +9,10 @@ $extConf = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['xm_formcycle'];
     'Xima.xm_formcycle',
     'Xmformcycle',
     [
-        '\TYPO3\CMS\Form\Controller\FormcycleController::class' => 'list, formContent',
+        \Xima\XmFormcycle\Controller\FormcycleController::class => 'list, formContent',
     ],
     // non-cacheable actions
-    $extConf['integrationMode'] == 'integrated' ? ['\TYPO3\CMS\Form\Controller\FormcycleController::class' => 'list'] : [],
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    $extConf['integrationMode'] == 'integrated' ? [\Xima\XmFormcycle\Controller\FormcycleController::class => 'list'] : []
 );
 
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1593170596] = [
