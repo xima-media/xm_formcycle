@@ -72,8 +72,9 @@ class FormcycleController extends ActionController
         $formcycleServerUrl = '';
         $integrationMode = $this->extConf['integrationMode'];
 
-        if (array_key_exists('integrationMode',
-                $this->settings['xf']) && $this->settings['xf']['integrationMode'] != 'default') {
+        if (array_key_exists('integrationMode', $this->settings['xf'])
+            && $this->settings['xf']['integrationMode'] != 'default'
+        ) {
             $integrationMode = $this->settings['xf']['integrationMode'];
         }
 

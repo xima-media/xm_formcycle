@@ -21,7 +21,7 @@ if (!class_exists(FcHelper::class)) {
          * @throws ExtensionConfigurationExtensionNotConfiguredException
          * @throws ExtensionConfigurationPathDoesNotExistException
          */
-        function __construct($frontendServerUrl = false)
+        public function __construct($frontendServerUrl = false)
         {
             $ek = 'xm_formcycle';
             $this->extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get($ek);
@@ -33,7 +33,7 @@ if (!class_exists(FcHelper::class)) {
         /**
          * @return mixed
          */
-        function getIcss()
+        public function getIcss()
         {
             return $GLOBALS['icss'];
         }
@@ -52,22 +52,18 @@ if (!class_exists(FcHelper::class)) {
             if (function_exists('curl_init')) {
                 $ch = curl_init();
 
-                // Disable SSL verification
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                // Will return the response, if false it print the response
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // Set the url
                 curl_setopt($ch, CURLOPT_URL, $myURL);
-                curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt($ch, CURLOPT_HTTPGET, false);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPostfields);
 
                 if ($myAction == 'version') {
                     curl_setopt($ch, CURLOPT_POST, false);
                     curl_setopt($ch, CURLOPT_HTTPGET, true);
+                } else {
+                    curl_setopt($ch, CURLOPT_POST, true);
+                    curl_setopt($ch, CURLOPT_HTTPGET, false);
                 }
-
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPostfields);
-
 
                 if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyServer']) {
                     curl_setopt($ch, CURLOPT_PROXY, $GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyServer']);
@@ -81,7 +77,6 @@ if (!class_exists(FcHelper::class)) {
                     }
                 }
 
-                // Execute
                 $result = curl_exec($ch);
                 // Closing
                 curl_close($ch);
