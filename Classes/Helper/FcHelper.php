@@ -15,6 +15,9 @@ if (!class_exists(FcHelper::class)) {
     class FcHelper
     {
 
+        const CURL_OPTION_MAXREDIRS = 5;
+        const CURL_OPTION_USERAGENT = 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)';
+
         /**
          * @var array
          */
@@ -82,6 +85,11 @@ if (!class_exists(FcHelper::class)) {
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch, CURLOPT_URL, $myURL);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPostfields);
+
+                // Allow follow redirects
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                curl_setopt($ch, CURLOPT_MAXREDIRS, static::CURL_OPTION_MAXREDIRS);
+                curl_setopt($ch, CURLOPT_USERAGENT, static::CURL_OPTION_USERAGENT);
 
                 if ($myAction == 'version') {
                     curl_setopt($ch, CURLOPT_POST, false);
