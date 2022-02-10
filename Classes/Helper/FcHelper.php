@@ -16,6 +16,16 @@ if (!class_exists(FcHelper::class)) {
     {
 
         /**
+         * @var array
+         */
+        private $curlInfos = [];
+
+        /**
+         * @var array
+         */
+        private $curlErrors = [];
+
+        /**
          * FcHelper constructor.
          * @param bool $frontendServerUrl
          * @throws ExtensionConfigurationExtensionNotConfiguredException
@@ -28,6 +38,22 @@ if (!class_exists(FcHelper::class)) {
             $GLOBALS['gFcUrl'] = ($frontendServerUrl && $this->extConf['formCycleFrontendUrl'] != '') ? $this->extConf['formCycleFrontendUrl'] : $this->extConf['formCycleUrl'];
             $GLOBALS['gFcUser'] = $this->extConf['formCycleUser'];
             $GLOBALS['gFcPass'] = $this->extConf['formCyclePass'];
+        }
+
+        /**
+         * @return array
+         */
+        public function getCurlInfos()
+        {
+            return $this->curlInfos;
+        }
+
+        /**
+         * @return array
+         */
+        public function getCurlErrors()
+        {
+            return $this->curlErrors;
         }
 
         /**
@@ -78,7 +104,11 @@ if (!class_exists(FcHelper::class)) {
                 }
 
                 $result = curl_exec($ch);
-                // Closing
+                $this->curlInfos[] = curl_getinfo($ch);
+                if (curl_errno($ch)) {
+                    $this->curlErrors[] = curl_error($ch);
+                }
+
                 curl_close($ch);
             } else {
                 $httpArray = [
