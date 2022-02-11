@@ -5,15 +5,27 @@ if (!defined('TYPO3_MODE')) {
 
 $extConf = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['xm_formcycle'];
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'Xima.xm_formcycle',
-    'Xmformcycle',
-    [
-        \Xima\XmFormcycle\Controller\FormcycleController::class => 'list, formContent',
-    ],
-    // non-cacheable actions
-    $extConf['integrationMode'] == 'integrated' ? [\Xima\XmFormcycle\Controller\FormcycleController::class => 'list'] : []
-);
+if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(\TYPO3\CMS\Core\Utility\VersionNumberUtility::getNumericTypo3Version()) > 10000000) {
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'Xima.xm_formcycle',
+        'Xmformcycle',
+        [
+            \Xima\XmFormcycle\Controller\FormcycleController::class => 'list, formContent',
+        ],
+        // non-cacheable actions
+        $extConf['integrationMode'] == 'integrated' ? [\Xima\XmFormcycle\Controller\FormcycleController::class => 'list'] : []
+    );
+} else {
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'Xima.xm_formcycle',
+        'Xmformcycle',
+        [
+            'Formcycle' => 'list, formContent',
+        ],
+        // non-cacheable actions
+        $extConf['integrationMode'] == 'integrated' ? ['Formcycle' => 'list'] : []
+    );
+}
 
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1593170596] = [
     'nodeName' => 'startNewElement',
