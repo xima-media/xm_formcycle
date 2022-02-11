@@ -6,6 +6,14 @@
             <authorEmail>konrad.michalik@xima.de</authorEmail>
         </header>
         <body>
+            <trans-unit id="tx_xmformcycle_domain_model_formcycle.wizard.name">
+                <source>Formcycle</source>
+                <target>FormCycle</target>
+            </trans-unit>
+            <trans-unit id="tx_xmformcycle_domain_model_formcycle.wizard.description">
+                <source>XIMA® FormCycle forms in TYPO3 Frontend</source>
+                <target>XIMA® FormCycle forms in TYPO3 Frontend</target>
+            </trans-unit>
             <trans-unit id="tx_xmformcycle_domain_model_formcycle">
                 <source>Formcycle</source>
             </trans-unit>

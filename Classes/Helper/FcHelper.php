@@ -1,16 +1,12 @@
 <?php
-
 namespace Xima\XmFormcycle\Helper;
 
-
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
 
-$gFcAdminUrl = "";
-$gFcProvideUrl = "";
-$gFcUser = "";
-$gFcPass = "";
-
-if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
+if (!class_exists(FcHelper::class)) {
 
     /**
      * Class FcHelper
@@ -19,23 +15,54 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
     class FcHelper
     {
 
+        const CURL_OPTION_MAXREDIRS = 5;
+        const CURL_OPTION_USERAGENT = 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)';
+
+        /**
+         * @var array
+         */
+        private $curlInfos = [];
+
+        /**
+         * @var array
+         */
+        private $curlErrors = [];
+
         /**
          * FcHelper constructor.
          * @param bool $frontendServerUrl
+         * @throws ExtensionConfigurationExtensionNotConfiguredException
+         * @throws ExtensionConfigurationPathDoesNotExistException
          */
-        function __construct($frontendServerUrl = false)
+        public function __construct($frontendServerUrl = false)
         {
             $ek = 'xm_formcycle';
-            $this->extConf = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(ExtensionConfiguration::class)->get($ek);
+            $this->extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get($ek);
             $GLOBALS['gFcUrl'] = ($frontendServerUrl && $this->extConf['formCycleFrontendUrl'] != '') ? $this->extConf['formCycleFrontendUrl'] : $this->extConf['formCycleUrl'];
             $GLOBALS['gFcUser'] = $this->extConf['formCycleUser'];
             $GLOBALS['gFcPass'] = $this->extConf['formCyclePass'];
         }
 
         /**
+         * @return array
+         */
+        public function getCurlInfos()
+        {
+            return $this->curlInfos;
+        }
+
+        /**
+         * @return array
+         */
+        public function getCurlErrors()
+        {
+            return $this->curlErrors;
+        }
+
+        /**
          * @return mixed
          */
-        function getIcss()
+        public function getIcss()
         {
             return $GLOBALS['icss'];
         }
@@ -47,32 +74,30 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
          * @param $myPasswd
          * @return mixed|string
          */
-        function getFileContent($myURL, $myAction, $myUser, $myPasswd)
+        public function getFileContent($myURL, $myAction, $myUser, $myPasswd)
         {
-
-            $result = '';
-            $httpParams = [];
             $curlPostfields = '';
 
             if (function_exists('curl_init')) {
                 $ch = curl_init();
 
-                // Disable SSL verification
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                // Will return the response, if false it print the response
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // Set the url
                 curl_setopt($ch, CURLOPT_URL, $myURL);
-                curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt($ch, CURLOPT_HTTPGET, false);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPostfields);
+
+                // Allow follow redirects
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                curl_setopt($ch, CURLOPT_MAXREDIRS, static::CURL_OPTION_MAXREDIRS);
+                curl_setopt($ch, CURLOPT_USERAGENT, static::CURL_OPTION_USERAGENT);
 
                 if ($myAction == 'version') {
                     curl_setopt($ch, CURLOPT_POST, false);
                     curl_setopt($ch, CURLOPT_HTTPGET, true);
+                } else {
+                    curl_setopt($ch, CURLOPT_POST, true);
+                    curl_setopt($ch, CURLOPT_HTTPGET, false);
                 }
-
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPostfields);
-
 
                 if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyServer']) {
                     curl_setopt($ch, CURLOPT_PROXY, $GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyServer']);
@@ -86,35 +111,33 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
                     }
                 }
 
-                // Execute
                 $result = curl_exec($ch);
-                // Closing
+                $this->curlInfos[] = curl_getinfo($ch);
+                if (curl_errno($ch)) {
+                    $this->curlErrors[] = curl_error($ch);
+                }
+
                 curl_close($ch);
-
             } else {
-                $httpArray = [];
-
-                array_push($httpArray, 'method');
-                $httpArray['method'] = 'POST';
-
-                array_push($httpArray, 'request_fulluri');
-                $httpArray['request_fulluri'] = true;
-
+                $httpArray = [
+                    'method'          => 'POST',
+                    'request_fulluri' => true,
+                ];
                 $opts = [
                     'http'  => $httpArray,
                     'https' => $httpArray,
                 ];
                 $context = stream_context_create($opts);
                 $result = file_get_contents($myURL, false, $context);
-
             }
+
             return $result;
         }
 
         /**
          * @return mixed
          */
-        function getTypoSiteURL()
+        public function getTypoSiteURL()
         {
             return GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
         }
@@ -130,7 +153,7 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
          * @param $fcParams
          * @return string
          */
-        function getFormContent(
+        public function getFormContent(
             $projektId,
             $siteok,
             $siteerror,
@@ -171,16 +194,15 @@ if (!class_exists('Xima\\XmFormcycle\\Helper\\FcHelper')) {
         /**
          * @return string
          */
-        function getFcIframeUrl()
+        public function getFcIframeUrl()
         {
-            $res = $GLOBALS['gFcUrl'] . '/external';
-            return $res;
+            return $GLOBALS['gFcUrl'] . '/external';
         }
 
         /**
          * @return mixed
          */
-        function getFcAdministrationUrl()
+        public function getFcAdministrationUrl()
         {
 
             return $GLOBALS['gFcUrl'];
