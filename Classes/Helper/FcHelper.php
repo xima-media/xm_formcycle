@@ -187,7 +187,7 @@ if (!class_exists(FcHelper::class)) {
                 '&xfc-pp-base-url=' . $GLOBALS['gFcUrl'] .
                 '&xfc-pp-success-url=' . $okUrl .
                 '&xfc-pp-error-url=' . $errorUrl .
-                '&xfc-rp-keepalive=false' .
+                '&xfc-rp-keepalive=true' .
                 $fcParams;
         }
 
