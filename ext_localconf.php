@@ -52,7 +52,7 @@ $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\
 $iconRegistry->registerIcon(
     'xmformcycle-icon',
     \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-    ['source' => 'EXT:xm_formcycle/ext_icon.png']
+    ['source' => 'EXT:xm_formcycle/Resources/Public/Icons/xmformcycle_default.png']
 );
 
 /**
