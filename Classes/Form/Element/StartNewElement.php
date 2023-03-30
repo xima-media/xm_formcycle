@@ -96,7 +96,7 @@ class StartNewElement extends AbstractFormElement
             }
         });
         </script>
-        <iframe id="fcIframe" style="height:420px;width:100%;border:none;" src="' . $fc_iFrameUrl . '/cp.html?lang=' . $user_lang . '&pid=' . $pid . '&dc=' . time() . rand(1,
+        <iframe id="fcIframe" style="height:620px;width:100%;border:none;" src="' . $fc_iFrameUrl . '/cp.html?lang=' . $user_lang . '&pid=' . $pid . '&dc=' . time() . rand(1,
                 10000) . '&user=' . $user_name . '&pass=' . $user_pass . '"></iframe>';
 
 
