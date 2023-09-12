@@ -7,7 +7,7 @@ $extConf = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['xm_formcycle'];
 
 if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(\TYPO3\CMS\Core\Utility\VersionNumberUtility::getNumericTypo3Version()) > 10000000) {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Xima.xm_formcycle',
+        'xm_formcycle',
         'Xmformcycle',
         [
             \Xima\XmFormcycle\Controller\FormcycleController::class => 'list, formContent',
