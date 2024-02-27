@@ -14,10 +14,12 @@ class FormcycleSelection extends AbstractFormElement
         /** @var FormcycleService $fcService */
         $fcService = GeneralUtility::makeInstance(FormcycleService::class);
         $forms = FormcycleService::groupForms($fcService->getAvailableForms());
+        $errorCode = $fcService->getErrorCode();
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename('EXT:xm_formcycle/Resources/Private/Templates/Backend/FormcycleSelection.html');
         $view->assign('forms', $forms);
+        $view->assign('errorCode', $errorCode);
 
         $resultArray = $this->initializeResultArray();
         $resultArray['html'] = $view->render();

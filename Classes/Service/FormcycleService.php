@@ -14,7 +14,7 @@ final class FormcycleService
 {
     private ?FormcycleConfiguration $configuration = null;
 
-    private string $error = '';
+    private int $errorCode = 0;
 
     public function __construct(
         private readonly ExtensionConfiguration $extensionConfiguration,
@@ -24,7 +24,7 @@ final class FormcycleService
             $extConfig = $this->extensionConfiguration->get('xm_formcycle');
             $this->configuration = FormcycleConfiguration::createFromExtensionConfiguration($extConfig);
         } catch (FormcycleConfigurationException $e) {
-            $this->error = $e->getMessage();
+            $this->errorCode = (int)$e->getCode();
         }
     }
 
@@ -98,5 +98,10 @@ final class FormcycleService
                 $form['thumbnail'] = 'data:' . $mimeType . ';base64,' . base64_encode($imageData);
             }
         }
+    }
+
+    public function getErrorCode(): int
+    {
+        return $this->errorCode;
     }
 }

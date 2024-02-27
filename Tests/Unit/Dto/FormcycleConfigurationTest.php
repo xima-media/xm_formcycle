@@ -25,6 +25,7 @@ class FormcycleConfigurationTest extends UnitTestCase
     public function testInvalidFormcycleUrl(): void
     {
         $this->expectException(FormcycleConfigurationException::class);
+        $this->expectExceptionCode(1709041996);
         $this->validExtensionConfiguration['formCycleUrl'] = 'x';
         FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
     }
@@ -32,6 +33,7 @@ class FormcycleConfigurationTest extends UnitTestCase
     public function testInvalidFormcycleFrontendUrl(): void
     {
         $this->expectException(FormcycleConfigurationException::class);
+        $this->expectExceptionCode(1709052152);
         $this->validExtensionConfiguration['formCycleFrontendUrl'] = 'x';
         FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
     }
@@ -39,6 +41,7 @@ class FormcycleConfigurationTest extends UnitTestCase
     public function testMissingUsername(): void
     {
         $this->expectException(FormcycleConfigurationException::class);
+        $this->expectExceptionCode(1709052037);
         $this->validExtensionConfiguration['formCycleUser'] = '';
         FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
     }
@@ -46,6 +49,7 @@ class FormcycleConfigurationTest extends UnitTestCase
     public function testMissingPassword(): void
     {
         $this->expectException(FormcycleConfigurationException::class);
+        $this->expectExceptionCode(1709052037);
         $this->validExtensionConfiguration['formCyclePass'] = '';
         FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
     }
@@ -53,6 +57,7 @@ class FormcycleConfigurationTest extends UnitTestCase
     public function testInvalidIntegrationMode(): void
     {
         $this->expectException(FormcycleConfigurationException::class);
+        $this->expectExceptionCode(1709052040);
         $this->validExtensionConfiguration['integrationMode'] = 'ajax';
         FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
     }
