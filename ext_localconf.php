@@ -83,3 +83,6 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1709039883] = [
     'priority' => 40,
     'class' => \Xima\XmFormcycle\Form\Element\FormcycleSelection::class
 ];
+
+// register cache
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['xm_formcycle'] ??= [];

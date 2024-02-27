@@ -15,7 +15,7 @@ class FormcycleSelection extends AbstractFormElement
     {
         /** @var FormcycleService $fcService */
         $fcService = GeneralUtility::makeInstance(FormcycleService::class);
-        $forms = $fcService->getAvailableForms();
+        $forms = FormcycleService::groupForms($fcService->getAvailableForms());
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename('EXT:xm_formcycle/Resources/Private/Templates/Backend/FormcycleSelection.html');

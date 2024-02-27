@@ -7,5 +7,12 @@ services:
   Xima\XmFormcycle\:
     resource: '../Classes/*'
 
+  cache.xm_formcycle:
+    class: TYPO3\CMS\Core\Cache\Frontend\FrontendInterface
+    factory: [ '@TYPO3\CMS\Core\Cache\CacheManager', 'getCache' ]
+    arguments: [ 'xm_formcycle' ]
+
   Xima\XmFormcycle\Service\FormcycleService:
     public: true
+    arguments:
+      $cache: '@cache.xm_formcycle'
