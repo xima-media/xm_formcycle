@@ -1,15 +1,15 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Xima\XmFormcycle\Form\Element;
 
+use SimpleXMLElement;
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use Xima\XmFormcycle\Helper\FcHelper;
-use SimpleXMLElement;
 
 class StartNewElement extends AbstractFormElement
 {
-
     public function render()
     {
         // Custom TCA properties and other data can be found in $this->data, for example the above
@@ -27,8 +27,10 @@ class StartNewElement extends AbstractFormElement
 
         $selProjectId = $this->settings['xf']['xfc_p_id'];
 
-        if (is_array($PA['databaseRow']['pi_flexform']) && array_key_exists('data',
-                $PA['databaseRow']['pi_flexform'])) {
+        if (is_array($PA['databaseRow']['pi_flexform']) && array_key_exists(
+            'data',
+            $PA['databaseRow']['pi_flexform']
+        )) {
             $pid = $PA['databaseRow']['pi_flexform']['data']['sheetGeneralOptions']['lDEF']['settings.xf.xfc_p_id']['vDEF'];
         } else {
             $xml = new SimpleXMLElement($PA['databaseRow']['pi_flexform']);
@@ -96,13 +98,13 @@ class StartNewElement extends AbstractFormElement
             }
         });
         </script>
-        <iframe id="fcIframe" style="height:620px;width:100%;border:none;" src="' . $fc_iFrameUrl . '/cp.html?lang=' . $user_lang . '&pid=' . $pid . '&dc=' . time() . random_int(1,
-                10000) . '&user=' . $user_name . '&pass=' . $user_pass . '"></iframe>';
-
+        <iframe id="fcIframe" style="height:620px;width:100%;border:none;" src="' . $fc_iFrameUrl . '/cp.html?lang=' . $user_lang . '&pid=' . $pid . '&dc=' . time() . random_int(
+            1,
+            10000
+        ) . '&user=' . $user_name . '&pass=' . $user_pass . '"></iframe>';
 
         $result = $this->initializeResultArray();
         $result['html'] = $retTemp;
         return $result;
     }
-
 }

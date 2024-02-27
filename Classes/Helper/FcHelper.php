@@ -1,20 +1,18 @@
 <?php
+
 namespace Xima\XmFormcycle\Helper;
 
-use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
 use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 if (!class_exists(FcHelper::class)) {
-
     /**
      * Class FcHelper
-     * @package Xima\XmFormcycle\Helper
      */
     class FcHelper
     {
-
         public const CURL_OPTION_MAXREDIRS = 5;
         public const CURL_OPTION_USERAGENT = 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)';
 
@@ -103,8 +101,11 @@ if (!class_exists(FcHelper::class)) {
                     curl_setopt($ch, CURLOPT_PROXY, $GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyServer']);
 
                     if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyTunnel']) {
-                        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL,
-                            $GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyTunnel']);
+                        curl_setopt(
+                            $ch,
+                            CURLOPT_HTTPPROXYTUNNEL,
+                            $GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyTunnel']
+                        );
                     }
                     if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyUserPass']) {
                         curl_setopt($ch, CURLOPT_PROXYUSERPWD, $GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyUserPass']);
@@ -163,18 +164,16 @@ if (!class_exists(FcHelper::class)) {
             $frontendLang,
             $fcParams
         ) {
-
             $okUrl = $siteok;
             $errorUrl = $siteerror;
             $sessionID = $GLOBALS['TSFE']->fe_user->id;
 
-            $GLOBALS['gFcUrl'] = trim((string) $GLOBALS['gFcUrl'], " /\t\n\r\0\x0B");
+            $GLOBALS['gFcUrl'] = trim((string)$GLOBALS['gFcUrl'], " /\t\n\r\0\x0B");
             $GLOBALS['gFcUrl'] .= '/';
 
-            if (preg_match('~&lang=([^&]+)~', (string) $fcParams, $matches) === 1) {
-
+            if (preg_match('~&lang=([^&]+)~', (string)$fcParams, $matches) === 1) {
                 $frontendLang = $matches[1];
-                $fcParams = str_replace($matches[0], '', (string) $fcParams);
+                $fcParams = str_replace($matches[0], '', (string)$fcParams);
             }
 
             return $GLOBALS['gFcUrl'] . 'form/provide/' . $projektId .
@@ -204,10 +203,7 @@ if (!class_exists(FcHelper::class)) {
          */
         public function getFcAdministrationUrl()
         {
-
             return $GLOBALS['gFcUrl'];
         }
-
     }
-
 }

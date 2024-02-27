@@ -35,13 +35,10 @@ use Xima\XmFormcycle\Helper\WorkaroundHelper;
 /**
  * Class FormcycleController
  *
- * @package xm_formcycle
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
  */
 class FormcycleController extends ActionController
 {
-
     /**
      * @var string
      */
@@ -52,9 +49,6 @@ class FormcycleController extends ActionController
      */
     protected $extConf = [];
 
-    /**
-     *
-     */
     public function initializeListAction()
     {
         $this->extConf = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][$this->extKey];
@@ -62,8 +56,6 @@ class FormcycleController extends ActionController
 
     /**
      * action list
-     *
-     * @return void
      */
     public function listAction(): ResponseInterface
     {
@@ -125,9 +117,6 @@ class FormcycleController extends ActionController
         );
     }
 
-    /**
-     *
-     */
     public function formContentAction(): ResponseInterface
     {
         $this->view->assignMultiple($this->getDirectly(true));
@@ -198,12 +187,12 @@ class FormcycleController extends ActionController
      * @param $uid
      * @return string
      */
-    function getRedirectURL($uid)
+    public function getRedirectURL($uid)
     {
         return $this->uriBuilder
             ->reset()
             ->setArguments(['L' => GeneralUtility::makeInstance(Context::class)->getAspect('language')])
-            ->setTargetPageUid(intval($uid))
+            ->setTargetPageUid((int)$uid)
             ->setCreateAbsoluteUri(true)
             ->build();
     }
@@ -213,10 +202,10 @@ class FormcycleController extends ActionController
      * @param bool|false $use_forwarded_host
      * @return string
      */
-    function url_origin($s, $use_forwarded_host = false)
+    public function url_origin($s, $use_forwarded_host = false)
     {
         $ssl = (!empty($s['HTTPS']) && $s['HTTPS'] == 'on') ? true : false;
-        $sp = strtolower((string) $s['SERVER_PROTOCOL']);
+        $sp = strtolower((string)$s['SERVER_PROTOCOL']);
         $protocol = substr($sp, 0, strpos($sp, '/')) . (($ssl) ? 's' : '');
         $port = $s['SERVER_PORT'];
         $port = ((!$ssl && $port == '80') || ($ssl && $port == '443')) ? '' : ':' . $port;
@@ -230,7 +219,7 @@ class FormcycleController extends ActionController
      * @param bool|false $use_forwarded_host
      * @return string
      */
-    function full_url($s, $use_forwarded_host = false)
+    public function full_url($s, $use_forwarded_host = false)
     {
         return $this->url_origin($s, $use_forwarded_host) . strtok($s['REQUEST_URI'], '?');
     }
@@ -243,16 +232,14 @@ class FormcycleController extends ActionController
         $result = $fcParams;
 
         if (preg_match_all('~(?:{|%7B)(?<params>[\d\w]+)(?:}|%7D)~', $fcParams, $matches) !== false) {
-
             foreach ($matches['params'] as $idx => $param) {
                 if (array_key_exists($param, $_GET)) {
                     $result = str_replace(
                         $matches[0][$idx],
-                        strip_tags(strval($_GET[$param])),
+                        strip_tags((string)($_GET[$param])),
                         $result
                     );
-                }
-                else {
+                } else {
                     $result = str_replace(
                         $matches[0][$idx],
                         '',

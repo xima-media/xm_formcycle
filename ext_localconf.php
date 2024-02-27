@@ -1,6 +1,7 @@
 <?php
+
 if (!defined('TYPO3')) {
-    die ('Access denied.');
+    die('Access denied.');
 }
 
 $extConf = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['xm_formcycle'];
@@ -81,7 +82,7 @@ $iconRegistry->registerIcon(
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1709039883] = [
     'nodeName' => 'formcycle-selection',
     'priority' => 40,
-    'class' => \Xima\XmFormcycle\Form\Element\FormcycleSelection::class
+    'class' => \Xima\XmFormcycle\Form\Element\FormcycleSelection::class,
 ];
 
 // register cache

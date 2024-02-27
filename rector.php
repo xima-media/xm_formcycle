@@ -28,7 +28,7 @@ return RectorConfig::configure()
     ->withSets([
         Typo3LevelSetList::UP_TO_TYPO3_12,
     ])
-    # To have a better analysis from PHPStan, we teach it here some more things
+    // To have a better analysis from PHPStan, we teach it here some more things
     ->withPHPStanConfigs([
         Typo3Option::PHPSTAN_FOR_RECTOR_PATH,
     ])
@@ -36,7 +36,7 @@ return RectorConfig::configure()
     ->withRules([
         ConvertImplicitVariablesToExplicitGlobalsRector::class,
     ])
-    # If you use importNames(), you should consider excluding some TYPO3 files.
+    // If you use importNames(), you should consider excluding some TYPO3 files.
     ->withSkip([
         // @see https://github.com/sabbelasichon/typo3-rector/issues/2536
         __DIR__ . '/**/Configuration/ExtensionBuilder/*',

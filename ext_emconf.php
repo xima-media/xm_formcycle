@@ -30,6 +30,3 @@ $EM_CONF[$_EXTKEY] = [
         'suggets'   => [],
     ],
 ];
-
-
-

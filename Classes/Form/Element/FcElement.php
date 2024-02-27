@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Xima\XmFormcycle\Form\Element;
@@ -8,7 +9,6 @@ use Xima\XmFormcycle\Helper\FcHelper;
 
 class FcElement extends AbstractFormElement
 {
-
     public function render()
     {
         // Custom TCA properties and other data can be found in $this->data, for example the above
@@ -31,5 +31,4 @@ class FcElement extends AbstractFormElement
         $result['html'] = '&nbsp;&nbsp;<a href="' . $fc_AdminUrl . '" target="_blank">' . $message_link . '</a><br/>&nbsp;&nbsp;' . $message . '<br/><br/>';
         return $result;
     }
-
 }
