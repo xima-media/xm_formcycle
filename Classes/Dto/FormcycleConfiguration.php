@@ -70,8 +70,11 @@ final class FormcycleConfiguration
     public function getFormListUrl(): string
     {
         return sprintf(
-            '%s/plugin?name=FormList&xfc-rp-username=maik.schneider@xima.de&xfc-rp-password=pdn*UFZ3rvm0zec2ugd&xfc-rp-client=24871&format=json',
-            $this->formCycleUrl
+            '%s/plugin?name=FormList&xfc-rp-username=%s&xfc-rp-password=%s&xfc-rp-client=%s&format=json',
+            $this->formCycleUrl,
+            $this->formCycleUser,
+            $this->formCyclePass,
+            $this->client,
         );
     }
 }
