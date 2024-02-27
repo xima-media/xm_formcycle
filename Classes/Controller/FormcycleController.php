@@ -2,6 +2,7 @@
 
 namespace Xima\XmFormcycle\Controller;
 
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -64,7 +65,7 @@ class FormcycleController extends ActionController
      *
      * @return void
      */
-    public function listAction()
+    public function listAction(): ResponseInterface
     {
         $viewVars = [];
 
@@ -106,6 +107,7 @@ class FormcycleController extends ActionController
         ]);
 
         $this->view->assignMultiple($viewVars);
+        return $this->htmlResponse();
     }
 
     /**
@@ -114,7 +116,7 @@ class FormcycleController extends ActionController
     public function initializeFormContentAction()
     {
         /** @var WorkaroundHelper $workarounds */
-        $workarounds = $this->objectManager->get('Xima\\XmFormcycle\\Helper\\WorkaroundHelper');
+        $workarounds = $this->objectManager->get(WorkaroundHelper::class);
         $args = $this->request->getArguments();
 
         $this->settings = array_merge(
@@ -126,9 +128,10 @@ class FormcycleController extends ActionController
     /**
      *
      */
-    public function formContentAction()
+    public function formContentAction(): ResponseInterface
     {
         $this->view->assignMultiple($this->getDirectly(true));
+        return $this->htmlResponse();
     }
 
     /**
@@ -146,7 +149,6 @@ class FormcycleController extends ActionController
     }
 
     /**
-     * @param \Xima\XmFormcycle\Helper\FcHelper $fch
      * @param string $fcParams
      * @return string
      */
@@ -159,7 +161,7 @@ class FormcycleController extends ActionController
         $useui = $this->settings['xf']['useFcjQueryUi'];
         $usebs = $this->settings['xf']['useFcBootStrap'];
         $selProjectId = $this->settings['xf']['xfc_p_id'];
-        $frontendLang = $GLOBALS['TSFE']->sys_language_isocode ?: 'de';
+        $frontendLang = $GLOBALS['TSFE']->getLanguage()->getTwoLetterIsoCode() ?: 'de';
         $fcParams .= $this->settings['xf']['useFcUrlParams'];
 
         $fcParams = $this->resolveCustomParameters($fcParams);
@@ -214,12 +216,12 @@ class FormcycleController extends ActionController
     function url_origin($s, $use_forwarded_host = false)
     {
         $ssl = (!empty($s['HTTPS']) && $s['HTTPS'] == 'on') ? true : false;
-        $sp = strtolower($s['SERVER_PROTOCOL']);
+        $sp = strtolower((string) $s['SERVER_PROTOCOL']);
         $protocol = substr($sp, 0, strpos($sp, '/')) . (($ssl) ? 's' : '');
         $port = $s['SERVER_PORT'];
         $port = ((!$ssl && $port == '80') || ($ssl && $port == '443')) ? '' : ':' . $port;
-        $host = ($use_forwarded_host && isset($s['HTTP_X_FORWARDED_HOST'])) ? $s['HTTP_X_FORWARDED_HOST'] : (isset($s['HTTP_HOST']) ? $s['HTTP_HOST'] : null);
-        $host = isset($host) ? $host : $s['SERVER_NAME'] . $port;
+        $host = ($use_forwarded_host && isset($s['HTTP_X_FORWARDED_HOST'])) ? $s['HTTP_X_FORWARDED_HOST'] : ($s['HTTP_HOST'] ?? null);
+        $host ??= $s['SERVER_NAME'] . $port;
         return $protocol . '://' . $host;
     }
 
@@ -234,7 +236,6 @@ class FormcycleController extends ActionController
     }
 
     /**
-     * @param string $fcParams
      * @return string
      */
     private function resolveCustomParameters(string $fcParams)

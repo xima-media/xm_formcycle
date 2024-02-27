@@ -15,8 +15,8 @@ if (!class_exists(FcHelper::class)) {
     class FcHelper
     {
 
-        const CURL_OPTION_MAXREDIRS = 5;
-        const CURL_OPTION_USERAGENT = 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)';
+        public const CURL_OPTION_MAXREDIRS = 5;
+        public const CURL_OPTION_USERAGENT = 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)';
 
         /**
          * @var array
@@ -168,13 +168,13 @@ if (!class_exists(FcHelper::class)) {
             $errorUrl = $siteerror;
             $sessionID = $GLOBALS['TSFE']->fe_user->id;
 
-            $GLOBALS['gFcUrl'] = trim($GLOBALS['gFcUrl'], " /\t\n\r\0\x0B");
+            $GLOBALS['gFcUrl'] = trim((string) $GLOBALS['gFcUrl'], " /\t\n\r\0\x0B");
             $GLOBALS['gFcUrl'] .= '/';
 
-            if (preg_match('~&lang=([^&]+)~', $fcParams, $matches) === 1) {
+            if (preg_match('~&lang=([^&]+)~', (string) $fcParams, $matches) === 1) {
 
                 $frontendLang = $matches[1];
-                $fcParams = str_replace($matches[0], '', $fcParams);
+                $fcParams = str_replace($matches[0], '', (string) $fcParams);
             }
 
             return $GLOBALS['gFcUrl'] . 'form/provide/' . $projektId .

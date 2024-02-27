@@ -1,10 +1,12 @@
 <?php
-defined('TYPO3_MODE') || die('Access denied.');
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+defined('TYPO3') || die('Access denied.');
 
 
 $extKey = 'xm_formcycle';
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+ExtensionUtility::registerPlugin(
     $extKey,
     'Xmformcycle',
     'FormCycle Integrator'
@@ -12,7 +14,7 @@ $extKey = 'xm_formcycle';
 
 $pluginSignature = str_replace('_', '', $extKey) . '_xmformcycle';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+ExtensionManagementUtility::addPiFlexFormValue(
     $pluginSignature,
     'FILE:EXT:' . $extKey . '/Configuration/FlexForms/flexform_list.xml'
 );

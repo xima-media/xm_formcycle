@@ -12,10 +12,13 @@ use Ssch\TYPO3Rector\Set\Typo3LevelSetList;
 
 return RectorConfig::configure()
     ->withConfiguredRule(ExtEmConfRector::class, [
-        ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => []
+        ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
     ])
     ->withPaths([
-                __DIR__ . '/Classes',
+        __DIR__ . '/ext_emconf.php',
+        __DIR__ . '/ext_localconf.php',
+        __DIR__ . '/ext_tables.php',
+        __DIR__ . '/Classes',
         __DIR__ . '/Configuration',
         __DIR__ . '/config',
     ])
@@ -27,7 +30,7 @@ return RectorConfig::configure()
     ])
     # To have a better analysis from PHPStan, we teach it here some more things
     ->withPHPStanConfigs([
-        Typo3Option::PHPSTAN_FOR_RECTOR_PATH
+        Typo3Option::PHPSTAN_FOR_RECTOR_PATH,
     ])
     ->withPhpVersion(PhpVersion::PHP_81)
     ->withRules([
@@ -43,6 +46,5 @@ return RectorConfig::configure()
             'ClassAliasMap.php',
             __DIR__ . '/**/Configuration/*.php',
             __DIR__ . '/**/Configuration/**/*.php',
-        ]
-    ])
-;
+        ],
+    ]);

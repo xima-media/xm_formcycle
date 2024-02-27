@@ -30,7 +30,7 @@ class WorkaroundHelper extends Repository
         $query = $this->createQuery();
         $query->statement('SELECT pi_flexform from tt_content where list_type="xmformcycle_xmformcycle" and uid = ' . $uid);
         $pages = $query->execute(true);
-        $xml = simplexml_load_string($pages[0]['pi_flexform']);
+        $xml = simplexml_load_string((string) $pages[0]['pi_flexform']);
         $flexformData = [];
 
         foreach ($xml->data->sheet as $sheet) {
