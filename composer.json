@@ -39,10 +39,16 @@
 			"Xima\\XmFormcycle\\": "Classes/"
 		}
 	},
+	"autoload-dev": {
+		"psr-4": {
+			"Xima\\XmFormcycle\\Tests\\": "Tests/"
+		}
+	},
 	"scripts": {
 		"php:fixer": "php vendor/bin/php-cs-fixer --config=php-cs-fixer.php fix",
 		"php:stan": "php vendor/bin/phpstan --generate-baseline=phpstan-baseline.neon --allow-empty-baseline",
-		"typoscript:lint": "php vendor/bin/typoscript-lint"
+		"typoscript:lint": "php vendor/bin/typoscript-lint",
+		"test:unit": "php vendor/bin/phpunit -c phpunit.unit.xml"
 	},
 	"config": {
 		"sort-packages": true,

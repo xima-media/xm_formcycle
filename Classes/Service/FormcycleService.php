@@ -22,7 +22,7 @@ final class FormcycleService
     ) {
         try {
             $extConfig = $this->extensionConfiguration->get('xm_formcycle');
-            $this->configuration = new FormcycleConfiguration($extConfig);
+            $this->configuration = FormcycleConfiguration::createFromExtensionConfiguration($extConfig);
         } catch (FormcycleConfigurationException $e) {
             $this->error = $e->getMessage();
         }
