@@ -1,8 +1,9 @@
 <?php
+
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-defined('TYPO3') || die('Access denied.');
 
+defined('TYPO3') || die('Access denied.');
 
 $extKey = 'xm_formcycle';
 
@@ -18,3 +19,14 @@ ExtensionManagementUtility::addPiFlexFormValue(
     $pluginSignature,
     'FILE:EXT:' . $extKey . '/Configuration/FlexForms/flexform_list.xml'
 );
+
+$tempFields = [
+    'tx_xmformcycle_form_id' => [
+        'label' => 'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_form_id.label',
+        'config' => [
+            'type' => 'formcycle-selection',
+        ],
+    ],
+];
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempFields);

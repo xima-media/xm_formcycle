@@ -68,3 +68,8 @@ tx_xmformcycle_ajax {
 		settings =< plugin.tx_xmformcycle.settings
 	}
 }
+
+tt_content.formcycle =< lib.contentElement
+tt_content.formcycle {
+  templateName = Formcycle
+}
