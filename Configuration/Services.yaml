@@ -16,3 +16,6 @@ services:
     public: true
     arguments:
       $cache: '@cache.xm_formcycle'
+
+  Xima\XmFormcycle\Controller\BackendController:
+    tags: [ 'backend.controller' ]

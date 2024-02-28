@@ -4,23 +4,34 @@
     </f:be.infobox>
 </f:if>
 
-<f:for each="{forms}" as="group" key="groupName">
-    <div style="--typo3-component-box-shadow:none">
-        <h4>
-            <f:translate extensionName="XmFormcycle" key="defaultGroupNames.{groupName}">{groupName}</f:translate>
-        </h4>
-        <hr />
-        <div class="d-flex flex-wrap gap-3">
-            <f:for each="{group}" as="form">
-                <a href="#" class="card" style="width: 14rem;" data-form-id="{form.id}">
-                    <div style="background: #ededed">
-                        <img src="{form.thumbnail}" class="card-img-top" alt="Preview {form.title}">
-                    </div>
-                    <div class="card-body">
-                        <h6 class="card-title">{form.title}</h6>
-                    </div>
-                </a>
-            </f:for>
-        </div>
+<f:if condition="{loading}">
+    <div class="py-3 text-center">
+        <core:icon identifier="spinner-circle" size="medium" />
     </div>
-</f:for>
+</f:if>
+
+<f:if condition="{forms}">
+    <div id="xm-available-forms-wrapper">
+        <f:for each="{forms}" as="group" key="groupName">
+            <div style="--typo3-component-box-shadow:none">
+                <h4>
+                    <f:translate extensionName="XmFormcycle" key="defaultGroupNames.{groupName}">{groupName}
+                    </f:translate>
+                </h4>
+                <hr />
+                <div class="d-flex flex-wrap gap-3">
+                    <f:for each="{group}" as="form">
+                        <a href="#" class="card" style="width: 14rem;" data-form-id="{form.id}">
+                            <div style="background: #ededed">
+                                <img src="{form.thumbnail}" class="card-img-top" alt="Preview {form.title}">
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-title">{form.title}</h6>
+                            </div>
+                        </a>
+                    </f:for>
+                </div>
+            </div>
+        </f:for>
+    </div>
+</f:if>

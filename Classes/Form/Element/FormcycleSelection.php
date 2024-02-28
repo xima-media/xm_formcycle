@@ -19,9 +19,13 @@ class FormcycleSelection extends AbstractFormElement
         try {
             /** @var FormcycleService $fcService */
             $fcService = GeneralUtility::makeInstance(FormcycleService::class);
-            $forms = $fcService->getAvailableForms();
-            $forms = self::groupForms($forms);
-            $view->assign('forms', $forms);
+            if ($fcService->hasAvailableFormsCached()) {
+                $forms = $fcService->getAvailableForms();
+                $forms = self::groupForms($forms);
+                $view->assign('forms', $forms);
+            } else {
+                $view->assign('loading', true);
+            }
         } catch (FormcycleConfigurationException $e) {
             $errorCode = $e->getCode();
             $view->assign('errorCode', $errorCode);
@@ -33,7 +37,14 @@ class FormcycleSelection extends AbstractFormElement
         }
 
         $resultArray = $this->initializeResultArray();
-        $resultArray['html'] = $view->render();
+        $resultArray['html'] = '<div id="xm-formcycle-forms">' . $view->render() . '</div>';
+
+        $parameterArray = $this->data['parameterArray'];
+
+        //$resultArray['stylesheetFiles'] = $styleSheetPaths;
+        $resultArray['javaScriptModules'][] = \TYPO3\CMS\Core\Page\JavaScriptModuleInstruction::create('@xima/xm-formcycle/FormcycleSelectionElement.js')
+            ->instance('hffe');
+
         return $resultArray;
     }
 

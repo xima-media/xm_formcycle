@@ -38,7 +38,6 @@ final class FormcycleService
         $forms = $this->cache->get('availableForms');
         if ($forms === false) {
             $forms = $this->loadAvailableForms();
-            $this->cache->set('availableForms', $forms);
         }
 
         return $forms;
@@ -58,14 +57,22 @@ final class FormcycleService
         try {
             $forms = json_decode($jsonResponse, true, 512, JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
-            throw new FormcycleConnectionException('Loading available forms: Invalid JSON response of endpoint', 1709102526);
+            throw new FormcycleConnectionException(
+                'Loading available forms: Invalid JSON response of endpoint',
+                1709102526
+            );
         }
 
         if (!is_array($forms)) {
-            throw new FormcycleConnectionException('Loading available forms: Invalid JSON response of endpoint', 1709102526);
+            throw new FormcycleConnectionException(
+                'Loading available forms: Invalid JSON response of endpoint',
+                1709102526
+            );
         }
 
         self::encodePreviewImages($forms);
+
+        $this->cache->set('availableForms', $forms);
 
         return $forms;
     }
@@ -81,5 +88,15 @@ final class FormcycleService
                 $form['thumbnail'] = 'data:' . $mimeType . ';base64,' . base64_encode($imageData);
             }
         }
+    }
+
+    public function hasAvailableFormsCached(): bool
+    {
+        return $this->cache->has('availableForms');
+    }
+
+    public function resetAvailableFormsCache(): void
+    {
+        $this->cache->remove('availableForms');
     }
 }
