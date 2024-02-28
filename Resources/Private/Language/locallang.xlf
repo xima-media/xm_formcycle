@@ -48,6 +48,15 @@
 			<trans-unit id="defaultGroupNames.0">
 				<source>Ungrouped</source>
 			</trans-unit>
+			<trans-unit id="button.reload">
+				<source>Reload</source>
+			</trans-unit>
+			<trans-unit id="button.settings">
+				<source>Settings</source>
+			</trans-unit>
+			<trans-unit id="button.admin">
+				<source>Formcycle Admin</source>
+			</trans-unit>
             <trans-unit id="tx_xmformcycle_domain_model_formcycle.wizard.description">
                 <source>XIMA® FormCycle forms in TYPO3 Frontend</source>
             </trans-unit>
