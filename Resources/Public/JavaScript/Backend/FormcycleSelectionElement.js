@@ -16,6 +16,14 @@ export default class FormcycleSelectionElement {
     } else {
       this.initFormEvents()
     }
+
+    const settingsButton = document.querySelector('#xm-settings')
+    const wrapper = document.querySelector('#xm-formcycle-forms')
+    settingsButton.addEventListener('click', e => {
+      e.preventDefault()
+      e.currentTarget.classList.toggle('active')
+      wrapper.classList.toggle('open-settings')
+    })
   }
 
   loadForms(url) {

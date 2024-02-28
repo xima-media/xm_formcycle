@@ -19,7 +19,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['formcycle'] = 'xm-for
 
 $GLOBALS['TCA']['tt_content']['palettes']['formcycle'] = [
     'label' => 'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:palettes.formcycle.title',
-    'showitem' => 'tx_xmformcycle_form_id',
+    'showitem' => 'tx_xmformcycle_form_id,--linebreak--,pi_flexform',
 ];
 
 $GLOBALS['TCA']['tt_content']['types']['formcycle'] = [

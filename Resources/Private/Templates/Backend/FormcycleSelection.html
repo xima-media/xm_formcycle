@@ -7,11 +7,15 @@
 <f:if condition="!{loading}">
     <div class="mb-4 btn-group">
         <button id="xm-reload-available-forms" class="btn btn-default">
-            <core:icon title="Open actions menu" identifier="actions-refresh" />
+            <core:icon title="Refresh forms" identifier="actions-refresh" />
             Reload
         </button>
+        <button class="btn btn-default" id="xm-settings">
+            <core:icon title="Opens settings" identifier="actions-cog" />
+            Settings
+        </button>
         <a href="#" class="btn btn-default" target="_blank">
-            <core:icon title="Open window" identifier="actions-window-open" />
+            <core:icon title="Open Formcycle admin in new window" identifier="actions-window-open" />
             Open Formcycle Admin
         </a>
     </div>

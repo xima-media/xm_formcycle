@@ -52,24 +52,6 @@
                             </config>
                         </TCEforms>
                     </settings.xf.integrationMode>
-                    <userfunc_field113>
-                        <TCEforms>
-                            <label></label>
-                            <config>
-                                <type>user</type>
-                                <renderType>startNewElement</renderType>
-                            </config>
-                        </TCEforms>
-                    </userfunc_field113>
-                    <userfunc_field_help_1>
-                        <TCEforms>
-                            <label></label>
-                            <config>
-                                <type>user</type>
-                                <renderType>startOpenElement</renderType>
-                            </config>
-                        </TCEforms>
-                    </userfunc_field_help_1>
                 </el>
             </ROOT>
         </sheetGeneralOptions>
@@ -108,15 +90,6 @@
                             </config>
                         </TCEforms>
                     </settings.xf.siteerror>
-                    <userfunc_field_help_2>
-                        <TCEforms>
-                            <label></label>
-                            <config>
-                                <type>user</type>
-                                <renderType>startOpenElement</renderType>
-                            </config>
-                        </TCEforms>
-                    </userfunc_field_help_2>
                 </el>
             </ROOT>
         </sheetShapeAreaOptions>
@@ -166,15 +139,6 @@
                             </config>
                         </TCEforms>
                     </settings.xf.useFcBootStrap>
-                    <userfunc_field_help_1s>
-                        <TCEforms>
-                            <label></label>
-                            <config>
-                                <type>user</type>
-                                <renderType>startOpenElement</renderType>
-                            </config>
-                        </TCEforms>
-                    </userfunc_field_help_1s>
                 </el>
             </ROOT>
         </sheetShapeAreaOptions88>
@@ -197,34 +161,5 @@
                 </el>
             </ROOT>
         </sheetShapeAreaOptions99>
-        <sheetShapeAreaOptions4>
-            <ROOT>
-                <TCEforms>
-                    <sheetTitle>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab4_name</sheetTitle>
-                </TCEforms>
-                <type>array</type>
-                <el>
-                    <userfunc_field4>
-                        <TCEforms>
-                            <label></label>
-                            <config>
-                                <type>user</type>
-                                <dim>212x108</dim>
-                                <renderType>fcElement</renderType>
-                            </config>
-                        </TCEforms>
-                    </userfunc_field4>
-                    <userfunc_field_help_4>
-                        <TCEforms>
-                            <label></label>
-                            <config>
-                                <type>user</type>
-                                <renderType>startOpenElement</renderType>
-                            </config>
-                        </TCEforms>
-                    </userfunc_field_help_4>
-                </el>
-            </ROOT>
-        </sheetShapeAreaOptions4>
     </sheets>
 </T3DataStructure>

@@ -1,24 +1,8 @@
 <?php
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 defined('TYPO3') || die('Access denied.');
-
-$extKey = 'xm_formcycle';
-
-ExtensionUtility::registerPlugin(
-    $extKey,
-    'Xmformcycle',
-    'FormCycle Integrator'
-);
-
-$pluginSignature = str_replace('_', '', $extKey) . '_xmformcycle';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-ExtensionManagementUtility::addPiFlexFormValue(
-    $pluginSignature,
-    'FILE:EXT:' . $extKey . '/Configuration/FlexForms/flexform_list.xml'
-);
 
 $tempFields = [
     'tx_xmformcycle_form_id' => [
@@ -29,5 +13,10 @@ $tempFields = [
         ],
     ],
 ];
+ExtensionManagementUtility::addTCAcolumns('tt_content', $tempFields);
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempFields);
+ExtensionManagementUtility::addPiFlexFormValue(
+    '*',
+    'FILE:EXT:xm_formcycle/Configuration/FlexForms/flexform_list.xml',
+    'formcycle'
+);
