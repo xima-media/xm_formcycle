@@ -20,7 +20,7 @@ class FormcycleSelection extends AbstractFormElement
             /** @var FormcycleService $fcService */
             $fcService = GeneralUtility::makeInstance(FormcycleService::class);
             $forms = $fcService->getAvailableForms();
-            $forms = FormcycleService::groupForms($forms);
+            $forms = self::groupForms($forms);
             $view->assign('forms', $forms);
         } catch (FormcycleConfigurationException $e) {
             $errorCode = $e->getCode();
@@ -35,5 +35,20 @@ class FormcycleSelection extends AbstractFormElement
         $resultArray = $this->initializeResultArray();
         $resultArray['html'] = $view->render();
         return $resultArray;
+    }
+
+    public static function groupForms(array $forms): array
+    {
+        $groupedForms = [];
+        foreach ($forms as $form) {
+            $index = $form['group'] ?? 0;
+            $groupedForms[$index] ??= [];
+            $groupedForms[$index][] = $form;
+        }
+        // sort "others" group (index=0) to end of array
+        uksort($groupedForms, static function ($a, $b) {
+            return $b === 0 ? -1 : $a > $b;
+        });
+        return $groupedForms;
     }
 }

@@ -30,21 +30,6 @@ final class FormcycleService
         $this->configuration = FormcycleConfiguration::createFromExtensionConfiguration($extConfig);
     }
 
-    public static function groupForms(array $forms): array
-    {
-        $groupedForms = [];
-        foreach ($forms as $form) {
-            $index = $form['group'] ?? 0;
-            $groupedForms[$index] ??= [];
-            $groupedForms[$index][] = $form;
-        }
-        // sort "others" group (index=0) to end of array
-        uksort($groupedForms, static function ($a, $b) {
-            return $b === 0 ? -1 : $a > $b;
-        });
-        return $groupedForms;
-    }
-
     /**
      * @throws FormcycleConnectionException
      */
