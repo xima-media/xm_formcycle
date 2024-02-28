@@ -22,3 +22,18 @@ services:
 
   Xima\XmFormcycle\Preview\FormcyclePreviewRenderer:
     public: true
+
+  Xima\XmFormcycle\DataProcessing\AjaxProcessor:
+    tags:
+      - name: 'data.processor'
+        identifier: 'formcycle-ajax'
+
+  Xima\XmFormcycle\DataProcessing\iFrameProcessor:
+    tags:
+      - name: 'data.processor'
+        identifier: 'formcycle-iframe'
+
+  Xima\XmFormcycle\DataProcessing\IntegratedProcessor:
+    tags:
+      - name: 'data.processor'
+        identifier: 'formcycle-integrated'

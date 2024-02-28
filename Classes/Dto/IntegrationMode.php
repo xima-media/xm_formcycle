@@ -6,5 +6,5 @@ enum IntegrationMode: string
 {
     case Integrated = 'integrated';
     case Ajax = 'AJAX';
-    case Iframe = 'iframe';
+    case Iframe = 'iFrame';
 }

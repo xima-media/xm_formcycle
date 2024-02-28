@@ -1,22 +1,25 @@
 plugin.tx_xmformcycle {
-	view {
-		templateRootPaths.10 = {$plugin.tx_xmformcycle.view.templateRootPath}
-		partialRootPaths.10 = {$plugin.tx_xmformcycle.view.partialRootPath}
-		layoutRootPaths.10 = {$plugin.tx_xmformcycle.view.layoutRootPath}
-	}
-	persistence {
-		storagePid = {$plugin.tx_xmformcycle.persistence.storagePid}
-	}
-	features {
-		# uncomment the following line to enable the new Property Mapper.
-		# rewrittenPropertyMapper = 1
-	}
-	settings {
-		enableJs = {$plugin.tx_xmformcycle.settings.enableJs}
-		jsFiles {
-			10 = EXT:Resources/Public/Js/xm_formcycle.js
-		}
-	}
+  view {
+    templateRootPaths.10 = {$plugin.tx_xmformcycle.view.templateRootPath}
+    partialRootPaths.10 = {$plugin.tx_xmformcycle.view.partialRootPath}
+    layoutRootPaths.10 = {$plugin.tx_xmformcycle.view.layoutRootPath}
+  }
+
+  persistence {
+    storagePid = {$plugin.tx_xmformcycle.persistence.storagePid}
+  }
+
+  features {
+    # uncomment the following line to enable the new Property Mapper.
+    # rewrittenPropertyMapper = 1
+  }
+
+  settings {
+    enableJs = {$plugin.tx_xmformcycle.settings.enableJs}
+    jsFiles {
+      10 = EXT:Resources/Public/Js/xm_formcycle.js
+    }
+  }
 }
 
 plugin.tx_xmformcycle._CSS_DEFAULT_STYLE (
@@ -48,25 +51,25 @@ page.includeJSFooter.tx_xmformcycle = EXT:xm_formcycle/Resources/Public/Js/xm_fo
 
 tx_xmformcycle_ajax = PAGE
 tx_xmformcycle_ajax {
-	typeNum = 1464705954
-	config {
-		disableAllHeaderCode = 1
-		additionalHeaders = Content-type:text/html
-		xhtml_cleaning = 0
-		admPanel = 0
-		debug = 0
-		no_cache = 1
-	}
+  typeNum = 1464705954
+  config {
+    disableAllHeaderCode = 1
+    additionalHeaders = Content-type:text/html
+    xhtml_cleaning = 0
+    admPanel = 0
+    debug = 0
+    no_cache = 1
+  }
 
-	10 = USER
-	10 {
-		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-		extensionName = XmFormcycle
-		pluginName = Xmformcycle
-		vendorName = Xima
-		controller = Formcycle
-		settings =< plugin.tx_xmformcycle.settings
-	}
+  10 = USER
+  10 {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = XmFormcycle
+    pluginName = Xmformcycle
+    vendorName = Xima
+    controller = Formcycle
+    settings =< plugin.tx_xmformcycle.settings
+  }
 }
 
 tt_content.formcycle =< lib.contentElement
@@ -79,4 +82,10 @@ tt_content.formcycle {
   layoutRootPaths.1 = {$plugin.tx_xmformcycle.view.layoutRootPath}
 
   templateName = Formcycle
+
+  dataProcessing {
+    1709129505 = formcycle-ajax
+    1709129509 = formcycle-iframe
+    1709129512 = formcycle-integrated
+  }
 }
