@@ -99,4 +99,13 @@ final class FormcycleService
     {
         $this->cache->remove('availableForms');
     }
+
+    public function getAvailableFormConfigurationByFormId(string $formId): array
+    {
+        $forms = $this->getAvailableForms();
+
+        $index = array_search((int)$formId, array_column($forms, 'form_id'), true);
+
+        return $index !== false ? $forms[$index] : [];
+    }
 }

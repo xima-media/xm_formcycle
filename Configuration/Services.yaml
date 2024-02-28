@@ -19,3 +19,6 @@ services:
 
   Xima\XmFormcycle\Controller\BackendController:
     tags: [ 'backend.controller' ]
+
+  Xima\XmFormcycle\Preview\FormcyclePreviewRenderer:
+    public: true

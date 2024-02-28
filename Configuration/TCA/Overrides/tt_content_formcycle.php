@@ -1,6 +1,7 @@
 <?php
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use Xima\XmFormcycle\Preview\FormcyclePreviewRenderer;
 
 ExtensionManagementUtility::addTcaSelectItem(
     'tt_content',
@@ -42,4 +43,5 @@ $GLOBALS['TCA']['tt_content']['types']['formcycle'] = [
                     rowDescription,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
             ',
+    'previewRenderer' => FormcyclePreviewRenderer::class,
 ];
