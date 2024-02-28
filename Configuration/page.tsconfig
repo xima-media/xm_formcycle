@@ -1,0 +1,16 @@
+mod {
+  wizards.newContentElement.wizardItems.forms {
+    elements {
+      formcycle {
+        iconIdentifier = xm-formcycle
+        title = LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:wizard.title
+        description = LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:wizard.description
+        tt_content_defValues {
+          CType = formcycle
+        }
+      }
+    }
+
+    show := addToList(formcycle)
+  }
+}

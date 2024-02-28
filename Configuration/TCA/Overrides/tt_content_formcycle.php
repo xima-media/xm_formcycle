@@ -6,13 +6,15 @@ ExtensionManagementUtility::addTcaSelectItem(
     'tt_content',
     'CType',
     [
-        'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:wizard.name',
+        'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:wizard.title',
         'formcycle',
-        'content-listgroup',
+        'xm-formcycle',
     ],
     'felogin_login',
     'after'
 );
+
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['formcycle'] = 'xm-formcycle';
 
 $GLOBALS['TCA']['tt_content']['palettes']['formcycle'] = [
     'label' => 'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:palettes.formcycle.title',

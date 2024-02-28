@@ -46,38 +46,6 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1593174782] = [
     'class'    => \Xima\XmFormcycle\Form\Element\FcElement::class,
 ];
 
-/**
- * Icon Registry
- */
-$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-$iconRegistry->registerIcon(
-    'xmformcycle-icon',
-    \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-    ['source' => 'EXT:xm_formcycle/Resources/Public/Icons/xmformcycle_default.png']
-);
-
-/**
- * Wizards
- */
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-    'mod {
-        wizards.newContentElement.wizardItems.plugins {
-            elements {
-                search {
-                    iconIdentifier = xmformcycle-icon
-                    title = LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_domain_model_formcycle.wizard.name
-                    description = LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_domain_model_formcycle.wizard.description
-                    tt_content_defValues {
-                        CType = list
-                        list_type = xmformcycle_xmformcycle
-                    }
-                }
-            }
-            show = *
-        }
-    }'
-);
-
 // register custom form element
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1709039883] = [
     'nodeName' => 'formcycle-selection',

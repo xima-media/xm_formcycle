@@ -71,5 +71,12 @@ tx_xmformcycle_ajax {
 
 tt_content.formcycle =< lib.contentElement
 tt_content.formcycle {
+  templateRootPaths.0 = EXT:xm_formcycle/Resources/Private/Templates/
+  templateRootPaths.1 = {$plugin.tx_xmformcycle.view.templateRootPath}
+  partialRootPaths.0 = EXT:xm_formcycle/Resources/Private/Partials/
+  partialRootPaths.1 = {$plugin.tx_xmformcycle.view.partialRootPath}
+  layoutRootPaths.0 = EXT:xm_formcycle/Resources/Private/Layouts/
+  layoutRootPaths.1 = {$plugin.tx_xmformcycle.view.layoutRootPath}
+
   templateName = Formcycle
 }

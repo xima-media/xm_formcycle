@@ -9,9 +9,12 @@
 			<trans-unit id="formcycle">
 				<source>Formcycle</source>
 			</trans-unit>
-            <trans-unit id="wizard.name">
+            <trans-unit id="wizard.title">
                 <source>Formcycle</source>
             </trans-unit>
+			<trans-unit id="wizard.description">
+				<source>Include a XIMA® FormCycle form</source>
+			</trans-unit>
 			<trans-unit id="tabs.form">
 				<source>Form</source>
 			</trans-unit>
