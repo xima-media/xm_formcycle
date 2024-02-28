@@ -4,6 +4,7 @@ namespace Xima\XmFormcycle\Tests\Unit\Dto;
 
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use Xima\XmFormcycle\Dto\FormcycleConfiguration;
+use Xima\XmFormcycle\Dto\IntegrationMode;
 use Xima\XmFormcycle\Error\FormcycleConfigurationException;
 
 class FormcycleConfigurationTest extends UnitTestCase
@@ -54,11 +55,9 @@ class FormcycleConfigurationTest extends UnitTestCase
         FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
     }
 
-    public function testInvalidIntegrationMode(): void
+    public function testDefaultIntegrationMode(): void
     {
-        $this->expectException(FormcycleConfigurationException::class);
-        $this->expectExceptionCode(1709052040);
-        $this->validExtensionConfiguration['integrationMode'] = 'ajax';
-        FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
+        $config = FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
+        self::assertEquals(IntegrationMode::Integrated, $config->getIntegrationMode());
     }
 }

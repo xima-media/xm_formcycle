@@ -7,10 +7,6 @@ use Xima\XmFormcycle\Error\FormcycleConfigurationException;
 
 final class FormcycleConfiguration
 {
-    public const INTEGRATION_MODE_INTEGRATED = 'integrated';
-    public const INTEGRATION_MODE_IFRAME = 'iFrame';
-    public const INTEGRATION_MODE_AJAX = 'AJAX';
-
     private string $formCycleUrl;
 
     private string $formCycleFrontendUrl;
@@ -19,7 +15,7 @@ final class FormcycleConfiguration
 
     private string $formCyclePass;
 
-    private string $integrationMode;
+    private IntegrationMode $integrationMode;
 
     private string $client = '24871';
 
@@ -43,18 +39,7 @@ final class FormcycleConfiguration
             throw new FormcycleConfigurationException('No formCycleUser or formCyclePass set', 1709052037);
         }
 
-        $mode = $extConfiguration['integrationMode'] ?? '';
-        $config->integrationMode = $mode ?: self::INTEGRATION_MODE_INTEGRATED;
-        if (!in_array(
-            $config->integrationMode,
-            [self::INTEGRATION_MODE_IFRAME, self::INTEGRATION_MODE_INTEGRATED, self::INTEGRATION_MODE_AJAX],
-            true
-        )) {
-            throw new FormcycleConfigurationException(
-                'Invalid integration mode "' . $config->integrationMode . '"',
-                1709052040
-            );
-        }
+        $config->integrationMode = IntegrationMode::tryFrom($extConfiguration['integrationMode'] ?? '') ?? IntegrationMode::Integrated;
 
         $config->formCycleFrontendUrl = $extConfiguration['formCycleFrontendUrl'] ?? '';
         if ($config->formCycleFrontendUrl && !GeneralUtility::isValidUrl($config->formCycleFrontendUrl)) {
@@ -81,5 +66,10 @@ final class FormcycleConfiguration
     public function getAdminUrl(): string
     {
         return $this->formCycleFrontendUrl ?: $this->formCycleUrl;
+    }
+
+    public function getIntegrationMode(): IntegrationMode
+    {
+        return $this->integrationMode;
     }
 }

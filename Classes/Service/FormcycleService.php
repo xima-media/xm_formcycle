@@ -10,6 +10,7 @@ use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExis
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Xima\XmFormcycle\Dto\FormcycleConfiguration;
+use Xima\XmFormcycle\Dto\IntegrationMode;
 use Xima\XmFormcycle\Error\FormcycleConfigurationException;
 use Xima\XmFormcycle\Error\FormcycleConnectionException;
 
@@ -112,5 +113,10 @@ final class FormcycleService
     public function getAdminUrl(): string
     {
         return $this->configuration->getAdminUrl();
+    }
+
+    public function getIntegrationMode(): IntegrationMode
+    {
+        return $this->configuration->getIntegrationMode();
     }
 }
