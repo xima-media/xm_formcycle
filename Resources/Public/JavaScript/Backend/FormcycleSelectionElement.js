@@ -2,7 +2,10 @@ import AjaxRequest from "@typo3/core/ajax/ajax-request.js";
 
 export default class FormcycleSelectionElement {
 
-  constructor(formId = '') {
+  hiddenInputElement = null
+
+  constructor(itemFormElID = '') {
+    this.hiddenInputElement = document.querySelector('#' + itemFormElID)
     this.init()
   }
 
@@ -24,7 +27,7 @@ export default class FormcycleSelectionElement {
         const resolved = await response.resolve();
         wrapper.innerHTML = resolved.html
       }).then(() => {
-        this.initFormEvents()
+      this.initFormEvents()
     })
   }
 
@@ -32,7 +35,11 @@ export default class FormcycleSelectionElement {
     document.querySelectorAll('#xm-available-forms-wrapper .card').forEach(card => {
       card.addEventListener('click', (e) => {
         e.preventDefault()
-        console.log(e.currentTarget)
+        document.querySelectorAll('#xm-available-forms-wrapper .card').forEach(card => {
+          card.classList.remove('active')
+        })
+        e.currentTarget.classList.add('active')
+        this.hiddenInputElement.value = e.currentTarget.getAttribute('data-form-id')
       })
     })
 

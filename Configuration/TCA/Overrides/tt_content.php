@@ -24,7 +24,8 @@ $tempFields = [
     'tx_xmformcycle_form_id' => [
         'label' => 'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_form_id.label',
         'config' => [
-            'type' => 'formcycle-selection',
+            'type' => 'user',
+            'renderType' => 'formcycle-selection',
         ],
     ],
 ];
