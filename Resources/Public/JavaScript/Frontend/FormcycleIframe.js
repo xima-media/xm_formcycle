@@ -1,5 +1,7 @@
 window.addEventListener("message", event => {
-  document.querySelectorAll('iframe.xm-formcycle-iframe').forEach(iframe => {
-    iframe.style.height = `${event.data.height}px`
-  })
+  const iframeUrl = event.data.url
+  const iframeElement = document.querySelector(`iframe.xm-formcycle-iframe[src="${iframeUrl}"]`)
+  if (iframeElement) {
+    iframeElement.style.height = `${event.data.height}px`
+  }
 })

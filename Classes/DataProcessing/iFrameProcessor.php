@@ -9,18 +9,12 @@ use Xima\XmFormcycle\Dto\IntegrationMode;
 
 class iFrameProcessor extends AbstractProcessor
 {
-    public function process(
+    public function subProcess(
         ContentObjectRenderer $cObj,
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData
-    ) {
-        $this->initElementSettings($cObj);
-
-        if ($this->settings->integrationMode !== IntegrationMode::Iframe) {
-            return $processedData;
-        }
-
+    ): array {
         /** @var PageRenderer $pageRenderer */
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->addJsFooterFile('EXT:xm_formcycle/Resources/Public/JavaScript/Frontend/FormcycleIframe.js');
@@ -29,5 +23,10 @@ class iFrameProcessor extends AbstractProcessor
         $processedData['iframe']['url'] = $this->formcycleService->getIframeUrl($this->settings);
 
         return $processedData;
+    }
+
+    protected function getIntegrationMode(): IntegrationMode
+    {
+        return IntegrationMode::Iframe;
     }
 }

@@ -7,18 +7,17 @@ use Xima\XmFormcycle\Dto\IntegrationMode;
 
 class IntegratedProcessor extends AbstractProcessor
 {
-    public function process(
+    public function subProcess(
         ContentObjectRenderer $cObj,
         array $contentObjectConfiguration,
         array $processorConfiguration,
-        ?array $processedData
-    ) {
-        $this->initElementSettings($cObj);
-
-        if ($this->settings->integrationMode !== IntegrationMode::Integrated) {
-            return $processedData;
-        }
-
+        array $processedData
+    ): array {
         return $processedData;
+    }
+
+    protected function getIntegrationMode(): IntegrationMode
+    {
+        return IntegrationMode::Integrated;
     }
 }

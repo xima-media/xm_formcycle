@@ -7,18 +7,17 @@ use Xima\XmFormcycle\Dto\IntegrationMode;
 
 class AjaxProcessor extends AbstractProcessor
 {
-    public function process(
+    public function subProcess(
         ContentObjectRenderer $cObj,
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData = []
-    ) {
-        $this->initElementSettings($cObj);
-
-        if ($this->settings->integrationMode !== IntegrationMode::Ajax) {
-            return $processedData;
-        }
-
+    ): array {
         return $processedData;
+    }
+
+    protected function getIntegrationMode(): IntegrationMode
+    {
+        return IntegrationMode::Ajax;
     }
 }
