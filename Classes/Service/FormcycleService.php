@@ -5,27 +5,29 @@ namespace Xima\XmFormcycle\Service;
 use finfo;
 use JsonException;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Xima\XmFormcycle\Dto\FormcycleConfiguration;
 use Xima\XmFormcycle\Error\FormcycleConfigurationException;
+use Xima\XmFormcycle\Error\FormcycleConnectionException;
 
 final class FormcycleService
 {
-    private ?FormcycleConfiguration $configuration = null;
+    private ?FormcycleConfiguration $configuration;
 
-    private int $errorCode = 0;
-
+    /**
+     * @throws ExtensionConfigurationPathDoesNotExistException
+     * @throws ExtensionConfigurationExtensionNotConfiguredException
+     * @throws FormcycleConfigurationException
+     */
     public function __construct(
         private readonly ExtensionConfiguration $extensionConfiguration,
-        private FrontendInterface $cache
+        private readonly FrontendInterface $cache
     ) {
-        try {
-            $extConfig = $this->extensionConfiguration->get('xm_formcycle');
-            $this->configuration = FormcycleConfiguration::createFromExtensionConfiguration($extConfig);
-        } catch (FormcycleConfigurationException $e) {
-            $this->errorCode = (int)$e->getCode();
-        }
+        $extConfig = $this->extensionConfiguration->get('xm_formcycle');
+        $this->configuration = FormcycleConfiguration::createFromExtensionConfiguration($extConfig);
     }
 
     public static function groupForms(array $forms): array
@@ -43,12 +45,11 @@ final class FormcycleService
         return $groupedForms;
     }
 
+    /**
+     * @throws FormcycleConnectionException
+     */
     public function getAvailableForms(): array
     {
-        if (!$this->configuration) {
-            return [];
-        }
-
         $forms = $this->cache->get('availableForms');
         if ($forms === false) {
             $forms = $this->loadAvailableForms();
@@ -58,28 +59,25 @@ final class FormcycleService
         return $forms;
     }
 
+    /**
+     * @throws FormcycleConnectionException
+     */
     private function loadAvailableForms(): array
     {
-        if (!$this->configuration) {
-            return [];
-        }
-
         $jsonResponse = GeneralUtility::getUrl($this->configuration->getFormListUrl());
 
         if (!$jsonResponse) {
-            return [];
+            throw new FormcycleConnectionException('Loading available forms: No response of endpoint', 1709102526);
         }
 
         try {
             $forms = json_decode($jsonResponse, true, 512, JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
-            $this->error = 'Invalid JSON response of available forms endpoint';
-            return [];
+            throw new FormcycleConnectionException('Loading available forms: Invalid JSON response of endpoint', 1709102526);
         }
 
         if (!is_array($forms)) {
-            $this->error = 'Invalid JSON response of available forms endpoint';
-            return [];
+            throw new FormcycleConnectionException('Loading available forms: Invalid JSON response of endpoint', 1709102526);
         }
 
         self::encodePreviewImages($forms);
@@ -98,10 +96,5 @@ final class FormcycleService
                 $form['thumbnail'] = 'data:' . $mimeType . ';base64,' . base64_encode($imageData);
             }
         }
-    }
-
-    public function getErrorCode(): int
-    {
-        return $this->errorCode;
     }
 }

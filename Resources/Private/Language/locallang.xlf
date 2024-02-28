@@ -24,6 +24,12 @@
 			<trans-unit id="error.configuration.title">
 				<source>Configuration error</source>
 			</trans-unit>
+			<trans-unit id="error.connection.title">
+				<source>Connection error</source>
+			</trans-unit>
+			<trans-unit id="error.1709102526.message">
+				<source>No response from the endpoint when attempting to fetch available Formcycle forms</source>
+			</trans-unit>
 			<trans-unit id="error.1709041996.message">
 				<source>The extension configuration "formCycleUrl" is missing or invalid</source>
 			</trans-unit>

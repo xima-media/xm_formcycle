@@ -9,6 +9,8 @@ class FormcycleServiceTest extends UnitTestCase
 {
     public function testGroupForms(): void
     {
+        self::assertEmpty(FormcycleService::groupForms([]));
+
         $arr = [
             [
                 'group' => 'b',

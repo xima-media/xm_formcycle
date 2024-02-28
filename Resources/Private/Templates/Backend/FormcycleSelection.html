@@ -1,5 +1,5 @@
 <f:if condition="{errorCode}">
-    <f:be.infobox state="2" title="{f:translate(key: 'error.configuration.title', extensionName:'XmFormcycle')}">
+    <f:be.infobox state="2" title="{f:translate(key: 'error.{errorType}.title', extensionName:'XmFormcycle')}">
         {f:translate(key: 'error.{errorCode}.message', extensionName:'XmFormcycle')}
     </f:be.infobox>
 </f:if>
