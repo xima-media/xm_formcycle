@@ -4,11 +4,22 @@
     </f:be.infobox>
 </f:if>
 
-<f:if condition="{loading}">
-    <div class="py-3 text-center">
-        <core:icon identifier="spinner-circle" size="medium" />
+<f:if condition="!{loading}">
+    <div class="mb-4 btn-group">
+        <button id="xm-reload-available-forms" class="btn btn-default">
+            <core:icon title="Open actions menu" identifier="actions-refresh" />
+            Reload
+        </button>
+        <a href="#" class="btn btn-default" target="_blank">
+            <core:icon title="Open window" identifier="actions-window-open" />
+            Open Formcycle Admin
+        </a>
     </div>
 </f:if>
+
+<div class="py-3 text-center {f:if(condition: loading, else: 'hidden')}" id="xm-loading-spinner">
+    <core:icon identifier="spinner-circle" size="medium" />
+</div>
 
 <f:if condition="{forms}">
     <div id="xm-available-forms-wrapper">
@@ -21,7 +32,7 @@
                 <hr />
                 <div class="d-flex flex-wrap gap-3">
                     <f:for each="{group}" as="form">
-                        <a href="#" class="card" style="width: 14rem;" data-form-id="{form.id}">
+                        <a href="#" class="card btn btn-primary" style="width: 14rem;" data-form-id="{form.id}">
                             <div style="background: #ededed">
                                 <img src="{form.thumbnail}" class="card-img-top" alt="Preview {form.title}">
                             </div>
@@ -35,3 +46,5 @@
         </f:for>
     </div>
 </f:if>
+
+

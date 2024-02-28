@@ -38,10 +38,10 @@ class FormcycleSelection extends AbstractFormElement
 
         $resultArray = $this->initializeResultArray();
         $resultArray['html'] = '<div id="xm-formcycle-forms">' . $view->render() . '</div>';
+        $resultArray['stylesheetFiles'][] = 'EXT:xm_formcycle/Resources/Public/Css/Backend/FormcycleSelection.css';
 
         $parameterArray = $this->data['parameterArray'];
 
-        //$resultArray['stylesheetFiles'] = $styleSheetPaths;
         $resultArray['javaScriptModules'][] = \TYPO3\CMS\Core\Page\JavaScriptModuleInstruction::create('@xima/xm-formcycle/FormcycleSelectionElement.js')
             ->instance('hffe');
 
