@@ -25,6 +25,9 @@ class iFrameProcessor extends AbstractProcessor
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->addJsFooterFile('EXT:xm_formcycle/Resources/Public/JavaScript/Frontend/FormcycleIframe.js');
 
+        $processedData['iframe'] = [];
+        $processedData['iframe']['url'] = $this->formcycleService->getIframeUrl($this->settings);
+
         return $processedData;
     }
 }

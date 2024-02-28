@@ -13,18 +13,16 @@ abstract class AbstractProcessor implements DataProcessorInterface
     protected ElementSettings $settings;
 
     public function __construct(
-        private readonly FormcycleService $formcycleService,
+        protected readonly FormcycleService $formcycleService,
         private readonly FlexFormService $flexFormService
     ) {
     }
 
     protected function initElementSettings(ContentObjectRenderer $cObj): void
     {
-        $defaultIntegrationMode = $this->formcycleService->getIntegrationMode();
         $this->settings = ElementSettings::createFromContentElement(
             $this->flexFormService,
             $cObj,
-            $defaultIntegrationMode
         );
     }
 }

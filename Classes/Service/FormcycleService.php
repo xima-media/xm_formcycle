@@ -9,8 +9,9 @@ use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotCon
 use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
+use Xima\XmFormcycle\Dto\ElementSettings;
 use Xima\XmFormcycle\Dto\FormcycleConfiguration;
-use Xima\XmFormcycle\Dto\IntegrationMode;
 use Xima\XmFormcycle\Error\FormcycleConfigurationException;
 use Xima\XmFormcycle\Error\FormcycleConnectionException;
 
@@ -25,7 +26,8 @@ final class FormcycleService
      */
     public function __construct(
         private readonly ExtensionConfiguration $extensionConfiguration,
-        private readonly FrontendInterface $cache
+        private readonly FrontendInterface $cache,
+        private readonly UriBuilder $uriBuilder
     ) {
         $extConfig = $this->extensionConfiguration->get('xm_formcycle');
         $this->configuration = FormcycleConfiguration::createFromExtensionConfiguration($extConfig);
@@ -45,7 +47,7 @@ final class FormcycleService
     {
         $forms = $this->getAvailableForms();
 
-        $index = array_search((int)$formId, array_column($forms, 'form_id'), true);
+        $index = array_search((int)$formId, array_column($forms, 'id'), true);
 
         return $index !== false ? $forms[$index] : [];
     }
@@ -115,8 +117,42 @@ final class FormcycleService
         return $this->configuration->getAdminUrl();
     }
 
-    public function getIntegrationMode(): IntegrationMode
+    public function getIframeUrl(ElementSettings $settings): string
     {
-        return $this->configuration->getIntegrationMode();
+        $url = sprintf('%s/form/provide/%s', $this->configuration->getFormCycleUrl(), $settings->formId);
+        $params = $this->getCommonQueryParams($settings);
+
+        return $url . '?' . http_build_query($params);
+    }
+
+    private function getCommonQueryParams(ElementSettings $settings): array
+    {
+        $params = [
+            'xfc-rp-inline' => true,
+            'xfc-rp-usejq' => $settings->loadFormcycleJquery ? 1 : 0,
+            'xfc-rp-useui' => $settings->loadFormcycleJqueryUi ? 1 : 0,
+            'xfc-rp-usebs' => $settings->loadResponseJs ? 1 : 0,
+            'xfc-pp-external' => true,
+            'xfc-pp-base-url' => $this->configuration->getFormCycleUrl(),
+            'xfc-rp-keepalive' => true,
+        ];
+
+        if ($settings->successPid) {
+            $url = $this->uriBuilder
+                ->setTargetPageUid($settings->successPid)
+                ->setCreateAbsoluteUri(true)
+                ->build();
+            $params['xfc-pp-success-url'] = $url;
+        }
+
+        if ($settings->errorPid) {
+            $url = $this->uriBuilder
+                ->setTargetPageUid($settings->errorPid)
+                ->setCreateAbsoluteUri(true)
+                ->build();
+            $params['xfc-pp-error-url'] = $url;
+        }
+
+        return $params;
     }
 }

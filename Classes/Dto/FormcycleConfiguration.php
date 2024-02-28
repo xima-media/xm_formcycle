@@ -63,6 +63,11 @@ final class FormcycleConfiguration
         );
     }
 
+    public function getFormCycleUrl(): string
+    {
+        return $this->formCycleUrl;
+    }
+
     public function getAdminUrl(): string
     {
         return $this->formCycleFrontendUrl ?: $this->formCycleUrl;
