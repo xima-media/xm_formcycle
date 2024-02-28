@@ -77,4 +77,9 @@ final class FormcycleConfiguration
             $this->client,
         );
     }
+
+    public function getAdminUrl(): string
+    {
+        return $this->formCycleFrontendUrl ?: $this->formCycleUrl;
+    }
 }

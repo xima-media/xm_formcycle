@@ -30,6 +30,25 @@ final class FormcycleService
         $this->configuration = FormcycleConfiguration::createFromExtensionConfiguration($extConfig);
     }
 
+    public function hasAvailableFormsCached(): bool
+    {
+        return $this->cache->has('availableForms');
+    }
+
+    public function resetAvailableFormsCache(): void
+    {
+        $this->cache->remove('availableForms');
+    }
+
+    public function getAvailableFormConfigurationByFormId(string $formId): array
+    {
+        $forms = $this->getAvailableForms();
+
+        $index = array_search((int)$formId, array_column($forms, 'form_id'), true);
+
+        return $index !== false ? $forms[$index] : [];
+    }
+
     /**
      * @throws FormcycleConnectionException
      */
@@ -90,22 +109,8 @@ final class FormcycleService
         }
     }
 
-    public function hasAvailableFormsCached(): bool
+    public function getAdminUrl(): string
     {
-        return $this->cache->has('availableForms');
-    }
-
-    public function resetAvailableFormsCache(): void
-    {
-        $this->cache->remove('availableForms');
-    }
-
-    public function getAvailableFormConfigurationByFormId(string $formId): array
-    {
-        $forms = $this->getAvailableForms();
-
-        $index = array_search((int)$formId, array_column($forms, 'form_id'), true);
-
-        return $index !== false ? $forms[$index] : [];
+        return $this->configuration->getAdminUrl();
     }
 }

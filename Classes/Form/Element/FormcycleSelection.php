@@ -28,6 +28,7 @@ class FormcycleSelection extends AbstractFormElement
         try {
             /** @var FormcycleService $fcService */
             $fcService = GeneralUtility::makeInstance(FormcycleService::class);
+            $view->assign('adminUrl', $fcService->getAdminUrl());
             if ($fcService->hasAvailableFormsCached()) {
                 $forms = $fcService->getAvailableForms();
                 $forms = self::groupForms($forms);
