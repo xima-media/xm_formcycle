@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2020-06-29UTC07:42:060">
-        <header>
-            <authorName>Konrad Michalik</authorName>
-            <authorEmail>konrad.michalik@xima.de</authorEmail>
-        </header>
-        <body>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-02-04T09:22:02Z">
+		<body>
 			<trans-unit id="formcycle">
 				<source>Formcycle</source>
 			</trans-unit>
-            <trans-unit id="wizard.title">
-                <source>Formcycle</source>
-            </trans-unit>
+			<trans-unit id="wizard.title">
+				<source>Formcycle</source>
+			</trans-unit>
 			<trans-unit id="wizard.description">
 				<source>Include a XIMA® FormCycle form</source>
 			</trans-unit>
@@ -57,66 +53,78 @@
 			<trans-unit id="button.admin">
 				<source>Formcycle Admin</source>
 			</trans-unit>
-            <trans-unit id="tx_xmformcycle_domain_model_formcycle.wizard.description">
-                <source>XIMA® FormCycle forms in TYPO3 Frontend</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_domain_model_formcycle">
-                <source>Formcycle</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab1_name">
-                <source>form</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab1_select_projekt">
-                <source>select form (required)</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab1_edit_projekt">
-                <source>edit selected form</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab1_select_integrationMode">
-                <source>Integration mode</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab1_select_integrationMode_default">
-                <source>Default</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab5_name">
-                <source>script / css</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab6_name">
-                <source>parameters</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab6_param_values">
-                <source>parameter (example: &amp;param1=value1&amp;param2=value2&amp;param3=value3)</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab5_icss">
-                <source>Use available css</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab5_useJS_jQuery">
-                <source>Use the jQuery framework provided by FormCycle. If you uncheck this (you use your own framework), make shure your jQuery framework is initialised before this plug in.</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab5_useJS_jQueryUi">
-                <source>Use the jQuery UI framework provided by FormCycle (only necessary if you use jQuery UI Components).</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab5_useJS_bootstrap">
-                <source>Use the responsejs framework provided by FormCycle (only necessary if you use responsive design).</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab2_name">
-                <source>response pages</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab2_response_success">
-                <source>response page by successfully submited form</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab2_response_error">
-                <source>response page when an error occurs during execution</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab2_name">
-                <source>response pages</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab3_name">
-                <source>new form</source>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab4_name">
-                <source>xima FormCycle administration</source>
-            </trans-unit>
-        </body>
-    </file>
+			<trans-unit id="flexform.sheet.responses">
+				<source>Response pages</source>
+			</trans-unit>
+			<trans-unit id="flexform.responses.success">
+				<source>Success page</source>
+			</trans-unit>
+			<trans-unit id="flexform.responses.success.description">
+				<source>Page to display after successful form submission</source>
+			</trans-unit>
+			<trans-unit id="flexform.responses.error">
+				<source>Error page</source>
+			</trans-unit>
+			<trans-unit id="flexform.responses.error.description">
+				<source>Response page when an error occurs during execution</source>
+			</trans-unit>
+			<trans-unit id="flexform.sheet.include">
+				<source>Integration options</source>
+			</trans-unit>
+			<trans-unit id="flexform.integration">
+				<source>Integration type</source>
+			</trans-unit>
+			<trans-unit id="flexform.integration.description">
+				<source>This defines how the Formcycle form is embedded into the page</source>
+			</trans-unit>
+			<trans-unit id="flexform.integration.default">
+				<source>Default</source>
+			</trans-unit>
+			<trans-unit id="flexform.integration.integrated">
+				<source>Integrated</source>
+			</trans-unit>
+			<trans-unit id="flexform.integration.ajaxTypo3">
+				<source>AJAX (via TYPO3)</source>
+			</trans-unit>
+			<trans-unit id="flexform.integration.ajaxFormcycle">
+				<source>AJAX (via Fromcycle)</source>
+			</trans-unit>
+			<trans-unit id="flexform.integration.iframe">
+				<source>Iframe</source>
+			</trans-unit>
+			<trans-unit id="flexform.jquery">
+				<source>jQuery</source>
+			</trans-unit>
+			<trans-unit id="flexform.jquery.checkbox">
+				<source>Include jQuery</source>
+			</trans-unit>
+			<trans-unit id="flexform.jquery.description">
+				<source>If you uncheck this (use your own framework), make sure your jQuery framework is initialised</source>
+			</trans-unit>
+			<trans-unit id="flexform.jqueryUi">
+				<source>jQuery UI</source>
+			</trans-unit>
+			<trans-unit id="flexform.jqueryUi.checkbox">
+				<source>Include jQuery UI</source>
+			</trans-unit>
+			<trans-unit id="flexform.jqueryUi.description">
+				<source>This is only necessary if you use jQuery UI components</source>
+			</trans-unit>
+			<trans-unit id="flexform.bootstrap">
+				<source>Response JS</source>
+			</trans-unit>
+			<trans-unit id="flexform.bootstrap.checkbox">
+				<source>Include Response JS</source>
+			</trans-unit>
+			<trans-unit id="flexform.bootstrap.description">
+				<source>This is only necessary if you use responsive design</source>
+			</trans-unit>
+			<trans-unit id="flexform.parameters">
+				<source>Additional parameters</source>
+			</trans-unit>
+			<trans-unit id="flexform.parameters.description">
+				<source>Modify the Formcycle request, e.g. &amp;param1=value1&amp;param2=value2</source>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>

@@ -1,95 +1,167 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2020-06-29UTC07:42:060">
-        <header>
-            <authorName>Konrad Michalik</authorName>
-            <authorEmail>konrad.michalik@xima.de</authorEmail>
-        </header>
-        <body>
-            <trans-unit id="tx_xmformcycle_domain_model_formcycle.wizard.name">
-                <source>Formcycle</source>
-                <target>FormCycle</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_domain_model_formcycle.wizard.description">
-                <source>XIMA® FormCycle Formularen in das TYPO3 Frontend</source>
-                <target>XIMA® FormCycle Formularen in das TYPO3 Frontend</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_domain_model_formcycle">
-                <source>Formcycle</source>
-                <target>FormCycle</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab1_name">
-                <source>form</source>
-                <target>Formular</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab1_select_projekt">
-                <source>select form (required)</source>
-                <target>Formular auswählen (Pflichtfeld)</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab1_edit_projekt">
-                <source>edit selected form</source>
-                <target>Ausgewähltes Formular bearbeiten</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab1_select_integrationMode">
-                <source>Integration mode</source>
-                <target>Integrationsmodus</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab1_select_integrationMode_default">
-                <source>Default</source>
-                <target>Standard</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab5_name">
-                <source>script / css</source>
-                <target>Script / CSS</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab6_name">
-                <source>parameters</source>
-                <target>Parameter</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab6_param_values">
-                <source>parameter (example: &amp;param1=value1&amp;param2=value2&amp;param3=value3)</source>
-                <target>Parameter (Beispiel: &amp;param1=wert1&amp;param2=wert2&amp;param3=wert3)</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab5_icss">
-                <source>Use available css</source>
-                <target>Vorhandenes CSS verwenden</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab5_useJS_jQuery">
-                <source>Use the jQuery framework provided by FormCycle. If you uncheck this (you use your own framework), make shure your jQuery framework is initialised before this plug in.</source>
-                <target>Von FormCycle bereitgestelltes jQuery Framework verwenden. Wird diese Option abgewählt (es wird ein vorhandenes Framework verwednet), muss das vorhandene jQuery Framework vor diesem Plug In geladen werden.</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab5_useJS_jQueryUi">
-                <source>Use the jQuery UI framework provided by FormCycle (only necessary if you use jQuery UI Components).</source>
-                <target>Von FormCycle bereitgestelltes jQuery UI Framework verwenden (nur bei Verwendung von jQuery UI Komponenten erforderlich).</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab5_useJS_bootstrap">
-                <source>Use the responsejs framework provided by FormCycle (only necessary if you use responsive design).</source>
-                <target>Von FormCycle bereitgestelltes responsejs Framework verwenden (nur bei Verwendung von 'responsive Design' erforderlich).</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab2_name">
-                <source>response pages</source>
-                <target>Antwortseiten</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab2_response_success">
-                <source>response page by successfully submited form</source>
-                <target>Antwortseite bei erfolgreichem Absenden des Formulars</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab2_response_error">
-                <source>response page when an error occurs during execution</source>
-                <target>Antwortseite bei fehlerhafter Verarbeitung der Formulardaten</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab2_name">
-                <source>response pages</source>
-                <target>Antwortseiten</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab3_name">
-                <source>new form</source>
-                <target>Neues Formular</target>
-            </trans-unit>
-            <trans-unit id="tx_xmformcycle_tab4_name">
-                <source>xima FormCycle administration</source>
-                <target>xima FormCycle Verwaltung</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-02-04T09:22:02Z">
+		<body>
+			<trans-unit id="formcycle">
+				<source>Formcycle</source>
+				<target>Formcycle</target>
+			</trans-unit>
+			<trans-unit id="wizard.title">
+				<source>Formcycle</source>
+				<target>Formcycle</target>
+			</trans-unit>
+			<trans-unit id="wizard.description">
+				<source>Include a XIMA® FormCycle form</source>
+				<target>Bindet ein XIMA® FormCycle Formular ein</target>
+			</trans-unit>
+			<trans-unit id="tabs.form">
+				<source>Form</source>
+				<target>Formular</target>
+			</trans-unit>
+			<trans-unit id="palettes.formcycle.title">
+				<source>Formcycle</source>
+				<target>Formcycle</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_form_id.label">
+				<source>Form</source>
+				<target>Formular</target>
+			</trans-unit>
+			<trans-unit id="error.configuration.title">
+				<source>Configuration error</source>
+				<target>Konfiguration Error</target>
+			</trans-unit>
+			<trans-unit id="error.connection.title">
+				<source>Connection error</source>
+				<target>Verbindungsfehler</target>
+			</trans-unit>
+			<trans-unit id="error.1709041996.message">
+				<source>The extension configuration "formCycleUrl" is missing or invalid</source>
+				<target>Die Extension Konfiguration "formCycleUrl" fehlt oder ist ungültig</target>
+			</trans-unit>
+			<trans-unit id="error.1709052037.message">
+				<source>The extension configuration "formCycleUser" or "formCyclePass" is missing</source>
+				<target>Die Extension Konfiguration "formCycleUser" oder "formCyclePass" fehlt</target>
+			</trans-unit>
+			<trans-unit id="error.1709052040.message">
+				<source>The extension configuration "integrationMode" is invalid. Valid options are: "integrated", "iFrame" or "AJAX".</source>
+				<target>Die Extension Konfiguration "integrationMode" ist ungültig. Gültige Optionen sind: "integrated", "iFrame" oder "AJAX".</target>
+			</trans-unit>
+			<trans-unit id="error.1709052152.message">
+				<source>The extension configuration "formCycleFrontendUrl" is invalid</source>
+				<target>Die Extension Konfiguration "formCycleFrontendUrl" ist ungültig</target>
+			</trans-unit>
+			<trans-unit id="defaultGroupNames.0">
+				<source>Ungrouped</source>
+				<target>Nicht gruppiert</target>
+			</trans-unit>
+			<trans-unit id="button.reload">
+				<source>Reload</source>
+				<target>Neu laden</target>
+			</trans-unit>
+			<trans-unit id="button.settings">
+				<source>Settings</source>
+				<target>Einstellungen</target>
+			</trans-unit>
+			<trans-unit id="button.admin">
+				<source>Formcycle Admin</source>
+				<target>Formcycle Admin</target>
+			</trans-unit>
+			<trans-unit id="flexform.sheet.responses">
+				<source>Response pages</source>
+				<target>Antwortseiten</target>
+			</trans-unit>
+			<trans-unit id="flexform.responses.success">
+				<source>Success page</source>
+				<target>Erfolgseite</target>
+			</trans-unit>
+			<trans-unit id="flexform.responses.success.description">
+				<source>Page to display after successful form submission</source>
+				<target>Seite, die nach erfolgreicher Formularübermittlung angezeigt wird</target>
+			</trans-unit>
+			<trans-unit id="flexform.responses.error">
+				<source>Error page</source>
+				<target>Fehlerseite</target>
+			</trans-unit>
+			<trans-unit id="flexform.responses.error.description">
+				<source>Response page when an error occurs during execution</source>
+				<target>Antwortseite, wenn während der Ausführung ein Fehler auftritt</target>
+			</trans-unit>
+			<trans-unit id="flexform.sheet.include">
+				<source>Integration options</source>
+				<target>Einbindungsoptionen</target>
+			</trans-unit>
+			<trans-unit id="flexform.integration">
+				<source>Integration type</source>
+				<target>Integrationsart</target>
+			</trans-unit>
+			<trans-unit id="flexform.integration.description">
+				<source>This defines how the Formcycle form is embedded into the page</source>
+				<target>Dies definiert, wie das Formcycle-Formular in die Seite eingebettet wird</target>
+			</trans-unit>
+			<trans-unit id="flexform.integration.default">
+				<source>Default</source>
+				<target>Standard</target>
+			</trans-unit>
+			<trans-unit id="flexform.integration.integrated">
+				<source>Integrated</source>
+				<target>Integriert</target>
+			</trans-unit>
+			<trans-unit id="flexform.integration.ajaxTypo3">
+				<source>AJAX (via TYPO3)</source>
+				<target>AJAX (über TYPO3)</target>
+			</trans-unit>
+			<trans-unit id="flexform.integration.ajaxFormcycle">
+				<source>AJAX (via Fromcycle)</source>
+				<target>AJAX (über Formcycle)</target>
+			</trans-unit>
+			<trans-unit id="flexform.integration.iframe">
+				<source>Iframe</source>
+				<target>Iframe</target>
+			</trans-unit>
+			<trans-unit id="flexform.jquery">
+				<source>jQuery</source>
+				<target>jQuery</target>
+			</trans-unit>
+			<trans-unit id="flexform.jquery.checkbox">
+				<source>Include jQuery</source>
+				<target>jQuery einbinden</target>
+			</trans-unit>
+			<trans-unit id="flexform.jquery.description">
+				<source>If you uncheck this (use your own framework), make sure your jQuery framework is initialised</source>
+				<target>Wenn Sie dies abwählen (eigenes Framework verwenden), stellen Sie sicher, dass Ihr jQuery-Framework initialisiert ist</target>
+			</trans-unit>
+			<trans-unit id="flexform.jqueryUi">
+				<source>jQuery UI</source>
+				<target>jQuery UI</target>
+			</trans-unit>
+			<trans-unit id="flexform.jqueryUi.checkbox">
+				<source>Include jQuery UI</source>
+				<target>jQuery UI einbinden</target>
+			</trans-unit>
+			<trans-unit id="flexform.jqueryUi.description">
+				<source>This is only necessary if you use jQuery UI components</source>
+				<target>Dies ist nur erforderlich, wenn Sie jQuery UI-Komponenten verwenden</target>
+			</trans-unit>
+			<trans-unit id="flexform.bootstrap">
+				<source>Response JS</source>
+				<target>Response JS</target>
+			</trans-unit>
+			<trans-unit id="flexform.bootstrap.checkbox">
+				<source>Include Response JS</source>
+				<target>Response JS einbinden</target>
+			</trans-unit>
+			<trans-unit id="flexform.bootstrap.description">
+				<source>This is only necessary if you use responsive design</source>
+				<target>Dies ist nur erforderlich, wenn Sie responsives Design verwenden</target>
+			</trans-unit>
+			<trans-unit id="flexform.parameters">
+				<source>Additional parameters</source>
+				<target>Zusätzliche Parameter</target>
+			</trans-unit>
+			<trans-unit id="flexform.parameters.description">
+				<source>Modify the Formcycle request, e.g. &amp;param1=value1&amp;param2=value2</source>
+				<target>Ändern Sie die Formcycle-Anfrage, z.B. &amp;param1=value1&amp;param2=value2</target>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>
