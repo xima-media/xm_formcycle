@@ -30,7 +30,8 @@ abstract class AbstractProcessor implements DataProcessorInterface
             $cObj,
         );
 
-        if ($this->settings->integrationMode !== $this->getIntegrationMode()) {
+        $currentIntegrationMode = $this->settings->integrationMode ?? $this->formcycleService->getDefaultIntegrationMode();
+        if ($currentIntegrationMode->forDataProcessing() !== $this->getIntegrationMode()) {
             return $processedData;
         }
 

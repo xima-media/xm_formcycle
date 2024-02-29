@@ -12,6 +12,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use Xima\XmFormcycle\Dto\ElementSettings;
 use Xima\XmFormcycle\Dto\FormcycleConfiguration;
+use Xima\XmFormcycle\Dto\IntegrationMode;
 use Xima\XmFormcycle\Error\FormcycleConfigurationException;
 use Xima\XmFormcycle\Error\FormcycleConnectionException;
 
@@ -120,7 +121,19 @@ final class FormcycleService
     public function getIframeUrl(ElementSettings $settings): string
     {
         $url = sprintf('%s/form/provide/%s', $this->configuration->getFormCycleUrl(), $settings->formId);
+
         $params = $this->getCommonQueryParams($settings);
+        $params['xfc-height-changed-evt'] = true;
+
+        return $url . '?' . http_build_query($params);
+    }
+
+    public function getAjaxUrl(ElementSettings $settings): string
+    {
+        $url = sprintf('%s/form/provide/%s', $this->configuration->getFormCycleUrl(), $settings->formId);
+
+        $params = $this->getCommonQueryParams($settings);
+        $params['xfc-rp-form-only'] = true;
 
         return $url . '?' . http_build_query($params);
     }
@@ -154,5 +167,10 @@ final class FormcycleService
         }
 
         return $params;
+    }
+
+    public function getDefaultIntegrationMode(): IntegrationMode
+    {
+        return $this->configuration->getIntegrationMode();
     }
 }

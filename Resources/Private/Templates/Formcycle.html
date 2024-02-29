@@ -8,6 +8,10 @@
             <iframe class="xm-formcycle-iframe" src="{iframe.url}" width="100%" height="500"></iframe>
         </f:if>
 
+        <f:if condition="{ajax}">
+            <div class="xm-formcycle-ajax" id="xm-formcycle-ajax-{data.uid}" data-ajax-url="{ajax.url}"></div>
+        </f:if>
+
     </div>
 
 </f:section>
