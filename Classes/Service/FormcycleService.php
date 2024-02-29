@@ -161,6 +161,10 @@ final class FormcycleService
 
     public function getAjaxUrl(ElementSettings $settings): string
     {
+        if ($settings->integrationMode === IntegrationMode::AjaxTypo3) {
+            return '?type=1464705954&formId=' . $settings->formId;
+        }
+
         $url = sprintf('%s/form/provide/%s', $this->configuration->getFormCycleUrl(), $settings->formId);
 
         $params = $this->getCommonQueryParams($settings);
