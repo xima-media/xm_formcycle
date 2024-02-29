@@ -4,8 +4,4 @@ plugin.tx_xmformcycle {
     partialRootPath =
     layoutRootPath =
   }
-
-  settings {
-    enableJs = 1
-  }
 }
