@@ -12,6 +12,10 @@
             <div class="xm-formcycle-ajax" id="xm-formcycle-ajax-{data.uid}" data-ajax-url="{ajax.url}"></div>
         </f:if>
 
+        <f:if condition="{form}">
+            {form.html->f:format.raw()}
+        </f:if>
+
     </div>
 
 </f:section>

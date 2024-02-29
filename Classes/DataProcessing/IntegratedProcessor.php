@@ -13,6 +13,11 @@ class IntegratedProcessor extends AbstractProcessor
         array $processorConfiguration,
         array $processedData
     ): array {
+        $form = $this->formcycleService->getFormHtml($this->settings);
+
+        $processedData['form'] = [];
+        $processedData['form']['html'] = $form;
+
         return $processedData;
     }
 

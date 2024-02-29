@@ -128,17 +128,6 @@ final class FormcycleService
         return $url . '?' . http_build_query($params);
     }
 
-    public function getAjaxUrl(ElementSettings $settings): string
-    {
-        $url = sprintf('%s/form/provide/%s', $this->configuration->getFormCycleUrl(), $settings->formId);
-
-        $params = $this->getCommonQueryParams($settings);
-        $params['xfc-rp-form-only'] = true;
-        $params['xfc-rp-usejq'] = 0;
-
-        return $url . '?' . http_build_query($params);
-    }
-
     private function getCommonQueryParams(ElementSettings $settings): array
     {
         $params = [
@@ -170,8 +159,34 @@ final class FormcycleService
         return $params;
     }
 
+    public function getAjaxUrl(ElementSettings $settings): string
+    {
+        $url = sprintf('%s/form/provide/%s', $this->configuration->getFormCycleUrl(), $settings->formId);
+
+        $params = $this->getCommonQueryParams($settings);
+        $params['xfc-rp-form-only'] = true;
+        $params['xfc-rp-usejq'] = 0;
+
+        return $url . '?' . http_build_query($params);
+    }
+
     public function getDefaultIntegrationMode(): IntegrationMode
     {
         return $this->configuration->getIntegrationMode();
+    }
+
+    public function getFormHtml(ElementSettings $settings): string
+    {
+        $url = $this->getIntegratedFormUrl($settings);
+        return GeneralUtility::getUrl($url) ?: '';
+    }
+
+    public function getIntegratedFormUrl(ElementSettings $settings): string
+    {
+        $url = sprintf('%s/form/provide/%s', $this->configuration->getFormCycleUrl(), $settings->formId);
+
+        $params = $this->getCommonQueryParams($settings);
+
+        return $url . '?' . http_build_query($params);
     }
 }
