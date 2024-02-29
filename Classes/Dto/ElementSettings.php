@@ -23,8 +23,6 @@ class ElementSettings
 
     public string $additionalParameters = '';
 
-    public string $serverUri = '';
-
     public static function createFromContentElement(
         FlexFormService $flexFormService,
         ContentObjectRenderer $cObj,
