@@ -13,10 +13,13 @@ class AjaxProcessor extends AbstractProcessor
         ContentObjectRenderer $cObj,
         array $contentObjectConfiguration,
         array $processorConfiguration,
-        array $processedData = []
+        array $processedData
     ): array {
         /** @var PageRenderer $pageRenderer */
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        if ($this->settings->loadFormcycleJquery) {
+            $pageRenderer->addJsFooterFile('EXT:xm_formcycle/Resources/Public/JavaScript/Frontend/jquery-3.7.1.min.js');
+        }
         $pageRenderer->addJsFooterFile('EXT:xm_formcycle/Resources/Public/JavaScript/Frontend/FormcycleAjax.js');
 
         $processedData['ajax'] = [];

@@ -134,6 +134,7 @@ final class FormcycleService
 
         $params = $this->getCommonQueryParams($settings);
         $params['xfc-rp-form-only'] = true;
+        $params['xfc-rp-usejq'] = 0;
 
         return $url . '?' . http_build_query($params);
     }
