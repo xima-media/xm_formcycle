@@ -73,7 +73,10 @@ class FormcycleSelection extends AbstractFormElement
         }
         // sort "others" group (index=0) to end of array
         uksort($groupedForms, static function ($a, $b) {
-            return $b === 0 ? -1 : $a > $b;
+            if ($b === 0) {
+                return -1;
+            }
+            return $a > $b ? 0 : 1;
         });
         return $groupedForms;
     }

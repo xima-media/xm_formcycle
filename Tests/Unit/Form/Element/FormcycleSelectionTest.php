@@ -7,7 +7,7 @@ use Xima\XmFormcycle\Form\Element\FormcycleSelection;
 
 class FormcycleSelectionTest extends TestCase
 {
-    public function testGroupForms()
+    public function testGroupForms(): void
     {
         self::assertEmpty(FormcycleSelection::groupForms([]));
 
