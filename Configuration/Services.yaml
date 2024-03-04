@@ -37,3 +37,7 @@ services:
     tags:
       - name: 'data.processor'
         identifier: 'formcycle-integrated'
+
+  Xima\XmFormcycle\ContentSecurityPolicy\EventListener\FrontendListener:
+    tags:
+      - name: event.listener

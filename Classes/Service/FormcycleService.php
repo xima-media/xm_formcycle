@@ -118,6 +118,12 @@ final class FormcycleService
         return $this->configuration->getAdminUrl();
     }
 
+    public function getCspUrl(): string
+    {
+        $adminUrl = $this->getAdminUrl();
+        return pathinfo($adminUrl, PATHINFO_DIRNAME);
+    }
+
     public function getIframeUrl(ElementSettings $settings): string
     {
         $url = sprintf('%s/form/provide/%s', $this->configuration->getFormCycleUrl(), $settings->formId);
