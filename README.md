@@ -13,7 +13,7 @@ them into your TYPO3 site.
 
 ## Requirements
 
-* The Formcycle plugin `FormList` musst be installed
+* Formcycle version 8 + installed plugin `Formularliste`
 * PHP 8.1+
 
 ## Installation

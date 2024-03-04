@@ -2,6 +2,7 @@
 
 namespace Xima\XmFormcycle\Tests\Unit\Dto;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use Xima\XmFormcycle\Dto\FormcycleConfiguration;
 use Xima\XmFormcycle\Dto\IntegrationMode;
@@ -41,7 +42,7 @@ class FormcycleConfigurationTest extends UnitTestCase
     {
         $this->expectException(FormcycleConfigurationException::class);
         $this->expectExceptionCode(1709052152);
-        $this->validExtensionConfiguration['formCycleFrontendUrl'] = 'x';
+        $this->validExtensionConfiguration['formCycleFrontendUrl'] = 'invalid url';
         FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
     }
 
@@ -73,5 +74,13 @@ class FormcycleConfigurationTest extends UnitTestCase
     {
         $config = FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
         self::assertEquals(IntegrationMode::Integrated, $config->getIntegrationMode());
+    }
+
+    public function testValidFormcycleUrls()
+    {
+        $config = FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
+        self::assertTrue(GeneralUtility::isValidUrl($config->getAdminUrl()), 'Valid admin url');
+        self::assertTrue(GeneralUtility::isValidUrl($config->getFormListUrl()), 'Valid form list url');
+        self::assertTrue(GeneralUtility::isValidUrl($config->getFormCycleUrl()), 'Valid form cycle url');
     }
 }
