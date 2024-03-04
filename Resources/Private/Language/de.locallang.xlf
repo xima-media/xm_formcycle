@@ -39,8 +39,16 @@
 				<target>Die Extension Konfiguration "formCycleUrl" fehlt oder ist ungültig</target>
 			</trans-unit>
 			<trans-unit id="error.1709052037.message">
-				<source>The extension configuration "formCycleUser" or "formCyclePass" is missing</source>
-				<target>Die Extension Konfiguration "formCycleUser" oder "formCyclePass" fehlt</target>
+				<source>The extension configuration "formCycleUser" is missing</source>
+				<target>Die Extension Konfiguration "formCycleUser" fehlt</target>
+			</trans-unit>
+			<trans-unit id="error.1709538727.message">
+				<source>The extension configuration "formCyclePass" is missing</source>
+				<target>Die Extension Konfiguration "formCyclePass" fehlt</target>
+			</trans-unit>
+			<trans-unit id="error.1709538688.message">
+				<source>The extension configuration "formCycleClientId" is missing</source>
+				<target>Die Extension Konfiguration "formCycleClientId" fehlt</target>
 			</trans-unit>
 			<trans-unit id="error.1709052040.message">
 				<source>The extension configuration "integrationMode" is invalid. Valid options are: "integrated", "iFrame" or "AJAX".</source>

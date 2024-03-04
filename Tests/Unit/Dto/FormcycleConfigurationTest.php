@@ -14,13 +14,19 @@ class FormcycleConfigurationTest extends UnitTestCase
         'formCycleFrontendUrl' => '',
         'formCycleUser' => 'username',
         'formCyclePass' => 'password',
+        'formCycleClientId' => '123456',
         'integrationMode' => '',
     ];
 
-    public function testCreateFromExtensionConfiguration(): void
+    public function testCreateFromEmptyExtensionConfiguration(): void
     {
         $this->expectException(FormcycleConfigurationException::class);
         FormcycleConfiguration::createFromExtensionConfiguration([]);
+    }
+
+    public function testCreateValidExtensionConfiguration(): void
+    {
+        FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
     }
 
     public function testInvalidFormcycleUrl(): void
@@ -50,8 +56,16 @@ class FormcycleConfigurationTest extends UnitTestCase
     public function testMissingPassword(): void
     {
         $this->expectException(FormcycleConfigurationException::class);
-        $this->expectExceptionCode(1709052037);
+        $this->expectExceptionCode(1709538727);
         $this->validExtensionConfiguration['formCyclePass'] = '';
+        FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
+    }
+
+    public function testMissingClientId(): void
+    {
+        $this->expectException(FormcycleConfigurationException::class);
+        $this->expectExceptionCode(1709538688);
+        $this->validExtensionConfiguration['formCycleClientId'] = '';
         FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
     }
 

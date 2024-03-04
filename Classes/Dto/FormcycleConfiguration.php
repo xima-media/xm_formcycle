@@ -17,7 +17,7 @@ final class FormcycleConfiguration
 
     private IntegrationMode $integrationMode;
 
-    private string $client = '24871';
+    private string $formCycleClientId;
 
     /**
      * @throws FormcycleConfigurationException
@@ -34,9 +34,18 @@ final class FormcycleConfiguration
         }
 
         $config->formCycleUser = $extConfiguration['formCycleUser'] ?? '';
+        if (!$config->formCycleUser) {
+            throw new FormcycleConfigurationException('No formCycleUser set', 1709052037);
+        }
+
         $config->formCyclePass = $extConfiguration['formCyclePass'] ?? '';
-        if (!$config->formCycleUser || !$config->formCyclePass) {
-            throw new FormcycleConfigurationException('No formCycleUser or formCyclePass set', 1709052037);
+        if (!$config->formCyclePass) {
+            throw new FormcycleConfigurationException('No formCyclePass set', 1709538727);
+        }
+
+        $config->formCycleClientId = $extConfiguration['formCycleClientId'] ?? '';
+        if (!$config->formCycleClientId) {
+            throw new FormcycleConfigurationException('No formCycleClientId set', 1709538688);
         }
 
         $config->integrationMode = IntegrationMode::tryFrom($extConfiguration['integrationMode'] ?? '') ?? IntegrationMode::Integrated;
@@ -59,7 +68,7 @@ final class FormcycleConfiguration
             $this->formCycleUrl,
             $this->formCycleUser,
             $this->formCyclePass,
-            $this->client,
+            $this->formCycleClientId,
         );
     }
 

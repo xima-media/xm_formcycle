@@ -4,7 +4,7 @@
     </f:be.infobox>
 </f:if>
 
-<f:if condition="!{loading}">
+<f:if condition="!{loading} && !{errorCode}">
     <div class="mb-4 btn-group">
         <button id="xm-reload-available-forms" class="btn btn-default">
             <core:icon title="Refresh forms" identifier="actions-refresh" />
@@ -25,7 +25,7 @@
     <core:icon identifier="spinner-circle" size="medium" />
 </div>
 
-<f:if condition="{forms}">
+<f:if condition="{forms} && !{errorCode}">
     <div id="xm-available-forms-wrapper">
         <f:for each="{forms}" as="group" key="groupName">
             <div style="--typo3-component-box-shadow:none">

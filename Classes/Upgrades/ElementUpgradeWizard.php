@@ -11,7 +11,6 @@ use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 #[UpgradeWizard('xmFormcycle_migrateElements')]
 class ElementUpgradeWizard implements UpgradeWizardInterface
 {
-
     public function getTitle(): string
     {
         return 'Formcycle element upgrade wizard';

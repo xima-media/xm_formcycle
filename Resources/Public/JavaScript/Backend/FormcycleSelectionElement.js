@@ -6,6 +6,13 @@ export default class FormcycleSelectionElement {
 
   constructor(itemFormElID = '') {
     this.hiddenInputElement = document.querySelector('#' + itemFormElID)
+
+    const hasError = document.querySelector('#xm-formcycle-forms .callout-danger')
+    if (hasError) {
+      console.debug('Formcycle configuration has errors, aborting')
+      return
+    }
+
     this.init()
   }
 
