@@ -1,7 +1,7 @@
 {
-	"name": "xima-media/xm_formcycle",
+	"name": "xima/xima-typo3-formcycle",
 	"type": "typo3-cms-extension",
-	"description": "Integrator für FORMCYCLE",
+	"description": "TYPO3 extension to include your XIMA Formcycle forms",
 	"homepage": "https://www.xima.de",
 	"license": [
 		"GPL-2.0+"
@@ -15,7 +15,7 @@
 		{
 			"name": "Maik Schneider",
 			"role": "Developer",
-			"email": "schneider.maik@me.com"
+			"email": "maik.schneider@xima.de"
 		}
 	],
 	"require": {

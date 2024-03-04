@@ -7,5 +7,5 @@ defined('TYPO3') || die('Access denied.');
 ExtensionManagementUtility::addStaticFile(
     'xm_formcycle',
     'Configuration/TypoScript',
-    'FORMCYCLE'
+    'Formcycle'
 );
