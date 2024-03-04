@@ -1,0 +1,19 @@
+{
+  "name": "xm-formcycle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "copy:jquery": "cp node_modules/jquery/dist/jquery.min.js Resources/Public/JavaScript/Frontend",
+    "copy:jqueryUi": "cp node_modules/jquery-ui/dist/jquery-ui.min.js Resources/Public/JavaScript/Frontend",
+    "copy:response": "cp node_modules/jquery-ui/dist/jquery-ui.min.js Resources/Public/JavaScript/Frontend",
+    "build": "npm run copy:jquery & npm run copy:jqueryUi"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "jquery-ui": "^1.13.2"
+  }
+}

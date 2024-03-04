@@ -18,7 +18,10 @@ class AjaxProcessor extends AbstractProcessor
         /** @var PageRenderer $pageRenderer */
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         if ($this->settings->loadFormcycleJquery) {
-            $pageRenderer->addJsFooterFile('EXT:xm_formcycle/Resources/Public/JavaScript/Frontend/jquery-3.7.1.min.js');
+            $pageRenderer->addJsFooterFile('EXT:xm_formcycle/Resources/Public/JavaScript/Frontend/jquery.min.js');
+        }
+        if ($this->settings->loadFormcycleJqueryUi) {
+            $pageRenderer->addJsFooterFile('EXT:xm_formcycle/Resources/Public/JavaScript/Frontend/jquery-ui.min.js');
         }
         $pageRenderer->addJsFooterFile('EXT:xm_formcycle/Resources/Public/JavaScript/Frontend/FormcycleAjax.js');
 

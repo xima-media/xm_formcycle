@@ -17,7 +17,7 @@ class ElementSettings
 
     public bool $loadFormcycleJquery = true;
 
-    public bool $loadFormcycleJqueryUi = true;
+    public bool $loadFormcycleJqueryUi = false;
 
     public bool $loadResponseJs = false;
 
