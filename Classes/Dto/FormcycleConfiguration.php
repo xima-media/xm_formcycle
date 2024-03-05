@@ -9,15 +9,9 @@ final class FormcycleConfiguration
 {
     private string $formCycleUrl;
 
-    private string $formCycleFrontendUrl;
-
-    private string $formCycleUser;
-
-    private string $formCyclePass;
-
     private IntegrationMode $integrationMode;
 
-    private string $formCycleClientId;
+    private string $formcycleClientId;
 
     /**
      * @throws FormcycleConfigurationException
@@ -25,38 +19,20 @@ final class FormcycleConfiguration
     public static function createFromExtensionConfiguration(array $extConfiguration): self
     {
         $config = new self();
-        $config->formCycleUrl = rtrim($extConfiguration['formCycleUrl'] ?? '', '/');
+        $config->formCycleUrl = rtrim($extConfiguration['formcycleUrl'] ?? '', '/');
         if (!$config->formCycleUrl || !GeneralUtility::isValidUrl($config->formCycleUrl)) {
             throw new FormcycleConfigurationException(
-                'Invalid formCycleUrl "' . $config->formCycleUrl . '"',
+                'Invalid formcycleUrl "' . $config->formCycleUrl . '"',
                 1709041996
             );
         }
 
-        $config->formCycleUser = $extConfiguration['formCycleUser'] ?? '';
-        if (!$config->formCycleUser) {
-            throw new FormcycleConfigurationException('No formCycleUser set', 1709052037);
-        }
-
-        $config->formCyclePass = $extConfiguration['formCyclePass'] ?? '';
-        if (!$config->formCyclePass) {
-            throw new FormcycleConfigurationException('No formCyclePass set', 1709538727);
-        }
-
-        $config->formCycleClientId = $extConfiguration['formCycleClientId'] ?? '';
-        if (!$config->formCycleClientId) {
-            throw new FormcycleConfigurationException('No formCycleClientId set', 1709538688);
+        $config->formcycleClientId = $extConfiguration['formcycleClientId'] ?? '';
+        if (!$config->formcycleClientId) {
+            throw new FormcycleConfigurationException('No formcycleClientId set', 1709538688);
         }
 
         $config->integrationMode = IntegrationMode::tryFrom($extConfiguration['integrationMode'] ?? '') ?? IntegrationMode::Integrated;
-
-        $config->formCycleFrontendUrl = $extConfiguration['formCycleFrontendUrl'] ?? '';
-        if ($config->formCycleFrontendUrl && !GeneralUtility::isValidUrl($config->formCycleFrontendUrl)) {
-            throw new FormcycleConfigurationException(
-                'Invalid formCycleFrontendUrl "' . $config->formCycleFrontendUrl . '"',
-                1709052152
-            );
-        }
 
         return $config;
     }
@@ -64,11 +40,9 @@ final class FormcycleConfiguration
     public function getFormListUrl(): string
     {
         return sprintf(
-            '%s/plugin?name=FormList&xfc-rp-username=%s&xfc-rp-password=%s&xfc-rp-client=%s&format=json',
+            '%s/plugin?name=FormListJson&xfc-rp-client=%s',
             $this->formCycleUrl,
-            $this->formCycleUser,
-            $this->formCyclePass,
-            $this->formCycleClientId,
+            $this->formcycleClientId,
         );
     }
 
@@ -79,7 +53,7 @@ final class FormcycleConfiguration
 
     public function getAdminUrl(): string
     {
-        return $this->formCycleFrontendUrl ?: $this->formCycleUrl;
+        return $this->formCycleUrl;
     }
 
     public function getIntegrationMode(): IntegrationMode

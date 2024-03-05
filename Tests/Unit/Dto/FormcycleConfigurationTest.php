@@ -11,11 +11,8 @@ use Xima\XmFormcycle\Error\FormcycleConfigurationException;
 class FormcycleConfigurationTest extends UnitTestCase
 {
     private array $validExtensionConfiguration = [
-        'formCycleUrl' => 'https://example.com',
-        'formCycleFrontendUrl' => '',
-        'formCycleUser' => 'username',
-        'formCyclePass' => 'password',
-        'formCycleClientId' => '123456',
+        'formcycleUrl' => 'https://example.com',
+        'formcycleClientId' => '123456',
         'integrationMode' => '',
     ];
 
@@ -34,31 +31,7 @@ class FormcycleConfigurationTest extends UnitTestCase
     {
         $this->expectException(FormcycleConfigurationException::class);
         $this->expectExceptionCode(1709041996);
-        $this->validExtensionConfiguration['formCycleUrl'] = 'x';
-        FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
-    }
-
-    public function testInvalidFormcycleFrontendUrl(): void
-    {
-        $this->expectException(FormcycleConfigurationException::class);
-        $this->expectExceptionCode(1709052152);
-        $this->validExtensionConfiguration['formCycleFrontendUrl'] = 'invalid url';
-        FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
-    }
-
-    public function testMissingUsername(): void
-    {
-        $this->expectException(FormcycleConfigurationException::class);
-        $this->expectExceptionCode(1709052037);
-        $this->validExtensionConfiguration['formCycleUser'] = '';
-        FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
-    }
-
-    public function testMissingPassword(): void
-    {
-        $this->expectException(FormcycleConfigurationException::class);
-        $this->expectExceptionCode(1709538727);
-        $this->validExtensionConfiguration['formCyclePass'] = '';
+        $this->validExtensionConfiguration['formcycleUrl'] = 'x';
         FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
     }
 
@@ -66,7 +39,7 @@ class FormcycleConfigurationTest extends UnitTestCase
     {
         $this->expectException(FormcycleConfigurationException::class);
         $this->expectExceptionCode(1709538688);
-        $this->validExtensionConfiguration['formCycleClientId'] = '';
+        $this->validExtensionConfiguration['formcycleClientId'] = '';
         FormcycleConfiguration::createFromExtensionConfiguration($this->validExtensionConfiguration);
     }
 
