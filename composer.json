@@ -50,6 +50,7 @@
 		"php:stan": "php vendor/bin/phpstan --generate-baseline=phpstan-baseline.neon --allow-empty-baseline",
 		"xml:lint": "find . -name '*.xlf' ! -path './vendor/*' ! -path './var/*' | xargs -r xmllint --schema vendor/symfony/translation/Resources/schemas/xliff-core-1.2-transitional.xsd --noout",
 		"typoscript:lint": "php vendor/bin/typoscript-lint",
+		"test:functional": "php vendor/bin/phpunit -c phpunit.functional.xml",
 		"test:unit": "php vendor/bin/phpunit -c phpunit.unit.xml"
 	},
 	"config": {

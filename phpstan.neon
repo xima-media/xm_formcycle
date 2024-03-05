@@ -12,10 +12,7 @@ parameters:
         - vendor/autoload.php
 
     paths:
-        - .
-
-    excludePaths:
-        - vendor
-        - var
-        - php-cs-fixer.php
-        - ext_emconf.php
+        - Classes
+        - Configuration
+        - Tests
+        - Resources

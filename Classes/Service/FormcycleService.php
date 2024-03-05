@@ -59,7 +59,7 @@ final class FormcycleService
     public function getAvailableForms(): array
     {
         $forms = $this->cache->get('availableForms');
-        if ($forms === false) {
+        if (!$forms) {
             $forms = $this->loadAvailableForms();
         }
 
