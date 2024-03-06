@@ -10,7 +10,6 @@ actor_suffix: Tester
 extensions:
   enabled:
     - Codeception\Extension\RunFailed
-    - Xima\XmFormcycle\Tests\Acceptance\Support\Extensions\BackendFormcycleEnvironment
 
 params:
   - env
@@ -47,12 +46,4 @@ suites:
             password: 'root'
             populate: true
             waitlock: 5
-            dump:
-              - 'Tests/Acceptance/Fixtures/pages.sql'
-              - 'Tests/Acceptance/Fixtures/sys_template.sql'
         - Asserts
-        - \TYPO3\TestingFramework\Core\Acceptance\Helper\Acceptance
-        - \TYPO3\TestingFramework\Core\Acceptance\Helper\Login:
-            sessions:
-              editor: ff83dfd81e20b34c27d3e97771a4525a
-              admin: 886526ce72b86870739cc41991144ec1

@@ -55,7 +55,11 @@
 		"xml:lint": "find . -name '*.xlf' ! -path './vendor/*' ! -path './var/*' | xargs -r xmllint --schema vendor/symfony/translation/Resources/schemas/xliff-core-1.2-transitional.xsd --noout",
 		"typoscript:lint": "php vendor/bin/typoscript-lint",
 		"test:functional": "php vendor/bin/phpunit -c phpunit.functional.xml",
-		"test:unit": "php vendor/bin/phpunit -c phpunit.unit.xml"
+		"test:unit": "php vendor/bin/phpunit -c phpunit.unit.xml",
+		"test:acceptance": [
+			".ddev/commands/web/init-typo3",
+			"codecept run --steps"
+		]
 	},
 	"config": {
 		"sort-packages": true,

@@ -1,6 +1,6 @@
 <?php
 
-//[STAMP] 57f4eb16c953113ed11974ff3edce984
+//[STAMP] b7115042202d2578638626790ca05fca
 // phpcs:ignoreFile
 namespace Xima\XmFormcycle\Tests\Acceptance\Support\_generated;
 
@@ -4969,36 +4969,5 @@ trait AcceptanceTesterActions
     public function markTestSkipped(string $message = '')
     {
         return $this->getScenario()->runStep(new \Codeception\Step\Action('markTestSkipped', func_get_args()));
-    }
-
-    /**
-     * [!] Method is generated. Documentation taken from corresponding module.
-     *
-     * Check browser console for errors and fail
-     *
-     * See Codeception\Module\WebDriver::logJSErrors
-     * @see \TYPO3\TestingFramework\Core\Acceptance\Helper\Acceptance::assertEmptyBrowserConsole()
-     */
-    public function assertEmptyBrowserConsole()
-    {
-        return $this->getScenario()->runStep(new \Codeception\Step\Action('assertEmptyBrowserConsole', func_get_args()));
-    }
-
-    /**
-     * [!] Method is generated. Documentation taken from corresponding module.
-     *
-     * Set a backend user session cookie and load the backend entrypoint.
-     *
-     * Use this action to change the backend user and avoid switching between users in the backend module
-     * "Backend Users" as this will change the user session ID and make it useless for subsequent calls of this action.
-     *
-     * @param string $role The backend user who should be logged in.
-     * @param int|float $waitTime Used waitTime in seconds between single steps. Default: 0.5
-     * @throws ConfigurationException
-     * @see \TYPO3\TestingFramework\Core\Acceptance\Helper\Login::useExistingSession()
-     */
-    public function useExistingSession(string $role, int|float $waitTime = 0.5)
-    {
-        return $this->getScenario()->runStep(new \Codeception\Step\Action('useExistingSession', func_get_args()));
     }
 }
