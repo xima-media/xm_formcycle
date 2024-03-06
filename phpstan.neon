@@ -16,3 +16,6 @@ parameters:
         - Configuration
         - Tests
         - Resources
+
+    excludePaths:
+        - Tests/Acceptance/Support/_generated/*
