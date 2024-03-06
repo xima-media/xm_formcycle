@@ -13,9 +13,18 @@ database:
     version: "10.4"
 use_dns_when_possible: true
 composer_version: "2"
-web_environment: []
 webimage_extra_packages: [libxml2-utils]
+omit_containers: [ddev-ssh-agent]
 nodejs_version: "20"
+disable_settings_management: true
+web_environment:
+  - TESTING_DOMAIN=$DDEV_HOSTNAME
+  - XDEBUG_MODE=coverage
+  - TYPO3_CONTEXT=Development/DDEV
+  - typo3DatabaseHost=db
+  - typo3DatabaseUsername=root
+  - typo3DatabasePassword=root
+  - typo3DatabaseName=db
 
 # Key features of DDEV's config.yaml:
 

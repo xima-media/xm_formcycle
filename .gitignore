@@ -1,5 +1,5 @@
-.Build
 .idea
+coverage
 public/.htaccess
 public/_assets
 public/fileadmin
@@ -12,3 +12,4 @@ var
 vendor/
 composer.lock
 package.lock
+Tests/Acceptance/_output

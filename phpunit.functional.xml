@@ -13,16 +13,10 @@
          stopOnIncomplete="false"
          stopOnSkipped="false"
 >
-    <php>
-        <env name="typo3DatabaseName" value="db"/>
-        <env name="typo3DatabaseHost" value="db"/>
-        <env name="typo3DatabaseUsername" value="root"/>
-        <env name="typo3DatabasePassword" value="root"/>
-    </php>
     <coverage>
         <report>
-            <php outputFile=".Build/coverage/php/functional.cov"/>
-            <html outputDirectory=".Build/coverage/html/functional/"/>
+            <php outputFile="coverage/php/functional.cov"/>
+            <html outputDirectory="coverage/html/functional/"/>
             <text outputFile="php://stdout" showUncoveredFiles="true"/>
         </report>
     </coverage>

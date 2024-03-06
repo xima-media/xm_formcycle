@@ -1,0 +1,58 @@
+namespace: Xima\XmFormcycle\Tests\Acceptance
+support_namespace: Support
+paths:
+  tests: Tests/Acceptance
+  output: Tests/Acceptance/_output
+  data: Tests/Acceptance/Support/Data
+  support: Tests/Acceptance/Support
+actor_suffix: Tester
+
+extensions:
+  enabled:
+    - Codeception\Extension\RunFailed
+    - Xima\XmFormcycle\Tests\Acceptance\Support\Extensions\BackendFormcycleEnvironment
+
+params:
+  - env
+
+coverage:
+  enabled: false
+  include:
+    - Classes/*
+
+suites:
+  Acceptance:
+    actor: AcceptanceTester
+    path: .
+    modules:
+      enabled:
+        - WebDriver:
+            url: https://%TESTING_DOMAIN%/
+            browser: chrome
+            wait: 5
+            host: selenium-chrome
+            port: 4444
+            capabilities:
+              acceptInsecureCerts: true
+              chromeOptions:
+                args: [ '--disable-dev-shm-usage' ]
+                prefs:
+                  profile.content_settings.exceptions.clipboard:
+                    '[*.],*':
+                      last_modified: 1688930908
+                      setting: 1
+        - Db:
+            dsn: 'mysql:host=db;dbname=db'
+            user: 'root'
+            password: 'root'
+            populate: true
+            waitlock: 5
+            dump:
+              - 'Tests/Acceptance/Fixtures/pages.sql'
+              - 'Tests/Acceptance/Fixtures/sys_template.sql'
+        - Asserts
+        - \TYPO3\TestingFramework\Core\Acceptance\Helper\Acceptance
+        - \TYPO3\TestingFramework\Core\Acceptance\Helper\Login:
+            sessions:
+              editor: ff83dfd81e20b34c27d3e97771a4525a
+              admin: 886526ce72b86870739cc41991144ec1
