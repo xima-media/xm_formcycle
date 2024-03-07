@@ -8,6 +8,8 @@ use Xima\XmFormcycle\Tests\Acceptance\Support\Helper\ShadowDomHelper;
 
 class ElementCest
 {
+    public const CONTENT_WIZARD = 'typo3-backend-new-content-element-wizard';
+
     public function _before(AcceptanceTester $I)
     {
         $I->amOnPage('/typo3/');
@@ -21,8 +23,11 @@ class ElementCest
     }
 
     // tests
-    public function elementIsInWizard(AcceptanceTester $I, PageTreeHelper $pageTree, ShadowDomHelper $domHelper): void
-    {
+    public function createElementAndSave(
+        AcceptanceTester $I,
+        PageTreeHelper $pageTree,
+        ShadowDomHelper $domHelper
+    ): void {
         $I->click('Page');
         $I->waitForElementVisible(PageTreeHelper::$pageTreeFrameSelector);
         $pageTree->clickElement('Main');
@@ -33,12 +38,17 @@ class ElementCest
         $I->switchToIFrame();
         $I->waitForElementVisible('typo3-backend-new-content-element-wizard');
 
-        $domHelper->clickShadowDomElement('typo3-backend-new-content-element-wizard', 'button.navigation-toggle');
-        $domHelper->clickShadowDomElement('typo3-backend-new-content-element-wizard', 'button.navigation-item:nth-child(3)');
+        $domHelper->clickShadowDomElement(self::CONTENT_WIZARD, 'button.navigation-toggle');
+        $domHelper->clickShadowDomElement(self::CONTENT_WIZARD, 'button.navigation-item:nth-child(3)');
 
+        // See and select element
         $I->see('Formcycle');
         $I->see('Include a XIMA® FormCycle form');
+        $domHelper->clickShadowDomElement(self::CONTENT_WIZARD, 'button[data-identifier="forms_formcycle"]');
 
-        $I->makeScreenshot();
+        // Fill and save element
+        $I->switchToContentFrame();
+        $I->fillField('input[data-formengine-input-name*="[header]"]', 'Element1');
+        $I->click('Save');
     }
 }
