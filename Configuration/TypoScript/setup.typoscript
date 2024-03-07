@@ -15,3 +15,6 @@ tt_content.formcycle {
     1709129512 = formcycle-integrated
   }
 }
+
+formcycle_ajax = PAGE
+formcycle_ajax.typeNum = 1464705954
