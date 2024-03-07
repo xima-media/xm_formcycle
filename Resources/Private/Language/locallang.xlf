@@ -30,22 +30,13 @@
 				<source>No response from the endpoint when attempting to fetch available Formcycle forms</source>
 			</trans-unit>
 			<trans-unit id="error.1709041996.message">
-				<source>The extension configuration "formCycleUrl" is missing or invalid</source>
-			</trans-unit>
-			<trans-unit id="error.1709052037.message">
-				<source>The extension configuration "formCycleUser" is missing</source>
-			</trans-unit>
-			<trans-unit id="error.1709538727.message">
-				<source>The extension configuration "formCyclePass" is missing</source>
+				<source>The extension configuration "formcycleUrl" is missing or invalid</source>
 			</trans-unit>
 			<trans-unit id="error.1709538688.message">
-				<source>The extension configuration "formCycleClientId" is missing</source>
+				<source>The extension configuration "formcycleClientId" is missing</source>
 			</trans-unit>
 			<trans-unit id="error.1709052040.message">
-				<source>The extension configuration "integrationMode" is invalid. Valid options are: "integrated", "iFrame" or "AJAX".</source>
-			</trans-unit>
-			<trans-unit id="error.1709052152.message">
-				<source>The extension configuration "formCycleFrontendUrl" is invalid</source>
+				<source>The extension configuration "defaultIntegrationMode" is invalid. Valid options are: "integrated", "iFrame" or "AJAX".</source>
 			</trans-unit>
 			<trans-unit id="defaultGroupNames.0">
 				<source>Ungrouped</source>
