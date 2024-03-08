@@ -144,7 +144,8 @@ final class FormcycleService
             'xfc-rp-useui' => 0,
             'xfc-rp-usebs' => $settings->loadResponseJs ? 1 : 0,
             'xfc-pp-external' => true,
-            'xfc-pp-base-url' => $this->configuration->getFormCycleUrl(),
+            'xfc-pp-base-url' => '',
+            'xfc-pp-use-base-url' => false,
             'xfc-rp-keepalive' => true,
         ];
 
