@@ -130,6 +130,8 @@ final class FormcycleService
 
         $params = $this->getCommonQueryParams($settings);
         $params['xfc-height-changed-evt'] = true;
+        $params['xfc-rp-usejq'] = 1;
+        $params['xfc-rp-useui'] = 1;
 
         return $url . '?' . http_build_query($params);
     }
@@ -138,8 +140,8 @@ final class FormcycleService
     {
         $params = [
             'xfc-rp-inline' => true,
-            'xfc-rp-usejq' => $settings->loadFormcycleJquery ? 1 : 0,
-            'xfc-rp-useui' => $settings->loadFormcycleJqueryUi ? 1 : 0,
+            'xfc-rp-usejq' => 0,
+            'xfc-rp-useui' => 0,
             'xfc-rp-usebs' => $settings->loadResponseJs ? 1 : 0,
             'xfc-pp-external' => true,
             'xfc-pp-base-url' => $this->configuration->getFormCycleUrl(),
@@ -175,7 +177,6 @@ final class FormcycleService
 
         $params = $this->getCommonQueryParams($settings);
         $params['xfc-rp-form-only'] = true;
-        $params['xfc-rp-usejq'] = 0;
 
         return $url . '?' . http_build_query($params);
     }
