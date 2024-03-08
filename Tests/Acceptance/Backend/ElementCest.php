@@ -2,9 +2,11 @@
 
 namespace Xima\XmFormcycle\Tests\Acceptance\Backend;
 
+use Codeception\Attribute\Depends;
 use Xima\XmFormcycle\Tests\Acceptance\Support\AcceptanceTester;
-use Xima\XmFormcycle\Tests\Acceptance\Support\Helper\PageTreeHelper;
-use Xima\XmFormcycle\Tests\Acceptance\Support\Helper\ShadowDomHelper;
+use Xima\XmFormcycle\Tests\Acceptance\Support\Helper\ExtensionConfiguration;
+use Xima\XmFormcycle\Tests\Acceptance\Support\Helper\PageTree;
+use Xima\XmFormcycle\Tests\Acceptance\Support\Helper\ShadowDom;
 
 class ElementCest
 {
@@ -22,14 +24,47 @@ class ElementCest
         $I->seeCookie('be_typo_user');
     }
 
-    // tests
-    public function createElementAndSave(
+    #[Depends('createElementAndSave')]
+    public function seeExtensionConfigurationError(
         AcceptanceTester $I,
-        PageTreeHelper $pageTree,
-        ShadowDomHelper $domHelper
+        PageTree $pageTree
+    ): void {
+        $this->navigateToElementTab($I, $pageTree);
+        $I->see('Configuration error');
+        $I->seeElement('.callout-danger');
+    }
+
+    #[Depends('createElementAndSave')]
+    public function seeFormSelection(
+        AcceptanceTester $I,
+        PageTree $pageTree,
+        ExtensionConfiguration $extensionConfiguration
+    ): void {
+        $extensionConfiguration->write('formcycleUrl', 'https://pro.form.cloud/formcycle');
+        $extensionConfiguration->write('formcycleClientId', '2252');
+        $this->navigateToElementTab($I, $pageTree);
+        $I->dontSee('Configuration error');
+    }
+
+    private function navigateToElementTab(
+        AcceptanceTester $I,
+        PageTree $pageTree,
     ): void {
         $I->click('Page');
-        $I->waitForElementVisible(PageTreeHelper::$pageTreeFrameSelector);
+        $I->waitForElementVisible(PageTree::$pageTreeFrameSelector);
+        $pageTree->clickElement('Main');
+        $I->switchToContentFrame();
+        $I->click('Element1');
+        $I->click('Formcycle');
+    }
+
+    public function createElementAndSave(
+        AcceptanceTester $I,
+        PageTree $pageTree,
+        ShadowDom $domHelper
+    ): void {
+        $I->click('Page');
+        $I->waitForElementVisible(PageTree::$pageTreeFrameSelector);
         $pageTree->clickElement('Main');
 
         // open wizard

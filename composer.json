@@ -26,6 +26,7 @@
 	"require-dev": {
 		"bk2k/bootstrap-package": "^14.0",
 		"codeception/module-asserts": "^3.0",
+		"codeception/module-cli": "^2.0",
 		"codeception/module-db": "^3.1",
 		"codeception/module-phpbrowser": "^3.0",
 		"codeception/module-webdriver": "^4.0",
