@@ -5,7 +5,7 @@ namespace Xima\XmFormcycle\Tests\Acceptance\Support\Helper;
 use TYPO3\TestingFramework\Core\Acceptance\Helper\AbstractPageTree;
 use Xima\XmFormcycle\Tests\Acceptance\Support\AcceptanceTester;
 
-final class PageTreeHelper extends AbstractPageTree
+final class PageTree extends AbstractPageTree
 {
     /**
      * @var AcceptanceTester
@@ -20,6 +20,6 @@ final class PageTreeHelper extends AbstractPageTree
     public function clickElement(string $name): void
     {
         $context = $this->getPageTreeElement();
-        $context->findElement(\Facebook\WebDriver\WebDriverBy::xpath('//*[text()="Main"]'))->click();
+        $context->findElement(\Facebook\WebDriver\WebDriverBy::xpath('//*[text()="' . $name . '"]'))->click();
     }
 }

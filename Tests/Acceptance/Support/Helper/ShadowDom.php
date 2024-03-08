@@ -5,7 +5,7 @@ namespace Xima\XmFormcycle\Tests\Acceptance\Support\Helper;
 use Codeception\Exception\ModuleException;
 use Codeception\Module\WebDriver;
 
-class ShadowDomHelper extends \Codeception\Module
+class ShadowDom extends \Codeception\Module
 {
     /**
      * @throws ModuleException
