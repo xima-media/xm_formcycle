@@ -44,6 +44,7 @@ class ElementCest
         $extensionConfiguration->write('formcycleClientId', '2252');
         $this->navigateToElementTab($I, $pageTree);
         $I->dontSee('Configuration error');
+        $I->waitForElementVisible('#xm-available-forms-wrapper');
     }
 
     private function navigateToElementTab(
