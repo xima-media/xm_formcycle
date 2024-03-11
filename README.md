@@ -1,46 +1,79 @@
-Formcycle
-=========
+<div align="center">
 
-Content
--------
-- [What does it do?](#What-does-it-do)
-- [Author](#Author)
-- [Dependencies](#Dependencies)
-- [Installation / Configuration](#Installation)
--- [TypoScript Setup](#TypoScript-Setup)
--- [TypoScript Constants](#TypoScript-Constants)
-- [Plug-Ins](#Plug-ins)
-- [Help](#Help)
+![Extension icon](Resources/Public/Icons/Extension.svg)
 
-## <a name="What-does-it-do"></a>What does it do?
-Connects to your form created with XIMA® FormCycle (form management with professional form designer, process management, inbox and more features).
+# TYPO3 extension `xm_formcycle`
 
-## <a name="Author"></a>Author
-XIMA MEDIA GmbH ([Website](https://www.xima.de/))
- 
-## <a name="Dependencies"></a>Dependencies
-- TYPO3-Extensions: see [ext_emconf.php](tree/Source/xm_slider/ext_emconf.php) (section "constraints")
- 
-## <a name="Installation"></a>Installation / Configuration
-1. Installation via Extension Manager or by copying into typo3conf/ext/xm_formcycle.
-2. Set Extension configuration via Extension Manager
-2. Include static templates
-3. Configure (Constants-Editor, Template-Settings, Plug-In-Settings)
+[![Supported TYPO3 versions](https://typo3-badges.dev/badge/xm_formcycle/typo3/shields.svg)](https://extensions.typo3.org/extension/xm_formcycle)
 
->
-> For further information see our [wiki page](https://help.formcycle.eu/xwiki/bin/view/Formcycle/CMSExtension/Typo3Extension/).
->
+</div>
 
-### <a name="TypoScript-Setup"></a>TypoScript Setup
-- **tx_xmformcycle_ajax**
-    AJAX configuration with typeNum 1464705954.
-### <a name="TypoScript-Constants"></a>TypoScript Constants
-- **plugin.tx_xmformcycle.settings.enableJs**
-    Including JavaScript is the default. But you can disable it (=0) for your own asset management.
- 
-## <a name="Plug-ins"></a>Plug-Ins
-- FormCycle Integrator: Default Plug-In to show your form 
- 
-## <a name="Help"></a>Help
-Do you found an error, need help or have any suggestions for us?  
-Please send us an e-mail to: support@formcycle.de
+A TYPO3 extension that connects to [XIMA® Formcycle](https://www.formcycle.eu/). Select your created forms and embed
+them into your TYPO3 site.
+
+## Requirements
+
+* Formcycle version 8 + installed plugin `Formularliste`
+* PHP 8.1+
+
+## Installation
+
+### Composer
+
+```bash
+composer require xima/xima-typo3-formcycle
+```
+
+### TER
+
+[![TER version](https://typo3-badges.dev/badge/xm_formcycle/version/shields.svg)](https://extensions.typo3.org/extension/xm_formcycle)
+
+Download the zip file from
+[TYPO3 extension repository (TER)](https://extensions.typo3.org/extension/xm_formcycle).
+
+## Configuration
+
+After installation, enter your login data via extension configuration and include the TypoScript template for the
+frontend rendering.
+
+### 1. Extension configuration
+
+Set your Formcycle credentials in the extension configuration via TYPO3 backend or in your `config/system/settings.php`:
+
+```php
+'EXTENSIONS' => [
+    'xm_formcycle' => [
+        'formcycleUrl' => 'https://pro.formcloud.de/',
+        'formcycleClientId' => '4231',
+    ],
+]
+```
+
+### 2. TypoScript include
+
+Include the static TypoScript template "Formcycle" or directly import it in your sitepackage:
+
+```typo3_typoscript
+@import 'EXT:xm_formcycle/Configuration/TypoScript/setup.typoscript'
+```
+
+## Developer
+
+If you want to modify the [fluid template](Resources/Private/Templates/Formcycle.html), add template paths via
+TypoScript constants:
+
+```typo3_typoscript
+plugin.tx_xmformcycle {
+    view {
+        templateRootPath = EXT:your_ext/Resources/Private/Templates
+        partialRootPath = EXT:your_ext/Resources/Private/Partials
+        layoutRootPath = EXT:your_ext/Resources/Private/Layouts
+    }
+}
+```
+
+Copy and modify the `Formcycle.html` to the Templates directory.
+
+## License
+
+This project is licensed under [GNU General Public License 2.0 (or later)](LICENSE.md).

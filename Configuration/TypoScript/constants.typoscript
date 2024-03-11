@@ -1,25 +1,7 @@
 plugin.tx_xmformcycle {
-	view {
-		# VERSION 7.x.x
-		templateRootPath = EXT:xm_formcycle/Resources/Private/Templates/
-		partialRootPath = EXT:xm_formcycle/Resources/Private/Partials/
-		layoutRootPath = EXT:xm_formcycle/Resources/Private/Layouts/
-
-		# Version 8.x.x
-		# cat=plugin.tx_xmformcycle/file; type=string; label=Path to template root (FE)
-		templateRootPaths.10 = EXT:xm_formcycle/Resources/Private/Templates/
-		# cat=plugin.tx_xmformcycle/file; type=string; label=Path to template partials (FE)
-		partialRootPaths.10 = EXT:xm_formcycle/Resources/Private/Partials/
-		# cat=plugin.tx_xmformcycle/file; type=string; label=Path to template layouts (FE)
-		layoutRootPaths.10 = EXT:xm_formcycle/Resources/Private/Layouts/
-	}
-	persistence {
-		# cat=plugin.tx_xmformcycle//a; type=string; label=Default storage PID
-		storagePid =
-	}
-	settings {
-		# customsubcategory=assets=Assets
-		# cat=plugin.tx_xmformcycle/assets/10; type=boolean; label=Include JavaScript (disable it for your own asset management)
-		enableJs = 1
-	}
+  view {
+    templateRootPath =
+    partialRootPath =
+    layoutRootPath =
+  }
 }

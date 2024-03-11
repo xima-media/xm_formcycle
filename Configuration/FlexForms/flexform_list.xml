@@ -1,193 +1,153 @@
 <T3DataStructure>
-    <meta>
-        <langDisable>1</langDisable>
-    </meta>
     <sheets>
-        <sheetGeneralOptions>
-            <ROOT>
-                <TCEforms>
-                    <sheetTitle>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab1_name</sheetTitle>
-                </TCEforms>
-                <type>array</type>
-                <el>
-                    <settings.xf.xfc_p_id>
-                        <TCEforms>
-                            <label>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab1_select_projekt</label>
-                            <config>
-                                <type>input</type>
-                                <size>10</size>
-                                <eval>trim</eval>
-                            </config>
-                        </TCEforms>
-                    </settings.xf.xfc_p_id>
-                    <settings.xf.integrationMode>
-                        <TCEforms>
-                            <label>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab1_select_integrationMode</label>
-                            <config>
-                                <type>select</type>
-                                <renderType>selectSingle</renderType>
-                                <default>default</default>
-                                <items type="array">
-                                    <numIndex index="0" type="array">
-                                        <numIndex index="0">LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab1_select_integrationMode_default</numIndex>
-                                        <numIndex index="1">default</numIndex>
-                                    </numIndex>
-                                    <numIndex index="1" type="array">
-                                        <numIndex index="0">integrated</numIndex>
-                                        <numIndex index="1">integrated</numIndex>
-                                    </numIndex>
-                                    <numIndex index="2" type="array">
-                                        <numIndex index="0">AJAX (TYPO3)</numIndex>
-                                        <numIndex index="1">AJAX (TYPO3)</numIndex>
-                                    </numIndex>
-                                    <numIndex index="3" type="array">
-                                        <numIndex index="0">AJAX (FORMCYCLE)</numIndex>
-                                        <numIndex index="1">AJAX (FORMCYCLE)</numIndex>
-                                    </numIndex>
-                                    <numIndex index="4" type="array">
-                                        <numIndex index="0">iFrame</numIndex>
-                                        <numIndex index="1">iFrame</numIndex>
-                                    </numIndex>
-                                </items>
-                            </config>
-                        </TCEforms>
-                    </settings.xf.integrationMode>
-                    <userfunc_field113>
-                        <TCEforms>
-                            <label></label>
-                            <config>
-                                <type>user</type>
-                                <renderType>startNewElement</renderType>
-                            </config>
-                        </TCEforms>
-                    </userfunc_field113>
-                    <userfunc_field_help_1>
-                        <TCEforms>
-                            <label></label>
-                            <config>
-                                <type>user</type>
-                                <renderType>startOpenElement</renderType>
-                            </config>
-                        </TCEforms>
-                    </userfunc_field_help_1>
-                </el>
-            </ROOT>
-        </sheetGeneralOptions>
         <sheetShapeAreaOptions>
             <ROOT>
                 <TCEforms>
-                    <sheetTitle>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab2_name</sheetTitle>
+                    <sheetTitle>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.sheet.responses
+                    </sheetTitle>
                 </TCEforms>
                 <type>array</type>
                 <el>
                     <settings.xf.siteok>
                         <TCEforms>
-                            <label>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab2_response_success</label>
+                            <label>
+                                LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.responses.success
+                            </label>
+                            <description>
+                                LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.responses.success.description
+                            </description>
                             <config>
                                 <type>group</type>
                                 <internal_type>db</internal_type>
                                 <allowed>pages</allowed>
                                 <size>1</size>
                                 <maxitems>1</maxitems>
-                                <default>none</default>
-                                <show_thumbs>0</show_thumbs>
+                                <default>0</default>
                             </config>
                         </TCEforms>
                     </settings.xf.siteok>
 
                     <settings.xf.siteerror>
                         <TCEforms>
-                            <label>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab2_response_error</label>
+                            <label>
+                                LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.responses.error
+                            </label>
+                            <description>
+                                LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.responses.error.description
+                            </description>
                             <config>
                                 <type>group</type>
                                 <internal_type>db</internal_type>
                                 <allowed>pages</allowed>
                                 <size>1</size>
                                 <maxitems>1</maxitems>
-                                <show_thumbs>0</show_thumbs>
+                                <default>0</default>
                             </config>
                         </TCEforms>
                     </settings.xf.siteerror>
-                    <userfunc_field_help_2>
-                        <TCEforms>
-                            <label></label>
-                            <config>
-                                <type>user</type>
-                                <renderType>startOpenElement</renderType>
-                            </config>
-                        </TCEforms>
-                    </userfunc_field_help_2>
                 </el>
             </ROOT>
         </sheetShapeAreaOptions>
-        <sheetShapeAreaOptions88>
+        <sheetGeneralOptions>
             <ROOT>
                 <TCEforms>
-                    <sheetTitle>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab5_name</sheetTitle>
+                    <sheetTitle>
+                        LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.sheet.include
+                    </sheetTitle>
                 </TCEforms>
                 <type>array</type>
                 <el>
-                    <settings.xf.xfc_p_icss>
+                    <settings.xf.integrationMode>
                         <TCEforms>
-                            <label>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab5_icss</label>
+                            <label>
+                                LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.integration
+                            </label>
+                            <description>
+                                LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.integration.description
+                            </description>
                             <config>
-                                <type>group</type>
-                                <internal_type>folder</internal_type>
-                                <allowed>css</allowed>
-                                <show_thumbs>0</show_thumbs>
-                                <minitems>0</minitems>
-                                <maxitems>10</maxitems>
-                                <size>2</size>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <default>default</default>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.integration.default
+                                        </numIndex>
+                                        <numIndex index="1">default</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.integration.integrated
+                                        </numIndex>
+                                        <numIndex index="1">integrated</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.integration.ajaxTypo3
+                                        </numIndex>
+                                        <numIndex index="1">AJAX (TYPO3)</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.integration.ajaxFormcycle
+                                        </numIndex>
+                                        <numIndex index="1">AJAX (FORMCYCLE)</numIndex>
+                                    </numIndex>
+                                    <numIndex index="4" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.integration.iframe
+                                        </numIndex>
+                                        <numIndex index="1">iFrame</numIndex>
+                                    </numIndex>
+                                </items>
                             </config>
                         </TCEforms>
-                    </settings.xf.xfc_p_icss>
+                    </settings.xf.integrationMode>
                     <settings.xf.useFcjQuery>
-                        <TCEforms>
-                            <label>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab5_useJS_jQuery</label>
-                            <config>
-                                <type>check</type>
-                                <default>1</default>
-                            </config>
-                        </TCEforms>
+                        <label>
+                            LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.jquery
+                        </label>
+                        <description>
+                            LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.jquery.description
+                        </description>
+                        <config>
+                            <type>check</type>
+                            <default>1</default>
+                            <items type="array">
+                                <numIndex index="0" type="array">
+                                    <numIndex index="0">LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.jquery.checkbox</numIndex>
+                                    <numIndex index="1">1</numIndex>
+                                </numIndex>
+                            </items>
+                        </config>
                     </settings.xf.useFcjQuery>
                     <settings.xf.useFcjQueryUi>
-                        <TCEforms>
-                            <label>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab5_useJS_jQueryUi</label>
-                            <config>
-                                <type>check</type>
-                            </config>
-                        </TCEforms>
+                        <label>
+                            LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.jqueryUi
+                        </label>
+                        <description>
+                            LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.jqueryUi.description
+                        </description>
+                        <config>
+                            <type>check</type>
+                            <default>0</default>
+                            <items type="array">
+                                <numIndex index="0" type="array">
+                                    <numIndex index="0">LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.jqueryUi.checkbox</numIndex>
+                                    <numIndex index="1">0</numIndex>
+                                </numIndex>
+                            </items>
+                        </config>
                     </settings.xf.useFcjQueryUi>
-                    <settings.xf.useFcBootStrap>
-                        <TCEforms>
-                            <label>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab5_useJS_bootstrap</label>
-                            <config>
-                                <type>check</type>
-                            </config>
-                        </TCEforms>
-                    </settings.xf.useFcBootStrap>
-                    <userfunc_field_help_1s>
-                        <TCEforms>
-                            <label></label>
-                            <config>
-                                <type>user</type>
-                                <renderType>startOpenElement</renderType>
-                            </config>
-                        </TCEforms>
-                    </userfunc_field_help_1s>
-                </el>
-            </ROOT>
-        </sheetShapeAreaOptions88>
-        <sheetShapeAreaOptions99>
-            <ROOT>
-                <TCEforms>
-                    <sheetTitle>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab6_name</sheetTitle>
-                </TCEforms>
-                <type>array</type>
-                <el>
                     <settings.xf.useFcUrlParams>
                         <TCEforms>
-                            <label>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab6_param_values</label>
+                            <label>
+                                LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.parameters
+                            </label>
+                            <description>
+                                LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.parameters.description
+                            </description>
                             <config>
                                 <type>input</type>
                                 <size>30</size>
@@ -196,35 +156,6 @@
                     </settings.xf.useFcUrlParams>
                 </el>
             </ROOT>
-        </sheetShapeAreaOptions99>
-        <sheetShapeAreaOptions4>
-            <ROOT>
-                <TCEforms>
-                    <sheetTitle>LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xml:tx_xmformcycle_tab4_name</sheetTitle>
-                </TCEforms>
-                <type>array</type>
-                <el>
-                    <userfunc_field4>
-                        <TCEforms>
-                            <label></label>
-                            <config>
-                                <type>user</type>
-                                <dim>212x108</dim>
-                                <renderType>fcElement</renderType>
-                            </config>
-                        </TCEforms>
-                    </userfunc_field4>
-                    <userfunc_field_help_4>
-                        <TCEforms>
-                            <label></label>
-                            <config>
-                                <type>user</type>
-                                <renderType>startOpenElement</renderType>
-                            </config>
-                        </TCEforms>
-                    </userfunc_field_help_4>
-                </el>
-            </ROOT>
-        </sheetShapeAreaOptions4>
+        </sheetGeneralOptions>
     </sheets>
 </T3DataStructure>

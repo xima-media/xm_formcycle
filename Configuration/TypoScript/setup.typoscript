@@ -1,70 +1,20 @@
-plugin.tx_xmformcycle {
-	view {
-		templateRootPaths.10 = {$plugin.tx_xmformcycle.view.templateRootPath}
-		partialRootPaths.10 = {$plugin.tx_xmformcycle.view.partialRootPath}
-		layoutRootPaths.10 = {$plugin.tx_xmformcycle.view.layoutRootPath}
-	}
-	persistence {
-		storagePid = {$plugin.tx_xmformcycle.persistence.storagePid}
-	}
-	features {
-		# uncomment the following line to enable the new Property Mapper.
-		# rewrittenPropertyMapper = 1
-	}
-	settings {
-		enableJs = {$plugin.tx_xmformcycle.settings.enableJs}
-		jsFiles {
-			10 = EXT:Resources/Public/Js/xm_formcycle.js
-		}
-	}
+tt_content.formcycle =< lib.contentElement
+tt_content.formcycle {
+  templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
+  templateRootPaths.2 = {$plugin.tx_xmformcycle.view.templateRootPath}
+  partialRootPaths.1 = EXT:xm_formcycle/Resources/Private/Partials/
+  partialRootPaths.2 = {$plugin.tx_xmformcycle.view.partialRootPath}
+  layoutRootPaths.1 = EXT:xm_formcycle/Resources/Private/Layouts/
+  layoutRootPaths.2 = {$plugin.tx_xmformcycle.view.layoutRootPath}
+
+  templateName = Formcycle
+
+  dataProcessing {
+    1709129505 = formcycle-ajax
+    1709129509 = formcycle-iframe
+    1709129512 = formcycle-integrated
+  }
 }
 
-plugin.tx_xmformcycle._CSS_DEFAULT_STYLE (
-	textarea.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	input.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	.tx-xm-formcycle table {
-		border-collapse:separate;
-		border-spacing:10px;
-	}
-
-	.tx-xm-formcycle table th {
-		font-weight:bold;
-	}
-
-	.tx-xm-formcycle table td {
-		vertical-align:top;
-	}
-)
-
-page.includeJSFooter.tx_xmformcycle = EXT:xm_formcycle/Resources/Public/Js/xm_formcycle.js
-
-tx_xmformcycle_ajax = PAGE
-tx_xmformcycle_ajax {
-	typeNum = 1464705954
-	config {
-		disableAllHeaderCode = 1
-		additionalHeaders = Content-type:text/html
-		xhtml_cleaning = 0
-		admPanel = 0
-		debug = 0
-		no_cache = 1
-	}
-
-	10 = USER
-	10 {
-		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-		extensionName = XmFormcycle
-		pluginName = Xmformcycle
-		vendorName = Xima
-		controller = Formcycle
-		settings =< plugin.tx_xmformcycle.settings
-	}
-}
+formcycle_ajax = PAGE
+formcycle_ajax.typeNum = 1464705954

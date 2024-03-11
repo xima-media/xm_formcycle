@@ -1,0 +1,54 @@
+<f:if condition="{errorCode}">
+    <f:be.infobox state="2" title="{f:translate(key: 'error.{errorType}.title', extensionName:'XmFormcycle')}">
+        {f:translate(key: 'error.{errorCode}.message', extensionName:'XmFormcycle')}
+    </f:be.infobox>
+</f:if>
+
+<f:if condition="!{loading} && !{errorCode}">
+    <div class="mb-4 btn-group">
+        <button id="xm-reload-available-forms" class="btn btn-default">
+            <core:icon title="Refresh forms" identifier="actions-refresh" />
+            {f:translate(key: 'button.reload', extensionName:'XmFormcycle')}
+        </button>
+        <button class="btn btn-default" id="xm-settings">
+            <core:icon title="Opens settings" identifier="actions-cog" />
+            {f:translate(key: 'button.settings', extensionName:'XmFormcycle')}
+        </button>
+        <a href="{adminUrl}" class="btn btn-default" target="_blank">
+            <core:icon title="Open Formcycle admin in new window" identifier="actions-window-open" />
+            {f:translate(key: 'button.admin', extensionName:'XmFormcycle')}
+        </a>
+    </div>
+</f:if>
+
+<div class="py-3 text-center {f:if(condition: loading, else: 'hidden')}" id="xm-loading-spinner">
+    <core:icon identifier="spinner-circle" size="medium" />
+</div>
+
+<f:if condition="{forms} && !{errorCode}">
+    <div id="xm-available-forms-wrapper">
+        <f:for each="{forms}" as="group" key="groupName">
+            <div style="--typo3-component-box-shadow:none">
+                <h4>
+                    <f:translate extensionName="XmFormcycle" key="defaultGroupNames.{groupName}">{groupName}
+                    </f:translate>
+                </h4>
+                <hr />
+                <div class="d-flex flex-wrap gap-3">
+                    <f:for each="{group}" as="form">
+                        <a href="#" class="card btn btn-primary {f:if(condition: '{itemFormElValue}=={form.id}', then: 'active')}" style="width: 14rem;" data-form-id="{form.id}">
+                            <div style="background: #ededed">
+                                <img src="{form.thumbnail}" class="card-img-top" alt="Preview {form.title}">
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-title">{form.title}</h6>
+                            </div>
+                        </a>
+                    </f:for>
+                </div>
+            </div>
+        </f:for>
+    </div>
+</f:if>
+
+

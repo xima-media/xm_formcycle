@@ -1,0 +1,43 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Xima\XmFormcycle\:
+    resource: '../Classes/*'
+
+  cache.xm_formcycle:
+    class: TYPO3\CMS\Core\Cache\Frontend\FrontendInterface
+    factory: [ '@TYPO3\CMS\Core\Cache\CacheManager', 'getCache' ]
+    arguments: [ 'xm_formcycle' ]
+
+  Xima\XmFormcycle\Service\FormcycleService:
+    public: true
+    arguments:
+      $cache: '@cache.xm_formcycle'
+
+  Xima\XmFormcycle\Controller\BackendController:
+    tags: [ 'backend.controller' ]
+
+  Xima\XmFormcycle\Preview\FormcyclePreviewRenderer:
+    public: true
+
+  Xima\XmFormcycle\DataProcessing\AjaxProcessor:
+    tags:
+      - name: 'data.processor'
+        identifier: 'formcycle-ajax'
+
+  Xima\XmFormcycle\DataProcessing\iFrameProcessor:
+    tags:
+      - name: 'data.processor'
+        identifier: 'formcycle-iframe'
+
+  Xima\XmFormcycle\DataProcessing\IntegratedProcessor:
+    tags:
+      - name: 'data.processor'
+        identifier: 'formcycle-integrated'
+
+  Xima\XmFormcycle\ContentSecurityPolicy\EventListener\FrontendListener:
+    tags:
+      - name: event.listener

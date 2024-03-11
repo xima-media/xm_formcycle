@@ -1,3 +1,16 @@
 .idea
+coverage
+public/.htaccess
+public/_assets
+public/fileadmin
+public/typo3conf
+public/index.php
+public/typo3
+public/typo3temp
+config
+var
 vendor/
 composer.lock
+package.lock
+Tests/Acceptance/_output
+Tests/Acceptance/Support/_generated

@@ -1,34 +1,77 @@
 {
-  "name": "xima-media/xm_formcycle",
-  "type": "typo3-cms-extension",
-  "description": "Integrator für FORMCYCLE",
-  "homepage": "https://www.xima.de",
-  "license": ["GPL-2.0+"],
-  "keywords": [
-    "TYPO3 CMS",
-    "XIMA",
-    "FORMCYCLE"
-  ],
-  "require": {
-    "ext-curl": "*",
-    "typo3/cms-core": "^9.5.0 || ^10.4.0 || ^11.5.0"
-  },
-  "require-dev": {
-    "thibautselingue/local-php-security-checker-installer": "^1.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Xima\\XmFormcycle\\": "Classes/"
-    }
-  },
-  "scripts": {
-    "post-install-cmd": [
-      "local-php-security-checker-installer && local-php-security-checker"
-    ]
-  },
-  "extra": {
-    "typo3/cms": {
-      "extension-key": "xm_formcycle"
-    }
-  }
+	"name": "xima/xima-typo3-formcycle",
+	"type": "typo3-cms-extension",
+	"description": "TYPO3 extension to include your XIMA Formcycle forms",
+	"homepage": "https://www.xima.de",
+	"license": [
+		"GPL-2.0+"
+	],
+	"keywords": [
+		"TYPO3 CMS",
+		"XIMA",
+		"FORMCYCLE"
+	],
+	"authors": [
+		{
+			"name": "Maik Schneider",
+			"role": "Developer",
+			"email": "maik.schneider@xima.de"
+		}
+	],
+	"require": {
+		"php": "^8.1",
+		"ext-fileinfo": "*",
+		"typo3/cms-core": "^12.0"
+	},
+	"require-dev": {
+		"bk2k/bootstrap-package": "^14.0",
+		"codeception/module-asserts": "^3.0",
+		"codeception/module-cli": "^2.0",
+		"codeception/module-db": "^3.1",
+		"codeception/module-phpbrowser": "^3.0",
+		"codeception/module-webdriver": "^4.0",
+		"friendsofphp/php-cs-fixer": "^3.34.1",
+		"helhum/typo3-console": "^8.1",
+		"helmich/typo3-typoscript-lint": "3.2",
+		"saschaegerer/phpstan-typo3": "^1.1.2",
+		"ssch/typo3-rector": "^2.0",
+		"symfony/translation": "^6.3",
+		"typo3/cms-base-distribution": "*",
+		"typo3/cms-lowlevel": "*",
+		"typo3/testing-framework": "^8.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Xima\\XmFormcycle\\": "Classes/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Xima\\XmFormcycle\\Tests\\": "Tests/"
+		}
+	},
+	"scripts": {
+		"php:fixer": "php vendor/bin/php-cs-fixer --config=php-cs-fixer.php fix",
+		"php:stan": "php vendor/bin/phpstan --generate-baseline=phpstan-baseline.neon --allow-empty-baseline",
+		"xml:lint": "find . -name '*.xlf' ! -path './vendor/*' ! -path './var/*' | xargs -r xmllint --schema vendor/symfony/translation/Resources/schemas/xliff-core-1.2-transitional.xsd --noout",
+		"typoscript:lint": "php vendor/bin/typoscript-lint",
+		"test:functional": "php vendor/bin/phpunit -c phpunit.functional.xml",
+		"test:unit": "php vendor/bin/phpunit -c phpunit.unit.xml",
+		"test:acceptance": [
+			".ddev/commands/web/init-typo3",
+			"codecept run --steps"
+		]
+	},
+	"config": {
+		"sort-packages": true,
+		"allow-plugins": {
+			"typo3/cms-composer-installers": true,
+			"typo3/class-alias-loader": true
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "xm_formcycle"
+		}
+	}
 }

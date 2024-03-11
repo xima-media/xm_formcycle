@@ -1,0 +1,15 @@
+div:has(> #xm-formcycle-forms:not(.open-settings)) ~ .form-group {
+    display: none;
+}
+
+#xm-formcycle-forms.open-settings #xm-available-forms-wrapper {
+    display: none;
+}
+
+#xm-formcycle-forms.open-settings > .btn-group {
+    margin-bottom: 0 !important;
+}
+
+div:has(> #xm-formcycle-forms.open-settings) ~ .form-group legend.form-legend {
+    display: none;
+}
