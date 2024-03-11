@@ -32,7 +32,7 @@
 		"codeception/module-webdriver": "^4.0",
 		"friendsofphp/php-cs-fixer": "^3.34.1",
 		"helhum/typo3-console": "^8.1",
-		"helmich/typo3-typoscript-lint": "3.2",
+		"helmich/typo3-typoscript-lint": "3.2 || 3.2.1",
 		"saschaegerer/phpstan-typo3": "^1.1.2",
 		"ssch/typo3-rector": "^2.0",
 		"symfony/translation": "^6.3",
