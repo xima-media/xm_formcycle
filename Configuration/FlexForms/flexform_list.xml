@@ -140,24 +140,6 @@
                             </items>
                         </config>
                     </settings.xf.useFcjQueryUi>
-                    <settings.xf.useFcBootStrap>
-                        <label>
-                            LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.bootstrap
-                        </label>
-                        <description>
-                            LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.bootstrap.description
-                        </description>
-                        <config>
-                            <type>check</type>
-                            <default>0</default>
-                            <items type="array">
-                                <numIndex index="0" type="array">
-                                    <numIndex index="0">LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:flexform.bootstrap.checkbox</numIndex>
-                                    <numIndex index="1">0</numIndex>
-                                </numIndex>
-                            </items>
-                        </config>
-                    </settings.xf.useFcBootStrap>
                     <settings.xf.useFcUrlParams>
                         <TCEforms>
                             <label>

@@ -107,15 +107,6 @@
 			<trans-unit id="flexform.jqueryUi.description">
 				<source>This is only necessary if you use jQuery UI components</source>
 			</trans-unit>
-			<trans-unit id="flexform.bootstrap">
-				<source>Response JS</source>
-			</trans-unit>
-			<trans-unit id="flexform.bootstrap.checkbox">
-				<source>Include Response JS</source>
-			</trans-unit>
-			<trans-unit id="flexform.bootstrap.description">
-				<source>This is only necessary if you use responsive design</source>
-			</trans-unit>
 			<trans-unit id="flexform.parameters">
 				<source>Additional parameters</source>
 			</trans-unit>

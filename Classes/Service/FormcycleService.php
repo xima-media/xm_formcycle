@@ -142,7 +142,7 @@ final class FormcycleService
             'xfc-rp-inline' => true,
             'xfc-rp-usejq' => 0,
             'xfc-rp-useui' => 0,
-            'xfc-rp-usebs' => $settings->loadResponseJs ? 1 : 0,
+            'xfc-rp-usebs' => 1,
             'xfc-pp-external' => true,
             'xfc-pp-base-url' => '',
             'xfc-pp-use-base-url' => false,

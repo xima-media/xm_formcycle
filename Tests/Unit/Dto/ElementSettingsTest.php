@@ -19,7 +19,6 @@ class ElementSettingsTest extends UnitTestCase
         self::assertEquals('', $settings->formId);
         self::assertTrue($settings->loadFormcycleJquery);
         self::assertFalse($settings->loadFormcycleJqueryUi);
-        self::assertFalse($settings->loadResponseJs);
         self::assertEquals('', $settings->additionalParameters);
         self::assertNull($settings->integrationMode);
     }

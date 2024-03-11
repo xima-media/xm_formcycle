@@ -19,8 +19,6 @@ class ElementSettings
 
     public bool $loadFormcycleJqueryUi = false;
 
-    public bool $loadResponseJs = false;
-
     public string $additionalParameters = '';
 
     public static function createFromContentElement(
@@ -36,7 +34,6 @@ class ElementSettings
         $settings->errorPid = $xml['settings']['xf']['siteerror'] ?? 0;
         $settings->loadFormcycleJquery = (bool)($xml['settings']['xf']['useFcjQuery'] ?? 1);
         $settings->loadFormcycleJqueryUi = (bool)($xml['settings']['xf']['useFcjQueryUi'] ?? 0);
-        $settings->loadResponseJs = (bool)($xml['settings']['xf']['useFcBootStrap'] ?? 0);
         $settings->additionalParameters = $xml['settings']['xf']['useFcUrlParams'] ?? '';
         $settings->integrationMode = IntegrationMode::tryFrom($xml['settings']['xf']['integrationMode']);
 
