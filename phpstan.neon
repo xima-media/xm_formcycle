@@ -18,5 +18,4 @@ parameters:
         - Resources
 
     excludePaths:
-        - Tests/Acceptance/Support/_generated/*
-        - Tests/Acceptance/Support/Helper/PageTree.php
+        - Tests/Acceptance/
