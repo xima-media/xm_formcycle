@@ -30,5 +30,10 @@ final class FrontendListener
             Directive::FrameSrc,
             new UriValue($formcycleUrl),
         );
+
+        $event->getCurrentPolicy()->extend(
+            Directive::FontSrc,
+            new UriValue($formcycleUrl),
+        );
     }
 }
