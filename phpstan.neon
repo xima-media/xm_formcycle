@@ -19,3 +19,4 @@ parameters:
 
     excludePaths:
         - Tests/Acceptance/Support/_generated/*
+        - Tests/Acceptance/Support/Helper/PageTree.php

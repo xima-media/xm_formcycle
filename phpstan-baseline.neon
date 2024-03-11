@@ -4,8 +4,3 @@ parameters:
 			message: "#^Dead catch \\- Xima\\\\XmFormcycle\\\\Error\\\\FormcycleConfigurationException is never thrown in the try block\\.$#"
 			count: 1
 			path: Classes/Preview/FormcyclePreviewRenderer.php
-
-		-
-			message: "#^PHPDoc type Xima\\\\XmFormcycle\\\\Tests\\\\Acceptance\\\\Support\\\\AcceptanceTester of property Xima\\\\XmFormcycle\\\\Tests\\\\Acceptance\\\\Support\\\\Helper\\\\PageTree\\:\\:\\$tester is not covariant with PHPDoc type AcceptanceTester of overridden property TYPO3\\\\TestingFramework\\\\Core\\\\Acceptance\\\\Helper\\\\AbstractPageTree\\:\\:\\$tester\\.$#"
-			count: 1
-			path: Tests/Acceptance/Support/Helper/PageTree.php
