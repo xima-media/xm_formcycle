@@ -3,6 +3,7 @@
 namespace Xima\XmFormcycle\Form\Element;
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -57,8 +58,15 @@ class FormcycleSelection extends AbstractFormElement
         $resultArray['html'] = '<div class="formengine-field-item t3js-formengine-field-item">' . $hiddenInput . '</div><div id="xm-formcycle-forms" class="open">' . $view->render() . '</div>';
         $resultArray['stylesheetFiles'][] = 'EXT:xm_formcycle/Resources/Public/Css/Backend/FormcycleSelection.css';
 
-        $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create('@xima/xm-formcycle/FormcycleSelectionElement.js')
-            ->instance($this->data['parameterArray']['itemFormElID']);
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($versionInformation->getMajorVersion() < 12) {
+            $resultArray['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS(
+                'TYPO3/CMS/XmFormcycle/Backend/FormcycleSelectionElementV11'
+            )->instance($this->data['parameterArray']['itemFormElID']);
+        } else {
+            $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create('@xima/xm-formcycle/FormcycleSelectionElement.js')
+                ->instance($this->data['parameterArray']['itemFormElID']);
+        }
 
         return $resultArray;
     }

@@ -11,7 +11,7 @@ $EM_CONF[$_EXTKEY] = [
     'author_company' => 'XIMA Media GmbH',
     'constraints' => [
         'depends' => [
-            'typo3' => '12.0.0-12.5.99',
+            'typo3' => '11.5.0-12.5.99',
         ],
         'conflicts' => [],
         'suggets' => [],
