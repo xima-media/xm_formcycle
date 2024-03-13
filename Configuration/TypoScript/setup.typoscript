@@ -10,9 +10,9 @@ tt_content.formcycle {
   templateName = Formcycle
 
   dataProcessing {
-    1709129505 = formcycle-ajax
-    1709129509 = formcycle-iframe
-    1709129512 = formcycle-integrated
+    1709129505 = Xima\XmFormcycle\DataProcessing\AjaxProcessor
+    1709129509 = Xima\XmFormcycle\DataProcessing\iFrameProcessor
+    1709129512 = Xima\XmFormcycle\DataProcessing\IntegratedProcessor
   }
 }
 
