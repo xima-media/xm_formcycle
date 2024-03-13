@@ -36,7 +36,7 @@
                 <hr />
                 <div class="d-flex flex-wrap gap-3">
                     <f:for each="{group}" as="form">
-                        <a href="#" class="card btn btn-primary {f:if(condition: '{itemFormElValue}=={form.id}', then: 'active')}" style="width: 14rem;" data-form-id="{form.id}">
+                        <a href="#" class="card btn btn-primary {f:if(condition: '{itemFormElValue}=={form.id}', then: 'active')}" style="width: 14rem; --bs-btn-color:inherit;" data-form-id="{form.id}">
                             <div style="background: #ededed">
                                 <img src="{form.thumbnail}" class="card-img-top" alt="Preview {form.title}">
                             </div>
