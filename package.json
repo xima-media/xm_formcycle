@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy:jquery": "cp node_modules/jquery/dist/jquery.min.js Resources/Public/JavaScript/Frontend",
-    "copy:jqueryUi": "cp node_modules/jquery-ui/dist/jquery-ui.min.js Resources/Public/JavaScript/Frontend",
+    "copy:jqueryUi": "cp node_modules/jquery-ui/dist/jquery-ui.min.js Resources/Public/JavaScript/Frontend && cp node_modules/jquery-ui/dist/themes/base/jquery-ui.min.css Resources/Public/Css/Frontend",
     "copy:response": "cp node_modules/jquery-ui/dist/jquery-ui.min.js Resources/Public/JavaScript/Frontend",
     "build": "npm run copy:jquery & npm run copy:jqueryUi"
   },
