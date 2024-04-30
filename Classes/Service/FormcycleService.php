@@ -147,6 +147,7 @@ final class FormcycleService
             'xfc-pp-base-url' => '',
             'xfc-pp-use-base-url' => false,
             'xfc-rp-keepalive' => true,
+            'lang' => $settings->language ?: 'de',
         ];
 
         if ($settings->successPid) {

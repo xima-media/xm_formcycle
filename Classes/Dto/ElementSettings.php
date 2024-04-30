@@ -21,6 +21,8 @@ class ElementSettings
 
     public string $additionalParameters = '';
 
+    public string $language = '';
+
     public static function createFromContentElement(
         FlexFormService $flexFormService,
         ContentObjectRenderer $cObj,
@@ -29,6 +31,9 @@ class ElementSettings
 
         $settings = new self();
         $settings->formId = $cObj->data['tx_xmformcycle_form_id'] ?? '';
+
+        $language = $cObj->getRequest()?->getAttribute('language')?->getTwoLetterIsoCode() ?? '';
+        $settings->language = $language;
 
         $settings->successPid = $xml['settings']['xf']['siteok'] ?? 0;
         $settings->errorPid = $xml['settings']['xf']['siteerror'] ?? 0;
