@@ -32,7 +32,7 @@ class ElementSettings
         $settings = new self();
         $settings->formId = $cObj->data['tx_xmformcycle_form_id'] ?? '';
 
-        $language = $cObj->getRequest()?->getAttribute('language')?->getTwoLetterIsoCode() ?? '';
+        $language = $cObj->getRequest()->getAttribute('language')->getTwoLetterIsoCode();
         $settings->language = $language;
 
         $settings->successPid = $xml['settings']['xf']['siteok'] ?? 0;
