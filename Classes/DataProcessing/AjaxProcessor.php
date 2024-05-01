@@ -22,6 +22,7 @@ class AjaxProcessor extends AbstractProcessor
         }
         if ($this->settings->loadFormcycleJqueryUi) {
             $pageRenderer->addJsFooterFile('EXT:xm_formcycle/Resources/Public/JavaScript/Frontend/jquery-ui.min.js');
+            $pageRenderer->addCssFile('EXT:xm_formcycle/Resources/Public/Css/Frontend/jquery-ui.min.css');
         }
         $pageRenderer->addJsFooterFile('EXT:xm_formcycle/Resources/Public/JavaScript/Frontend/FormcycleAjax.js');
 
