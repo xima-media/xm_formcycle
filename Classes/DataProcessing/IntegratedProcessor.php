@@ -24,6 +24,7 @@ class IntegratedProcessor extends AbstractProcessor
         }
         if ($this->settings->loadFormcycleJqueryUi) {
             $pageRenderer->addJsFile('EXT:xm_formcycle/Resources/Public/JavaScript/Frontend/jquery-ui.min.js');
+            $pageRenderer->addCssFile('EXT:xm_formcycle/Resources/Public/Css/Frontend/jquery-ui.min.css');
         }
 
         $processedData['form'] = [];
