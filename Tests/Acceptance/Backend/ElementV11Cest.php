@@ -68,7 +68,7 @@ class ElementV11Cest
         $extensionConfiguration->write('formcycleUrl', 'https://pro.form.cloud/formcycle');
         $extensionConfiguration->write('formcycleClientId', '2252');
         $this->navigateToElementTab($I, $pageTree);
-        $I->wait(5);
+        $I->wait(1);
         $I->dontSee('Configuration error');
         $I->seeElement('#xm-formcycle-forms');
         $I->waitForElementVisible('#xm-available-forms-wrapper', 120);

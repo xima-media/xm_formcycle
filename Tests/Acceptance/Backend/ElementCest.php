@@ -54,7 +54,9 @@ class ElementCest
         $I->waitForElementVisible(PageTree::$pageTreeFrameSelector);
         $pageTree->clickElement('Main');
         $I->switchToContentFrame();
+        $I->waitForText('Element1');
         $I->click('Element1');
+        $I->waitForText('Formcycle');
         $I->click('Formcycle');
     }
 
@@ -67,8 +69,9 @@ class ElementCest
         $extensionConfiguration->write('formcycleUrl', 'https://pro.form.cloud/formcycle');
         $extensionConfiguration->write('formcycleClientId', '2252');
         $this->navigateToElementTab($I, $pageTree);
+        $I->wait(1);
         $I->dontSee('Configuration error');
-        $I->waitForElementVisible('#xm-available-forms-wrapper');
+        $I->waitForElementVisible('#xm-available-forms-wrapper', 120);
     }
 
     public function createElementAndSave(
