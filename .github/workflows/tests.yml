@@ -3,11 +3,11 @@ name: Static Code Analysis
 on:
   push:
     branches:
-      - main
+      - master
       - 'renovate/**'
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   sca:
