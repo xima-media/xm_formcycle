@@ -4,6 +4,7 @@ namespace Xima\XmFormcycle\Dto;
 
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3\CMS\Frontend\ContentObject\Exception\ContentRenderingException;
 
 class ElementSettings
 {
@@ -32,8 +33,11 @@ class ElementSettings
         $settings = new self();
         $settings->formId = $cObj->data['tx_xmformcycle_form_id'] ?? '';
 
-        $language = $cObj->getRequest()->getAttribute('language')->getTwoLetterIsoCode();
-        $settings->language = $language;
+        try {
+            $language = $cObj->getRequest()->getAttribute('language')->getTwoLetterIsoCode();
+            $settings->language = $language;
+        } catch (\Error|ContentRenderingException) {
+        }
 
         $settings->successPid = $xml['settings']['xf']['siteok'] ?? 0;
         $settings->errorPid = $xml['settings']['xf']['siteerror'] ?? 0;
