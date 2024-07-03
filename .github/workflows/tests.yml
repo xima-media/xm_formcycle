@@ -17,10 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         typo3-version: [ "11.5.37", "12.4" ]
-        php-version: [ "7.4", "8.1", "8.2", "8.3" ]
-        exclude:
-          - typo3-version: "12.4"
-            php-version: "7.4"
+        php-version: [ "8.1", "8.2", "8.3" ]
 
     steps:
       - uses: actions/checkout@v4
@@ -53,11 +50,6 @@ jobs:
         with:
           dependency-versions: ${{ matrix.dependencies }}
           composer-options: --with=typo3/cms-core:"^${{ matrix.typo3-version }}"
-
-      # Fix namespace (add"/Support" to end of namespace) only for typo3-version 11
-      - name: Fix codeception.yml namespace
-        run: sed -i '1s/$/\\Support/' codeception.yml
-        if: matrix.php-version == '7.4'
 
       # Init TYPO3
       - name: Init TYPO3
