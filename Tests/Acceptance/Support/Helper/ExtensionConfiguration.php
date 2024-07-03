@@ -27,6 +27,10 @@ final class ExtensionConfiguration
     {
         $buildDir = \dirname(self::getVendorDirectory());
 
+        if (file_exists(__DIR__ . '/../../../../vendor/bin/typo3cms')) {
+            return $buildDir . '/vendor/bin/typo3cms';
+        }
+
         return $buildDir . '/vendor/bin/typo3';
     }
 

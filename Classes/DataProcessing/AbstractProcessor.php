@@ -3,6 +3,7 @@
 namespace Xima\XmFormcycle\DataProcessing;
 
 use TYPO3\CMS\Core\Service\FlexFormService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use Xima\XmFormcycle\Dto\ElementSettings;
@@ -13,11 +14,7 @@ abstract class AbstractProcessor implements DataProcessorInterface
 {
     protected ElementSettings $settings;
 
-    public function __construct(
-        protected readonly FormcycleService $formcycleService,
-        private readonly FlexFormService $flexFormService
-    ) {
-    }
+    protected FormcycleService $formcycleService;
 
     public function process(
         ContentObjectRenderer $cObj,
@@ -25,11 +22,16 @@ abstract class AbstractProcessor implements DataProcessorInterface
         array $processorConfiguration,
         array $processedData
     ) {
+        // construct element settings
+        $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
         $this->settings = ElementSettings::createFromContentElement(
-            $this->flexFormService,
+            $flexFormService,
             $cObj,
         );
 
+        $this->formcycleService = GeneralUtility::makeInstance(FormcycleService::class);
+
+        // check if concrete processor should be used
         $currentIntegrationMode = $this->settings->integrationMode ?? $this->formcycleService->getDefaultIntegrationMode();
         if ($currentIntegrationMode->forDataProcessing() !== $this->getIntegrationMode()) {
             return $processedData;

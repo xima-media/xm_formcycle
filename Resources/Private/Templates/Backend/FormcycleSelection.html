@@ -7,22 +7,22 @@
 <f:if condition="!{loading} && !{errorCode}">
     <div class="mb-4 btn-group">
         <button id="xm-reload-available-forms" class="btn btn-default">
-            <core:icon title="Refresh forms" identifier="actions-refresh" />
+            <core:icon identifier="actions-cog" />
             {f:translate(key: 'button.reload', extensionName:'XmFormcycle')}
         </button>
         <button class="btn btn-default" id="xm-settings">
-            <core:icon title="Opens settings" identifier="actions-cog" />
+            <core:icon identifier="actions-cog" />
             {f:translate(key: 'button.settings', extensionName:'XmFormcycle')}
         </button>
         <a href="{adminUrl}" class="btn btn-default" target="_blank">
-            <core:icon title="Open Formcycle admin in new window" identifier="actions-window-open" />
+            <core:icon identifier="actions-window-open" />
             {f:translate(key: 'button.admin', extensionName:'XmFormcycle')}
         </a>
     </div>
 </f:if>
 
 <div class="py-3 text-center {f:if(condition: loading, else: 'hidden')}" id="xm-loading-spinner">
-    <core:icon identifier="spinner-circle" size="medium" />
+    <core:icon identifier="spinner-circle" size="small" />
 </div>
 
 <f:if condition="{forms} && !{errorCode}">
@@ -36,7 +36,7 @@
                 <hr />
                 <div class="d-flex flex-wrap gap-3">
                     <f:for each="{group}" as="form">
-                        <a href="#" class="card btn btn-primary {f:if(condition: '{itemFormElValue}=={form.id}', then: 'active')}" style="width: 14rem;" data-form-id="{form.id}">
+                        <a href="#" class="card btn btn-primary {f:if(condition: '{itemFormElValue}=={form.id}', then: 'active')}" style="width: 14rem; --bs-btn-color:inherit;" data-form-id="{form.id}">
                             <div style="background: #ededed">
                                 <img src="{form.thumbnail}" class="card-img-top" alt="Preview {form.title}">
                             </div>

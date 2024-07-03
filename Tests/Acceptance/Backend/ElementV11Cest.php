@@ -1,16 +1,15 @@
 <?php
 
-namespace Xima\XmFormcycle\Tests\Acceptance\Backend;
+namespace Backend;
 
 use Codeception\Attribute\Depends;
 use Codeception\Scenario;
 use Xima\XmFormcycle\Tests\Acceptance\Support\AcceptanceTester;
-use Xima\XmFormcycle\Tests\Acceptance\Support\Enums\Selectors;
+use Xima\XmFormcycle\Tests\Acceptance\Support\Enums\SelectorsV11;
 use Xima\XmFormcycle\Tests\Acceptance\Support\Helper\ExtensionConfiguration;
 use Xima\XmFormcycle\Tests\Acceptance\Support\Helper\PageTree;
-use Xima\XmFormcycle\Tests\Acceptance\Support\Helper\ShadowDom;
 
-class ElementCest
+class ElementV11Cest
 {
     private bool $isV11 = false;
 
@@ -23,7 +22,7 @@ class ElementCest
 
     public function _before(AcceptanceTester $I, Scenario $scenario): void
     {
-        if ($this->isV11) {
+        if (!$this->isV11) {
             $scenario->skip();
         }
         $I->amOnPage('/typo3/');
@@ -71,13 +70,13 @@ class ElementCest
         $this->navigateToElementTab($I, $pageTree);
         $I->wait(1);
         $I->dontSee('Configuration error');
+        $I->seeElement('#xm-formcycle-forms');
         $I->waitForElementVisible('#xm-available-forms-wrapper', 120);
     }
 
     public function createElementAndSave(
         AcceptanceTester $I,
-        PageTree $pageTree,
-        ShadowDom $domHelper
+        PageTree $pageTree
     ): void {
         $I->click('Page');
         $I->waitForElementVisible(PageTree::$pageTreeFrameSelector);
@@ -85,19 +84,23 @@ class ElementCest
 
         // open wizard
         $I->switchToContentFrame();
-        $I->click(Selectors::CONTENT_WIZARD_BUTTON->value);
-        $I->switchToIFrame();
-        $I->waitForElementVisible(Selectors::CONTENT_WIZARD->value);
+        $I->waitForText(SelectorsV11::CONTENT_WIZARD_BUTTON->value);
+        $I->click(SelectorsV11::CONTENT_WIZARD_BUTTON->value);
 
-        $domHelper->clickShadowDomElement(Selectors::CONTENT_WIZARD->value, Selectors::CONTENT_WIZARD_FORM_TAB->value);
+        $I->switchToMainFrame();
+        $I->waitForElementVisible(SelectorsV11::CONTENT_WIZARD->value);
+        $I->click(SelectorsV11::CONTENT_WIZARD_FORM_TAB->value);
 
         // See and select element
         $I->see('Formcycle');
         $I->see('Include a XIMA® FormCycle form');
-        $domHelper->clickShadowDomElement(Selectors::CONTENT_WIZARD->value, Selectors::CONTENT_WIZARD_FORMCYCLE->value);
+        $I->click('Formcycle');
 
         // Fill and save element
         $I->switchToContentFrame();
+        $I->waitForText('General');
+        $I->click('General');
+
         $I->fillField('input[data-formengine-input-name*="[header]"]', 'Element1');
         $I->click('Save');
     }
