@@ -18,6 +18,12 @@
 			"email": "maik.schneider@xima.de"
 		}
 	],
+	"repositories": [
+		{
+			"type": "github",
+			"url": "git@github.com:maikschneider/typo3-codeception-helper.git"
+		}
+	],
 	"require": {
 		"php": "^8.1",
 		"ext-fileinfo": "*",
@@ -38,7 +44,8 @@
 		"symfony/translation": "^6.3 || ^7.0",
 		"typo3/cms-base-distribution": "*",
 		"typo3/cms-lowlevel": "*",
-		"typo3/testing-framework": "^7.0 || ^8.0"
+		"typo3/testing-framework": "^7.0 || ^8.0",
+		"eliashaeussler/typo3-codeception-helper": "dev-main"
 	},
 	"autoload": {
 		"psr-4": {
@@ -60,13 +67,22 @@
 		"test:acceptance": [
 			".ddev/commands/web/init-typo3",
 			"codecept run --steps"
-		]
+		],
+		"ci:test:unit": "XDEBUG_MODE=coverage && phpunit -c phpunit.unit.xml",
+		"ci:test:functional": "XDEBUG_MODE=coverage && phpunit -c phpunit.functional.xml",
+		"ci:test:acceptance": "XDEBUG_MODE=coverage && codecept run Acceptance --coverage --coverage-xml",
+		"ci:php:lint": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*' ! -path './public/*' -print0 | xargs -0 -n 1 -P 4 php -l",
+		"ci:php:fixer": "php-cs-fixer --config=php-cs-fixer.php fix --dry-run --format=checkstyle > php-cs-fixer.xml || true",
+		"ci:php:stan": "phpstan --no-progress --error-format=checkstyle > phpstan.xml || true",
+		"ci:xml:lint": "find . -name '*.xlf' ! -path './public/*' ! -path './vendor/*' | xargs -r xmllint --schema vendor/symfony/translation/Resources/schemas/xliff-core-1.2-transitional.xsd --noout",
+		"ci:yaml:lint": "find . ! -path '*node_modules/*' ! -path './vendor/*' ! -path './public/*' \\( -name '*.yaml' -o -name '*.yml' \\) | xargs -r yaml-lint"
 	},
 	"config": {
 		"sort-packages": true,
 		"allow-plugins": {
 			"typo3/cms-composer-installers": true,
-			"typo3/class-alias-loader": true
+			"typo3/class-alias-loader": true,
+			"codeception/c3": true
 		}
 	},
 	"extra": {

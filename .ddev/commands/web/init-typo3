@@ -40,7 +40,7 @@ export TYPO3_DB_DBNAME="$dbName"
 export TYPO3_SETUP_ADMIN_EMAIL=admin@example.com
 export TYPO3_SETUP_ADMIN_USERNAME=admin
 export TYPO3_SETUP_ADMIN_PASSWORD=Passw0rd!
-export TYPO3_SERVER_TYPE=other
+export TYPO3_SERVER_TYPE=apache
 export TYPO3_PROJECT_NAME="EXT:xm_formcycle"
 
 export TYPO3_INSTALL_DB_DRIVER=mysqli
@@ -60,7 +60,7 @@ export TYPO3_INSTALL_DB_UNIX_SOCKET=""
 _progress "Setting up TYPO3 installation"
 # TYPO3 v11
 if [ -f "$typo3cmsBinary" ]; then
-    "$typo3cmsBinary" install:setup --force --use-existing-database
+    "$typo3cmsBinary" install:setup --force --database-host-name="db" --database-user-name="db" --database-user-password="db" --database-name="db" --use-existing-database --admin-user-name="admin" --admin-password="Passw0rd!"
     "$typo3cmsBinary" configuration:set SYS/trustedHostsPattern ".*"
 else
     "$typo3Binary" setup --no-interaction --force --quiet

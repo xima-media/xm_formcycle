@@ -10,12 +10,17 @@ actor_suffix: Tester
 extensions:
   enabled:
     - Codeception\Extension\RunFailed
+    - EliasHaeussler\Typo3CodeceptionHelper\Codeception\Extension\ApplicationEntrypointModifier:
+        entrypoints:
+          - web-dir: public
+          - web-dir: public/typo3
 
 params:
   - env
 
 coverage:
-  enabled: false
+  enabled: true
+  remote: true
   include:
     - Classes/*
 

@@ -1,9 +1,11 @@
 .idea
+c3.php
 coverage
 public/.htaccess
 public/_assets
 public/fileadmin
 public/typo3conf
+public/app.php
 public/index.php
 public/typo3
 public/typo3temp
