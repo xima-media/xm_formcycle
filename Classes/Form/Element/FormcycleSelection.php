@@ -13,7 +13,7 @@ use Xima\XmFormcycle\Service\FormcycleService;
 
 class FormcycleSelection extends AbstractFormElement
 {
-    public function render()
+    public function render(): array
     {
         $fieldInformationResult = $this->renderFieldInformation();
         $resultArray = $this->mergeChildReturnIntoExistingResult(
