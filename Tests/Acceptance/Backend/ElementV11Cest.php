@@ -80,6 +80,7 @@ class ElementV11Cest
     ): void {
         $I->click('Page');
         $I->waitForElementVisible(PageTree::$pageTreeFrameSelector);
+        $I->wait(2);
         $pageTree->clickElement('Main');
 
         // open wizard

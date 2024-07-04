@@ -81,14 +81,17 @@ class ElementCest
     ): void {
         $I->click('Page');
         $I->waitForElementVisible(PageTree::$pageTreeFrameSelector);
+        $I->wait(2);
         $pageTree->clickElement('Main');
 
         // open wizard
         $I->switchToContentFrame();
+        $I->waitForElementVisible(Selectors::CONTENT_WIZARD_BUTTON->value);
         $I->click(Selectors::CONTENT_WIZARD_BUTTON->value);
+
+        // navigate to form tab
         $I->switchToIFrame();
         $I->waitForElementVisible(Selectors::CONTENT_WIZARD->value);
-
         $domHelper->clickShadowDomElement(Selectors::CONTENT_WIZARD->value, Selectors::CONTENT_WIZARD_FORM_TAB->value);
 
         // See and select element
