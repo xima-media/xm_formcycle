@@ -48,7 +48,7 @@ Set your Formcycle credentials in the extension configuration via TYPO3 backend 
 ```php
 'EXTENSIONS' => [
     'xm_formcycle' => [
-        'formcycleUrl' => 'https://pro.formcloud.de/',
+        'formcycleUrl' => 'https://pro.formcloud.de/formcycle/',
         'formcycleClientId' => '4231',
     ],
 ]
