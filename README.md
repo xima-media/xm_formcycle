@@ -4,12 +4,13 @@
 
 # TYPO3 extension `xm_formcycle`
 
-[![Latest Stable Version](http://poser.pugx.org/xima/xima-typo3-formcycle/v)](https://packagist.org/packages/xima/xima-typo3-formcycle)
+![Latest version](https://typo3-badges.dev/badge/xm_formcycle/version/shields.svg)
 [![Supported TYPO3 versions](https://typo3-badges.dev/badge/xm_formcycle/typo3/shields.svg)](https://extensions.typo3.org/extension/ximaxm_formcycle)
-[![Total Downloads](http://poser.pugx.org/xima/xima-typo3-formcycle/downloads)](https://packagist.org/packages/xima/xima-typo3-formcycle)
-[![PHP Version Require](http://poser.pugx.org/xima/xima-typo3-formcycle/require/php)](https://packagist.org/packages/xima/xima-typo3-formcycle)
+![Total downloads](https://typo3-badges.dev/badge/xm_formcycle/downloads/shields.svg)
+[![TYPO3 extension](https://typo3-badges.dev/badge/xm_formcycle/extension/shields.svg)](https://extensions.typo3.org/extension/xm_formcycle)
 [![Tests](https://github.com/xima-media/xm_formcycle/actions/workflows/tests.yml/badge.svg)](https://github.com/xima-media/xm_formcycle/actions/workflows/tests.yml)
 [![codecov](https://codecov.io/gh/xima-media/xm_formcycle/graph/badge.svg?token=VUMQ5EUG02)](https://codecov.io/gh/xima-media/xm_formcycle)
+[![Composer](https://typo3-badges.dev/badge/xm_formcycle/composer/shields.svg)](https://packagist.org/packages/xima/xima-typo3-formcycle)
 
 </div>
 
