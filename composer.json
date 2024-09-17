@@ -1,15 +1,14 @@
 {
 	"name": "xima/xima-typo3-formcycle",
 	"type": "typo3-cms-extension",
-	"description": "TYPO3 extension to include your XIMA Formcycle forms",
+	"description": "TYPO3 extension to include your formcycle forms",
 	"homepage": "https://www.xima.de",
 	"license": [
 		"GPL-2.0+"
 	],
 	"keywords": [
 		"TYPO3 CMS",
-		"XIMA",
-		"FORMCYCLE"
+		"formcycle"
 	],
 	"authors": [
 		{

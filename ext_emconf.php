@@ -1,10 +1,10 @@
 <?php
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'formcylce',
-    'description' => 'Embed XIMA Formcycle forms into your TYPO3 website',
+    'title' => 'formcycle',
+    'description' => 'Embed formcycle forms into your TYPO3 website',
     'category' => 'plugin',
-    'version' => '9.1.2',
+    'version' => '9.1.3',
     'state' => 'stable',
     'author' => 'Maik Schneider',
     'author_email' => 'maik.schneider@xima.de',

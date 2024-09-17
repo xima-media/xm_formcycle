@@ -14,12 +14,12 @@
 
 </div>
 
-A TYPO3 extension that connects to [XIMA® Formcycle](https://www.formcycle.eu/). Select your created forms and embed
+A TYPO3 extension that connects to [formcycle](https://www.formcycle.eu/). Select your created forms and embed
 them into your TYPO3 site.
 
 ## Requirements
 
-* Formcycle version 8 + installed plugin `Formularliste`
+* formcycle version 8 + installed plugin `Formularliste`
 * PHP 8.1+
 
 ## Installation
@@ -44,7 +44,7 @@ frontend rendering.
 
 ### 1. Extension configuration
 
-Set your Formcycle credentials in the extension configuration via TYPO3 backend or in your `config/system/settings.php`:
+Set your formcycle credentials in the extension configuration via TYPO3 backend or in your `config/system/settings.php`:
 
 ```php
 'EXTENSIONS' => [
@@ -57,7 +57,7 @@ Set your Formcycle credentials in the extension configuration via TYPO3 backend 
 
 ### 2. TypoScript include
 
-Include the static TypoScript template "Formcycle" or directly import it in your sitepackage:
+Include the static TypoScript template "formcycle" or directly import it in your sitepackage:
 
 ```typo3_typoscript
 @import 'EXT:xm_formcycle/Configuration/TypoScript/setup.typoscript'
