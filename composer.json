@@ -29,7 +29,7 @@
 		"typo3/cms-core": "^11.0 || ^12.0"
 	},
 	"require-dev": {
-		"bk2k/bootstrap-package": "^14.0",
+		"bk2k/bootstrap-package": "^14.0 || ^15.0",
 		"codeception/module-asserts": "^3.0",
 		"codeception/module-cli": "^2.0",
 		"codeception/module-db": "^3.1",
