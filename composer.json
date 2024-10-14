@@ -43,7 +43,7 @@
 		"symfony/translation": "^6.3 || ^7.0",
 		"typo3/cms-base-distribution": "*",
 		"typo3/cms-lowlevel": "*",
-		"typo3/testing-framework": "^7.0 || ^8.0",
+		"typo3/testing-framework": "^7.0 || ^8.0 || ^9.0",
 		"eliashaeussler/typo3-codeception-helper": "dev-main"
 	},
 	"autoload": {
