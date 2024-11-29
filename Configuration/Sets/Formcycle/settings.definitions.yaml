@@ -1,0 +1,30 @@
+categories:
+  Formcycle:
+    label: 'Formcycle'
+
+settings:
+  formcycleUrl:
+    category: Formcycle
+    label: 'Server URL'
+    type: string
+    description: 'The URL of the formcycle server'
+    default: ''
+
+  formcycleClientId:
+    category: Formcycle
+    label: 'Client ID'
+    type: string
+    description: 'The formcycle client ID'
+    default: ''
+
+  defaultIntegrationMode:
+    category: Formcycle
+    label: 'Default integration mode'
+    type: string
+    description: 'The default mode for integrating the formcycle form'
+    default: 'integrated'
+    enum:
+      integrated: 'Integrated'
+      ajax_typo3: 'Ajax Typo3'
+      ajax_formcycle: 'Ajax Formcycle'
+      iframe: 'Iframe'

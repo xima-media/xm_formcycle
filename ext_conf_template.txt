@@ -1,8 +1,0 @@
-# cat=basic//100; type=string; label=Formcycle server URL
-formcycleUrl =
-
-# cat=basic//101; type=string; label=The client ID of your Formcycle installation
-formcycleClientId =
-
-# cat=basic//104; type=options[integrated, AJAX (TYPO3), AJAX (FORMCYCLE), iFrame]; label=Default integration mode
-defaultIntegrationMode = integrated
