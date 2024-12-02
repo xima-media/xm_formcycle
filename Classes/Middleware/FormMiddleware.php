@@ -9,12 +9,12 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use TYPO3\CMS\Core\Routing\PageArguments;
 use Xima\XmFormcycle\Dto\ElementSettings;
-use Xima\XmFormcycle\Service\FormcycleService;
+use Xima\XmFormcycle\Service\FormcycleServiceFactory;
 
 class FormMiddleware implements MiddlewareInterface
 {
     public function __construct(
-        private readonly FormcycleService $formcycleService,
+        private readonly FormcycleServiceFactory $formcycleServiceFactory,
         private readonly ResponseFactoryInterface $responseFactory
     ) {
     }
@@ -35,7 +35,8 @@ class FormMiddleware implements MiddlewareInterface
         $settings = new ElementSettings();
         $settings->formId = $params['formId'];
 
-        $html = $this->formcycleService->getFormHtml($settings);
+        $siteSettings = $request->getAttribute('site')->getSettings();
+        $html = $this->formcycleServiceFactory->createFromSiteSettings($siteSettings)->getFormHtml($settings);
 
         $response = $this->responseFactory->createResponse();
         $response->getBody()->write($html);

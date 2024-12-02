@@ -5,33 +5,26 @@ namespace Xima\XmFormcycle\Service;
 use finfo;
 use JsonException;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
-use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
-use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
-use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Site\Entity\SiteSettings;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use Xima\XmFormcycle\Dto\ElementSettings;
-use Xima\XmFormcycle\Dto\FormcycleConfiguration;
 use Xima\XmFormcycle\Dto\IntegrationMode;
-use Xima\XmFormcycle\Error\FormcycleConfigurationException;
 use Xima\XmFormcycle\Error\FormcycleConnectionException;
 
-final class FormcycleService
+final readonly class FormcycleService
 {
-    private ?FormcycleConfiguration $configuration;
+    private string $url;
 
-    /**
-     * @throws ExtensionConfigurationPathDoesNotExistException
-     * @throws ExtensionConfigurationExtensionNotConfiguredException
-     * @throws FormcycleConfigurationException
-     */
-    public function __construct(
-        private readonly ExtensionConfiguration $extensionConfiguration,
-        private readonly FrontendInterface $cache,
-        private readonly UriBuilder $uriBuilder
-    ) {
-        $extConfig = $this->extensionConfiguration->get('xm_formcycle');
-        $this->configuration = FormcycleConfiguration::createFromExtensionConfiguration($extConfig);
+    private string $clientId;
+
+    private IntegrationMode $defaultIntegrationMode;
+
+    public function __construct(private FrontendInterface $cache, private UriBuilder $uriBuilder, SiteSettings $settings)
+    {
+        $this->url = rtrim($settings->get('formcycle.url'), '/');
+        $this->clientId = $settings->get('formcycle.clientId');
+        $this->defaultIntegrationMode = IntegrationMode::from($settings->get('formcycle.defaultIntegrationMode'));
     }
 
     public function hasAvailableFormsCached(): bool
@@ -71,7 +64,7 @@ final class FormcycleService
      */
     private function loadAvailableForms(): array
     {
-        $jsonResponse = GeneralUtility::getUrl($this->configuration->getFormListUrl());
+        $jsonResponse = GeneralUtility::getUrl($this->getFormListUrl());
 
         if (!$jsonResponse) {
             throw new FormcycleConnectionException('Loading available forms: No response of endpoint', 1709102526);
@@ -100,6 +93,15 @@ final class FormcycleService
         return $forms;
     }
 
+    public function getFormListUrl(): string
+    {
+        return sprintf(
+            '%s/plugin?name=FormListJson&xfc-rp-client=%s',
+            $this->url,
+            $this->clientId,
+        );
+    }
+
     private static function encodePreviewImages(array &$forms): void
     {
         foreach ($forms as &$form) {
@@ -113,20 +115,20 @@ final class FormcycleService
         }
     }
 
-    public function getAdminUrl(): string
-    {
-        return $this->configuration->getAdminUrl();
-    }
-
     public function getCspUrl(): string
     {
         $adminUrl = $this->getAdminUrl();
         return pathinfo($adminUrl, PATHINFO_DIRNAME);
     }
 
+    public function getAdminUrl(): string
+    {
+        return $this->url;
+    }
+
     public function getIframeUrl(ElementSettings $settings): string
     {
-        $url = sprintf('%s/form/provide/%s', $this->configuration->getFormCycleUrl(), $settings->formId);
+        $url = sprintf('%s/form/provide/%s', $this->url, $settings->formId);
 
         $params = $this->getCommonQueryParams($settings);
         $params['xfc-height-changed-evt'] = true;
@@ -175,7 +177,7 @@ final class FormcycleService
             return '?type=1464705954&formId=' . $settings->formId;
         }
 
-        $url = sprintf('%s/form/provide/%s', $this->configuration->getFormCycleUrl(), $settings->formId);
+        $url = sprintf('%s/form/provide/%s', $this->url, $settings->formId);
 
         $params = $this->getCommonQueryParams($settings);
         $params['xfc-rp-form-only'] = true;
@@ -185,7 +187,7 @@ final class FormcycleService
 
     public function getDefaultIntegrationMode(): IntegrationMode
     {
-        return $this->configuration->getIntegrationMode();
+        return $this->defaultIntegrationMode;
     }
 
     public function getFormHtml(ElementSettings $settings): string
@@ -196,7 +198,7 @@ final class FormcycleService
 
     public function getIntegratedFormUrl(ElementSettings $settings): string
     {
-        $url = sprintf('%s/form/provide/%s', $this->configuration->getFormCycleUrl(), $settings->formId);
+        $url = sprintf('%s/form/provide/%s', $this->url, $settings->formId);
 
         $params = $this->getCommonQueryParams($settings);
 

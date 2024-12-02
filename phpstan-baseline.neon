@@ -1,6 +1,26 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Dead catch \\- Xima\\\\XmFormcycle\\\\Error\\\\FormcycleConfigurationException is never thrown in the try block\\.$#"
+			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Core\\\\Site\\\\Entity\\\\SiteLanguage\\:\\:getTwoLetterIsoCode\\(\\)\\.$#"
 			count: 1
-			path: Classes/Preview/FormcyclePreviewRenderer.php
+			path: Classes/Dto/ElementSettings.php
+
+		-
+			message: "#^Parameter \\#1 \\$cache of class Xima\\\\XmFormcycle\\\\Service\\\\FormcycleService constructor expects TYPO3\\\\CMS\\\\Core\\\\Cache\\\\Frontend\\\\FrontendInterface, TYPO3\\\\CMS\\\\Core\\\\Configuration\\\\ExtensionConfiguration given\\.$#"
+			count: 1
+			path: Tests/Functional/Service/FormcycleServiceTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$uriBuilder of class Xima\\\\XmFormcycle\\\\Service\\\\FormcycleService constructor expects TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\Web\\\\Routing\\\\UriBuilder, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject&TYPO3\\\\CMS\\\\Core\\\\Cache\\\\Frontend\\\\FrontendInterface given\\.$#"
+			count: 1
+			path: Tests/Functional/Service/FormcycleServiceTest.php
+
+		-
+			message: "#^Parameter \\#3 \\$settings of class Xima\\\\XmFormcycle\\\\Service\\\\FormcycleService constructor expects TYPO3\\\\CMS\\\\Core\\\\Site\\\\Entity\\\\SiteSettings, TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\Web\\\\Routing\\\\UriBuilder given\\.$#"
+			count: 1
+			path: Tests/Functional/Service/FormcycleServiceTest.php
+
+		-
+			message: "#^Call to static method createFromExtensionConfiguration\\(\\) on an unknown class Xima\\\\XmFormcycle\\\\Dto\\\\FormcycleConfiguration\\.$#"
+			count: 6
+			path: Tests/Unit/Dto/FormcycleConfigurationTest.php

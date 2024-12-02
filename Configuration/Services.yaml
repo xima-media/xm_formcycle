@@ -12,7 +12,7 @@ services:
     factory: [ '@TYPO3\CMS\Core\Cache\CacheManager', 'getCache' ]
     arguments: [ 'xm_formcycle' ]
 
-  Xima\XmFormcycle\Service\FormcycleService:
+  Xima\XmFormcycle\Service\FormcycleServiceFactory:
     public: true
     arguments:
       $cache: '@cache.xm_formcycle'

@@ -5,8 +5,8 @@ namespace Xima\XmFormcycle\Preview;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use Xima\XmFormcycle\Error\FormcycleConfigurationException;
 use Xima\XmFormcycle\Service\FormcycleService;
+use Xima\XmFormcycle\Service\FormcycleServiceFactory;
 
 class FormcyclePreviewRenderer extends StandardContentPreviewRenderer
 {
@@ -27,8 +27,8 @@ class FormcyclePreviewRenderer extends StandardContentPreviewRenderer
 
         try {
             /** @var FormcycleService $formcycleService */
-            $formcycleService = GeneralUtility::makeInstance(FormcycleService::class);
-        } catch (FormcycleConfigurationException $e) {
+            $formcycleService = GeneralUtility::makeInstance(FormcycleServiceFactory::class)->createFromPageUid($row['pid']);
+        } catch (\Exception $e) {
             $content = 'Formcycle extension configuration error';
             return $this->linkEditContent($content, $row);
         }

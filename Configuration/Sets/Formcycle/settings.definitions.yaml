@@ -3,21 +3,21 @@ categories:
     label: 'Formcycle'
 
 settings:
-  formcycleUrl:
+  formcycle.url:
     category: Formcycle
     label: 'Server URL'
     type: string
     description: 'The URL of the formcycle server'
     default: ''
 
-  formcycleClientId:
+  formcycle.clientId:
     category: Formcycle
     label: 'Client ID'
     type: string
     description: 'The formcycle client ID'
     default: ''
 
-  defaultIntegrationMode:
+  formcycle.defaultIntegrationMode:
     category: Formcycle
     label: 'Default integration mode'
     type: string
