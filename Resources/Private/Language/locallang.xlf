@@ -113,6 +113,54 @@
 			<trans-unit id="flexform.parameters.description">
 				<source>Modify the Formcycle request, e.g. &amp;param1=value1&amp;param2=value2</source>
 			</trans-unit>
+			<trans-unit id="palettes.formcycle.settings">
+				<source>Formcycle Settings</source>
+			</trans-unit>
+			<trans-unit id="palettes.formcycle.include">
+				<source>Formcycle Include</source>
+			</trans-unit>
+			<trans-unit id="formcycle">
+				<source>Formcycle</source>
+			</trans-unit>
+			<trans-unit id="formcycle_settings">
+				<source>Formcycle Settings</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_form_id.label">
+				<source>Form ID</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_redirect_success">
+				<source>Redirect on Success</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_redirect_error">
+				<source>Redirect on Error</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode">
+				<source>Integration Mode</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode.0">
+				<source>Default</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode.1">
+				<source>Integrated</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode.4">
+				<source>iFrame</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode.2">
+				<source>AJAX (TYPO3)</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode.3">
+				<source>AJAX (FORMCYCLE)</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_is_jquery">
+				<source>Include jQuery</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_is_jquery_ui">
+				<source>Include jQuery UI</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_additional_params">
+				<source>Additional Parameters</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

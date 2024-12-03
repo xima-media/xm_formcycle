@@ -2,8 +2,8 @@ tt_content.formcycle = COA
 tt_content.formcycle {
 
   10 = COA_INT
-  10.stdWrap.if.equals = default
-  10.stdWrap.if.value.data = flexform : pi_flexform:settings.xf.integrationMode
+  10.stdWrap.if.equals = 0
+  10.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
   10.1 =< lib.contentElement
   10.1 {
     templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
@@ -21,8 +21,8 @@ tt_content.formcycle {
   }
 
   20 = COA_INT
-  20.stdWrap.if.equals = integrated
-  20.stdWrap.if.value.data = flexform : pi_flexform:settings.xf.integrationMode
+  20.stdWrap.if.equals = 1
+  20.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
   20.1 =< lib.contentElement
   20.1 {
     templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
@@ -38,8 +38,8 @@ tt_content.formcycle {
   }
 
   30 = COA
-  30.stdWrap.if.equals = AJAX (TYPO3)
-  30.stdWrap.if.value.data = flexform : pi_flexform:settings.xf.integrationMode
+  30.stdWrap.if.equals = 2
+  30.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
   30.1 =< lib.contentElement
   30.1 {
     templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
@@ -55,8 +55,8 @@ tt_content.formcycle {
   }
 
   40 = COA
-  40.stdWrap.if.equals = AJAX (FORMCYCLE)
-  40.stdWrap.if.value.data = flexform : pi_flexform:settings.xf.integrationMode
+  40.stdWrap.if.equals = 3
+  40.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
   40.1 =< lib.contentElement
   40.1 {
     templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
@@ -72,8 +72,8 @@ tt_content.formcycle {
   }
 
   50 = COA
-  50.stdWrap.if.equals = iFrame
-  50.stdWrap.if.value.data = flexform : pi_flexform:settings.xf.integrationMode
+  50.stdWrap.if.equals = 4
+  50.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
   50.1 =< lib.contentElement
   50.1 {
     templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/

@@ -24,7 +24,7 @@ final readonly class FormcycleService
     {
         $this->url = rtrim($settings->get('formcycle.url'), '/');
         $this->clientId = $settings->get('formcycle.clientId');
-        $this->defaultIntegrationMode = IntegrationMode::from($settings->get('formcycle.defaultIntegrationMode'));
+        $this->defaultIntegrationMode = IntegrationMode::fromSiteSettings($settings->get('formcycle.defaultIntegrationMode'));
     }
 
     public function hasAvailableFormsCached(): bool

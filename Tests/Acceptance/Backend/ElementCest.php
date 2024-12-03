@@ -12,20 +12,8 @@ use Xima\XmFormcycle\Tests\Acceptance\Support\Helper\ShadowDom;
 
 class ElementCest
 {
-    private bool $isV11 = false;
-
-    public function __construct()
-    {
-        if (file_exists(__DIR__ . '/../../../vendor/bin/typo3cms')) {
-            $this->isV11 = true;
-        }
-    }
-
     public function _before(AcceptanceTester $I, Scenario $scenario): void
     {
-        if ($this->isV11) {
-            $scenario->skip();
-        }
         $I->amOnPage('/typo3/');
         $I->waitForElementVisible('input[name="username"]');
         $I->waitForElementVisible('input[type="password"]');
@@ -52,7 +40,7 @@ class ElementCest
     ): void {
         $I->click('Page');
         $I->waitForElementVisible(PageTree::$pageTreeFrameSelector);
-        $pageTree->clickElement('Main');
+        $pageTree->openPath(['EXT:xm_formcycle', 'Main']);
         $I->switchToContentFrame();
         $I->waitForText('Element1');
         $I->click('Element1');
@@ -82,7 +70,7 @@ class ElementCest
         $I->click('Page');
         $I->waitForElementVisible(PageTree::$pageTreeFrameSelector);
         $I->wait(2);
-        $pageTree->clickElement('Main');
+        $pageTree->openPath(['EXT:xm_formcycle', 'Main']);
 
         // open wizard
         $I->switchToContentFrame();

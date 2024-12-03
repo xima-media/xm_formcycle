@@ -6,7 +6,6 @@ use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
-use Xima\XmFormcycle\Error\FormcycleConfigurationException;
 use Xima\XmFormcycle\Error\FormcycleConnectionException;
 use Xima\XmFormcycle\Service\FormcycleServiceFactory;
 
@@ -36,10 +35,6 @@ class FormcycleSelection extends AbstractFormElement
             } else {
                 $view->assign('loading', true);
             }
-        } catch (FormcycleConfigurationException $e) {
-            $errorCode = $e->getCode();
-            $view->assign('errorCode', $errorCode);
-            $view->assign('errorType', 'configuration');
         } catch (FormcycleConnectionException $e) {
             $errorCode = $e->getCode();
             $view->assign('errorCode', $errorCode);

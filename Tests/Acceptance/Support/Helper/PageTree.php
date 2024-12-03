@@ -7,11 +7,6 @@ use Xima\XmFormcycle\Tests\Acceptance\Support\AcceptanceTester;
 
 final class PageTree extends AbstractPageTree
 {
-    /**
-     * @var AcceptanceTester
-     */
-    protected $tester;
-
     public function __construct(AcceptanceTester $tester)
     {
         $this->tester = $tester;
@@ -20,6 +15,7 @@ final class PageTree extends AbstractPageTree
     public function clickElement(string $name): void
     {
         $context = $this->getPageTreeElement();
-        $context->findElement(\Facebook\WebDriver\WebDriverBy::xpath('//*[text()="' . $name . '"]'))->click();
+        $context->findElement(\Facebook\WebDriver\WebDriverBy::xpath('//div[contains(@title, ' . $name . ')]'))->click();
+        $context->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(self::$treeItemAnchorSelector))->click();
     }
 }

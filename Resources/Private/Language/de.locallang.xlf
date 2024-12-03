@@ -158,6 +158,50 @@
 				<source>Modify the Formcycle request, e.g. &amp;param1=value1&amp;param2=value2</source>
 				<target>Ändern Sie die Formcycle-Anfrage, z.B. &amp;param1=value1&amp;param2=value2</target>
 			</trans-unit>
+			<trans-unit id="tx_xmformcycle_redirect_success">
+				<source>Redirect on Success</source>
+				<target>Weiterleitung bei Erfolg</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_redirect_error">
+				<source>Redirect on Error</source>
+				<target>Weiterleitung bei Fehler</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode">
+				<source>Integration Mode</source>
+				<target>Integrationsmodus</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode.0">
+				<source>Default</source>
+				<target>Standard</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode.1">
+				<source>Integrated</source>
+				<target>Integriert</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode.4">
+				<source>iFrame</source>
+				<target>iFrame</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode.2">
+				<source>AJAX (TYPO3)</source>
+				<target>AJAX (TYPO3)</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode.3">
+				<source>AJAX (FORMCYCLE)</source>
+				<target>AJAX (FORMCYCLE)</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_is_jquery">
+				<source>Include jQuery</source>
+				<target>jQuery einbinden</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_is_jquery_ui">
+				<source>Include jQuery UI</source>
+				<target>jQuery UI einbinden</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_additional_params">
+				<source>Additional Parameters</source>
+				<target>Zusätzliche Parameter</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

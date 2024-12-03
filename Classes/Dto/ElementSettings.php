@@ -2,7 +2,6 @@
 
 namespace Xima\XmFormcycle\Dto;
 
-use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\Exception\ContentRenderingException;
 
@@ -14,7 +13,7 @@ class ElementSettings
 
     public string $formId = '';
 
-    public ?IntegrationMode $integrationMode = null;
+    public IntegrationMode $integrationMode;
 
     public bool $loadFormcycleJquery = true;
 
@@ -25,26 +24,22 @@ class ElementSettings
     public string $language = '';
 
     public static function createFromContentElement(
-        FlexFormService $flexFormService,
         ContentObjectRenderer $cObj,
     ): self {
-        $xml = $flexFormService->convertFlexFormContentToArray($cObj->data['pi_flexform'] ?? '');
-
         $settings = new self();
         $settings->formId = $cObj->data['tx_xmformcycle_form_id'] ?? '';
 
         try {
-            $language = $cObj->getRequest()->getAttribute('language')->getTwoLetterIsoCode();
-            $settings->language = $language;
+            $settings->language = (string)$cObj->getRequest()->getAttribute('language')->getLocale();
         } catch (\Error|ContentRenderingException) {
         }
 
-        $settings->successPid = $xml['settings']['xf']['siteok'] ?? 0;
-        $settings->errorPid = $xml['settings']['xf']['siteerror'] ?? 0;
-        $settings->loadFormcycleJquery = (bool)($xml['settings']['xf']['useFcjQuery'] ?? 1);
-        $settings->loadFormcycleJqueryUi = (bool)($xml['settings']['xf']['useFcjQueryUi'] ?? 0);
-        $settings->additionalParameters = $xml['settings']['xf']['useFcUrlParams'] ?? '';
-        $settings->integrationMode = IntegrationMode::tryFrom($xml['settings']['xf']['integrationMode']);
+        $settings->successPid = $cObj->data['tx_xmformcycle_redirect_success'] ?? 0;
+        $settings->errorPid = $cObj->data['tx_xmformcycle_redirect_error'] ?? 0;
+        $settings->loadFormcycleJquery = (bool)($cObj->data['tx_xmformcycle_is_jquery'] ?? 1);
+        $settings->loadFormcycleJqueryUi = (bool)($cObj->data['tx_xmformcycle_is_jquery_ui'] ?? 0);
+        $settings->additionalParameters = $cObj->data['tx_xmformcycle_additional_params'] ?? '';
+        $settings->integrationMode = IntegrationMode::fromDatabase($cObj->data['tx_xmformcycle_integration_mode']);
 
         return $settings;
     }
