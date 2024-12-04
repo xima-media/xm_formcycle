@@ -22,10 +22,6 @@
 		{
 			"type": "github",
 			"url": "git@github.com:bmack/TYPO3-Console.git"
-		},
-		{
-			"type": "github",
-			"url": "git@github.com:maikschneider/typo3-codeception-helper.git"
 		}
 	],
 	"require": {
@@ -48,7 +44,7 @@
 		"typo3/cms-base-distribution": "*",
 		"typo3/cms-lowlevel": "*",
 		"typo3/testing-framework": "^9.1",
-		"eliashaeussler/typo3-codeception-helper": "dev-main"
+		"eliashaeussler/typo3-codeception-helper": "^1.1.2"
 	},
 	"autoload": {
 		"psr-4": {
