@@ -35,8 +35,8 @@ class FormMiddleware implements MiddlewareInterface
         $settings = new ElementSettings();
         $settings->formId = $params['formId'];
 
-        $siteSettings = $request->getAttribute('site')->getSettings();
-        $html = $this->formcycleServiceFactory->createFromSiteSettings($siteSettings)->getFormHtml($settings);
+        $site = $request->getAttribute('site');
+        $html = $this->formcycleServiceFactory->createFromSite($site)->getFormHtml($settings);
 
         $response = $this->responseFactory->createResponse();
         $response->getBody()->write($html);

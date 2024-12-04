@@ -5,9 +5,8 @@ namespace Xima\XmFormcycle\Service;
 use finfo;
 use JsonException;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
-use TYPO3\CMS\Core\Site\Entity\SiteSettings;
+use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use Xima\XmFormcycle\Dto\ElementSettings;
 use Xima\XmFormcycle\Dto\IntegrationMode;
 use Xima\XmFormcycle\Error\FormcycleConnectionException;
@@ -20,11 +19,11 @@ final readonly class FormcycleService
 
     private IntegrationMode $defaultIntegrationMode;
 
-    public function __construct(private FrontendInterface $cache, private UriBuilder $uriBuilder, SiteSettings $settings)
+    public function __construct(private FrontendInterface $cache, private Site $site)
     {
-        $this->url = rtrim($settings->get('formcycle.url'), '/');
-        $this->clientId = $settings->get('formcycle.clientId');
-        $this->defaultIntegrationMode = IntegrationMode::fromSiteSettings($settings->get('formcycle.defaultIntegrationMode'));
+        $this->url = rtrim($site->getSettings()->get('formcycle.url'), '/');
+        $this->clientId = $site->getSettings()->get('formcycle.clientId');
+        $this->defaultIntegrationMode = IntegrationMode::fromSiteSettings($site->getSettings()->get('formcycle.defaultIntegrationMode'));
     }
 
     public function hasAvailableFormsCached(): bool
@@ -153,19 +152,11 @@ final readonly class FormcycleService
         ];
 
         if ($settings->successPid) {
-            $url = $this->uriBuilder
-                ->setTargetPageUid($settings->successPid)
-                ->setCreateAbsoluteUri(true)
-                ->build();
-            $params['xfc-pp-success-url'] = $url;
+            $params['xfc-pp-success-url'] = $this->generateAbsoluteUri($settings->successPid, $settings->language);
         }
 
         if ($settings->errorPid) {
-            $url = $this->uriBuilder
-                ->setTargetPageUid($settings->errorPid)
-                ->setCreateAbsoluteUri(true)
-                ->build();
-            $params['xfc-pp-error-url'] = $url;
+            $params['xfc-pp-error-url'] = $this->generateAbsoluteUri($settings->errorPid, $settings->language);
         }
 
         return $params;
@@ -203,5 +194,19 @@ final readonly class FormcycleService
         $params = $this->getCommonQueryParams($settings);
 
         return $url . '?' . http_build_query($params);
+    }
+
+    protected function generateAbsoluteUri(int $pageUid, string $language): string
+    {
+        $uri = $this->site->getRouter()->generateUri(
+            $pageUid,
+            ['_language' => $language]
+        );
+        // fix for sites without absolute uri
+        if (empty($uri->getHost()) || empty($uri->getScheme())) {
+            $uri = $uri->withHost((string)GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY'));
+            $uri = $uri->withScheme('https');
+        }
+        return (string)$uri;
     }
 }

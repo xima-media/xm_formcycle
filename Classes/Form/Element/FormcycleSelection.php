@@ -25,8 +25,8 @@ class FormcycleSelection extends AbstractFormElement
         $view->assign('itemFormElValue', $this->data['parameterArray']['itemFormElValue']);
 
         try {
-            $settings = $this->data['site']->getSettings();
-            $fcService = GeneralUtility::makeInstance(FormcycleServiceFactory::class)->createFromSiteSettings($settings);
+            $site = $this->data['site'];
+            $fcService = GeneralUtility::makeInstance(FormcycleServiceFactory::class)->createFromSite($site);
             $view->assign('adminUrl', $fcService->getAdminUrl());
             if ($fcService->hasAvailableFormsCached()) {
                 $forms = $fcService->getAvailableForms();

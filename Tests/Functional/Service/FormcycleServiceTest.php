@@ -3,23 +3,14 @@
 namespace Xima\XmFormcycle\Tests\Functional\Service;
 
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
-use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
+use TYPO3\CMS\Core\Site\Entity\Site;
+use TYPO3\CMS\Core\Site\Entity\SiteSettings;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 use Xima\XmFormcycle\Service\FormcycleService;
+use Xima\XmFormcycle\Service\FormcycleServiceFactory;
 
 class FormcycleServiceTest extends FunctionalTestCase
 {
-    protected array $configurationToUseInTestInstance = [
-        'EXTENSIONS' => [
-            'xm_formcycle' => [
-                'formcycleClientId' => '2252',
-                'formcycleUrl' => 'https://pro.form.cloud/formcycle/',
-                'defaultIntegrationMode' => 'integrated',
-            ],
-        ],
-    ];
-
     protected array $testExtensionsToLoad = [
         'typo3conf/ext/xm_formcycle',
     ];
@@ -30,11 +21,20 @@ class FormcycleServiceTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $extConf = $this->get(ExtensionConfiguration::class);
         $cache = $this->createMock(FrontendInterface::class);
-        $uriBuilder = $this->get(UriBuilder::class);
 
-        $this->subject = new FormcycleService($extConf, $cache, $uriBuilder);
+        $site = $this->createMock(Site::class);
+        $site->method('getSettings')->willReturn(
+            new SiteSettings([
+                'formcycle.clientId' => '2252',
+                'formcycle.url' => 'https://pro.form.cloud/formcycle/',
+                'formcycle.defaultIntegrationMode' => 'integrated',
+            ], [], [])
+        );
+
+        $factory = new FormcycleServiceFactory($cache);
+
+        $this->subject = $factory->createFromSite($site);
     }
 
     public function testLoadAvailableForms(): void

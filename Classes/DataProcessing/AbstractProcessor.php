@@ -2,7 +2,6 @@
 
 namespace Xima\XmFormcycle\DataProcessing;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use Xima\XmFormcycle\Dto\ElementSettings;
@@ -16,6 +15,10 @@ abstract class AbstractProcessor implements DataProcessorInterface
 
     protected FormcycleService $formcycleService;
 
+    public function __construct(private readonly FormcycleServiceFactory $formcycleServiceFactory)
+    {
+    }
+
     public function process(
         ContentObjectRenderer $cObj,
         array $contentObjectConfiguration,
@@ -25,7 +28,7 @@ abstract class AbstractProcessor implements DataProcessorInterface
         // construct element settings
         $this->settings = ElementSettings::createFromContentElement($cObj);
 
-        $this->formcycleService = GeneralUtility::makeInstance(FormcycleServiceFactory::class)->createFromPageUid($cObj->data['pid']);
+        $this->formcycleService = $this->formcycleServiceFactory->createFromPageUid($cObj->data['pid']);
 
         // check if integration mode is set
         if ($this->settings->integrationMode === IntegrationMode::Default) {
