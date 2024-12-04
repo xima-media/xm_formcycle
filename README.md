@@ -36,7 +36,19 @@ composer require xima/xima-typo3-formcycle
 Download the zip file from
 [TYPO3 extension repository (TER)](https://extensions.typo3.org/extension/xm_formcycle).
 
-## Configuration
+## Configuration in TYPO3 v13
+
+The configuration of formcycle has been moved to
+the [Site Sets](https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ApiOverview/SiteHandling/SiteSets.html). Just add the Formcycle
+Site Set to your Site Configuration:
+
+![Site set](./Documentation/Images/site_set.png)
+
+After that, you can enter your Formcycle credentials via the Site Settings module:
+
+![Site settings](./Documentation/Images/site_settings.png)
+
+## Configuration in TYPO3 v11 & v12
 
 After installation, enter your login data via extension configuration and include the TypoScript template for the
 frontend rendering.
@@ -78,6 +90,15 @@ plugin.tx_xmformcycle {
 ```
 
 Copy and modify the `Formcycle.html` to the Templates directory.
+
+## Migration to version 10
+
+In version 10 of this extension the flexform settings have been moved to regular TCA fields. To migrate your existing content elements, run
+the Upgrade Wizard in the TYPO3 backend or via CLI:
+
+```bash
+typo3 upgrade:run xm_formcycle
+```
 
 ## License
 
