@@ -17,7 +17,7 @@ class ElementSettings
 
     public bool $loadFormcycleJquery = true;
 
-    public bool $loadFormcycleJqueryUi = false;
+    public bool $loadFormcycleJqueryUi = true;
 
     public string $additionalParameters = '';
 
@@ -37,7 +37,7 @@ class ElementSettings
         $settings->successPid = $cObj->data['tx_xmformcycle_redirect_success'] ?? 0;
         $settings->errorPid = $cObj->data['tx_xmformcycle_redirect_error'] ?? 0;
         $settings->loadFormcycleJquery = (bool)($cObj->data['tx_xmformcycle_is_jquery'] ?? 1);
-        $settings->loadFormcycleJqueryUi = (bool)($cObj->data['tx_xmformcycle_is_jquery_ui'] ?? 0);
+        $settings->loadFormcycleJqueryUi = (bool)($cObj->data['tx_xmformcycle_is_jquery_ui'] ?? 1);
         $settings->additionalParameters = $cObj->data['tx_xmformcycle_additional_params'] ?? '';
         $settings->integrationMode = IntegrationMode::fromDatabase($cObj->data['tx_xmformcycle_integration_mode']);
 
