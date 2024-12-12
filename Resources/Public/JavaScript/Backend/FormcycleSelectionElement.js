@@ -54,14 +54,6 @@ export default class FormcycleSelectionElement {
       })
     })
 
-    const settingsButton = document.querySelector('#xm-settings')
-    const wrapper = document.querySelector('#xm-formcycle-forms')
-    settingsButton.addEventListener('click', e => {
-      e.preventDefault()
-      e.currentTarget.classList.toggle('active')
-      wrapper.classList.toggle('open-settings')
-    })
-
     const loadingSpinner = document.querySelector('#xm-loading-spinner')
     const reloadButton = document.querySelector('#xm-reload-available-forms')
     const formsWrapper = document.querySelector('#xm-available-forms-wrapper')

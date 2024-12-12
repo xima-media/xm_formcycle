@@ -44,74 +44,8 @@
 			<trans-unit id="button.reload">
 				<source>Reload</source>
 			</trans-unit>
-			<trans-unit id="button.settings">
-				<source>Settings</source>
-			</trans-unit>
 			<trans-unit id="button.admin">
 				<source>Formcycle Admin</source>
-			</trans-unit>
-			<trans-unit id="flexform.sheet.responses">
-				<source>Response pages</source>
-			</trans-unit>
-			<trans-unit id="flexform.responses.success">
-				<source>Success page</source>
-			</trans-unit>
-			<trans-unit id="flexform.responses.success.description">
-				<source>Page to display after successful form submission</source>
-			</trans-unit>
-			<trans-unit id="flexform.responses.error">
-				<source>Error page</source>
-			</trans-unit>
-			<trans-unit id="flexform.responses.error.description">
-				<source>Response page when an error occurs during execution</source>
-			</trans-unit>
-			<trans-unit id="flexform.sheet.include">
-				<source>Integration options</source>
-			</trans-unit>
-			<trans-unit id="flexform.integration">
-				<source>Integration type</source>
-			</trans-unit>
-			<trans-unit id="flexform.integration.description">
-				<source>This defines how the Formcycle form is embedded into the page</source>
-			</trans-unit>
-			<trans-unit id="flexform.integration.default">
-				<source>Default</source>
-			</trans-unit>
-			<trans-unit id="flexform.integration.integrated">
-				<source>Integrated</source>
-			</trans-unit>
-			<trans-unit id="flexform.integration.ajaxTypo3">
-				<source>AJAX (via TYPO3)</source>
-			</trans-unit>
-			<trans-unit id="flexform.integration.ajaxFormcycle">
-				<source>AJAX (via Fromcycle)</source>
-			</trans-unit>
-			<trans-unit id="flexform.integration.iframe">
-				<source>Iframe</source>
-			</trans-unit>
-			<trans-unit id="flexform.jquery">
-				<source>jQuery</source>
-			</trans-unit>
-			<trans-unit id="flexform.jquery.checkbox">
-				<source>Include jQuery</source>
-			</trans-unit>
-			<trans-unit id="flexform.jquery.description">
-				<source>If you uncheck this (use your own framework), make sure your jQuery framework is initialised</source>
-			</trans-unit>
-			<trans-unit id="flexform.jqueryUi">
-				<source>jQuery UI</source>
-			</trans-unit>
-			<trans-unit id="flexform.jqueryUi.checkbox">
-				<source>Include jQuery UI</source>
-			</trans-unit>
-			<trans-unit id="flexform.jqueryUi.description">
-				<source>This is only necessary if you use jQuery UI components</source>
-			</trans-unit>
-			<trans-unit id="flexform.parameters">
-				<source>Additional parameters</source>
-			</trans-unit>
-			<trans-unit id="flexform.parameters.description">
-				<source>Modify the Formcycle request, e.g. &amp;param1=value1&amp;param2=value2</source>
 			</trans-unit>
 			<trans-unit id="palettes.formcycle.settings">
 				<source>Formcycle Settings</source>

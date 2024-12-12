@@ -68,9 +68,3 @@ $tempFields = [
     ],
 ];
 ExtensionManagementUtility::addTCAcolumns('tt_content', $tempFields);
-
-ExtensionManagementUtility::addPiFlexFormValue(
-    '*',
-    'FILE:EXT:xm_formcycle/Configuration/FlexForms/flexform_list.xml',
-    'formcycle'
-);

@@ -7,12 +7,8 @@
 <f:if condition="!{loading} && !{errorCode}">
     <div class="mb-4 btn-group">
         <button id="xm-reload-available-forms" class="btn btn-default">
-            <core:icon identifier="actions-cog" />
+            <core:icon identifier="actions-refresh" />
             {f:translate(key: 'button.reload', extensionName:'XmFormcycle')}
-        </button>
-        <button class="btn btn-default" id="xm-settings">
-            <core:icon identifier="actions-cog" />
-            {f:translate(key: 'button.settings', extensionName:'XmFormcycle')}
         </button>
         <a href="{adminUrl}" class="btn btn-default" target="_blank">
             <core:icon identifier="actions-window-open" />
@@ -30,10 +26,8 @@
         <f:for each="{forms}" as="group" key="groupName">
             <div style="--typo3-component-box-shadow:none">
                 <h4>
-                    <f:translate extensionName="XmFormcycle" key="defaultGroupNames.{groupName}">{groupName}
-                    </f:translate>
+                    <f:translate extensionName="XmFormcycle" key="defaultGroupNames.{groupName}">{groupName}</f:translate>
                 </h4>
-                <hr />
                 <div class="d-flex flex-wrap gap-3">
                     <f:for each="{group}" as="form">
                         <a href="#" class="card btn btn-primary {f:if(condition: '{itemFormElValue}=={form.id}', then: 'active')}" style="width: 14rem; --bs-btn-color:inherit;" data-form-id="{form.id}">
