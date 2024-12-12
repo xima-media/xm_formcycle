@@ -11,8 +11,8 @@
 				<target>Formcycle</target>
 			</trans-unit>
 			<trans-unit id="wizard.description">
-				<source>Include a XIMA® FormCycle form</source>
-				<target>Bindet ein XIMA® FormCycle Formular ein</target>
+				<source>Include a formcycle form</source>
+				<target>Bindet ein formcycle Formular ein</target>
 			</trans-unit>
 			<trans-unit id="tabs.form">
 				<source>Form</source>
