@@ -1,15 +1,23 @@
-div:has(> #xm-formcycle-forms:not(.open-settings)) ~ .form-group {
-    display: none;
+#xm-available-forms-wrapper .card-image {
+    background: #ededed;
 }
 
-#xm-formcycle-forms.open-settings #xm-available-forms-wrapper {
-    display: none;
+#xm-available-forms-wrapper .card {
+    --bs-btn-color: inherit;
+    white-space: normal;
+    width: 14rem;
 }
 
-#xm-formcycle-forms.open-settings > .btn-group {
-    margin-bottom: 0 !important;
+#xm-available-forms-wrapper .card-body {
+    padding: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    align-content: center;
 }
 
-div:has(> #xm-formcycle-forms.open-settings) ~ .form-group legend.form-legend {
-    display: none;
+#xm-available-forms-wrapper .card.active {
+    --typo3-component-box-shadow: none;
+    --typo3-card-bg: var(--typo3-state-primary-bg);
+    color: var(--typo3-state-primary-color);
 }
