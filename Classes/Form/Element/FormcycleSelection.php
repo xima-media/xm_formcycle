@@ -4,6 +4,7 @@ namespace Xima\XmFormcycle\Form\Element;
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
+use TYPO3\CMS\Core\Site\Entity\NullSite;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use Xima\XmFormcycle\Error\FormcycleConfigurationException;
@@ -26,8 +27,13 @@ class FormcycleSelection extends AbstractFormElement
         $view->assign('itemFormElValue', $this->data['parameterArray']['itemFormElValue']);
 
         try {
+            $factory = GeneralUtility::makeInstance(FormcycleServiceFactory::class);
             $site = $this->data['site'];
-            $fcService = GeneralUtility::makeInstance(FormcycleServiceFactory::class)->createFromSite($site);
+            if (!$site instanceof NullSite) {
+                $fcService = $factory->createFromSite($site);
+            } else {
+                $fcService = $factory->createFromPageUid($this->data['effectivePid'] ?? 0);
+            }
             $view->assign('adminUrl', $fcService->getAdminUrl());
             if ($fcService->hasAvailableFormsCached()) {
                 $forms = $fcService->getAvailableForms();

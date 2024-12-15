@@ -26,7 +26,7 @@
 			<trans-unit id="error.connection.title">
 				<source>Connection error</source>
 			</trans-unit>
-			<trans-unit id="error.connection.title">
+			<trans-unit id="error.unknown.title">
 				<source>Unknown error</source>
 			</trans-unit>
 			<trans-unit id="error.1709102526.message">
@@ -38,8 +38,8 @@
 			<trans-unit id="error.1734275657.message">
 				<source>The site setting "formcycle.clientId" is missing</source>
 			</trans-unit>
-			<trans-unit id="error.1734275941.message">
-				<source>An unknown error occurred. Please contact the site administrator.</source>
+			<trans-unit id="error.unkown.message">
+				<source>An unknown error (%s) occurred. Please contact the site administrator.</source>
 			</trans-unit>
 			<trans-unit id="defaultGroupNames.0">
 				<source>Ungrouped</source>

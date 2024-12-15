@@ -34,7 +34,7 @@
 				<source>Connection error</source>
 				<target>Verbindungsfehler</target>
 			</trans-unit>
-			<trans-unit id="error.connection.title">
+			<trans-unit id="error.unknown.title">
 				<source>Unknown error</source>
 				<target>Unbekannter Fehler</target>
 			</trans-unit>
@@ -46,9 +46,9 @@
 				<source>The extension configuration "formcycleClientId" is missing</source>
 				<target>Das Site Setting "formcycle.clientId" fehlt</target>
 			</trans-unit>
-			<trans-unit id="error.1734275941.message">
+			<trans-unit id="error.unknown.message">
 				<source>An unknown error occurred. Please contact the site administrator.</source>
-				<target>Es ist ein unbekannter Fehler aufgetreten. Kontaktieren Sie den Seiten-Administrator.</target>
+				<target>Es ist ein unbekannter Fehler (%s) aufgetreten. Kontaktieren Sie den Seiten-Administrator.</target>
 			</trans-unit>
 			<trans-unit id="defaultGroupNames.0">
 				<source>Ungrouped</source>
