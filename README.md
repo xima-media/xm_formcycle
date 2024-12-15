@@ -91,9 +91,18 @@ plugin.tx_xmformcycle {
 
 Copy and modify the `Formcycle.html` to the Templates directory.
 
-## Migration to version 10
+## Migration from version 9 to 10
 
-In version 10 of this extension the flexform settings have been moved to regular TCA fields. To migrate your existing content elements, run
+If you are upgrading from version 9 to 10 (TYPO3 v12 to v13), you need to perform the following steps:
+
+### 1. Extension configuration
+
+The extension configuration of the formcycle URL and formcycle client ID have been moved to the TYPO3 system settings. You need to manually
+migrate the settings from `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['xm_formcycle']` to the `config/settings/<identifier>/settings.yaml`.
+
+### 2. Flexform settings
+
+In version 10 of this extension, the flexform settings have been moved to regular TCA fields. To migrate your existing content elements, run
 the Upgrade Wizard in the TYPO3 backend or via CLI:
 
 ```bash
