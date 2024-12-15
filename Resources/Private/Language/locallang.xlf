@@ -26,17 +26,20 @@
 			<trans-unit id="error.connection.title">
 				<source>Connection error</source>
 			</trans-unit>
+			<trans-unit id="error.connection.title">
+				<source>Unknown error</source>
+			</trans-unit>
 			<trans-unit id="error.1709102526.message">
 				<source>No response from the endpoint when attempting to fetch available Formcycle forms</source>
 			</trans-unit>
-			<trans-unit id="error.1709041996.message">
-				<source>The extension configuration "formcycleUrl" is missing or invalid</source>
+			<trans-unit id="error.1734275643.message">
+				<source>The site setting "formcycle.url" is missing or invalid</source>
 			</trans-unit>
-			<trans-unit id="error.1709538688.message">
-				<source>The extension configuration "formcycleClientId" is missing</source>
+			<trans-unit id="error.1734275657.message">
+				<source>The site setting "formcycle.clientId" is missing</source>
 			</trans-unit>
-			<trans-unit id="error.1709052040.message">
-				<source>The extension configuration "defaultIntegrationMode" is invalid. Valid options are: "integrated", "iFrame" or "AJAX".</source>
+			<trans-unit id="error.1734275941.message">
+				<source>An unknown error occurred. Please contact the site administrator.</source>
 			</trans-unit>
 			<trans-unit id="defaultGroupNames.0">
 				<source>Ungrouped</source>

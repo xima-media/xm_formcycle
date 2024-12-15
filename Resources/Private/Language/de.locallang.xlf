@@ -34,17 +34,21 @@
 				<source>Connection error</source>
 				<target>Verbindungsfehler</target>
 			</trans-unit>
+			<trans-unit id="error.connection.title">
+				<source>Unknown error</source>
+				<target>Unbekannter Fehler</target>
+			</trans-unit>
 			<trans-unit id="error.1709041996.message">
 				<source>The extension configuration "formcycleUrl" is missing or invalid</source>
-				<target>Die Extension Konfiguration "formcycleUrl" fehlt oder ist ungültig</target>
+				<target>Das Site Setting "formcycle.url" fehlt oder ist ungültig</target>
 			</trans-unit>
 			<trans-unit id="error.1709538688.message">
 				<source>The extension configuration "formcycleClientId" is missing</source>
-				<target>Die Extension Konfiguration "formcycleClientId" fehlt</target>
+				<target>Das Site Setting "formcycle.clientId" fehlt</target>
 			</trans-unit>
-			<trans-unit id="error.1709052040.message">
-				<source>The extension configuration "defaultIntegrationMode" is invalid. Valid options are: "integrated", "iFrame" or "AJAX".</source>
-				<target>Die Extension Konfiguration "defaultIntegrationMode" ist ungültig. Gültige Optionen sind: "integrated", "iFrame" oder "AJAX".</target>
+			<trans-unit id="error.1734275941.message">
+				<source>An unknown error occurred. Please contact the site administrator.</source>
+				<target>Es ist ein unbekannter Fehler aufgetreten. Kontaktieren Sie den Seiten-Administrator.</target>
 			</trans-unit>
 			<trans-unit id="defaultGroupNames.0">
 				<source>Ungrouped</source>

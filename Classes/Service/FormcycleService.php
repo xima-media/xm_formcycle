@@ -4,11 +4,14 @@ namespace Xima\XmFormcycle\Service;
 
 use finfo;
 use JsonException;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Xima\XmFormcycle\Dto\ElementSettings;
 use Xima\XmFormcycle\Dto\IntegrationMode;
+use Xima\XmFormcycle\Error\FormcycleConfigurationException;
 use Xima\XmFormcycle\Error\FormcycleConnectionException;
 
 final readonly class FormcycleService
@@ -19,11 +22,24 @@ final readonly class FormcycleService
 
     private IntegrationMode $defaultIntegrationMode;
 
+    /**
+     * @throws NotFoundExceptionInterface
+     * @throws FormcycleConfigurationException
+     * @throws ContainerExceptionInterface
+     */
     public function __construct(private FrontendInterface $cache, private Site $site)
     {
         $this->url = rtrim($site->getSettings()->get('formcycle.url'), '/');
         $this->clientId = $site->getSettings()->get('formcycle.clientId');
         $this->defaultIntegrationMode = IntegrationMode::fromSiteSettings($site->getSettings()->get('formcycle.defaultIntegrationMode'));
+
+        if (!$this->url || !GeneralUtility::isValidUrl($this->url)) {
+            throw new FormcycleConfigurationException('Formcycle URL is not configured', 1734275643);
+        }
+
+        if (!$this->clientId) {
+            throw new FormcycleConfigurationException('Formcycle Client ID is not configured', 1734275657);
+        }
     }
 
     public function hasAvailableFormsCached(): bool
@@ -162,6 +178,20 @@ final readonly class FormcycleService
         return $params;
     }
 
+    protected function generateAbsoluteUri(int $pageUid, string $language): string
+    {
+        $uri = $this->site->getRouter()->generateUri(
+            $pageUid,
+            ['_language' => $language]
+        );
+        // fix for sites without absolute uri
+        if (empty($uri->getHost()) || empty($uri->getScheme())) {
+            $uri = $uri->withHost((string)GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY'));
+            $uri = $uri->withScheme('https');
+        }
+        return (string)$uri;
+    }
+
     public function getAjaxUrl(ElementSettings $settings): string
     {
         if ($settings->integrationMode === IntegrationMode::AjaxTypo3) {
@@ -194,19 +224,5 @@ final readonly class FormcycleService
         $params = $this->getCommonQueryParams($settings);
 
         return $url . '?' . http_build_query($params);
-    }
-
-    protected function generateAbsoluteUri(int $pageUid, string $language): string
-    {
-        $uri = $this->site->getRouter()->generateUri(
-            $pageUid,
-            ['_language' => $language]
-        );
-        // fix for sites without absolute uri
-        if (empty($uri->getHost()) || empty($uri->getScheme())) {
-            $uri = $uri->withHost((string)GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY'));
-            $uri = $uri->withScheme('https');
-        }
-        return (string)$uri;
     }
 }

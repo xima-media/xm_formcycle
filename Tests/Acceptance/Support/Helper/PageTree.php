@@ -3,7 +3,6 @@
 namespace Xima\XmFormcycle\Tests\Acceptance\Support\Helper;
 
 use Facebook\WebDriver\Remote\RemoteWebElement;
-use TYPO3\CMS\Core\Tests\Acceptance\Support\Helper\AbstractTree;
 use Xima\XmFormcycle\Tests\Acceptance\Support\AcceptanceTester;
 
 final class PageTree
