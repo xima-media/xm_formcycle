@@ -39,8 +39,9 @@ class ElementCest
         PageTree $pageTree,
     ): void {
         $I->click('Page');
-        $I->waitForElementVisible(PageTree::$pageTreeFrameSelector);
-        $pageTree->openPath(['EXT:xm_formcycle', 'Main']);
+        $I->waitForElementVisible(PageTree::$treeSelector);
+        $I->wait(2);
+        $pageTree->openPath(['Main', 'Example']);
         $I->switchToContentFrame();
         $I->waitForText('Element1');
         $I->click('Element1');
@@ -68,9 +69,9 @@ class ElementCest
         ShadowDom $domHelper
     ): void {
         $I->click('Page');
-        $I->waitForElementVisible(PageTree::$pageTreeFrameSelector);
+        $I->waitForElementVisible(PageTree::$treeSelector);
         $I->wait(2);
-        $pageTree->openPath(['EXT:xm_formcycle', 'Main']);
+        $pageTree->openPath(['Main', 'Example']);
 
         // open wizard
         $I->switchToContentFrame();
@@ -84,7 +85,7 @@ class ElementCest
 
         // See and select element
         $I->see('Formcycle');
-        $I->see('Include a XIMA® FormCycle form');
+        $I->see('Include a formcycle form');
         $domHelper->clickShadowDomElement(Selectors::CONTENT_WIZARD->value, Selectors::CONTENT_WIZARD_FORMCYCLE->value);
 
         // Fill and save element
