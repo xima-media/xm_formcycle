@@ -10,6 +10,7 @@ use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\RepeatableInterface;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
+use Xima\XmFormcycle\Dto\IntegrationMode;
 
 #[UpgradeWizard('xmFormcycle_flexformMigration')]
 readonly class FlexformMigrationWizard implements UpgradeWizardInterface, RepeatableInterface
@@ -40,7 +41,7 @@ readonly class FlexformMigrationWizard implements UpgradeWizardInterface, Repeat
             $flexformValues = [
                 'tx_xmformcycle_redirect_success' => $piFlexform['settings']['xf']['siteok'] ?? null,
                 'tx_xmformcycle_redirect_error' => $piFlexform['settings']['xf']['siteerror'] ?? null,
-                'tx_xmformcycle_integration_mode' => $piFlexform['settings']['xf']['integrationMode'] ?? null,
+                'tx_xmformcycle_integration_mode' => IntegrationMode::tryFrom($piFlexform['settings']['xf']['integrationMode'])?->forDatabase(),
                 'tx_xmformcycle_is_jquery' => $piFlexform['settings']['xf']['useFcjQuery'] ?? null,
                 'tx_xmformcycle_is_jquery_ui' => $piFlexform['settings']['xf']['useFcjQueryUi'] ?? null,
                 'tx_xmformcycle_additional_params' => $piFlexform['settings']['xf']['useFcUrlParams'] ?? null,

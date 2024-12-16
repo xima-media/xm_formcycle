@@ -23,6 +23,17 @@ enum IntegrationMode: string
         };
     }
 
+    public function forDatabase(): int
+    {
+        return match ($this) {
+            self::Integrated => 1,
+            self::AjaxTypo3 => 2,
+            self::AjaxFormcycle => 3,
+            self::Iframe => 4,
+            default => 0,
+        };
+    }
+
     public static function fromSiteSettings($value): self
     {
         return match ($value) {
