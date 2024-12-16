@@ -4,21 +4,22 @@
 
 # TYPO3 extension `xm_formcycle`
 
-[![Latest Stable Version](http://poser.pugx.org/xima/xima-typo3-formcycle/v)](https://packagist.org/packages/xima/xima-typo3-formcycle)
+![Latest version](https://typo3-badges.dev/badge/xm_formcycle/version/shields.svg)
 [![Supported TYPO3 versions](https://typo3-badges.dev/badge/xm_formcycle/typo3/shields.svg)](https://extensions.typo3.org/extension/ximaxm_formcycle)
-[![Total Downloads](http://poser.pugx.org/xima/xima-typo3-formcycle/downloads)](https://packagist.org/packages/xima/xima-typo3-formcycle)
-[![PHP Version Require](http://poser.pugx.org/xima/xima-typo3-formcycle/require/php)](https://packagist.org/packages/xima/xima-typo3-formcycle)
+![Total downloads](https://typo3-badges.dev/badge/xm_formcycle/downloads/shields.svg)
+[![TYPO3 extension](https://typo3-badges.dev/badge/xm_formcycle/extension/shields.svg)](https://extensions.typo3.org/extension/xm_formcycle)
 [![Tests](https://github.com/xima-media/xm_formcycle/actions/workflows/tests.yml/badge.svg)](https://github.com/xima-media/xm_formcycle/actions/workflows/tests.yml)
 [![codecov](https://codecov.io/gh/xima-media/xm_formcycle/graph/badge.svg?token=VUMQ5EUG02)](https://codecov.io/gh/xima-media/xm_formcycle)
+[![Composer](https://typo3-badges.dev/badge/xm_formcycle/composer/shields.svg)](https://packagist.org/packages/xima/xima-typo3-formcycle)
 
 </div>
 
-A TYPO3 extension that connects to [XIMA® Formcycle](https://www.formcycle.eu/). Select your created forms and embed
+A TYPO3 extension that connects to [formcycle](https://www.formcycle.eu/). Select your created forms and embed
 them into your TYPO3 site.
 
 ## Requirements
 
-* Formcycle version 8 + installed plugin `Formularliste`
+* formcycle version 8 + installed plugin `Formularliste`
 * PHP 8.1+
 
 ## Installation
@@ -55,12 +56,12 @@ frontend rendering.
 
 ### 1. Extension configuration
 
-Set your Formcycle credentials in the extension configuration via TYPO3 backend or in your `config/system/settings.php`:
+Set your formcycle credentials in the extension configuration via TYPO3 backend or in your `config/system/settings.php`:
 
 ```php
 'EXTENSIONS' => [
     'xm_formcycle' => [
-        'formcycleUrl' => 'https://pro.formcloud.de/',
+        'formcycleUrl' => 'https://pro.formcloud.de/formcycle/',
         'formcycleClientId' => '4231',
     ],
 ]
@@ -68,7 +69,7 @@ Set your Formcycle credentials in the extension configuration via TYPO3 backend 
 
 ### 2. TypoScript include
 
-Include the static TypoScript template "Formcycle" or directly import it in your sitepackage:
+Include the static TypoScript template "formcycle" or directly import it in your sitepackage:
 
 ```typo3_typoscript
 @import 'EXT:xm_formcycle/Configuration/TypoScript/setup.typoscript'
