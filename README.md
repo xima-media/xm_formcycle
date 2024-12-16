@@ -4,9 +4,9 @@
 
 # TYPO3 extension `xm_formcycle`
 
-![Latest version](https://typo3-badges.dev/badge/xm_formcycle/version/shields.svg)
-[![Supported TYPO3 versions](https://typo3-badges.dev/badge/xm_formcycle/typo3/shields.svg)](https://extensions.typo3.org/extension/ximaxm_formcycle)
-![Total downloads](https://typo3-badges.dev/badge/xm_formcycle/downloads/shields.svg)
+[![Latest version](https://typo3-badges.dev/badge/xm_formcycle/version/shields.svg)](https://extensions.typo3.org/extension/xm_formcycle)
+[![Supported TYPO3 versions](https://typo3-badges.dev/badge/xm_formcycle/typo3/shields.svg)](https://extensions.typo3.org/extension/xm_formcycle)
+[![Total downloads](https://typo3-badges.dev/badge/xm_formcycle/downloads/shields.svg)](https://packagist.org/packages/xima-media/xm_formcycle/stats)
 [![TYPO3 extension](https://typo3-badges.dev/badge/xm_formcycle/extension/shields.svg)](https://extensions.typo3.org/extension/xm_formcycle)
 [![Tests](https://github.com/xima-media/xm_formcycle/actions/workflows/tests.yml/badge.svg)](https://github.com/xima-media/xm_formcycle/actions/workflows/tests.yml)
 [![codecov](https://codecov.io/gh/xima-media/xm_formcycle/graph/badge.svg?token=VUMQ5EUG02)](https://codecov.io/gh/xima-media/xm_formcycle)
@@ -96,18 +96,18 @@ Copy and modify the `Formcycle.html` to the Templates directory.
 
 If you are upgrading from version 9 to 10 (TYPO3 v12 to v13), you need to perform the following steps:
 
-### 1. Extension configuration
+### 1. Migrate Extension configuration
 
 The extension configuration of the formcycle URL and formcycle client ID have been moved to the TYPO3 system settings. You need to manually
 migrate the settings from `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['xm_formcycle']` to the `config/settings/<identifier>/settings.yaml`.
 
-### 2. Flexform settings
+### 2. Run Upgrade wizard
 
 In version 10 of this extension, the flexform settings have been moved to regular TCA fields. To migrate your existing content elements, run
 the Upgrade Wizard in the TYPO3 backend or via CLI:
 
 ```bash
-typo3 upgrade:run xm_formcycle
+typo3 upgrade:run xmFormcycle_flexformMigrationddev
 ```
 
 ## License
