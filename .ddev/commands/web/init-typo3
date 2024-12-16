@@ -59,6 +59,7 @@ done
 
 # Copy site settings
 _progress "Copying site settings"
+    mkdir -p $typo3MainSitePath
     cp $fixturePath/sites/main/config.yaml $typo3MainSitePath/
     cp $fixturePath/sites/main/settings.yaml $typo3MainSitePath/
 _done
