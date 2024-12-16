@@ -12,7 +12,7 @@ services:
     factory: [ '@TYPO3\CMS\Core\Cache\CacheManager', 'getCache' ]
     arguments: [ 'xm_formcycle' ]
 
-  Xima\XmFormcycle\Service\FormcycleService:
+  Xima\XmFormcycle\Service\FormcycleServiceFactory:
     public: true
     arguments:
       $cache: '@cache.xm_formcycle'
@@ -24,16 +24,19 @@ services:
     public: true
 
   Xima\XmFormcycle\DataProcessing\AjaxProcessor:
+    public: true
     tags:
       - name: 'data.processor'
         identifier: 'formcycle-ajax'
 
   Xima\XmFormcycle\DataProcessing\iFrameProcessor:
+    public: true
     tags:
       - name: 'data.processor'
         identifier: 'formcycle-iframe'
 
   Xima\XmFormcycle\DataProcessing\IntegratedProcessor:
+    public: true
     tags:
       - name: 'data.processor'
         identifier: 'formcycle-integrated'

@@ -5,21 +5,19 @@ namespace Xima\XmFormcycle\ContentSecurityPolicy\EventListener;
 use TYPO3\CMS\Core\Security\ContentSecurityPolicy\Directive;
 use TYPO3\CMS\Core\Security\ContentSecurityPolicy\Event\PolicyMutatedEvent;
 use TYPO3\CMS\Core\Security\ContentSecurityPolicy\UriValue;
-use Xima\XmFormcycle\Service\FormcycleService;
 
-final class FrontendListener
+final readonly class FrontendListener
 {
-    public function __construct(private readonly FormcycleService $formcycleService)
-    {
-    }
-
     public function __invoke(PolicyMutatedEvent $event): void
     {
         if ($event->scope->type->isBackend()) {
             return;
         }
 
-        $formcycleUrl = $this->formcycleService->getCspUrl();
+        $formcycleUrl = $event->scope->site->getSettings()->get('formcycle.url') ?? '';
+        if (!$formcycleUrl) {
+            return;
+        }
 
         $event->getCurrentPolicy()->extend(
             Directive::ConnectSrc,

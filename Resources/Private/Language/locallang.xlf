@@ -9,7 +9,7 @@
 				<source>Formcycle</source>
 			</trans-unit>
 			<trans-unit id="wizard.description">
-				<source>Include a XIMA® FormCycle form</source>
+				<source>Include a formcycle form</source>
 			</trans-unit>
 			<trans-unit id="tabs.form">
 				<source>Form</source>
@@ -26,17 +26,20 @@
 			<trans-unit id="error.connection.title">
 				<source>Connection error</source>
 			</trans-unit>
+			<trans-unit id="error.unknown.title">
+				<source>Unknown error</source>
+			</trans-unit>
 			<trans-unit id="error.1709102526.message">
 				<source>No response from the endpoint when attempting to fetch available Formcycle forms</source>
 			</trans-unit>
-			<trans-unit id="error.1709041996.message">
-				<source>The extension configuration "formcycleUrl" is missing or invalid</source>
+			<trans-unit id="error.1734275643.message">
+				<source>The site setting "formcycle.url" is missing or invalid</source>
 			</trans-unit>
-			<trans-unit id="error.1709538688.message">
-				<source>The extension configuration "formcycleClientId" is missing</source>
+			<trans-unit id="error.1734275657.message">
+				<source>The site setting "formcycle.clientId" is missing</source>
 			</trans-unit>
-			<trans-unit id="error.1709052040.message">
-				<source>The extension configuration "defaultIntegrationMode" is invalid. Valid options are: "integrated", "iFrame" or "AJAX".</source>
+			<trans-unit id="error.unkown.message">
+				<source>An unknown error (%s) occurred. Please contact the site administrator.</source>
 			</trans-unit>
 			<trans-unit id="defaultGroupNames.0">
 				<source>Ungrouped</source>
@@ -44,74 +47,50 @@
 			<trans-unit id="button.reload">
 				<source>Reload</source>
 			</trans-unit>
-			<trans-unit id="button.settings">
-				<source>Settings</source>
-			</trans-unit>
 			<trans-unit id="button.admin">
 				<source>Formcycle Admin</source>
 			</trans-unit>
-			<trans-unit id="flexform.sheet.responses">
-				<source>Response pages</source>
+			<trans-unit id="palettes.formcycle.settings">
+				<source>Formcycle Settings</source>
 			</trans-unit>
-			<trans-unit id="flexform.responses.success">
-				<source>Success page</source>
+			<trans-unit id="palettes.formcycle.include">
+				<source>Formcycle Include</source>
 			</trans-unit>
-			<trans-unit id="flexform.responses.success.description">
-				<source>Page to display after successful form submission</source>
+			<trans-unit id="formcycle_settings">
+				<source>Formcycle Settings</source>
 			</trans-unit>
-			<trans-unit id="flexform.responses.error">
-				<source>Error page</source>
+			<trans-unit id="tx_xmformcycle_redirect_success">
+				<source>Redirect on Success</source>
 			</trans-unit>
-			<trans-unit id="flexform.responses.error.description">
-				<source>Response page when an error occurs during execution</source>
+			<trans-unit id="tx_xmformcycle_redirect_error">
+				<source>Redirect on Error</source>
 			</trans-unit>
-			<trans-unit id="flexform.sheet.include">
-				<source>Integration options</source>
+			<trans-unit id="tx_xmformcycle_integration_mode">
+				<source>Integration Mode</source>
 			</trans-unit>
-			<trans-unit id="flexform.integration">
-				<source>Integration type</source>
-			</trans-unit>
-			<trans-unit id="flexform.integration.description">
-				<source>This defines how the Formcycle form is embedded into the page</source>
-			</trans-unit>
-			<trans-unit id="flexform.integration.default">
+			<trans-unit id="tx_xmformcycle_integration_mode.0">
 				<source>Default</source>
 			</trans-unit>
-			<trans-unit id="flexform.integration.integrated">
+			<trans-unit id="tx_xmformcycle_integration_mode.1">
 				<source>Integrated</source>
 			</trans-unit>
-			<trans-unit id="flexform.integration.ajaxTypo3">
-				<source>AJAX (via TYPO3)</source>
+			<trans-unit id="tx_xmformcycle_integration_mode.4">
+				<source>iFrame</source>
 			</trans-unit>
-			<trans-unit id="flexform.integration.ajaxFormcycle">
-				<source>AJAX (via Fromcycle)</source>
+			<trans-unit id="tx_xmformcycle_integration_mode.2">
+				<source>AJAX (TYPO3)</source>
 			</trans-unit>
-			<trans-unit id="flexform.integration.iframe">
-				<source>Iframe</source>
+			<trans-unit id="tx_xmformcycle_integration_mode.3">
+				<source>AJAX (FORMCYCLE)</source>
 			</trans-unit>
-			<trans-unit id="flexform.jquery">
-				<source>jQuery</source>
-			</trans-unit>
-			<trans-unit id="flexform.jquery.checkbox">
+			<trans-unit id="tx_xmformcycle_is_jquery">
 				<source>Include jQuery</source>
 			</trans-unit>
-			<trans-unit id="flexform.jquery.description">
-				<source>If you uncheck this (use your own framework), make sure your jQuery framework is initialised</source>
-			</trans-unit>
-			<trans-unit id="flexform.jqueryUi">
-				<source>jQuery UI</source>
-			</trans-unit>
-			<trans-unit id="flexform.jqueryUi.checkbox">
+			<trans-unit id="tx_xmformcycle_is_jquery_ui">
 				<source>Include jQuery UI</source>
 			</trans-unit>
-			<trans-unit id="flexform.jqueryUi.description">
-				<source>This is only necessary if you use jQuery UI components</source>
-			</trans-unit>
-			<trans-unit id="flexform.parameters">
-				<source>Additional parameters</source>
-			</trans-unit>
-			<trans-unit id="flexform.parameters.description">
-				<source>Modify the Formcycle request, e.g. &amp;param1=value1&amp;param2=value2</source>
+			<trans-unit id="tx_xmformcycle_additional_params">
+				<source>Additional Parameters</source>
 			</trans-unit>
 		</body>
 	</file>

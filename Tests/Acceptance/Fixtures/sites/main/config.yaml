@@ -1,0 +1,16 @@
+base: /
+dependencies:
+  - xima/xm-formcycle
+languages:
+  -
+    title: English
+    enabled: true
+    locale: en_US
+    hreflang: ''
+    base: /
+    websiteTitle: ''
+    navigationTitle: ''
+    flag: global
+    languageId: 4
+rootPageId: 1
+websiteTitle: ''

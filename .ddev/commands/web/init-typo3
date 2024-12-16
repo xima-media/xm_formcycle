@@ -14,6 +14,7 @@ readonly dbCredentials="-h${dbHost} -u${dbUser} -p${dbPassword}"
 readonly fixturePath="/var/www/html/Tests/Acceptance/Fixtures"
 readonly typo3Binary="/var/www/html/vendor/bin/typo3"
 readonly typo3cmsBinary="/var/www/html/vendor/bin/typo3cms"
+readonly typo3MainSitePath="/var/www/html/config/sites/main"
 
 function _progress() {
     printf "%s... " "$1"
@@ -43,28 +44,10 @@ export TYPO3_SETUP_ADMIN_PASSWORD=Passw0rd!
 export TYPO3_SERVER_TYPE=apache
 export TYPO3_PROJECT_NAME="EXT:xm_formcycle"
 
-export TYPO3_INSTALL_DB_DRIVER=mysqli
-export TYPO3_INSTALL_DB_USER="$dbUser"
-export TYPO3_INSTALL_DB_PASSWORD="$dbPassword"
-export TYPO3_INSTALL_DB_PORT=3306
-export TYPO3_INSTALL_DB_HOST="$dbHost"
-export TYPO3_INSTALL_DB_DBNAME="$dbName"
-export TYPO3_INSTALL_ADMIN_USER=admin
-export TYPO3_INSTALL_ADMIN_PASSWORD=Passw0rd!
-export TYPO3_INSTALL_SITE_SETUP_TYPE="no"
-export TYPO3_INSTALL_WEB_SERVER_CONFIG="apache"
-export TYPO3_INSTALL_SITE_NAME="EXT:xm_formcycle"
-export TYPO3_INSTALL_DB_UNIX_SOCKET=""
-
 # Set up environment
 _progress "Setting up TYPO3 installation"
-# TYPO3 v11
-if [ -f "$typo3cmsBinary" ]; then
-    "$typo3cmsBinary" install:setup --force --database-host-name="db" --database-user-name="db" --database-user-password="db" --database-name="db" --use-existing-database --admin-user-name="admin" --admin-password="Passw0rd!"
-    "$typo3cmsBinary" configuration:set SYS/trustedHostsPattern ".*"
-else
     "$typo3Binary" setup --no-interaction --force --quiet
-fi
+    "$typo3Binary" configuration:set SYS/trustedHostsPattern ".*"
 _done
 
 # Import DB fixtures
@@ -73,3 +56,10 @@ for file in "$fixturePath"/*.sql; do
     mysql $dbCredentials "$dbName" < "$file"
     _done
 done
+
+# Copy site settings
+_progress "Copying site settings"
+    mkdir -p $typo3MainSitePath
+    cp $fixturePath/sites/main/config.yaml $typo3MainSitePath/
+    cp $fixturePath/sites/main/settings.yaml $typo3MainSitePath/
+_done

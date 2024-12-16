@@ -3,17 +3,17 @@
 namespace Xima\XmFormcycle\Form\Element;
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
+use TYPO3\CMS\Core\Site\Entity\NullSite;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use Xima\XmFormcycle\Error\FormcycleConfigurationException;
 use Xima\XmFormcycle\Error\FormcycleConnectionException;
-use Xima\XmFormcycle\Service\FormcycleService;
+use Xima\XmFormcycle\Service\FormcycleServiceFactory;
 
 class FormcycleSelection extends AbstractFormElement
 {
-    public function render()
+    public function render(): array
     {
         $fieldInformationResult = $this->renderFieldInformation();
         $resultArray = $this->mergeChildReturnIntoExistingResult(
@@ -27,8 +27,13 @@ class FormcycleSelection extends AbstractFormElement
         $view->assign('itemFormElValue', $this->data['parameterArray']['itemFormElValue']);
 
         try {
-            /** @var FormcycleService $fcService */
-            $fcService = GeneralUtility::makeInstance(FormcycleService::class);
+            $factory = GeneralUtility::makeInstance(FormcycleServiceFactory::class);
+            $site = $this->data['site'];
+            if (!$site instanceof NullSite) {
+                $fcService = $factory->createFromSite($site);
+            } else {
+                $fcService = $factory->createFromPageUid($this->data['effectivePid'] ?? 0);
+            }
             $view->assign('adminUrl', $fcService->getAdminUrl());
             if ($fcService->hasAvailableFormsCached()) {
                 $forms = $fcService->getAvailableForms();
@@ -45,12 +50,16 @@ class FormcycleSelection extends AbstractFormElement
             $errorCode = $e->getCode();
             $view->assign('errorCode', $errorCode);
             $view->assign('errorType', 'connection');
+        } catch (\Exception $e) {
+            $errorCode = $e->getCode();
+            $view->assign('errorCode', $errorCode);
+            $view->assign('errorType', 'unknown');
         }
 
         $hiddenInput = sprintf(
             '<input type="hidden" name="%s" id="%s" value="%s" data-formengine-input-name="%s" />',
             htmlspecialchars($this->data['parameterArray']['itemFormElName']),
-            $this->data['parameterArray']['itemFormElID'],
+            $this->data['fieldName'],
             htmlspecialchars($this->data['parameterArray']['itemFormElValue'], ENT_QUOTES),
             htmlspecialchars($this->data['parameterArray']['itemFormElName']),
         );
@@ -58,15 +67,8 @@ class FormcycleSelection extends AbstractFormElement
         $resultArray['html'] = '<div class="formengine-field-item t3js-formengine-field-item">' . $hiddenInput . '</div><div id="xm-formcycle-forms" class="open">' . $view->render() . '</div>';
         $resultArray['stylesheetFiles'][] = 'EXT:xm_formcycle/Resources/Public/Css/Backend/FormcycleSelection.css';
 
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() < 12) {
-            $resultArray['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS(
-                'TYPO3/CMS/XmFormcycle/Backend/FormcycleSelectionElementV11'
-            )->instance($this->data['parameterArray']['itemFormElID']);
-        } else {
-            $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create('@xima/xm-formcycle/FormcycleSelectionElement.js')
-                ->instance($this->data['parameterArray']['itemFormElID']);
-        }
+        $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create('@xima/xm-formcycle/FormcycleSelectionElement.js')
+                ->instance($this->data['fieldName'], $this->data['effectivePid']);
 
         return $resultArray;
     }

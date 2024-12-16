@@ -19,7 +19,17 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['formcycle'] = 'xm-for
 
 $GLOBALS['TCA']['tt_content']['palettes']['formcycle'] = [
     'label' => 'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:palettes.formcycle.title',
-    'showitem' => 'tx_xmformcycle_form_id,--linebreak--,pi_flexform',
+    'showitem' => 'tx_xmformcycle_form_id',
+];
+
+$GLOBALS['TCA']['tt_content']['palettes']['formcycle_redirect'] = [
+    'label' => 'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:palettes.formcycle.settings',
+    'showitem' => 'tx_xmformcycle_redirect_success,--linebreak--,tx_xmformcycle_redirect_error',
+];
+
+$GLOBALS['TCA']['tt_content']['palettes']['formcycle_include'] = [
+    'label' => 'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:palettes.formcycle.include',
+    'showitem' => 'tx_xmformcycle_integration_mode,--linebreak--,tx_xmformcycle_is_jquery,--linebreak--,tx_xmformcycle_is_jquery_ui,--linebreak--,tx_xmformcycle_additional_params',
 ];
 
 $GLOBALS['TCA']['tt_content']['types']['formcycle'] = [
@@ -29,6 +39,9 @@ $GLOBALS['TCA']['tt_content']['types']['formcycle'] = [
                     --palette--;;headers,
                 --div--;LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:formcycle,
                     --palette--;;formcycle,
+                --div--;LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:formcycle_settings,
+                    --palette--;;formcycle_redirect,
+                    --palette--;;formcycle_include,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
                     --palette--;;frames,
                     --palette--;;appearanceLinks,

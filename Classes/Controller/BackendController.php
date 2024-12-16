@@ -8,26 +8,28 @@ use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use Xima\XmFormcycle\Form\Element\FormcycleSelection;
-use Xima\XmFormcycle\Service\FormcycleService;
+use Xima\XmFormcycle\Service\FormcycleServiceFactory;
 
 final class BackendController
 {
     public function __construct(
         private readonly ResponseFactoryInterface $responseFactory,
-        private readonly FormcycleService $formcycleService
+        private readonly FormcycleServiceFactory $formcycleServiceFactory
     ) {
     }
 
     public function reloadAvailableForms(ServerRequestInterface $request): ResponseInterface
     {
-        $this->formcycleService->resetAvailableFormsCache();
+        $pageUid = $request->getQueryParams()['pageUid'] ?? 0;
+        $this->formcycleServiceFactory->createFromPageUid($pageUid)->resetAvailableFormsCache();
 
         return $this->getAvailableForms($request);
     }
 
     public function getAvailableForms(ServerRequestInterface $request): ResponseInterface
     {
-        $forms = $this->formcycleService->getAvailableForms();
+        $pageUid = $request->getQueryParams()['pageUid'] ?? 0;
+        $forms = $this->formcycleServiceFactory->createFromPageUid($pageUid)->getAvailableForms();
         $forms = FormcycleSelection::groupForms($forms);
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);

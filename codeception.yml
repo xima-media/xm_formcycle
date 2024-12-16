@@ -32,6 +32,7 @@ suites:
       enabled:
         - WebDriver:
             url: https://%TESTING_DOMAIN%/
+            window_size: 2000x1000
             browser: chrome
             wait: 5
             host: selenium-chrome

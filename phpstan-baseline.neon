@@ -1,6 +1,2 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^Dead catch \\- Xima\\\\XmFormcycle\\\\Error\\\\FormcycleConfigurationException is never thrown in the try block\\.$#"
-			count: 1
-			path: Classes/Preview/FormcyclePreviewRenderer.php
+	ignoreErrors: []

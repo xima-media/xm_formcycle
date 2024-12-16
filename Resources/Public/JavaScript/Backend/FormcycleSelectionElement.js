@@ -4,8 +4,11 @@ export default class FormcycleSelectionElement {
 
   hiddenInputElement = null
 
-  constructor(itemFormElID = '') {
+  pageUid = 0
+
+  constructor(itemFormElID = '', pageUid = 0) {
     this.hiddenInputElement = document.querySelector('#' + itemFormElID)
+    this.pageUid = pageUid
 
     const hasError = document.querySelector('#xm-formcycle-forms .callout-danger')
     if (hasError) {
@@ -29,6 +32,7 @@ export default class FormcycleSelectionElement {
     const wrapper = document.querySelector('#xm-formcycle-forms')
 
     new AjaxRequest(url)
+      .withQueryArguments({pageUid: this.pageUid})
       .get()
       .then(async function (response) {
         const resolved = await response.resolve();
@@ -48,14 +52,6 @@ export default class FormcycleSelectionElement {
         e.currentTarget.classList.add('active')
         this.hiddenInputElement.value = e.currentTarget.getAttribute('data-form-id')
       })
-    })
-
-    const settingsButton = document.querySelector('#xm-settings')
-    const wrapper = document.querySelector('#xm-formcycle-forms')
-    settingsButton.addEventListener('click', e => {
-      e.preventDefault()
-      e.currentTarget.classList.toggle('active')
-      wrapper.classList.toggle('open-settings')
     })
 
     const loadingSpinner = document.querySelector('#xm-loading-spinner')

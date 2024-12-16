@@ -8,6 +8,7 @@
 	],
 	"keywords": [
 		"TYPO3 CMS",
+		"XIMA",
 		"formcycle"
 	],
 	"authors": [
@@ -20,31 +21,30 @@
 	"repositories": [
 		{
 			"type": "github",
-			"url": "git@github.com:maikschneider/typo3-codeception-helper.git"
+			"url": "git@github.com:bmack/TYPO3-Console.git"
 		}
 	],
 	"require": {
-		"php": "^8.1",
+		"php": "^8.2",
 		"ext-fileinfo": "*",
-		"typo3/cms-core": "^11.0 || ^12.0"
+		"typo3/cms-core": "^13.0"
 	},
 	"require-dev": {
-		"bk2k/bootstrap-package": "^14.0",
+		"bk2k/bootstrap-package": "^14.0 || dev-master",
 		"codeception/module-asserts": "^3.0",
 		"codeception/module-cli": "^2.0",
 		"codeception/module-db": "^3.1",
 		"codeception/module-phpbrowser": "^3.0",
 		"codeception/module-webdriver": "^4.0",
+		"eliashaeussler/typo3-codeception-helper": "^1.1.2",
 		"friendsofphp/php-cs-fixer": "^3.34.1",
-		"helhum/typo3-console": "^7.1 || ^8.1",
+		"helhum/typo3-console": "^8.1 || dev-issue/1169",
 		"helmich/typo3-typoscript-lint": "^3.2.1",
 		"saschaegerer/phpstan-typo3": "^1.1.2",
-		"ssch/typo3-rector": "^2.0",
-		"symfony/translation": "^6.3 || ^7.0",
-		"typo3/cms-base-distribution": "*",
-		"typo3/cms-lowlevel": "*",
-		"typo3/testing-framework": "^7.0 || ^8.0",
-		"eliashaeussler/typo3-codeception-helper": "dev-main"
+		"symfony/translation": "^7.0",
+		"typo3/cms-base-distribution": "^13.4",
+		"typo3/cms-lowlevel": "^13.4",
+		"typo3/testing-framework": "^9.1"
 	},
 	"autoload": {
 		"psr-4": {

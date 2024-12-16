@@ -1,9 +1,5 @@
 <?php
 
-use TYPO3\CMS\Core\Information\Typo3Version;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-
 if (!defined('TYPO3')) {
     die('Access denied.');
 }
@@ -18,8 +14,6 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1709039883] = [
 // register cache
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['xm_formcycle'] ??= [];
 
-// register PageTS for v11
-$versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-if ($versionInformation->getMajorVersion() < 12) {
-    ExtensionManagementUtility::addPageTSConfig('@import "EXT:xm_formcycle/Configuration/page.tsconfig"');
-}
+// add formId to allowed cHash parameters
+$GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'] ??= [];
+$GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'formId';

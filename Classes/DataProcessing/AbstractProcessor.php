@@ -2,19 +2,22 @@
 
 namespace Xima\XmFormcycle\DataProcessing;
 
-use TYPO3\CMS\Core\Service\FlexFormService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use Xima\XmFormcycle\Dto\ElementSettings;
 use Xima\XmFormcycle\Dto\IntegrationMode;
 use Xima\XmFormcycle\Service\FormcycleService;
+use Xima\XmFormcycle\Service\FormcycleServiceFactory;
 
 abstract class AbstractProcessor implements DataProcessorInterface
 {
     protected ElementSettings $settings;
 
     protected FormcycleService $formcycleService;
+
+    public function __construct(private readonly FormcycleServiceFactory $formcycleServiceFactory)
+    {
+    }
 
     public function process(
         ContentObjectRenderer $cObj,
@@ -23,17 +26,17 @@ abstract class AbstractProcessor implements DataProcessorInterface
         array $processedData
     ) {
         // construct element settings
-        $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
-        $this->settings = ElementSettings::createFromContentElement(
-            $flexFormService,
-            $cObj,
-        );
+        $this->settings = ElementSettings::createFromContentElement($cObj);
 
-        $this->formcycleService = GeneralUtility::makeInstance(FormcycleService::class);
+        $this->formcycleService = $this->formcycleServiceFactory->createFromPageUid($cObj->data['pid']);
+
+        // check if integration mode is set
+        if ($this->settings->integrationMode === IntegrationMode::Default) {
+            $this->settings->integrationMode = $this->formcycleService->getDefaultIntegrationMode();
+        }
 
         // check if concrete processor should be used
-        $currentIntegrationMode = $this->settings->integrationMode ?? $this->formcycleService->getDefaultIntegrationMode();
-        if ($currentIntegrationMode->forDataProcessing() !== $this->getIntegrationMode()) {
+        if ($this->settings->integrationMode->forDataProcessing() !== $this->getIntegrationMode()) {
             return $processedData;
         }
 
