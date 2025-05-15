@@ -30,6 +30,11 @@ final readonly class FrontendListener
         );
 
         $event->getCurrentPolicy()->extend(
+            Directive::StyleSrcElem,
+            new UriValue($formcycleUrl),
+        );
+
+        $event->getCurrentPolicy()->extend(
             Directive::FontSrc,
             new UriValue($formcycleUrl),
         );
