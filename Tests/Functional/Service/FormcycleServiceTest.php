@@ -23,14 +23,18 @@ class FormcycleServiceTest extends FunctionalTestCase
 
         $cache = $this->createMock(FrontendInterface::class);
 
-        $site = $this->createMock(Site::class);
-        $site->method('getSettings')->willReturn(
-            new SiteSettings([
+        $siteSettings = $this->createMock(SiteSettings::class);
+        $siteSettings->method('get')->willReturnCallback(function (string $key) {
+            return match ($key) {
                 'formcycle.clientId' => '2252',
                 'formcycle.url' => 'https://pro.form.cloud/formcycle/',
                 'formcycle.defaultIntegrationMode' => 'integrated',
-            ], [], [])
-        );
+                default => null,
+            };
+        });
+
+        $site = $this->createMock(Site::class);
+        $site->method('getSettings')->willReturn($siteSettings);
 
         $factory = new FormcycleServiceFactory($cache);
 
