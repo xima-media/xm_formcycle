@@ -3,6 +3,7 @@
 namespace Xima\XmFormcycle\Tests\Unit\Service;
 
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Settings\Settings;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteSettings;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
@@ -20,18 +21,14 @@ class FormcycleServiceUrlTest extends UnitTestCase
 
         $cache = $this->createMock(FrontendInterface::class);
 
-        $siteSettings = $this->createMock(SiteSettings::class);
-        $siteSettings->method('get')->willReturnCallback(function (string $key) {
-            return match ($key) {
+        $site = $this->createMock(Site::class);
+        $site->method('getSettings')->willReturn(
+            SiteSettings::create(new Settings([
                 'formcycle.clientId' => '1',
                 'formcycle.url' => 'https://example.com/formcycle/',
                 'formcycle.defaultIntegrationMode' => 'integrated',
-                default => null,
-            };
-        });
-
-        $site = $this->createMock(Site::class);
-        $site->method('getSettings')->willReturn($siteSettings);
+            ]))
+        );
 
         $factory = new FormcycleServiceFactory($cache);
         $this->subject = $factory->createFromSite($site);
