@@ -3,6 +3,7 @@
 namespace Xima\XmFormcycle\Tests\Functional\Service;
 
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Settings\Settings;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteSettings;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -25,11 +26,11 @@ class FormcycleServiceTest extends FunctionalTestCase
 
         $site = $this->createMock(Site::class);
         $site->method('getSettings')->willReturn(
-            new SiteSettings([
+            SiteSettings::create(new Settings([
                 'formcycle.clientId' => '2252',
                 'formcycle.url' => 'https://pro.form.cloud/formcycle/',
                 'formcycle.defaultIntegrationMode' => 'integrated',
-            ], [], [])
+            ]))
         );
 
         $factory = new FormcycleServiceFactory($cache);
