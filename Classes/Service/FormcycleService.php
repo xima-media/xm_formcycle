@@ -175,6 +175,11 @@ final readonly class FormcycleService
             $params['xfc-pp-error-url'] = $this->generateAbsoluteUri($settings->errorPid, $settings->language);
         }
 
+        if ($settings->additionalParameters !== '') {
+            parse_str($settings->additionalParameters, $additionalParams);
+            $params = array_merge($params, $additionalParams);
+        }
+
         return $params;
     }
 
