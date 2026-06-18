@@ -5,8 +5,34 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 defined('TYPO3') || die('Access denied.');
 
 $tempFields = [
+    'tx_xmformcycle_display_mode' => [
+        'label' => 'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_display_mode',
+        'onChange' => 'reload',
+        'config' => [
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => [
+                ['LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_display_mode.0', 0],
+                ['LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_display_mode.1', 1],
+            ],
+        ],
+    ],
+    'tx_xmformcycle_list_layout' => [
+        'label' => 'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_list_layout',
+        'displayCond' => 'FIELD:tx_xmformcycle_display_mode:=:1',
+        'config' => [
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => [
+                ['LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_list_layout.0', 0],
+                ['LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_list_layout.1', 1],
+                ['LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_list_layout.2', 2],
+            ],
+        ],
+    ],
     'tx_xmformcycle_form_id' => [
         'label' => 'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_form_id.label',
+        'displayCond' => 'FIELD:tx_xmformcycle_display_mode:=:0',
         'config' => [
             'type' => 'user',
             'renderType' => 'formcycle-selection',

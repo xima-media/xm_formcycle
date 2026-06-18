@@ -1,7 +1,67 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
 <f:section name="Main">
+    <f:switch expression="{data.tx_xmformcycle_display_mode}">
+        <f:case value="1">
+            <f:render section="List" arguments="{_all}" />
+        </f:case>
+        <f:defaultCase>
+            <f:render section="Show" arguments="{_all}" />
+        </f:defaultCase>
+    </f:switch>
+</f:section>
 
+<f:section name="List">
+    <f:switch expression="{data.tx_xmformcycle_list_layout}">
+        <f:case value="1">
+            <f:render section="DetailedList" arguments="{_all}" />
+        </f:case>
+        <f:case value="2">
+            <f:render section="CardList" arguments="{_all}" />
+        </f:case>
+        <f:defaultCase>
+            <f:render section="SimpleList" arguments="{_all}" />
+        </f:defaultCase>
+    </f:switch>
+</f:section>
+
+<f:section name="SimpleList">
+    <ul>
+        <f:for each="{forms}" as="form">
+            <li><a href="{form.url}" target="_blank">{form.title}</a></li>
+        </f:for>
+    </ul>
+</f:section>
+
+<f:section name="DetailedList">
+    <table>
+        <f:for each="{forms}" as="form">
+            <tr>
+                <td><img src="{form.thumbnail}" alt="{form.title}"/></td>
+                <td>{form.title}</td>
+                <td><a href="{form.url}" target="_blank">{form.url}</a></td>
+                <td><f:format.date pattern="d.m.Y" locale="de-DE">{form.change_date -> f:format.crop(append:'',maxCharacters: '10')}</f:format.date></td>
+            </tr>
+        </f:for>
+    </table>
+</f:section>
+
+<f:section name="CardList">
+    <div class="card-columns">
+        <f:for each="{forms}" as="form">
+            <div class="card" style="width: 18rem;">
+                <a href="{form.url}" target="_blank">
+                    <img class="card-img-top" src="{form.thumbnail}" alt="{form.title}">
+                    <div class="card-body">
+                        <p class="card-text">{form.title}</p>
+                    </div>
+                </a>
+            </div>
+        </f:for>
+    </div>
+</f:section>
+
+<f:section name="Show">
     <div class="ce-formcycle">
 
         <f:if condition="{iframe}">
@@ -17,6 +77,6 @@
         </f:if>
 
     </div>
-
 </f:section>
+
 </html>

@@ -1,79 +1,102 @@
 tt_content.formcycle = COA
 tt_content.formcycle {
 
-  10 = COA_INT
+  10 = COA
   10.stdWrap.if.equals = 0
-  10.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
-  10.1 =< lib.contentElement
-  10.1 {
-    templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
-    templateRootPaths.2 = {$plugin.tx_xmformcycle.view.templateRootPath}
-    partialRootPaths.1 = EXT:xm_formcycle/Resources/Private/Partials/
-    partialRootPaths.2 = {$plugin.tx_xmformcycle.view.partialRootPath}
-    layoutRootPaths.1 = EXT:xm_formcycle/Resources/Private/Layouts/
-    layoutRootPaths.2 = {$plugin.tx_xmformcycle.view.layoutRootPath}
-    templateName = Formcycle
-    dataProcessing {
-      1709129505 = Xima\XmFormcycle\DataProcessing\AjaxProcessor
-      1709129509 = Xima\XmFormcycle\DataProcessing\iFrameProcessor
-      1709129512 = Xima\XmFormcycle\DataProcessing\IntegratedProcessor
+  10.stdWrap.if.value.data = field:tx_xmformcycle_display_mode
+  10 {
+    10 = COA_INT
+    10.stdWrap.if.equals = 0
+    10.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
+    10.1 =< lib.contentElement
+    10.1 {
+      templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
+      templateRootPaths.2 = {$plugin.tx_xmformcycle.view.templateRootPath}
+      partialRootPaths.1 = EXT:xm_formcycle/Resources/Private/Partials/
+      partialRootPaths.2 = {$plugin.tx_xmformcycle.view.partialRootPath}
+      layoutRootPaths.1 = EXT:xm_formcycle/Resources/Private/Layouts/
+      layoutRootPaths.2 = {$plugin.tx_xmformcycle.view.layoutRootPath}
+      templateName = Formcycle
+      dataProcessing {
+        1709129505 = Xima\XmFormcycle\DataProcessing\AjaxProcessor
+        1709129509 = Xima\XmFormcycle\DataProcessing\iFrameProcessor
+        1709129512 = Xima\XmFormcycle\DataProcessing\IntegratedProcessor
+      }
+    }
+
+    20 = COA_INT
+    20.stdWrap.if.equals = 1
+    20.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
+    20.1 =< lib.contentElement
+    20.1 {
+      templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
+      templateRootPaths.2 = {$plugin.tx_xmformcycle.view.templateRootPath}
+      partialRootPaths.1 = EXT:xm_formcycle/Resources/Private/Partials/
+      partialRootPaths.2 = {$plugin.tx_xmformcycle.view.partialRootPath}
+      layoutRootPaths.1 = EXT:xm_formcycle/Resources/Private/Layouts/
+      layoutRootPaths.2 = {$plugin.tx_xmformcycle.view.layoutRootPath}
+      templateName = Formcycle
+      dataProcessing {
+        1709129512 = Xima\XmFormcycle\DataProcessing\IntegratedProcessor
+      }
+    }
+
+    30 = COA
+    30.stdWrap.if.equals = 2
+    30.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
+    30.1 =< lib.contentElement
+    30.1 {
+      templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
+      templateRootPaths.2 = {$plugin.tx_xmformcycle.view.templateRootPath}
+      partialRootPaths.1 = EXT:xm_formcycle/Resources/Private/Partials/
+      partialRootPaths.2 = {$plugin.tx_xmformcycle.view.partialRootPath}
+      layoutRootPaths.1 = EXT:xm_formcycle/Resources/Private/Layouts/
+      layoutRootPaths.2 = {$plugin.tx_xmformcycle.view.layoutRootPath}
+      templateName = Formcycle
+      dataProcessing {
+        1709129505 = Xima\XmFormcycle\DataProcessing\AjaxProcessor
+      }
+    }
+
+    40 = COA
+    40.stdWrap.if.equals = 3
+    40.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
+    40.1 =< lib.contentElement
+    40.1 {
+      templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
+      templateRootPaths.2 = {$plugin.tx_xmformcycle.view.templateRootPath}
+      partialRootPaths.1 = EXT:xm_formcycle/Resources/Private/Partials/
+      partialRootPaths.2 = {$plugin.tx_xmformcycle.view.partialRootPath}
+      layoutRootPaths.1 = EXT:xm_formcycle/Resources/Private/Layouts/
+      layoutRootPaths.2 = {$plugin.tx_xmformcycle.view.layoutRootPath}
+      templateName = Formcycle
+      dataProcessing {
+        1709129505 = Xima\XmFormcycle\DataProcessing\AjaxProcessor
+      }
+    }
+
+    50 = COA
+    50.stdWrap.if.equals = 4
+    50.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
+    50.1 =< lib.contentElement
+    50.1 {
+      templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
+      templateRootPaths.2 = {$plugin.tx_xmformcycle.view.templateRootPath}
+      partialRootPaths.1 = EXT:xm_formcycle/Resources/Private/Partials/
+      partialRootPaths.2 = {$plugin.tx_xmformcycle.view.partialRootPath}
+      layoutRootPaths.1 = EXT:xm_formcycle/Resources/Private/Layouts/
+      layoutRootPaths.2 = {$plugin.tx_xmformcycle.view.layoutRootPath}
+      templateName = Formcycle
+      dataProcessing {
+        1709129509 = Xima\XmFormcycle\DataProcessing\iFrameProcessor
+      }
     }
   }
 
-  20 = COA_INT
-  20.stdWrap.if.equals = 1
-  20.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
-  20.1 =< lib.contentElement
-  20.1 {
-    templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
-    templateRootPaths.2 = {$plugin.tx_xmformcycle.view.templateRootPath}
-    partialRootPaths.1 = EXT:xm_formcycle/Resources/Private/Partials/
-    partialRootPaths.2 = {$plugin.tx_xmformcycle.view.partialRootPath}
-    layoutRootPaths.1 = EXT:xm_formcycle/Resources/Private/Layouts/
-    layoutRootPaths.2 = {$plugin.tx_xmformcycle.view.layoutRootPath}
-    templateName = Formcycle
-    dataProcessing {
-      1709129512 = Xima\XmFormcycle\DataProcessing\IntegratedProcessor
-    }
-  }
-
-  30 = COA
-  30.stdWrap.if.equals = 2
-  30.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
-  30.1 =< lib.contentElement
-  30.1 {
-    templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
-    templateRootPaths.2 = {$plugin.tx_xmformcycle.view.templateRootPath}
-    partialRootPaths.1 = EXT:xm_formcycle/Resources/Private/Partials/
-    partialRootPaths.2 = {$plugin.tx_xmformcycle.view.partialRootPath}
-    layoutRootPaths.1 = EXT:xm_formcycle/Resources/Private/Layouts/
-    layoutRootPaths.2 = {$plugin.tx_xmformcycle.view.layoutRootPath}
-    templateName = Formcycle
-    dataProcessing {
-      1709129505 = Xima\XmFormcycle\DataProcessing\AjaxProcessor
-    }
-  }
-
-  40 = COA
-  40.stdWrap.if.equals = 3
-  40.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
-  40.1 =< lib.contentElement
-  40.1 {
-    templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
-    templateRootPaths.2 = {$plugin.tx_xmformcycle.view.templateRootPath}
-    partialRootPaths.1 = EXT:xm_formcycle/Resources/Private/Partials/
-    partialRootPaths.2 = {$plugin.tx_xmformcycle.view.partialRootPath}
-    layoutRootPaths.1 = EXT:xm_formcycle/Resources/Private/Layouts/
-    layoutRootPaths.2 = {$plugin.tx_xmformcycle.view.layoutRootPath}
-    templateName = Formcycle
-    dataProcessing {
-      1709129505 = Xima\XmFormcycle\DataProcessing\AjaxProcessor
-    }
-  }
 
   50 = COA
-  50.stdWrap.if.equals = 4
-  50.stdWrap.if.value.data = field:tx_xmformcycle_integration_mode
+  50.stdWrap.if.equals = 1
+  50.stdWrap.if.value.data = field:tx_xmformcycle_display_mode
   50.1 =< lib.contentElement
   50.1 {
     templateRootPaths.1 = EXT:xm_formcycle/Resources/Private/Templates/
@@ -84,9 +107,11 @@ tt_content.formcycle {
     layoutRootPaths.2 = {$plugin.tx_xmformcycle.view.layoutRootPath}
     templateName = Formcycle
     dataProcessing {
-      1709129509 = Xima\XmFormcycle\DataProcessing\iFrameProcessor
+      1781791186 = Xima\XmFormcycle\DataProcessing\FormListProcessor
     }
   }
+
+
 
 }
 
