@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="messages" date="2026-06-19T08:09:02Z">
+		<body>
+			<trans-unit id="tx_xmformcycle_domain_model_form">
+				<source>Formcycle Form</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_domain_model_form.id">
+				<source>ID</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_domain_model_form.form_id">
+				<source>Form ID</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_domain_model_form.client_name">
+				<source>Client Name</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_domain_model_form.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_domain_model_form.thumbnail">
+				<source>Thumbnail</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_domain_model_form.url">
+				<source>URL</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_domain_model_form.change_date">
+				<source>Change Date</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

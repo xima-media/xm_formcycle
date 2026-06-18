@@ -2,11 +2,13 @@
 
 namespace Xima\XmFormcycle\Service;
 
+use Doctrine\DBAL\ParameterType;
 use finfo;
 use JsonException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Xima\XmFormcycle\Dto\ElementSettings;
@@ -22,6 +24,8 @@ final readonly class FormcycleService
 
     private IntegrationMode $defaultIntegrationMode;
 
+    private int $localStoragePid;
+
     /**
      * @throws NotFoundExceptionInterface
      * @throws FormcycleConfigurationException
@@ -31,6 +35,7 @@ final readonly class FormcycleService
     {
         $this->url = rtrim($site->getSettings()->get('formcycle.url'), '/');
         $this->clientId = $site->getSettings()->get('formcycle.clientId');
+        $this->localStoragePid = $site->getSettings()->get('formcycle.storagePid') ?? 0;
         $this->defaultIntegrationMode = IntegrationMode::fromSiteSettings($site->getSettings()->get('formcycle.defaultIntegrationMode'));
 
         if (!$this->url || !GeneralUtility::isValidUrl($this->url)) {
@@ -66,18 +71,36 @@ final readonly class FormcycleService
      */
     public function getAvailableForms(): array
     {
+        // if local storage is set, the form data gets imported into the local database and is loaded from there,
+        // otherwise it gets loaded from the remote server
+        if ($this->localStoragePid !== 0) {
+            return $this->loadAvailableFormsFromLocalStorage();
+        }
         $forms = $this->cache->get('availableForms');
         if (!$forms) {
-            $forms = $this->loadAvailableForms();
+            $forms = $this->loadAvailableFormsFromRemoteServer();
+            $this->cache->set('availableForms', $forms);
         }
-
         return $forms;
+    }
+
+    private function loadAvailableFormsFromLocalStorage(): array
+    {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_xmformcycle_domain_model_form');
+        return $queryBuilder
+            ->select('*')
+            ->from('tx_xmformcycle_domain_model_form')
+            ->where(
+                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($this->localStoragePid, ParameterType::INTEGER))
+            )
+            ->executeQuery()
+            ->fetchAllAssociative();
     }
 
     /**
      * @throws FormcycleConnectionException
      */
-    private function loadAvailableForms(): array
+    public function loadAvailableFormsFromRemoteServer(): array
     {
         $jsonResponse = GeneralUtility::getUrl($this->getFormListUrl());
 
@@ -102,8 +125,6 @@ final readonly class FormcycleService
         }
 
         self::encodePreviewImages($forms);
-
-        $this->cache->set('availableForms', $forms);
 
         return $forms;
     }

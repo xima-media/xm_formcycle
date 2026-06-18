@@ -17,6 +17,13 @@ settings:
     description: 'The formcycle client ID'
     default: ''
 
+  formcycle.storagePid:
+    category: Formcycle
+    label: 'Storage PID'
+    type: number
+    description: 'The PID where imported form data is stored'
+    default: 0
+
   formcycle.defaultIntegrationMode:
     category: Formcycle
     label: 'Default integration mode'

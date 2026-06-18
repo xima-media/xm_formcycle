@@ -92,6 +92,27 @@
 			<trans-unit id="tx_xmformcycle_additional_params">
 				<source>Additional Parameters</source>
 			</trans-unit>
+			<trans-unit id="tx_xmformcycle_display_mode">
+				<source>Display mode</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_display_mode.0">
+				<source>Single Form</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_display_mode.1">
+				<source>Form List</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_list_layout">
+				<source>List Layout</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_list_layout.0">
+				<source>Simple List</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_list_layout.1">
+				<source>Detailed List</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_list_layout.2">
+				<source>Cards</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
