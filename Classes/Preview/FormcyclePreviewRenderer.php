@@ -33,7 +33,11 @@ class FormcyclePreviewRenderer extends StandardContentPreviewRenderer
             return $this->linkEditContent($content, $row);
         }
 
-        $formConfiguration = $formcycleService->getAvailableFormConfigurationByFormId($row['tx_xmformcycle_form_id']);
+        try {
+            $formConfiguration = $formcycleService->getAvailableFormConfigurationByFormId($row['tx_xmformcycle_form_id']);
+        } catch (\Throwable $e) {
+            $formConfiguration = null;
+        }
         if (empty($formConfiguration)) {
             $content = 'Configured form ID: ' . $row['tx_xmformcycle_form_id'];
             return $this->linkEditContent($content, $row);
