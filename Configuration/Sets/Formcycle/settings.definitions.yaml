@@ -17,6 +17,13 @@ settings:
     description: 'The formcycle client ID'
     default: ''
 
+  formcycle.detailPid:
+    category: Formcycle
+    label: 'Detail page PID'
+    type: number
+    description: 'The PID where the detail plugin is located.'
+    default: 0
+
   formcycle.storagePid:
     category: Formcycle
     label: 'Storage PID'

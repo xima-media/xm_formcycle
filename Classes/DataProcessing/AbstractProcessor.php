@@ -28,6 +28,14 @@ abstract class AbstractProcessor implements DataProcessorInterface
         // construct element settings
         $this->settings = ElementSettings::createFromContentElement($cObj);
 
+        // override form-id from request params
+        $params = $cObj->getRequest()->getAttribute('routing');
+        $formId = $params->get('xfc_form');
+
+        if (!empty($formId)) {
+            $this->settings->formId = (string)$formId;
+        }
+
         $this->formcycleService = $this->formcycleServiceFactory->createFromPageUid($cObj->data['pid']);
 
         // check if integration mode is set
