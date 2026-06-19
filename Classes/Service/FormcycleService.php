@@ -57,6 +57,9 @@ final readonly class FormcycleService
         $this->cache->remove('availableForms');
     }
 
+    /**
+     * @throws FormcycleConnectionException
+     */
     public function getAvailableFormConfigurationByFormId(string $formId): array
     {
         $forms = $this->getAvailableForms();
