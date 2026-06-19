@@ -15,6 +15,7 @@ $tempFields = [
                 ['LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_display_mode.0', 0],
                 ['LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_display_mode.1', 1],
             ],
+            'default' => 0,
         ],
     ],
     'tx_xmformcycle_list_layout' => [
@@ -28,6 +29,7 @@ $tempFields = [
                 ['LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_list_layout.1', 1],
                 ['LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:tx_xmformcycle_list_layout.2', 2],
             ],
+            'default' => 0,
         ],
     ],
     'tx_xmformcycle_form_id' => [

@@ -8,6 +8,7 @@ use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
+use Xima\XmFormcycle\Error\FormcycleConnectionException;
 
 final readonly class FormImportService
 {
@@ -39,7 +40,13 @@ final readonly class FormImportService
             'deleted' => 0,
         ];
         $formcycleService = $this->formcycleServiceFactory->createFromSite($site);
-        $formsToImport = $formcycleService->loadAvailableFormsFromRemoteServer();
+        try {
+            $formsToImport = $formcycleService->loadAvailableFormsFromRemoteServer();
+        } catch (FormcycleConnectionException $e) {
+            $importInfo['success'] = false;
+            $importInfo['errors'][] = $e->getMessage();
+            return $importInfo;
+        }
 
         $storagePid = $site->getSettings()->get('formcycle.storagePid') ?? false;
 
@@ -50,8 +57,8 @@ final readonly class FormImportService
         }
 
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
-        $existingFormRows = $queryBuilder->select('*') // todo only select used fields
-            ->from(self::TABLE_NAME)
+        $existingFormRows = $queryBuilder->select('*')
+        ->from(self::TABLE_NAME)
             ->where(
                 $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($storagePid, ParameterType::INTEGER))
             )
@@ -61,11 +68,11 @@ final readonly class FormImportService
         $formsToDeleteCmd = [];
         $existingFormUidMapping = [];
         while ($existingForm = $existingFormRows->fetchAssociative()) {
-            $keys = array_column($formsToImport, 'form_id'); // todo: is 'form_id' the right field here? Or better use 'id'?
-            $key = array_search($existingForm['form_id'], $keys, true);
+            $keys = array_column($formsToImport, 'id');
+            $key = array_search($existingForm['id'], $keys, true);
 
             if ($key !== false) {
-                $existingFormUidMapping[$formsToImport[$key]['form_id']] = $existingForm['uid'];
+                $existingFormUidMapping[$formsToImport[$key]['id']] = $existingForm['uid'];
                 continue;
             }
             $formsToDeleteCmd[self::TABLE_NAME][$existingForm['uid']]['delete'] = 1;
@@ -84,8 +91,8 @@ final readonly class FormImportService
         // import new forms and update existing ones
         $data = [];
         foreach ($formsToImport as $form) {
-            if ($existingFormUidMapping[$form['form_id']] ?? false) {
-                $uid = $existingFormUidMapping[$form['form_id']];
+            if ($existingFormUidMapping[$form['id']] ?? false) {
+                $uid = $existingFormUidMapping[$form['id']];
                 $importInfo['updated']++;
             } else {
                 $uid = StringUtility::getUniqueId('NEW');
@@ -100,7 +107,7 @@ final readonly class FormImportService
 
         if ($dataHandler->errorLog !== []) {
             $importInfo['success'] = false;
-            $importInfo['errors'][] = array_merge($importInfo['errors'], $dataHandler->errorLog);
+            $importInfo['errors'] = array_merge($importInfo['errors'], $dataHandler->errorLog);
         }
 
         return $importInfo;

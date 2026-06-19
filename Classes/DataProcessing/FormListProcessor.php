@@ -23,7 +23,7 @@ class FormListProcessor implements DataProcessorInterface
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData
-    ) {
+    ): array {
         // construct element settings
         $this->settings = ElementSettings::createFromContentElement($cObj);
 

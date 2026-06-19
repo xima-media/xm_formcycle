@@ -76,11 +76,13 @@ final readonly class FormcycleService
         if ($this->localStoragePid !== 0) {
             return $this->loadAvailableFormsFromLocalStorage();
         }
-        $forms = $this->cache->get('availableForms');
-        if (!$forms) {
-            $forms = $this->loadAvailableFormsFromRemoteServer();
-            $this->cache->set('availableForms', $forms);
+
+        if ($this->cache->has('availableForms')) {
+            return $this->cache->get('availableForms');
         }
+
+        $forms = $this->loadAvailableFormsFromRemoteServer();
+        $this->cache->set('availableForms', $forms);
         return $forms;
     }
 

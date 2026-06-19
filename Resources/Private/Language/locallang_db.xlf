@@ -26,6 +26,12 @@
 			<trans-unit id="tx_xmformcycle_domain_model_form.change_date">
 				<source>Change Date</source>
 			</trans-unit>
+			<trans-unit id="tx_xmformcycle_domain_model_form.fc_date">
+				<source>FC Date</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_domain_model_form.online">
+				<source>Online</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
