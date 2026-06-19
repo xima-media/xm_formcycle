@@ -33,8 +33,7 @@ class FormcyclePreviewRenderer extends StandardContentPreviewRenderer
             return $this->linkEditContent($content, $row);
         }
 
-        $cacheExists = $formcycleService->hasAvailableFormsCached();
-        $formConfiguration = $cacheExists ? $formcycleService->getAvailableFormConfigurationByFormId($row['tx_xmformcycle_form_id']) : [];
+        $formConfiguration = $formcycleService->getAvailableFormConfigurationByFormId($row['tx_xmformcycle_form_id']);
         if (empty($formConfiguration)) {
             $content = 'Configured form ID: ' . $row['tx_xmformcycle_form_id'];
             return $this->linkEditContent($content, $row);
