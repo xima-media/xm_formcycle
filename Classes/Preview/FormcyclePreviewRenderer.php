@@ -20,7 +20,7 @@ class FormcyclePreviewRenderer extends StandardContentPreviewRenderer
             return $this->linkEditContent($content, $row);
         }
 
-        if (!$row['tx_xmformcycle_form_id'] || !is_string($row['tx_xmformcycle_form_id'])) {
+        if ($row['tx_xmformcycle_display_mode'] == 0 && (!$row['tx_xmformcycle_form_id'] || !is_string($row['tx_xmformcycle_form_id']))) {
             $content = 'No form selected';
             return $this->linkEditContent($content, $row);
         }
@@ -33,22 +33,40 @@ class FormcyclePreviewRenderer extends StandardContentPreviewRenderer
             return $this->linkEditContent($content, $row);
         }
 
-        try {
-            $formConfiguration = $formcycleService->getAvailableFormConfigurationByFormId($row['tx_xmformcycle_form_id']);
-        } catch (\Throwable $e) {
-            $formConfiguration = null;
-        }
-        if (empty($formConfiguration)) {
-            $content = 'Configured form ID: ' . $row['tx_xmformcycle_form_id'];
-            return $this->linkEditContent($content, $row);
-        }
+        if ($row['tx_xmformcycle_display_mode'] == 0) {
+            try {
+                $formConfiguration = $formcycleService->getAvailableFormConfigurationByFormId($row['tx_xmformcycle_form_id']);
+            } catch (\Throwable $e) {
+                $formConfiguration = null;
+            }
+            if (empty($formConfiguration)) {
+                $content = 'Configured form ID: ' . $row['tx_xmformcycle_form_id'];
+                return $this->linkEditContent($content, $row);
+            }
 
-        if ($formConfiguration['thumbnail'] ?? false) {
-            $content .= '<span class="d-inline-block mb-2" style="background-color:#ededed"><img width="200" alt="Formcycle form preview" src="' . $formConfiguration['thumbnail'] . '" /></span><br />';
-        }
+            if ($formConfiguration['thumbnail'] ?? false) {
+                $content .= '<span class="d-inline-block mb-2" style="background-color:#ededed"><img width="200" alt="Formcycle form preview" src="' . $formConfiguration['thumbnail'] . '" /></span><br />';
+            }
 
-        if ($formConfiguration['title'] ?? false) {
-            $content .= $formConfiguration['title'];
+            if ($formConfiguration['title'] ?? false) {
+                $content .= $formConfiguration['title'];
+            }
+        } elseif ($row['tx_xmformcycle_display_mode'] == 1) {
+            try {
+                $formConfigurations = $formcycleService->getAvailableForms();
+            } catch (\Throwable $e) {
+                $formConfigurations = null;
+            }
+
+            if (empty($formConfigurations)) {
+                $content = 'No forms found for current configuration';
+                return $this->linkEditContent($content, $row);
+            }
+
+            for ($i = 0, $max = 5; $i < $max; $i++) {
+                $content .= '<ul><li>' . $formConfigurations[$i]['title'] . '</li></ul>';
+            }
+            $content .= '<ul><li>...</li></ul>';
         }
 
         return $this->linkEditContent($content, $row);
