@@ -49,6 +49,29 @@ After that, you can enter your Formcycle credentials via the Site Settings modul
 
 ![Site settings](./Documentation/Images/site_settings.png)
 
+### Route Enhancer
+In v14 route enhancer configuration in loaded automatically via site set.
+In v13 you need to import the route enhancer configuration for formcycle to your site configuration manually:
+
+### Link wizard page restriction
+To restrict the page tree in the link wizard to only show pages with formcycle form records, you can set it in you page TSconfig of your sitepackage:
+```
+// all configuration options are optional
+TCEMAIN.linkHandler.formcycleForm {
+    configuration {
+        storagePid = 42
+        pageTreeMountPoints = 42
+        hidePageTree = 1
+    }
+}
+```
+
+
+```yaml
+imports:
+    - { resource: 'EXT:xm_formcycle/Configuration/Sets/Formcycle/route-enhancers.yaml' }
+```
+
 ## Configuration in TYPO3 v11 & v12
 
 After installation, enter your login data via extension configuration and include the TypoScript template for the
