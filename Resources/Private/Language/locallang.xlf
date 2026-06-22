@@ -41,6 +41,10 @@
 			<trans-unit id="error.unkown.message">
 				<source>An unknown error (%s) occurred. Please contact the site administrator.</source>
 			</trans-unit>
+			<trans-unit id="error.notFound.message">
+				<source>The requested form could not be found.</source>
+			</trans-unit>
+
 			<trans-unit id="defaultGroupNames.0">
 				<source>Ungrouped</source>
 			</trans-unit>
@@ -109,6 +113,10 @@
 			</trans-unit>
 			<trans-unit id="tx_xmformcycle_detail_link_mode.1">
 				<source>External - show form on Formcycle instance</source>
+			</trans-unit>
+
+			<trans-unit id="linkHandler.formcycleForm">
+				<source>Formcycle Form</source>
 			</trans-unit>
 		</body>
 	</file>

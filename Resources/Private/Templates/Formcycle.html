@@ -43,7 +43,6 @@
 
 <f:section name="Show">
     <div class="ce-formcycle">
-
         <f:if condition="{iframe}">
             <iframe class="xm-formcycle-iframe" src="{iframe.url}" width="100%" height="500" loading="lazy"></iframe>
         </f:if>
@@ -52,8 +51,13 @@
             <div class="xm-formcycle-ajax" id="xm-formcycle-ajax-{data.uid}" data-ajax-url="{ajax.url}"></div>
         </f:if>
 
-        <f:if condition="{form}">
-            {form.html->f:format.raw()}
+        <f:if condition="{form.html}">
+            <f:then>
+                {form.html->f:format.raw()}
+            </f:then>
+            <f:else>
+                {f:translate(key: 'error.notFound.message', extensionName:'XmFormcycle')}
+            </f:else>
         </f:if>
 
     </div>

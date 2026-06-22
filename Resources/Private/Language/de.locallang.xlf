@@ -50,6 +50,10 @@
 				<source>An unknown error occurred. Please contact the site administrator.</source>
 				<target>Es ist ein unbekannter Fehler (%s) aufgetreten. Kontaktieren Sie den Seiten-Administrator.</target>
 			</trans-unit>
+			<trans-unit id="error.notFound.message">
+				<source>The requested form could not be found.</source>
+				<target>Das angeforderte Formular konnte nicht gefunden werden.</target>
+			</trans-unit>
 			<trans-unit id="defaultGroupNames.0">
 				<source>Ungrouped</source>
 				<target>Nicht gruppiert</target>

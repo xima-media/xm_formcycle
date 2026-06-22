@@ -138,12 +138,17 @@ tt_content.formcycle {
       }
     }
   }
-
-
-
-
 }
-
 
 formcycle_ajax = PAGE
 formcycle_ajax.typeNum = 1464705954
+
+// handle record links
+config.recordLinks.formcycleForm {
+    forceLink = 0
+    typolink {
+        parameter = {$formcycle.detailPid}
+        additionalParams.data = field:id
+        additionalParams.wrap = &xfc_form=|
+    }
+}
