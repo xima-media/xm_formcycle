@@ -1,0 +1,10 @@
+routeEnhancers:
+  FormDetail:
+    type: Simple
+    routePath: '/{form_id}'
+    static:
+      form_id: true
+    requirements:
+      form_id: '[0-9]{1,9}'
+    _arguments:
+      form_id: 'xfc_form'

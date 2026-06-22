@@ -14,3 +14,11 @@ mod {
     show := addToList(formcycle)
   }
 }
+
+TCEMAIN.linkHandler.formcycleForm {
+  handler = TYPO3\CMS\Backend\LinkHandler\RecordLinkHandler
+  label = LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:linkHandler.formcycleForm
+  configuration {
+    table = tx_xmformcycle_domain_model_form
+  }
+}
