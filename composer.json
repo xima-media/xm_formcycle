@@ -87,8 +87,8 @@
 			"@ci:typoscript:lint",
 			"@ci:yaml:lint"
 		],
-		"ci:test:functional": "XDEBUG_MODE=coverage && phpunit -c phpunit.functional.xml",
-		"ci:test:unit": "XDEBUG_MODE=coverage && phpunit -c phpunit.unit.xml",
+		"ci:test:functional": "phpunit -c phpunit.functional.xml",
+		"ci:test:unit": "phpunit -c phpunit.unit.xml",
 		"ci:typoscript:lint": "typoscript-lint --fail-on-warnings",
 		"ci:yaml:lint": "find ./ ! -path './vendor/*' ! -path '*/node_modules/*' ! -path './public/*' \\( -name '*.yaml' -o -name '*.yml' \\) | xargs -r yaml-lint",
 		"composer:normalize": "@composer normalize --no-check-lock",
