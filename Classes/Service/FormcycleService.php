@@ -27,13 +27,13 @@ final readonly class FormcycleService
     private int $localStoragePid;
 
     /**
-     * @throws NotFoundExceptionInterface
-     * @throws FormcycleConfigurationException
-     * @throws ContainerExceptionInterface
-     */
+    * @throws NotFoundExceptionInterface
+    * @throws FormcycleConfigurationException
+    * @throws ContainerExceptionInterface
+    */
     public function __construct(private FrontendInterface $cache, private Site $site, private ConnectionPool $connectionPool)
     {
-        $this->url = rtrim($site->getSettings()->get('formcycle.url'), '/');
+        $this->url = rtrim((string)$site->getSettings()->get('formcycle.url'), '/');
         $this->clientId = $site->getSettings()->get('formcycle.clientId');
         $this->localStoragePid = $site->getSettings()->get('formcycle.storagePid') ?? 0;
         $this->defaultIntegrationMode = IntegrationMode::fromSiteSettings($site->getSettings()->get('formcycle.defaultIntegrationMode'));
@@ -58,8 +58,8 @@ final readonly class FormcycleService
     }
 
     /**
-     * @throws FormcycleConnectionException
-     */
+    * @throws FormcycleConnectionException
+    */
     public function getAvailableFormConfigurationByFormId(string $formId): array
     {
         $forms = $this->getAvailableForms();
@@ -70,8 +70,8 @@ final readonly class FormcycleService
     }
 
     /**
-     * @throws FormcycleConnectionException
-     */
+    * @throws FormcycleConnectionException
+    */
     public function getAvailableForms(): array
     {
         // if local storage is set, the form data gets imported into the local database and is loaded from there,
@@ -103,8 +103,8 @@ final readonly class FormcycleService
     }
 
     /**
-     * @throws FormcycleConnectionException
-     */
+    * @throws FormcycleConnectionException
+    */
     public function loadAvailableFormsFromRemoteServer(): array
     {
         $jsonResponse = GeneralUtility::getUrl($this->getFormListUrl());
@@ -115,7 +115,7 @@ final readonly class FormcycleService
 
         try {
             $forms = json_decode($jsonResponse, true, 512, JSON_THROW_ON_ERROR);
-        } catch (JsonException $e) {
+        } catch (JsonException) {
             throw new FormcycleConnectionException(
                 'Loading available forms: Invalid JSON response of endpoint',
                 1709102526

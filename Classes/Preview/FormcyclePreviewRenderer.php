@@ -28,7 +28,7 @@ class FormcyclePreviewRenderer extends StandardContentPreviewRenderer
         try {
             /** @var FormcycleService $formcycleService */
             $formcycleService = GeneralUtility::makeInstance(FormcycleServiceFactory::class)->createFromPageUid($row['pid']);
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $content = 'Formcycle extension configuration error';
             return $this->linkEditContent($content, $row);
         }
@@ -36,7 +36,7 @@ class FormcyclePreviewRenderer extends StandardContentPreviewRenderer
         if ($row['tx_xmformcycle_display_mode'] == 0) {
             try {
                 $formConfiguration = $formcycleService->getAvailableFormConfigurationByFormId($row['tx_xmformcycle_form_id']);
-            } catch (\Throwable $e) {
+            } catch (\Throwable) {
                 $formConfiguration = null;
             }
             if (empty($formConfiguration)) {
@@ -54,7 +54,7 @@ class FormcyclePreviewRenderer extends StandardContentPreviewRenderer
         } elseif ($row['tx_xmformcycle_display_mode'] == 1) {
             try {
                 $formConfigurations = $formcycleService->getAvailableForms();
-            } catch (\Throwable $e) {
+            } catch (\Throwable) {
                 $formConfigurations = null;
             }
 

@@ -17,3 +17,6 @@ package.lock
 node_modules
 Tests/Playwright/test-results
 Tests/Playwright/playwright-report
+php-cs-fixer.xml
+phpstan.xml
+.php-cs-fixer.cache

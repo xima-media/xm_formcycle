@@ -28,7 +28,7 @@
 			</trans-unit>
 			<trans-unit id="error.configuration.title">
 				<source>Configuration error</source>
-				<target>Konfiguration Error</target>
+				<target>Konfigurationsfehler</target>
 			</trans-unit>
 			<trans-unit id="error.connection.title">
 				<source>Connection error</source>
@@ -38,17 +38,21 @@
 				<source>Unknown error</source>
 				<target>Unbekannter Fehler</target>
 			</trans-unit>
-			<trans-unit id="error.1709041996.message">
-				<source>The extension configuration "formcycleUrl" is missing or invalid</source>
-				<target>Das Site Setting "formcycle.url" fehlt oder ist ungültig</target>
+			<trans-unit id="error.1709102526.message">
+				<source>No response from the endpoint when attempting to fetch available Formcycle forms</source>
+				<target>Keine Antwort vom Endpunkt beim Abrufen der verfügbaren Formcycle-Formulare</target>
 			</trans-unit>
-			<trans-unit id="error.1709538688.message">
-				<source>The extension configuration "formcycleClientId" is missing</source>
-				<target>Das Site Setting "formcycle.clientId" fehlt</target>
+			<trans-unit id="error.1734275643.message">
+				<source>The site setting "formcycle.url" is missing or invalid</source>
+				<target>Das Site-Setting "formcycle.url" fehlt oder ist ungültig</target>
+			</trans-unit>
+			<trans-unit id="error.1734275657.message">
+				<source>The site setting "formcycle.clientId" is missing</source>
+				<target>Das Site-Setting "formcycle.clientId" fehlt</target>
 			</trans-unit>
 			<trans-unit id="error.unknown.message">
-				<source>An unknown error occurred. Please contact the site administrator.</source>
-				<target>Es ist ein unbekannter Fehler (%s) aufgetreten. Kontaktieren Sie den Seiten-Administrator.</target>
+				<source>An unknown error (%s) occurred. Please contact the site administrator.</source>
+				<target>Es ist ein unbekannter Fehler (%s) aufgetreten. Bitte kontaktieren Sie den Seiten-Administrator.</target>
 			</trans-unit>
 			<trans-unit id="error.notFound.message">
 				<source>The requested form could not be found.</source>
@@ -65,6 +69,18 @@
 			<trans-unit id="button.admin">
 				<source>Formcycle Admin</source>
 				<target>Formcycle Admin</target>
+			</trans-unit>
+			<trans-unit id="palettes.formcycle.settings">
+				<source>Formcycle Settings</source>
+				<target>Formcycle-Einstellungen</target>
+			</trans-unit>
+			<trans-unit id="palettes.formcycle.include">
+				<source>Formcycle Include</source>
+				<target>Formcycle-Einbindung</target>
+			</trans-unit>
+			<trans-unit id="formcycle_settings">
+				<source>Formcycle Settings</source>
+				<target>Formcycle-Einstellungen</target>
 			</trans-unit>
 			<trans-unit id="tx_xmformcycle_redirect_success">
 				<source>Redirect on Success</source>
@@ -109,6 +125,34 @@
 			<trans-unit id="tx_xmformcycle_additional_params">
 				<source>Additional Parameters</source>
 				<target>Zusätzliche Parameter</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_display_mode">
+				<source>Display mode</source>
+				<target>Anzeigemodus</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_display_mode.0">
+				<source>Single Form</source>
+				<target>Einzelnes Formular</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_display_mode.1">
+				<source>Form List</source>
+				<target>Formularliste</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_detail_link_mode">
+				<source>Detail Link Mode</source>
+				<target>Detail-Link-Modus</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_detail_link_mode.0">
+				<source>Internal - use configured detail page to show form</source>
+				<target>Intern – konfigurierte Detailseite zur Anzeige des Formulars verwenden</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_detail_link_mode.1">
+				<source>External - show form on Formcycle instance</source>
+				<target>Extern – Formular auf der Formcycle-Instanz anzeigen</target>
+			</trans-unit>
+			<trans-unit id="linkHandler.formcycleForm">
+				<source>Formcycle Form</source>
+				<target>Formcycle-Formular</target>
 			</trans-unit>
 		</body>
 	</file>

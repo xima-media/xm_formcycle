@@ -12,10 +12,10 @@ async function login(page: Page): Promise<void> {
 }
 
 /**
- * Opens the "new content element" wizard on the root page and returns the
- * wizard web component locator. Playwright pierces the shadow DOM automatically,
- * so the wizard contents are reachable through a normal locator.
- */
+* Opens the "new content element" wizard on the root page and returns the
+* wizard web component locator. Playwright pierces the shadow DOM automatically,
+* so the wizard contents are reachable through a normal locator.
+*/
 async function openContentWizard(page: Page): Promise<{ wizard: ReturnType<Page['locator']>; contentFrame: FrameLocator }> {
   // Open the Page module
   await page.click('[data-modulemenu-identifier="web_layout"]');
