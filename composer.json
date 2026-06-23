@@ -31,12 +31,6 @@
 	},
 	"require-dev": {
 		"bk2k/bootstrap-package": "^14.0 || dev-master",
-		"codeception/module-asserts": "^3.0",
-		"codeception/module-cli": "^2.0",
-		"codeception/module-db": "^3.1",
-		"codeception/module-phpbrowser": "^3.0",
-		"codeception/module-webdriver": "^4.0",
-		"eliashaeussler/typo3-codeception-helper": "^1.1.2",
 		"friendsofphp/php-cs-fixer": "^3.34.1",
 		"helhum/typo3-console": "^8.1 || dev-issue/1169",
 		"helmich/typo3-typoscript-lint": "^3.2.1",
@@ -63,13 +57,8 @@
 		"typoscript:lint": "php vendor/bin/typoscript-lint",
 		"test:functional": "php vendor/bin/phpunit -c phpunit.functional.xml",
 		"test:unit": "php vendor/bin/phpunit -c phpunit.unit.xml",
-		"test:acceptance": [
-			".ddev/commands/web/init-typo3",
-			"codecept run --steps"
-		],
 		"ci:test:unit": "XDEBUG_MODE=coverage && phpunit -c phpunit.unit.xml",
 		"ci:test:functional": "XDEBUG_MODE=coverage && phpunit -c phpunit.functional.xml",
-		"ci:test:acceptance": "XDEBUG_MODE=coverage && codecept run Acceptance --coverage --coverage-xml",
 		"ci:php:lint": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*' ! -path './public/*' -print0 | xargs -0 -n 1 -P 4 php -l",
 		"ci:php:fixer": "php-cs-fixer --config=php-cs-fixer.php fix --dry-run --format=checkstyle > php-cs-fixer.xml || true",
 		"ci:php:stan": "phpstan --no-progress --error-format=checkstyle > phpstan.xml || true",
@@ -80,8 +69,7 @@
 		"sort-packages": true,
 		"allow-plugins": {
 			"typo3/cms-composer-installers": true,
-			"typo3/class-alias-loader": true,
-			"codeception/c3": true
+			"typo3/class-alias-loader": true
 		}
 	},
 	"extra": {
