@@ -5,12 +5,6 @@
         colors="true"
         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
 >
-    <coverage>
-        <report>
-            <clover outputFile="coverage/clover-unit.xml"/>
-            <text outputFile="php://stdout" showOnlySummary="true"/>
-        </report>
-    </coverage>
     <testsuites>
         <testsuite name="unit">
             <directory>Tests/Unit</directory>

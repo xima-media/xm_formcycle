@@ -41,7 +41,7 @@ jobs:
           autostart: false
       - name: Configure and start DDEV
         run: |
-          ddev config --project-type=typo3 --php-version=${{ matrix.php-version }} --xdebug-enabled=true --web-environment-add="XDEBUG_MODE=coverage"
+          ddev config --project-type=typo3 --php-version=${{ matrix.php-version }} --xdebug-enabled=true
           ddev start
 
       # Install dependencies
@@ -76,10 +76,3 @@ jobs:
             Tests/Playwright/test-results
             Tests/Playwright/playwright-report
         if: failure()
-
-      # Report coverage
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v5.4.0
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/clover-unit.xml,./coverage/clover-functional.xml
