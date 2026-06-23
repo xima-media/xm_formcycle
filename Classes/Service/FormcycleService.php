@@ -31,7 +31,7 @@ final readonly class FormcycleService
      * @throws FormcycleConfigurationException
      * @throws ContainerExceptionInterface
      */
-    public function __construct(private FrontendInterface $cache, private Site $site)
+    public function __construct(private FrontendInterface $cache, private Site $site, private ConnectionPool $connectionPool)
     {
         $this->url = rtrim($site->getSettings()->get('formcycle.url'), '/');
         $this->clientId = $site->getSettings()->get('formcycle.clientId');
@@ -91,7 +91,7 @@ final readonly class FormcycleService
 
     private function loadAvailableFormsFromLocalStorage(): array
     {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_xmformcycle_domain_model_form');
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_xmformcycle_domain_model_form');
         return $queryBuilder
             ->select('*')
             ->from('tx_xmformcycle_domain_model_form')

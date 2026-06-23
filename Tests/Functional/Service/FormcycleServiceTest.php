@@ -3,6 +3,7 @@
 namespace Xima\XmFormcycle\Tests\Functional\Service;
 
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Settings\Settings;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteSettings;
@@ -33,7 +34,7 @@ class FormcycleServiceTest extends FunctionalTestCase
             ]))
         );
 
-        $factory = new FormcycleServiceFactory($cache);
+        $factory = new FormcycleServiceFactory($cache, $this->get(ConnectionPool::class));
 
         $this->subject = $factory->createFromSite($site);
     }
