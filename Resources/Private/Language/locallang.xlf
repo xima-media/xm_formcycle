@@ -38,7 +38,7 @@
 			<trans-unit id="error.1734275657.message">
 				<source>The site setting "formcycle.clientId" is missing</source>
 			</trans-unit>
-			<trans-unit id="error.unkown.message">
+			<trans-unit id="error.unknown.message">
 				<source>An unknown error (%s) occurred. Please contact the site administrator.</source>
 			</trans-unit>
 			<trans-unit id="error.notFound.message">

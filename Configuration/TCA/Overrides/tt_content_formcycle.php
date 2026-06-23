@@ -7,9 +7,9 @@ ExtensionManagementUtility::addTcaSelectItem(
     'tt_content',
     'CType',
     [
-        'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:wizard.title',
-        'formcycle',
-        'xm-formcycle',
+        'label' => 'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang.xlf:wizard.title',
+        'value' => 'formcycle',
+        'icon' => 'xm-formcycle',
     ],
     'felogin_login',
     'after'

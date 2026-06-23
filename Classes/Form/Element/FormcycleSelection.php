@@ -58,10 +58,10 @@ class FormcycleSelection extends AbstractFormElement
 
         $hiddenInput = sprintf(
             '<input type="hidden" name="%s" id="%s" value="%s" data-formengine-input-name="%s" />',
-            htmlspecialchars($this->data['parameterArray']['itemFormElName']),
+            htmlspecialchars((string)$this->data['parameterArray']['itemFormElName']),
             $this->data['fieldName'],
-            htmlspecialchars($this->data['parameterArray']['itemFormElValue'], ENT_QUOTES),
-            htmlspecialchars($this->data['parameterArray']['itemFormElName']),
+            htmlspecialchars((string)$this->data['parameterArray']['itemFormElValue'], ENT_QUOTES),
+            htmlspecialchars((string)$this->data['parameterArray']['itemFormElName']),
         );
 
         $resultArray['html'] = '<div class="formengine-field-item t3js-formengine-field-item">' . $hiddenInput . '</div><div id="xm-formcycle-forms" class="open">' . $view->render() . '</div>';

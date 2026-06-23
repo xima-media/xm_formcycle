@@ -17,9 +17,9 @@ final readonly class FormcycleServiceFactory
     }
 
     /**
-     * @throws SiteNotFoundException
-     * @throws FormcycleConfigurationException
-     */
+    * @throws SiteNotFoundException
+    * @throws FormcycleConfigurationException
+    */
     public function createFromPageUid(mixed $pageUid): FormcycleService
     {
         $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
@@ -28,8 +28,8 @@ final readonly class FormcycleServiceFactory
     }
 
     /**
-     * @throws FormcycleConfigurationException
-     */
+    * @throws FormcycleConfigurationException
+    */
     public function createFromSite(Site $site): FormcycleService
     {
         return new FormcycleService(

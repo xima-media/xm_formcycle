@@ -1,7 +1,7 @@
 <f:if condition="{errorCode}">
     <f:be.infobox state="2" title="{f:translate(key: 'error.{errorType}.title', extensionName:'XmFormcycle')}">
         <f:if condition="{errorType} == unknown">
-            {f:translate(key: 'error.unkown.message', extensionName:'XmFormcycle', arguments: '{0: errorCode}')}
+            {f:translate(key: 'error.unknown.message', extensionName:'XmFormcycle', arguments: '{0: errorCode}')}
         </f:if>
         <f:if condition="{errorType} != unknown">
             {f:translate(key: 'error.{errorCode}.message', extensionName:'XmFormcycle')}
@@ -49,5 +49,3 @@
         </f:for>
     </div>
 </f:if>
-
-

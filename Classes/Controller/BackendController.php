@@ -10,11 +10,11 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 use Xima\XmFormcycle\Form\Element\FormcycleSelection;
 use Xima\XmFormcycle\Service\FormcycleServiceFactory;
 
-final class BackendController
+final readonly class BackendController
 {
     public function __construct(
-        private readonly ResponseFactoryInterface $responseFactory,
-        private readonly FormcycleServiceFactory $formcycleServiceFactory
+        private ResponseFactoryInterface $responseFactory,
+        private FormcycleServiceFactory $formcycleServiceFactory
     ) {
     }
 
