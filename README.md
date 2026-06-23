@@ -49,9 +49,47 @@ After that, you can enter your Formcycle credentials via the Site Settings modul
 
 ![Site settings](./Documentation/Images/site_settings.png)
 
+### Form import
+
+By default the extension fetches the list of available forms from the formcycle
+server on every request (cached). Alternatively you can import the forms into the
+TYPO3 database once and serve them locally — this avoids remote calls during
+frontend rendering and enables the form list/detail display mode and the link
+wizard.
+
+**1. Define a storage folder**
+
+Create a sysfolder that will hold the imported form records and set its page id as
+the `formcycle.storagePid` site setting (Site Settings module, *Formcycle*
+category). As soon as a storage PID is configured, forms are read from the local
+database instead of the remote server.
+
+Optionally set `formcycle.detailPid` to the page that contains the form detail
+plugin, so list entries can link to their detail view.
+
+**2. Run the import**
+
+Import the forms for all configured sites via the CLI command:
+
+```bash
+typo3 formcycle:import-forms
+```
+
+The command creates new form records, updates changed ones and removes forms that
+no longer exist on the formcycle server. Schedule it (e.g. via cron or the
+scheduler) to keep the local data in sync.
+
 ### Route Enhancer
-In v14 route enhancer configuration in loaded automatically via site set.
-In v13 you need to import the route enhancer configuration for formcycle to your site configuration manually:
+
+The route enhancer provides SEO-friendly URLs for the form detail view
+(`/{form_id}`). In v14 it is loaded automatically via the site set. In v13 you
+need to import the route enhancer configuration into your site configuration
+manually:
+
+```yaml
+imports:
+    - { resource: 'EXT:xm_formcycle/Configuration/Sets/Formcycle/route-enhancers.yaml' }
+```
 
 ### Link wizard page restriction
 To restrict the page tree in the link wizard to only show pages with formcycle form records, you can set it in you page TSconfig of your sitepackage:
@@ -64,12 +102,6 @@ TCEMAIN.linkHandler.formcycleForm {
         hidePageTree = 1
     }
 }
-```
-
-
-```yaml
-imports:
-    - { resource: 'EXT:xm_formcycle/Configuration/Sets/Formcycle/route-enhancers.yaml' }
 ```
 
 ## Configuration in TYPO3 v11 & v12
