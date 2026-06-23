@@ -55,25 +55,26 @@ jobs:
       - name: Init TYPO3
         run: ddev init-typo3
 
-      # Run tests
+      # Run Playwright acceptance tests
       - name: Run acceptance tests
         uses: nick-fields/retry@v3
         with:
           max_attempts: 3
           retry_on: error
           timeout_minutes: 10
-          command: ddev composer ci:test:acceptance
-          new_command_on_retry: ddev composer test:acceptance -- -g failed
+          command: ddev playwright test --config=playwright.config.ts
       - name: Run functional and unit tests
         run: |
           ddev composer ci:test:functional
           ddev composer ci:test:unit
 
-      # Save acceptance reports
+      # Save Playwright reports
       - uses: actions/upload-artifact@v4
         with:
-          name: acceptance-reports-${{ matrix.php-version }}-${{ matrix.typo3-version }}
-          path: Tests/Acceptance/_output
+          name: playwright-reports-${{ matrix.php-version }}-${{ matrix.typo3-version }}
+          path: |
+            Tests/Playwright/test-results
+            Tests/Playwright/playwright-report
         if: failure()
 
       # Report coverage
@@ -81,4 +82,4 @@ jobs:
         uses: codecov/codecov-action@v5.4.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/clover-unit.xml,./coverage/clover-functional.xml,./Tests/Acceptance/_output/Xima.XmFormcycle.Tests.Acceptance.Acceptance.remote.coverage.xml
+          files: ./coverage/clover-unit.xml,./coverage/clover-functional.xml

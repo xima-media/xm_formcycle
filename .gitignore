@@ -14,5 +14,6 @@ var
 vendor/
 composer.lock
 package.lock
-Tests/Acceptance/_output
-Tests/Acceptance/Support/_generated
+node_modules
+Tests/Playwright/test-results
+Tests/Playwright/playwright-report
