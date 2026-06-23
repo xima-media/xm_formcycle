@@ -39,7 +39,7 @@ class ElementSettings
         $settings->loadFormcycleJquery = (bool)($cObj->data['tx_xmformcycle_is_jquery'] ?? 1);
         $settings->loadFormcycleJqueryUi = (bool)($cObj->data['tx_xmformcycle_is_jquery_ui'] ?? 1);
         $settings->additionalParameters = $cObj->data['tx_xmformcycle_additional_params'] ?? '';
-        $settings->integrationMode = IntegrationMode::fromDatabase($cObj->data['tx_xmformcycle_integration_mode']);
+        $settings->integrationMode = IntegrationMode::fromDatabase($cObj->data['tx_xmformcycle_integration_mode'] ?? 0);
 
         return $settings;
     }

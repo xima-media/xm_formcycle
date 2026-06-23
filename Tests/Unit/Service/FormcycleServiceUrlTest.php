@@ -76,6 +76,8 @@ class FormcycleServiceUrlTest extends UnitTestCase
     {
         $url = $this->subject->getIframeUrl($this->makeSettings(''));
         self::assertStringContainsString('xfc-rp-inline=1', $url);
-        self::assertStringNotContainsString('=&', $url);
+        // Empty additional parameters must not introduce a dangling or doubled separator.
+        self::assertStringNotContainsString('&&', $url);
+        self::assertStringEndsNotWith('&', $url);
     }
 }
