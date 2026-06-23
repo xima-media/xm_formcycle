@@ -36,7 +36,7 @@
 		"codeception/module-db": "^3.1",
 		"codeception/module-phpbrowser": "^3.0",
 		"codeception/module-webdriver": "^4.0",
-		"eliashaeussler/typo3-codeception-helper": "^1.1.2",
+		"eliashaeussler/typo3-codeception-helper": "^1.1.2 || ^2.0.0",
 		"friendsofphp/php-cs-fixer": "^3.34.1",
 		"helhum/typo3-console": "^8.1 || dev-issue/1169",
 		"helmich/typo3-typoscript-lint": "^3.2.1",
