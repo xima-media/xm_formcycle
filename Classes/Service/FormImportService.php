@@ -14,7 +14,7 @@ final readonly class FormImportService
 {
     const TABLE_NAME = 'tx_xmformcycle_domain_model_form';
 
-    public function __construct(private readonly FormcycleServiceFactory $formcycleServiceFactory, private readonly ConnectionPool $connectionPool, private readonly SiteFinder $siteFinder)
+    public function __construct(private FormcycleServiceFactory $formcycleServiceFactory, private ConnectionPool $connectionPool, private SiteFinder $siteFinder)
     {
     }
 

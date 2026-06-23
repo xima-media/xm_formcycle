@@ -3,6 +3,7 @@
 namespace Xima\XmFormcycle\Tests\Unit\Service;
 
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Settings\Settings;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteSettings;
@@ -30,7 +31,9 @@ class FormcycleServiceUrlTest extends UnitTestCase
             ]))
         );
 
-        $factory = new FormcycleServiceFactory($cache);
+        $connectionPool = $this->createMock(ConnectionPool::class);
+
+        $factory = new FormcycleServiceFactory($cache, $connectionPool);
         $this->subject = $factory->createFromSite($site);
     }
 
