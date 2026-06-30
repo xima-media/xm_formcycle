@@ -24,7 +24,10 @@ final readonly class FormImportService
 
         $returnInfo = [];
         foreach ($sites as $site) {
-            $returnInfo[$site->getIdentifier()] = $this->importForSite($site);
+            // set 'xima/xm-formcycle' must be included, otherwise the site does not have the required settings
+            if (in_array('xima/xm-formcycle', $site->getSets())) {
+                $returnInfo[$site->getIdentifier()] = $this->importForSite($site);
+            }
         }
 
         return $returnInfo;
