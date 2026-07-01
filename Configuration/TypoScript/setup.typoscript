@@ -135,6 +135,7 @@ tt_content.formcycle {
           as = forms
           table = tx_xmformcycle_domain_model_form
           dataProcessing.10 = record-transformation
+          pidInList = {$formcycle.storagePid}
         }
         1781861931 = site
         1781861931 {
