@@ -41,12 +41,6 @@ services:
       - name: 'data.processor'
         identifier: 'formcycle-integrated'
 
-  Xima\XmFormcycle\DataProcessing\FormListProcessor:
-    public: true
-    tags:
-      - name: 'data.processor'
-        identifier: 'formcycle-list'
-
   Xima\XmFormcycle\ContentSecurityPolicy\EventListener\FrontendListener:
     tags:
       - name: event.listener

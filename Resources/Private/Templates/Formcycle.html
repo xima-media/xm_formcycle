@@ -22,20 +22,25 @@
         <f:for each="{forms}" as="form">
             <f:switch expression="{data.tx_xmformcycle_detail_link_mode}">
                 <f:case value="1">
-                    <f:variable name="formUrl">{form.url}</f:variable>
+                    <f:variable name="formUrl">{form.record.url}</f:variable>
                     <f:variable name="linkTarget">_blank</f:variable>
                 </f:case>
                 <f:defaultCase>
-                    <f:variable name="formUrl">{f:uri.page(pageUid: '{site.settings.formcycle.detailPid}', additionalParams: '{xfc_form: \'{form.id}\'}')}</f:variable>
+                    <f:variable name="formUrl">{f:uri.page(pageUid: '{site.settings.formcycle.detailPid}', additionalParams: '{xfc_form: \'{form.record.id}\'}')}</f:variable>
                     <f:variable name="linkTarget">_self</f:variable>
                 </f:defaultCase>
             </f:switch>
 
             <li>
-                <a href="{formUrl}" title="{form.title}" target="{linkTarget}">
-                    <img src="{form.thumbnail}" alt="{form.title}"/>
-                    {form.title}
+                <a href="{formUrl}" title="{form.record.title}" target="{linkTarget}">
+                    <img src="{form.record.thumbnail}" alt="{form.record.title}"/>
+                    {form.record.title}
                 </a>
+                <p>
+                    <f:for each="{form.record.categories}" as="category">
+                        <span>{category.title}</span>
+                    </f:for>
+                </p>
             </li>
         </f:for>
     </ul>

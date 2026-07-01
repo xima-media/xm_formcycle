@@ -108,10 +108,10 @@ tt_content.formcycle {
   }
 
 
-  50 = COA
-  50.stdWrap.if.equals = 1
-  50.stdWrap.if.value.data = field:tx_xmformcycle_display_mode
-  50 {
+  20 = COA
+  20.stdWrap.if.equals = 1
+  20.stdWrap.if.value.data = field:tx_xmformcycle_display_mode
+  20 {
     10 = COA
     10.stdWrap.if {
       isFalse.cObject = COA
@@ -130,7 +130,12 @@ tt_content.formcycle {
       layoutRootPaths.2 = {$plugin.tx_xmformcycle.view.layoutRootPath}
       templateName = Formcycle
       dataProcessing {
-        1781791186 = Xima\XmFormcycle\DataProcessing\FormListProcessor
+        1781791186 = database-query
+        1781791186 {
+          as = forms
+          table = tx_xmformcycle_domain_model_form
+          dataProcessing.10 = record-transformation
+        }
         1781861931 = site
         1781861931 {
           as = site

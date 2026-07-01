@@ -18,7 +18,7 @@ return [
     'types' => [
         '1' => [
             'showitem' =>
-                '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general, id, form_id, client_name, title, thumbnail, url, change_date, fc_date, online',
+                '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general, form_id, client_name, title, categories, online',
         ],
     ],
     'columns' => [
@@ -36,6 +36,7 @@ return [
                 'type' => 'number',
                 'format' => 'integer',
                 'required' => true,
+                'readOnly' => true,
             ],
         ],
         'client_name' => [
@@ -45,6 +46,7 @@ return [
                 'size' => 40,
                 'max' => 255,
                 'eval' => 'trim',
+                'readOnly' => true,
             ],
         ],
         'title' => [
@@ -55,6 +57,7 @@ return [
                 'max' => 255,
                 'eval' => 'trim',
                 'required' => true,
+                'readOnly' => true,
             ],
         ],
         'thumbnail' => [
@@ -96,7 +99,13 @@ return [
             'label' => 'LLL:EXT:xm_formcycle/Resources/Private/Language/locallang_db.xlf:tx_xmformcycle_domain_model_form.online',
             'config' => [
                 'type' => 'check',
+                'readOnly' => true,
             ],
         ],
+        'categories' => [
+            'config' => [
+                'type' => 'category',
+            ],
+        ]
     ],
 ];
