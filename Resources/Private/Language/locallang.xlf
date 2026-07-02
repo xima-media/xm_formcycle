@@ -44,6 +44,9 @@
 			<trans-unit id="error.notFound.message">
 				<source>The requested form could not be found.</source>
 			</trans-unit>
+			<trans-unit id="list.empty.message">
+				<source>No forms available.</source>
+			</trans-unit>
 
 			<trans-unit id="defaultGroupNames.0">
 				<source>Ungrouped</source>

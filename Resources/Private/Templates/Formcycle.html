@@ -11,32 +11,43 @@
 </f:section>
 
 <f:section name="List">
-    <ul>
-        <f:for each="{forms}" as="formRecord">
-            <f:switch expression="{data.tx_xmformcycle_detail_link_mode}">
-                <f:case value="1">
-                    <f:variable name="formUrl">{formRecord.record.url}</f:variable>
-                    <f:variable name="linkTarget">_blank</f:variable>
-                </f:case>
-                <f:defaultCase>
-                    <f:variable name="formUrl">{f:uri.page(pageUid: '{site.settings.formcycle.detailPid}', additionalParams: '{xfc_form: \'{formRecord.record.id}\'}')}</f:variable>
-                    <f:variable name="linkTarget">_self</f:variable>
-                </f:defaultCase>
-            </f:switch>
+    <f:if condition="{forms}">
+        <f:then>
+            <ul>
+                <f:for each="{forms}" as="formRecord">
+                    <f:switch expression="{data.tx_xmformcycle_detail_link_mode}">
+                        <f:case value="1">
+                            <f:variable name="formUrl">{formRecord.record.url}</f:variable>
+                            <f:variable name="linkTarget">_blank</f:variable>
+                        </f:case>
+                        <f:defaultCase>
+                            <f:variable name="formUrl">{f:uri.page(pageUid: '{site.settings.formcycle.detailPid}', additionalParams: '{xfc_form: \'{formRecord.record.id}\'}')}</f:variable>
+                            <f:variable name="linkTarget">_self</f:variable>
+                        </f:defaultCase>
+                    </f:switch>
 
-            <li>
-                <a href="{formUrl}" title="{formRecord.record.title}" target="{linkTarget}">
-                    <img src="{formRecord.record.thumbnail}" alt="{formRecord.record.title}"/>
-                    {formRecord.record.title}
-                </a>
-                <p>
-                    <f:for each="{formRecord.record.categories}" as="category">
-                        <span>{category.title}</span>
-                    </f:for>
-                </p>
-            </li>
-        </f:for>
-    </ul>
+                    <li>
+                        <a href="{formUrl}" title="{formRecord.record.title}" target="{linkTarget}">
+                            <f:if condition="{formRecord.record.thumbnail}">
+                                <img src="{formRecord.record.thumbnail}" alt="{formRecord.record.title}"/>
+                            </f:if>
+                            {formRecord.record.title}
+                        </a>
+                        <f:if condition="{formRecord.record.categories}">
+                            <p>
+                                <f:for each="{formRecord.record.categories}" as="category">
+                                    <span>{category.title}</span>
+                                </f:for>
+                            </p>
+                        </f:if>
+                    </li>
+                </f:for>
+            </ul>
+        </f:then>
+        <f:else>
+            <p class="xm-formcycle-empty">{f:translate(key: 'list.empty.message', extensionName: 'XmFormcycle')}</p>
+        </f:else>
+    </f:if>
 </f:section>
 
 <f:section name="Show">

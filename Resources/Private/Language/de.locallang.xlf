@@ -58,6 +58,10 @@
 				<source>The requested form could not be found.</source>
 				<target>Das angeforderte Formular konnte nicht gefunden werden.</target>
 			</trans-unit>
+			<trans-unit id="list.empty.message">
+				<source>No forms available.</source>
+				<target>Keine Formulare verfügbar.</target>
+			</trans-unit>
 			<trans-unit id="defaultGroupNames.0">
 				<source>Ungrouped</source>
 				<target>Nicht gruppiert</target>
