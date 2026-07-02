@@ -7,7 +7,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use Xima\XmFormcycle\Dto\IntegrationMode;
 
-class iFrameProcessor extends AbstractProcessor
+class IframeProcessor extends AbstractProcessor
 {
     public function subProcess(
         ContentObjectRenderer $cObj,
@@ -19,6 +19,7 @@ class iFrameProcessor extends AbstractProcessor
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->addJsFooterFile('EXT:xm_formcycle/Resources/Public/JavaScript/Frontend/FormcycleIframe.js');
 
+        $processedData['mode'] = 'iframe';
         $processedData['iframe'] = [];
         $processedData['iframe']['url'] = $this->formcycleService->getIframeUrl($this->settings);
 

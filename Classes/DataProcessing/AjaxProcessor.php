@@ -26,6 +26,7 @@ class AjaxProcessor extends AbstractProcessor
         }
         $pageRenderer->addJsFooterFile('EXT:xm_formcycle/Resources/Public/JavaScript/Frontend/FormcycleAjax.js');
 
+        $processedData['mode'] = 'ajax';
         $processedData['ajax'] = [];
         $processedData['ajax']['url'] = $this->formcycleService->getAjaxUrl($this->settings);
 

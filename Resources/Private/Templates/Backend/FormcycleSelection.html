@@ -49,3 +49,7 @@
         </f:for>
     </div>
 </f:if>
+
+<f:if condition="!{loading} && !{errorCode} && !{forms}">
+    <p class="xm-formcycle-empty">{f:translate(key: 'list.empty.message', extensionName: 'XmFormcycle')}</p>
+</f:if>

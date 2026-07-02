@@ -44,6 +44,15 @@
 			<trans-unit id="error.notFound.message">
 				<source>The requested form could not be found.</source>
 			</trans-unit>
+			<trans-unit id="list.empty.message">
+				<source>No forms available.</source>
+			</trans-unit>
+			<trans-unit id="ajax.loading">
+				<source>Loading form…</source>
+			</trans-unit>
+			<trans-unit id="ajax.error">
+				<source>The form could not be loaded. Please try again later.</source>
+			</trans-unit>
 
 			<trans-unit id="defaultGroupNames.0">
 				<source>Ungrouped</source>
@@ -78,14 +87,14 @@
 			<trans-unit id="tx_xmformcycle_integration_mode.1">
 				<source>Integrated</source>
 			</trans-unit>
-			<trans-unit id="tx_xmformcycle_integration_mode.4">
-				<source>iFrame</source>
-			</trans-unit>
 			<trans-unit id="tx_xmformcycle_integration_mode.2">
 				<source>AJAX (TYPO3)</source>
 			</trans-unit>
 			<trans-unit id="tx_xmformcycle_integration_mode.3">
 				<source>AJAX (FORMCYCLE)</source>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode.4">
+				<source>iFrame</source>
 			</trans-unit>
 			<trans-unit id="tx_xmformcycle_is_jquery">
 				<source>Include jQuery</source>
