@@ -114,10 +114,6 @@
 				<source>Integrated</source>
 				<target>Integriert</target>
 			</trans-unit>
-			<trans-unit id="tx_xmformcycle_integration_mode.4">
-				<source>iFrame</source>
-				<target>iFrame</target>
-			</trans-unit>
 			<trans-unit id="tx_xmformcycle_integration_mode.2">
 				<source>AJAX (TYPO3)</source>
 				<target>AJAX (TYPO3)</target>
@@ -125,6 +121,10 @@
 			<trans-unit id="tx_xmformcycle_integration_mode.3">
 				<source>AJAX (FORMCYCLE)</source>
 				<target>AJAX (FORMCYCLE)</target>
+			</trans-unit>
+			<trans-unit id="tx_xmformcycle_integration_mode.4">
+				<source>iFrame</source>
+				<target>iFrame</target>
 			</trans-unit>
 			<trans-unit id="tx_xmformcycle_is_jquery">
 				<source>Include jQuery</source>
