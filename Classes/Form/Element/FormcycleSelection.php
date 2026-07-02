@@ -6,13 +6,18 @@ use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Site\Entity\NullSite;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Core\View\ViewFactoryData;
+use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use Xima\XmFormcycle\Error\FormcycleConfigurationException;
 use Xima\XmFormcycle\Error\FormcycleConnectionException;
 use Xima\XmFormcycle\Service\FormcycleServiceFactory;
 
 class FormcycleSelection extends AbstractFormElement
 {
+    public function __construct(
+        protected ViewFactoryInterface $viewFactory,
+    ) {}
+
     public function render(): array
     {
         $fieldInformationResult = $this->renderFieldInformation();
@@ -22,8 +27,10 @@ class FormcycleSelection extends AbstractFormElement
             false
         );
 
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplatePathAndFilename('EXT:xm_formcycle/Resources/Private/Templates/Backend/FormcycleSelection.html');
+        $view = $this->viewFactory->create(new ViewFactoryData(
+            templateRootPaths: ['EXT:xm_formcycle/Resources/Private/Templates/Backend/'],
+        ));
+
         $view->assign('itemFormElValue', $this->data['parameterArray']['itemFormElValue']);
 
         try {
@@ -64,7 +71,7 @@ class FormcycleSelection extends AbstractFormElement
             htmlspecialchars((string)$this->data['parameterArray']['itemFormElName']),
         );
 
-        $resultArray['html'] = '<div class="formengine-field-item t3js-formengine-field-item">' . $hiddenInput . '</div><div id="xm-formcycle-forms" class="open">' . $view->render() . '</div>';
+        $resultArray['html'] = '<div class="formengine-field-item t3js-formengine-field-item">' . $hiddenInput . '</div><div id="xm-formcycle-forms" class="open">' . $view->render('FormcycleSelection') . '</div>';
         $resultArray['stylesheetFiles'][] = 'EXT:xm_formcycle/Resources/Public/Css/Backend/FormcycleSelection.css';
 
         $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create('@xima/xm-formcycle/FormcycleSelectionElement.js')
