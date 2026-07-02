@@ -58,6 +58,19 @@
                     </f:else>
                 </f:if>
             </f:case>
+            <f:case value="error">
+                <div class="xm-formcycle-error" role="alert">
+                    <strong>{f:translate(key: 'error.{error.type}.title', extensionName: 'XmFormcycle')}</strong>
+                    <f:if condition="{error.type} == 'unknown'">
+                        <f:then>
+                            {f:translate(key: 'error.unknown.message', extensionName: 'XmFormcycle', arguments: '{0: error.code}')}
+                        </f:then>
+                        <f:else>
+                            {f:translate(key: 'error.{error.code}.message', extensionName: 'XmFormcycle')}
+                        </f:else>
+                    </f:if>
+                </div>
+            </f:case>
         </f:switch>
     </div>
 </f:section>
