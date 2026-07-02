@@ -33,7 +33,7 @@ tt_content.formcycle {
       templateName = Formcycle
       dataProcessing {
         1709129505 = Xima\XmFormcycle\DataProcessing\AjaxProcessor
-        1709129509 = Xima\XmFormcycle\DataProcessing\iFrameProcessor
+        1709129509 = Xima\XmFormcycle\DataProcessing\IframeProcessor
         1709129512 = Xima\XmFormcycle\DataProcessing\IntegratedProcessor
       }
     }
@@ -102,7 +102,7 @@ tt_content.formcycle {
       layoutRootPaths.2 = {$plugin.tx_xmformcycle.view.layoutRootPath}
       templateName = Formcycle
       dataProcessing {
-        1709129509 = Xima\XmFormcycle\DataProcessing\iFrameProcessor
+        1709129509 = Xima\XmFormcycle\DataProcessing\IframeProcessor
       }
     }
   }

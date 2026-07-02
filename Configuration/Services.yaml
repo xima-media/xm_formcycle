@@ -29,7 +29,7 @@ services:
       - name: 'data.processor'
         identifier: 'formcycle-ajax'
 
-  Xima\XmFormcycle\DataProcessing\iFrameProcessor:
+  Xima\XmFormcycle\DataProcessing\IframeProcessor:
     public: true
     tags:
       - name: 'data.processor'

@@ -7,7 +7,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use Xima\XmFormcycle\Dto\IntegrationMode;
 
-class iFrameProcessor extends AbstractProcessor
+class IframeProcessor extends AbstractProcessor
 {
     public function subProcess(
         ContentObjectRenderer $cObj,
