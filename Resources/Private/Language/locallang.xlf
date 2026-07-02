@@ -47,6 +47,12 @@
 			<trans-unit id="list.empty.message">
 				<source>No forms available.</source>
 			</trans-unit>
+			<trans-unit id="ajax.loading">
+				<source>Loading form…</source>
+			</trans-unit>
+			<trans-unit id="ajax.error">
+				<source>The form could not be loaded. Please try again later.</source>
+			</trans-unit>
 
 			<trans-unit id="defaultGroupNames.0">
 				<source>Ungrouped</source>

@@ -57,7 +57,9 @@
                 <iframe class="xm-formcycle-iframe" src="{iframe.url}" width="100%" height="500" loading="lazy"></iframe>
             </f:case>
             <f:case value="ajax">
-                <div class="xm-formcycle-ajax" id="xm-formcycle-ajax-{data.uid}" data-ajax-url="{ajax.url}"></div>
+                <div class="xm-formcycle-ajax" id="xm-formcycle-ajax-{data.uid}" data-ajax-url="{ajax.url}" data-error-text="{f:translate(key: 'ajax.error', extensionName: 'XmFormcycle')}">
+                    <span class="xm-formcycle-loading">{f:translate(key: 'ajax.loading', extensionName: 'XmFormcycle')}</span>
+                </div>
             </f:case>
             <f:case value="integrated">
                 <f:if condition="{form.html}">
