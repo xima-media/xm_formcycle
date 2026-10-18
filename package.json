@@ -13,7 +13,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"jquery": "^3.7.1",
+		"jquery": "^4.0.0",
 		"jquery-ui": "^1.13.2"
 	}
 }
