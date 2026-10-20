@@ -60,7 +60,7 @@
             <f:then>
                 {form.html->f:format.raw()}
             </f:then>
-            <f:else>
+            <f:else if="!{ajax} && !{iframe}">
                 {f:translate(key: 'error.notFound.message', extensionName:'XmFormcycle')}
             </f:else>
         </f:if>
