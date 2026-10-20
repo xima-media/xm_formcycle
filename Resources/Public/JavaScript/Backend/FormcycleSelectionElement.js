@@ -60,14 +60,10 @@ export default class FormcycleSelectionElement {
     if (reloadButton) {
       reloadButton.addEventListener('click', e => {
         e.preventDefault()
-        // hide form gallery, display loading spinner
-        formsWrapper.classList.add('hidden')
-        loadingSpinner.classList.remove('hidden')
+        // hide form gallery (absent when the list is empty), display loading spinner
+        formsWrapper?.classList.add('hidden')
+        loadingSpinner?.classList.remove('hidden')
         this.loadForms(TYPO3.settings.ajaxUrls.xm_formcycle_form_reload)
-
-        // close settings if open
-        settingsButton.classList.remove('active')
-        wrapper.classList.remove('open-settings')
       })
     }
 

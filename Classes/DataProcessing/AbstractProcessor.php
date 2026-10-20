@@ -6,6 +6,8 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use Xima\XmFormcycle\Dto\ElementSettings;
 use Xima\XmFormcycle\Dto\IntegrationMode;
+use Xima\XmFormcycle\Error\FormcycleConfigurationException;
+use Xima\XmFormcycle\Error\FormcycleConnectionException;
 use Xima\XmFormcycle\Service\FormcycleService;
 use Xima\XmFormcycle\Service\FormcycleServiceFactory;
 
@@ -36,7 +38,15 @@ abstract class AbstractProcessor implements DataProcessorInterface
             $this->settings->formId = (string)$formId;
         }
 
-        $this->formcycleService = $this->formcycleServiceFactory->createFromPageUid($cObj->data['pid']);
+        try {
+            $this->formcycleService = $this->formcycleServiceFactory->createFromPageUid($cObj->data['pid']);
+        } catch (FormcycleConfigurationException $e) {
+            return $this->withError($processedData, 'configuration', (int)$e->getCode());
+        } catch (FormcycleConnectionException $e) {
+            return $this->withError($processedData, 'connection', (int)$e->getCode());
+        } catch (\Exception $e) {
+            return $this->withError($processedData, 'unknown', (int)$e->getCode());
+        }
 
         // check if integration mode is set
         if ($this->settings->integrationMode === IntegrationMode::Default) {
@@ -49,6 +59,18 @@ abstract class AbstractProcessor implements DataProcessorInterface
         }
 
         return $this->subProcess($cObj, $contentObjectConfiguration, $processorConfiguration, $processedData);
+    }
+
+    /**
+     * @param array<string, mixed> $processedData
+     * @return array<string, mixed>
+     */
+    private function withError(array $processedData, string $type, int $code): array
+    {
+        $processedData['mode'] = 'error';
+        $processedData['error'] = ['type' => $type, 'code' => $code];
+
+        return $processedData;
     }
 
     abstract protected function getIntegrationMode(): IntegrationMode;

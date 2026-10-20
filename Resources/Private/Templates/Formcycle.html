@@ -1,70 +1,90 @@
 <f:layout name="Default" />
 <f:section name="Main">
-    <f:switch expression="{data.tx_xmformcycle_display_mode}">
-        <f:case value="1">
-            <f:if condition="{form}">
-                <f:then>
-                    <f:render section="Show" arguments="{_all}" />
-                </f:then>
-                <f:else>
-                    <f:render section="List" arguments="{_all}" />
-                </f:else>
-            </f:if>
-        </f:case>
-        <f:defaultCase>
+    <f:if condition="{mode}">
+        <f:then>
             <f:render section="Show" arguments="{_all}" />
-        </f:defaultCase>
-    </f:switch>
+        </f:then>
+        <f:else>
+            <f:render section="List" arguments="{_all}" />
+        </f:else>
+    </f:if>
 </f:section>
 
 <f:section name="List">
-    <ul>
-        <f:for each="{forms}" as="form">
-            <f:switch expression="{data.tx_xmformcycle_detail_link_mode}">
-                <f:case value="1">
-                    <f:variable name="formUrl">{form.record.url}</f:variable>
-                    <f:variable name="linkTarget">_blank</f:variable>
-                </f:case>
-                <f:defaultCase>
-                    <f:variable name="formUrl">{f:uri.page(pageUid: '{site.settings.formcycle.detailPid}', additionalParams: '{xfc_form: \'{form.record.id}\'}')}</f:variable>
-                    <f:variable name="linkTarget">_self</f:variable>
-                </f:defaultCase>
-            </f:switch>
+    <f:if condition="{forms}">
+        <f:then>
+            <ul>
+                <f:for each="{forms}" as="formRecord">
+                    <f:switch expression="{data.tx_xmformcycle_detail_link_mode}">
+                        <f:case value="1">
+                            <f:variable name="formUrl">{formRecord.record.url}</f:variable>
+                            <f:variable name="linkTarget">_blank</f:variable>
+                        </f:case>
+                        <f:defaultCase>
+                            <f:variable name="formUrl">{f:uri.page(pageUid: '{site.settings.formcycle.detailPid}', additionalParams: '{xfc_form: \'{formRecord.record.id}\'}')}</f:variable>
+                            <f:variable name="linkTarget">_self</f:variable>
+                        </f:defaultCase>
+                    </f:switch>
 
-            <li>
-                <a href="{formUrl}" title="{form.record.title}" target="{linkTarget}">
-                    <img src="{form.record.thumbnail}" alt="{form.record.title}"/>
-                    {form.record.title}
-                </a>
-                <p>
-                    <f:for each="{form.record.categories}" as="category">
-                        <span>{category.title}</span>
-                    </f:for>
-                </p>
-            </li>
-        </f:for>
-    </ul>
+                    <li>
+                        <a href="{formUrl}" title="{formRecord.record.title}" target="{linkTarget}">
+                            <f:if condition="{formRecord.record.thumbnail}">
+                                <img src="{formRecord.record.thumbnail}" alt="{formRecord.record.title}"/>
+                            </f:if>
+                            {formRecord.record.title}
+                        </a>
+                        <f:if condition="{formRecord.record.categories}">
+                            <p>
+                                <f:for each="{formRecord.record.categories}" as="category">
+                                    <span>{category.title}</span>
+                                </f:for>
+                            </p>
+                        </f:if>
+                    </li>
+                </f:for>
+            </ul>
+        </f:then>
+        <f:else>
+            <p class="xm-formcycle-empty">{f:translate(key: 'list.empty.message', extensionName: 'XmFormcycle')}</p>
+        </f:else>
+    </f:if>
 </f:section>
 
 <f:section name="Show">
     <div class="ce-formcycle">
-        <f:if condition="{iframe}">
-            <iframe class="xm-formcycle-iframe" src="{iframe.url}" width="100%" height="500" loading="lazy"></iframe>
-        </f:if>
-
-        <f:if condition="{ajax}">
-            <div class="xm-formcycle-ajax" id="xm-formcycle-ajax-{data.uid}" data-ajax-url="{ajax.url}"></div>
-        </f:if>
-
-        <f:if condition="{form.html}">
-            <f:then>
-                {form.html->f:format.raw()}
-            </f:then>
-            <f:else>
-                {f:translate(key: 'error.notFound.message', extensionName:'XmFormcycle')}
-            </f:else>
-        </f:if>
-
+        <f:switch expression="{mode}">
+            <f:case value="iframe">
+                <iframe class="xm-formcycle-iframe" src="{iframe.url}" width="100%" height="500" loading="lazy"></iframe>
+            </f:case>
+            <f:case value="ajax">
+                <div class="xm-formcycle-ajax" id="xm-formcycle-ajax-{data.uid}" data-ajax-url="{ajax.url}" data-error-text="{f:translate(key: 'ajax.error', extensionName: 'XmFormcycle')}">
+                    <span class="xm-formcycle-loading">{f:translate(key: 'ajax.loading', extensionName: 'XmFormcycle')}</span>
+                </div>
+            </f:case>
+            <f:case value="integrated">
+                <f:if condition="{form.html}">
+                    <f:then>
+                        {form.html->f:format.raw()}
+                    </f:then>
+                    <f:else>
+                        {f:translate(key: 'error.notFound.message', extensionName:'XmFormcycle')}
+                    </f:else>
+                </f:if>
+            </f:case>
+            <f:case value="error">
+                <div class="xm-formcycle-error" role="alert">
+                    <strong>{f:translate(key: 'error.{error.type}.title', extensionName: 'XmFormcycle')}</strong>
+                    <f:if condition="{error.type} == 'unknown'">
+                        <f:then>
+                            {f:translate(key: 'error.unknown.message', extensionName: 'XmFormcycle', arguments: '{0: error.code}')}
+                        </f:then>
+                        <f:else>
+                            {f:translate(key: 'error.{error.code}.message', extensionName: 'XmFormcycle')}
+                        </f:else>
+                    </f:if>
+                </div>
+            </f:case>
+        </f:switch>
     </div>
 </f:section>
 

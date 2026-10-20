@@ -77,7 +77,7 @@ final readonly class FormcycleService
         // if local storage is set, the form data gets imported into the local database and is loaded from there,
         // otherwise it gets loaded from the remote server
         if ($this->localStoragePid !== 0) {
-            return $this->loadAvailableFormsFromLocalStorage();
+            return $this->loadAvailableFormsFromDatabase();
         }
 
         if ($this->cache->has('availableForms')) {
@@ -89,7 +89,7 @@ final readonly class FormcycleService
         return $forms;
     }
 
-    private function loadAvailableFormsFromLocalStorage(): array
+    private function loadAvailableFormsFromDatabase(): array
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_xmformcycle_domain_model_form');
         return $queryBuilder
