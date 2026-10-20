@@ -104,32 +104,6 @@ TCEMAIN.linkHandler.formcycleForm {
 }
 ```
 
-## Configuration in TYPO3 v11 & v12
-
-After installation, enter your login data via extension configuration and include the TypoScript template for the
-frontend rendering.
-
-### 1. Extension configuration
-
-Set your formcycle credentials in the extension configuration via TYPO3 backend or in your `config/system/settings.php`:
-
-```php
-'EXTENSIONS' => [
-    'xm_formcycle' => [
-        'formcycleUrl' => 'https://pro.formcloud.de/formcycle/',
-        'formcycleClientId' => '4231',
-    ],
-]
-```
-
-### 2. TypoScript include
-
-Include the static TypoScript template "formcycle" or directly import it in your sitepackage:
-
-```typo3_typoscript
-@import 'EXT:xm_formcycle/Configuration/TypoScript/setup.typoscript'
-```
-
 ## Developer
 
 If you want to modify the [fluid template](Resources/Private/Templates/Formcycle.html), add template paths via

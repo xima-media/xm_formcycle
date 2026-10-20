@@ -23,6 +23,9 @@ services:
   Xima\XmFormcycle\Preview\FormcyclePreviewRenderer:
     public: true
 
+  Xima\XmFormcycle\Form\Element\FormcycleSelection:
+    public: true
+
   Xima\XmFormcycle\DataProcessing\AjaxProcessor:
     public: true
     tags:

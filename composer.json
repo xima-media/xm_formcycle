@@ -21,29 +21,23 @@
 	"require": {
 		"php": "^8.2",
 		"ext-fileinfo": "*",
-		"typo3/cms-core": "^13.0"
+		"typo3/cms-core": "^13.4 || ^14.3"
 	},
 	"require-dev": {
 		"armin/editorconfig-cli": "^2.0",
 		"bk2k/bootstrap-package": "^14.0 || dev-master",
 		"ergebnis/composer-normalize": "^2.44",
 		"friendsofphp/php-cs-fixer": "^3.34.1",
-		"helhum/typo3-console": "^8.1 || dev-issue/1169",
+		"helhum/typo3-console": "^9.0",
 		"helmich/typo3-typoscript-lint": "^3.2.1",
 		"move-elevator/composer-translation-validator": "^1.3.1",
 		"saschaegerer/phpstan-typo3": "^2.1.1 || ^3.0.0",
 		"ssch/typo3-rector": "^3.9.0",
 		"symfony/translation": "^7.0",
-		"typo3/cms-base-distribution": "^13.4",
-		"typo3/cms-lowlevel": "^13.4",
+		"typo3/cms-base-distribution": "^13.4 || ^14.3",
+		"typo3/cms-lowlevel": "^13.4 || ^14.3",
 		"typo3/testing-framework": "^9.1"
 	},
-	"repositories": [
-		{
-			"type": "github",
-			"url": "git@github.com:bmack/TYPO3-Console.git"
-		}
-	],
 	"autoload": {
 		"psr-4": {
 			"Xima\\XmFormcycle\\": "Classes/"

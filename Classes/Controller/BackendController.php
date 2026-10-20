@@ -6,7 +6,8 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Core\View\ViewFactoryData;
+use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use Xima\XmFormcycle\Form\Element\FormcycleSelection;
 use Xima\XmFormcycle\Service\FormcycleServiceFactory;
 
@@ -14,7 +15,8 @@ final readonly class BackendController
 {
     public function __construct(
         private ResponseFactoryInterface $responseFactory,
-        private FormcycleServiceFactory $formcycleServiceFactory
+        private FormcycleServiceFactory $formcycleServiceFactory,
+        protected ViewFactoryInterface $viewFactory
     ) {
     }
 
@@ -32,10 +34,12 @@ final readonly class BackendController
         $forms = $this->formcycleServiceFactory->createFromPageUid($pageUid)->getAvailableForms();
         $forms = FormcycleSelection::groupForms($forms);
 
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplatePathAndFilename('EXT:xm_formcycle/Resources/Private/Templates/Backend/FormcycleSelection.html');
+        $view = $this->viewFactory->create(new ViewFactoryData(
+            templateRootPaths: ['EXT:xm_formcycle/Resources/Private/Templates/Backend/'],
+            request: $request,
+        ));
         $view->assign('forms', $forms);
-        $html = $view->render();
+        $html = $view->render('FormcycleSelection');
 
         $response = $this->responseFactory->createResponse()
             ->withHeader('Content-Type', 'application/json; charset=utf-8');
